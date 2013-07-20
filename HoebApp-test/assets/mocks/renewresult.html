@@ -1,0 +1,3646 @@
+
+ 
+
+
+
+
+
+
+
+	 
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="fr">
+	<head>
+		<title>
+			
+		</title>
+		<!-- custom meta tags here -->
+		
+		<!-- end of custom meta tags -->
+		<meta http-equiv="imagetoolbar" content="no">
+		<META NAME="ZonesObjClass" CONTENT="CWWWDBObject">
+		<META NAME="ZonesObjName"  CONTENT="Obj_518091357397840">
+		<META NAME="ZonesTemplate"  CONTENT="SSRenew">
+		<META NAME="ZonesTemplateFileName"  CONTENT="templates\Portal3\SSRenew.html">
+		<meta http-equiv="Content-Style-Type" content="text/css">
+		<!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> -->
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html charset=UTF-8"><META HTTP-EQUIV="Expires" CONTENT="-1">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+
+		
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/JavaScript" />
+<meta name="description" content="" />
+
+     
+
+    <meta name="robots" content="noindex,follow" />
+     
+     
+
+<meta http-equiv="imagetoolbar" content="no" />
+
+<META NAME="ZonesObjClass" CONTENT="CWWWDBObject">
+<META NAME="ZonesObjName"  CONTENT="Obj_518091357397840">
+<META NAME="ZonesTemplate"  CONTENT="SSRenew">
+<META NAME="ZonesTemplateFileName"  CONTENT="templates\Portal3\SSRenew.html">
+<META NAME="ZonesRef" CONTENT="Obj_518091357397840?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8">
+
+		
+<link href="/portal3/css/btnStyles.css" rel="stylesheet" type="text/css">
+
+
+
+
+<style type="text/css">
+.clickable {
+cursor:pointer; 
+cursor:hand;
+}
+#leftMenuContainer {
+float:left;
+width: 100px;
+}
+.SelectItem {
+background-color: green;
+}
+.printListLink:link, .printListLink:visited {
+color: white;
+font-size: 0.92em;
+}
+body {
+width:100%;
+margin:0px;
+padding:0px;
+}
+#contentContainer {
+width: 1200px;
+margin-left: auto;
+margin-right: auto;
+}
+#toolBar {
+height : 50px;
+background-color: white;
+}
+.enlargeCoverLink:link, .enlargeCoverLink:visited {
+font-size : 0.7em;
+color: black;
+display:block;
+text-align:center;
+width: 100%;
+}
+.IndexHeadingCell {
+padding-top:10px;
+padding-bottom: 10px;
+padding-left: 5px;
+padding-right: 5px;
+font-size: larger;
+background-color: #F4F4F4;
+}
+.IndexHeadingCellStripe {
+padding-top:10px;
+padding-left: 5px;
+padding-right: 5px;
+padding-bottom: 10px;
+font-size : larger;
+background-color: #FFFFFF;
+}
+.button {
+text-decoration:none;
+font-weight : bold;
+color : black;
+}
+.button:link {
+text-decoration:none;
+font-weight : bold;
+color : black;
+}
+.button:Hover {
+text-decoration:none;
+font-weight : bold;
+color : black;
+}
+.button:Visited {
+text-decoration:none;
+font-weight : bold;
+color : black;
+}
+.button_blue {
+text-decoration:none;
+font-weight : bold;
+color : #8c9fad;
+}
+.button_blue:link {
+text-decoration:none;
+font-weight : bold;
+color : #8c9fad;
+}
+.button_blue:Hover {
+text-decoration:none;
+font-weight : bold;
+color : #8c9fad;
+}
+.button_blue:Visited {
+text-decoration:none;
+font-weight : bold;
+color : #8c9fad;
+}
+ 
+
+
+.hi {
+background-color :#D7EAFA;
+text-decoration: none;
+font-weight: normal;
+padding-left: 2px;
+padding-right: 2px;
+}
+.PayImage {
+padding-left: 5px;
+}
+.CannotRenewLink {
+color: #bd5200;
+}
+.searchLimits {
+border-style: solid;
+border-width: 2px;
+border-color: #BBCCD9;
+padding-left : 3px;
+padding-right : 3px;
+}
+.limitBoxLabel {
+float:left;
+width:100px;
+margin-right: 10px;
+text-align: right;
+font-size : smaller;
+font-weight : bold;
+color : #6C8490;
+}
+.limitBoxContent {
+float:left;
+width:200px;
+height:auto;
+}
+.yearInput {
+width: 4em;
+}
+.limitToggle {
+float:right;
+}
+.dateLimitCell {
+width: 230px;
+font-size: smaller;
+}
+.limitCell {
+width: 180px;
+font-size: smaller;
+}
+.limitCell4 {
+width: 85px;
+font-size: smaller;
+}
+.limitCellSplitter {
+border-style: solid;
+border-top-width: 0px;
+border-bottom-width: 0px;
+border-left-width:  0px;
+border-right-width:  2px;
+border-color: #BBCCD9;
+}
+.limitSepLine {
+border-style: solid;
+border-top-width: 0px;
+border-bottom-width: 1px;
+border-left-width:  0px;
+border-right-width:  0px;
+border-color: #BBCCD9;
+width:600px;
+}
+.limitSepLineThick {
+clear : both;
+border-style: solid;
+border-top-width: 0px;
+border-bottom-width: 2px;
+border-left-width:  0px;
+border-right-width:  0px;
+border-color: #BBCCD9;
+width:713px;
+}
+.limitCheckBox {
+width: 150px;
+float: left;
+}
+#searchLimitsTitle {
+color : #6D6D6D;
+font-size: inherit;
+}
+.SearchFieldsTable {
+width: 100%;
+}
+
+.SearchFormRowSep {
+background-color: #6c96b3;
+height          : 2px;
+}
+.SearchFieldsTableCell {
+background-color :#a5cbe6;
+padding-right:5px;
+padding-top : 5px;
+padding-bottom : 5px;
+border-top-width: 0px;
+border-bottom-width: 1px;
+border-left-width:  0px;
+border-right-width:  0px;
+border-color: black;
+vertical-align: top;
+}
+.SearchFormIndexSelect {
+margin-left:10px;
+margin-top: 1px;
+margin-bottom: 1px;
+}
+.SearchFormField {
+margin-left:10px;
+margin-top: 1px;
+margin-bottom: 1px;
+}
+.pageNavLink, .pageNavLink:link, .pageNavLink:visited {
+color: white;
+font-size:smaller;
+}
+.SearchResultsPageNavCell {
+color: white;
+white-space:nowrap;
+}
+            
+                .SearchResultsPrintListCell {
+                    white-space:nowrap;
+                }
+                
+               .SearchResultsEmailListCell {
+                    white-space:nowrap;
+               }
+               
+               .ExportResultsCell {
+                    white-space:nowrap;
+               }
+            
+.browseList {
+width: 100%;
+}
+.SearchHistoryItemContainer {
+
+background-color :#fafafc;
+width: 100%;
+}
+.leftNavButton {
+display: block;
+float: left;
+width: 114px;
+height: 50px;
+border-right : 1px;
+border-left  : 0px;
+border-top   : 0px;
+border-bottom: 0px;
+padding-right : 3px;
+padding-left  : 3px;
+border-color : #EDEEEE;
+border-style : solid;
+cursor : hand;
+cursor : pointer;
+text-decoration : none;
+font-family : Arial;
+font-weight : bold;
+color : #6D6D6D;
+}
+.leftNavButton:hover {
+display: block;
+float: left;
+width: 114px;
+height: 50px;
+border-right : 1px;
+border-left  : 0px;
+border-top   : 0px;
+border-bottom: 0px;
+padding-right : 3px;
+padding-left  : 3px;
+border-color : #EDEEEE;
+border-style : solid;
+background-color : #deeaf6;
+cursor : hand;
+cursor : pointer;
+text-decoration : none;
+font-family : Arial;
+font-weight : bold;
+color : #6D6D6D;
+}
+.rightNavButton {
+display: block;
+float: right;
+width: 114px;
+height: 50px;
+border-left  : 1px;
+border-right : 0px;
+border-top   : 0px;
+border-bottom: 0px;
+padding-right : 3px;
+padding-left  : 3px;
+border-color : #EDEEEE;
+border-style : solid;
+cursor : hand;
+cursor : pointer;
+text-decoration : none;
+font-family : Arial;
+font-weight : bold;
+color : #6D6D6D;
+}
+.rightNavButton:hover {
+display: block;
+float: right;
+width: 114px;
+height: 50px;
+border-left  : 1px;
+border-right : 0px;
+border-top   : 0px;
+border-bottom: 0px;
+padding-right : 3px;
+padding-left  : 3px;
+border-color : black;
+border-style : solid;
+background-color : #deeaf6;
+cursor : hand;
+cursor : pointer;
+font-family : Arial;
+font-weight : bold;
+color : #6D6D6D;
+}
+.FacetBox {
+border-style: solid;
+border-color: #dfedf8;
+border-width: 1px;
+padding: 2px;
+}
+.FacetItem {
+display: block;
+color: #292424;
+font-family: Arial;
+font-size: smaller;
+padding-left:10px;
+}
+.FacetLink {
+color: #292424;
+font-family: Arial;
+}
+.FacetLinkA:link, .FacetLinkA:visited {
+padding-left:5px;
+padding-right:5px;
+margin-top:1px;
+margin-bottom:1px;
+
+color:#3e65a2;
+font-family: Arial;
+text-decoration:none;
+display:block;
+font-size:0.84em;
+}
+.FacetLinkA:hover {
+padding-left:5px;
+padding-right:5px;
+margin-bottom:1px;
+color: black;
+background-color:#dfedf8;
+font-family: Arial;
+text-decoration:none;
+display:block;
+font-size:0.84em;
+}
+.darkLink, .darkLink:link, .darkLink:visited {
+color: black;
+}
+.FacetCount {
+
+color: #7c7c7c
+}
+.FacetHeader {
+display: block;
+
+
+color: white;
+background-color: #7c7c7c;
+font-family: Arial;
+overflow: hidden;
+padding: 5px;
+}
+                
+               .FacetsList {
+                    overflow: hidden;
+               }
+.arrow_down {
+border-style:solid;
+border-bottom-width: 2px;
+border-left-width: 0px;
+border-right-width: 0px;
+border-top-width:0px;
+border-color:white;
+}
+.FacetBoxHeader {
+margin-top     : 103px;
+margin-bottom  : 5px;
+color:#202020;
+font-family:Helvetica,Arial,sans-serif;
+font-size:0.90em;
+font-weight:bold;
+font-variant:small-caps;
+}
+.searchStatementBox {
+background-color : #f1f8fe;
+border-style: solid;
+border-width: 2px;
+border-color: #c8e2f4;
+width: 742px;
+min-height: 40px;
+}
+.searchStatementLabel {
+color:#9fb4c2;
+font-family : Arial;
+width: 100px;
+}
+.searchStatementCell {
+font-family : Arial;
+}
+.searchStatementModifyCell {
+
+width: 100px;
+
+text-align: right;
+padding-right:10px;
+}
+.banner {
+background-color : #559DCF;
+height : 30px;
+}
+.currentFunction {
+background-color : #deeaf6;
+}
+.SearchResultsHeader {
+background-color : #3E65A2;
+border-style: solid;
+border-width: 2px;
+border-color: #3E65A2;
+width: 742px;
+min-height: 20px;
+}
+.SearchResultsTrailer {
+background-color : #3E65A2;
+border-style: solid;
+border-width: 2px;
+
+border-color: #3E65A2;
+width: 742px;
+min-height: 20px;
+}
+.QuickSearchHeader {
+background-color : #3E65A2;
+border-style: solid;
+border-width: 2px;
+border-color: #c8e2f4;
+width: 715px;
+min-height: 40px;
+padding-top:10px;
+}
+.QuickSearchHeaderCollectionButton {
+float:left;
+display:block;
+vertical-align: top;
+}
+.QuickSearchHeaderCollectionLabel {
+padding-left:5px;
+float:left;
+width: 30px;
+display:block;
+font-size:smaller;
+vertical-align: top;
+}
+.QuickSearchHeaderCollectionLabel {
+font-family : Arial;
+float:left;
+width: 80px;
+display:block;
+}
+#RevenuEtJournaux.QuickSearchHeaderCollectionLabel {
+font-family : Arial;
+float:left;
+width: 200px;
+display:block;
+}
+#leftMenuContainer {
+width : 182px;
+padding-right : 0px;
+padding-left  : 0px;
+}
+#mainContent {
+float : left;
+
+
+width : 747px;
+height : 100%;
+border-left  : 1px;
+border-right : 0px;
+border-top   : 0px;
+border-bottom: 0px;
+padding-right : 3px;
+padding-left  : 3px;
+border-color : #EDEEEE;
+border-style : solid;
+}
+.floatClear {
+width: 0px;
+height: 0px;
+clear : both;
+}
+.seperator {
+width: 0px;
+height: 10px;
+clear : both;
+}
+.title {
+float : left;
+}
+.titleText {
+font-weight : bold;
+color : #5A5A5A;
+padding : 0px;
+margin : 0px;
+}
+.titleLink {
+font-size: smaller;
+font-weight: bold;
+display : block;
+padding-left: 16px;
+color : #9C9C9C;
+float:right;
+}
+.titleLink:visited {
+font-size: smaller;
+font-weight: bold;
+display : block;
+padding-left: 16px;
+color : #9C9C9C;
+float:right;
+}
+.SummaryPosInSetCell {
+
+background-color : #F4F4F4;
+width : 20px;
+text-align: center;
+font-weight: bold;
+font-size: smaller;
+}
+.EMediaSummaryPosInSetCell {
+background-color : #B9DAC1;
+width : 20px;
+text-align: right;
+font-weight: bold;
+font-size: smaller;
+}
+.DetailPosInSetCell {
+
+background-color : #f4f4f4;
+width : 20px;
+text-align: right;
+font-weight: bold;
+font-size: smaller;
+}
+.SummaryPosInSetCellStripe {
+
+background-color : #FFFFFF;
+width : 20px;
+text-align: center;
+font-weight: bold;
+font-size: smaller;
+}
+.EMediaSummaryPosInSetCellStripe {
+background-color : #DCEDE0;
+width : 20px;
+text-align: right;
+font-weight: bold;
+font-size: smaller;
+}
+.DetailPosInSetCellStripe {
+
+background-color : #f4f4f4;
+width : 20px;
+text-align: right;
+font-weight: bold;
+font-size: smaller;
+}
+.SummaryImageCell {
+background-color: #F4F4F4;
+width: 80px;
+}
+.SummaryImageCellStripe {
+background-color: #FFFFFF;
+width: 80px;
+}
+.EMediaSummaryImageCell {
+background-color: #B9DAC1;
+width: 80px;
+overflow: hidden;
+}
+.EMediaSummaryImageCellStripe {
+background-color: #DCEDE0;
+width: 80px;
+overflow: hidden;
+}
+.DetailImageCell {
+background-color: #F4F4F4;
+width:100px;
+}
+.DetailImageCellStripe {
+background-color: #F6F6F6;
+}
+.SummaryDataCell {
+background-color: #F4F4F4;
+}
+.SummaryDataCellStripe {
+background-color: #FFFFFF;
+}
+.EMediaSummaryDataCell {
+background-color: #B9DAC1;
+}
+.EMediaSummaryDataCellStripe {
+background-color: #DCEDE0;
+}
+.DetailDataCell {
+background-color: #F4F4F4;
+}
+.DetailDataCellStripe {
+background-color: #FFFFFF;
+}
+.SummaryMaterialTypeField {
+text-align: center;
+font-size   : smaller;
+font-weight: bold;
+}
+.SummaryFieldLegend {
+font-size   : Smaller;
+text-align  : right;
+width: 40px;
+}
+.SummaryFieldLegendSep {
+font-size   : Smaller;
+text-align  : right;
+}
+.SummaryFieldData {
+color: #292424;
+}
+.SummaryFieldLink  {
+font-weight: bold;
+color: #3E65A2;
+text-decoration: underline;
+}
+.SummaryFieldLink:link {
+font-weight: bold;
+text-decoration: underline;
+color: #3E65A2;
+}
+.SummaryFieldLink:visited {
+font-weight: bold;
+color: #3E65A2; 
+text-decoration: underline;
+}
+.SummaryActionBox {
+width:137px;
+
+                    padding-bottom: 12px;
+background-color:white; 
+border-color: #a8bbce; 
+border-style:solid; 
+border-width: 2px;
+}
+.EMediaSummaryActionBox {
+width:137px;
+height:85px; 
+background-color:white; 
+border-color: #a8bbce; 
+border-style:solid; 
+border-width: 2px;
+}
+.SummaryActionLink {
+padding-top:8px;
+margin-left: 10px;
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.SummaryActionLink:link, .SummaryActionLink:visited {
+padding-top:8px;
+margin-left: 10px;
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.SummaryActionLink:hover {
+padding-top:8px;
+margin-left: 10px;
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+               .DetailedActionBox {
+
+
+background-color:white; 
+border-color: #a8bbce; 
+border-style:solid; 
+border-width: 2px;
+}  
+.searchHits {
+margin-top     : 5px;
+margin-bottom  : 5px;
+font-family    : Arial;
+font-size      : larger;
+font-weight    : bold;
+}
+.SearchResultsHeaderSortCell {
+padding-left: 10px;
+padding-top: 5px;
+}
+            
+              .SearchResultsTrailerSortCell {
+padding-left: 10px;
+padding-top: 5px;
+}
+.SearchResultsPageField {
+width : 1.5em;
+}
+.SearchExampleListBox {
+width: 715px;
+min-height : 200px;
+background-color: #fafafc;
+border-color: #e1e8ee;
+border-style: solid;
+border-width: 2px;
+}
+.SearchExampleListHeader {
+color : #a1a1a3;
+font-weight: bold;
+padding-top:10px;
+padding-left: 10px;
+}
+.SearchExampleList {
+color : #a1a1a3;
+padding-top:10px;
+padding-left: 30px;
+list-style-type:none; 
+}
+.MyZonePageLeftMenuItem {
+}
+.MyZonePageLeftMenuList{
+  list-style-type: none;
+  }
+.MyZoneHeaderLink {
+color: #cf8032;
+text-decoration: underline;
+font-size : smaller;
+}
+.MyZoneHeaderSectionSep {
+margin-left: 5px;
+margin-right: 5px;
+font-size : smaller;
+}
+.MyZoneHeaderSection {
+font-size: smaller;
+color: #5d5d5d;
+}
+.MyZonetitleText {
+font-size: 1.30em;
+color: #565656;
+}
+.LoginHelpCell {
+vertical-align : bottom;
+padding-left: 5px;
+}
+.LoginForgotPinCell {
+vertical-align : bottom;
+padding-left: 5px;
+}
+.AccountSummaryHeaderCell {
+background-color: #ECECEC;
+padding-left : 10px;
+font-weight : bold;
+}
+.AccountDetailsHeaderCell {
+background-color: #ECECEC;
+padding-left : 10px;
+font-weight : bold;
+}
+.AccountSummaryCounterNameCell {
+width : 200px;
+padding-left: 20px;
+}
+.AccountDetailFieldNameCell {
+text-align: right;
+width : 65px;
+padding-left: 20px;
+padding-right: 5px;
+}
+.AccountDetailFieldNameCellStripe {
+text-align: right;
+width: 65px;
+padding-left: 20px;
+padding-right: 5px;
+background-color: #f8f8f8;
+}
+               
+                   .CAccountDetailFieldNameCell {
+text-align: right;
+width : 95px;
+padding-left: 20px;
+padding-right: 5px;
+}
+.CAccountDetailFieldNameCellStripe {
+text-align: right;
+width: 95px;
+padding-left: 20px;
+padding-right: 5px;
+background-color: #f8f8f8;
+}
+.AccountSummaryCounterValueCell {
+width:  200px;
+}
+.AccountDetails {
+margin-top : 20px;
+width:745px;
+}
+.AccountDetailFieldValueCell {
+width: 400px;
+}
+.AccountDetailFieldValueCellStripe {
+width: 400px;
+background-color: #f8f8f8;
+}
+.AccountSummaryActionCell {
+}
+.AccountDetailFieldActionCell {
+}
+.AccountDetailFieldActionCellStripe {
+background-color: #f8f8f8;
+}
+.AccountSummaryCounterNameCellStripe {
+width: 200px;
+padding-left: 20px;
+background-color: #f8f8f8;
+}
+.AccountSummaryCounterValueCellStripe {
+width: 200px;
+background-color: #f8f8f8;
+}
+.AccountSummaryActionCellStripe {
+background-color: #f8f8f8;
+}
+.AccountSummaryCounterLink {
+color : #ce8435;
+text-decoration : underline;
+}
+.AccountSummaryActionLink {
+color : #ce8435;
+text-decoration : underline;
+font-size : smaller;
+padding-top:5px;
+padding-bottom:5px;
+padding-left:5px;
+display: block;
+}
+.AccountTrapErrorContainer {
+padding-left:10px;
+}
+.AccountTrapWarningContainer {
+padding-left:10px;
+}
+.BoldTitle {
+font-size: 1.1em;
+font-weight: bold;
+color: #3E65A2;
+}
+.BoldTitle A {
+font-size: 1.1em;
+font-weight: bold;
+color: #3E65A2;
+}
+
+.AccountMenuLink, .AccountMenuLink:link, .AccountMenuLink:visited {
+
+}
+.AccountMenuLink:hover, .AccountMenuLinkSelected, .AccountMenuLinkSelected:link {
+background-color:#eaf3f9;
+color: #727272;
+}
+
+.LoansHistoryBrowseHitNumber {
+width : 20px;
+}
+.LoansHistoryBrowseHitNumberStripe {
+background-color: #f8f8f8;
+width : 20px;
+}
+.LoansBrowseHitNumber {
+width : 100px;
+}
+.LoansBrowseHitNumberStripe {
+background-color: #f8f8f8;
+width : 100px;
+}
+.LoansBrowseItemDetailsCell {
+}
+.LoansBrowseItemDetailsCellStripe {
+background-color: #f8f8f8;
+}
+.LoansBrowseItemDetailsCellSelected {
+background-color: #93F887;
+}
+.LoansBrowseItemDetailsCellStripeSelected {
+background-color: #93F887;
+}
+.LoanBrowseFieldNameCell {
+font-size : smaller;
+width     : 120px;
+}
+.LoansBrowseItemPictureCell {
+width: 100px;
+}
+.LoansBrowseItemPictureCellStripe {
+background-color: #f8f8f8;
+width: 100px;
+}
+.SearchExample {
+background: url(/portal3/img/icon/bullet.gif) left center no-repeat;
+         padding-left: 15px;
+         margin-bottom: 5px;
+}
+.MessageBrowseHitNumberCell {
+width : 40px;
+}
+.MessageBrowseHitNumberCellStripe {
+width : 40px;
+background-color: #f8f8f8;
+}
+.MessageBrowseItemDetailsCell {
+}
+.MessageBrowseItemDetailsCellStripe {
+background-color: #f8f8f8;
+}
+.MessageBrowseItemDetailsCellSelected {
+background-color: #F8ABAB;
+}
+.MessageBrowseItemDetailsCellStripeSelected {
+background-color: #F8ABAB;
+}
+.MessageBrowseItemDetailsCellDisabled {
+background-color: #DBDBDB;
+color: white;
+}
+.MessageBrowseItemDetailsCellStripeDisabled {
+background-color: #DBDBDB;
+color: white;
+}
+.MessageBrowseBodyContainer {
+width: 600px; 
+overflow: hidden;
+}
+.MessageBrowseFieldNameCell {
+width: 75px;
+text-align : right;
+vertical-align: top;
+font-size: smaller;
+padding-right: 5px;
+}
+.MessageBrowseFieldDataCell {
+}
+               
+                   .ReservationBrowseFieldNameCell {
+                         width: 75px;
+text-align : right;
+                         vertical-align: middle;
+font-size: smaller;
+padding-right: 5px;
+                   }
+                   
+                   .ReservationBrowseFieldDataCell {
+                         vertical-align: middle;
+                   }
+                   
+                   .ResvRank {
+                         margin-right: 7px;
+                         padding-top: 8px;
+                         float: left;
+                         display: table-cell;
+                         vertical-align: middle;
+                   }
+                   
+.ChangePinLabelCell {
+font-size:smaller;
+width: 400px;
+}
+.ChangePinFieldCell {
+font-size:smaller;
+width: 250px;
+}
+.SerialIssueDetail_hidden {
+height:1px;
+margin-top:-1px;
+overflow:hidden;
+position:relative;
+visibility:hidden;
+}
+.ElectreLinks {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.ElectreLinks:link, a.ElectreLinks:visited {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+ElectreLinks:hover {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.SyndeticsLinks {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.SyndeticsLinks:link, a.SyndeticsLinks:visited {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+SyndeticsLinks:hover {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.CantookLinks {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.CantookLinks:link, a.CantookLinks:visited {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+CantookLinks:hover {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+        
+                .flipbook-text {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.flipbook-text:link, a.flipbook-text:visited {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.flipbook-text:hover {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+            
+               .SerialIssueHeader {
+                    margin-bottom: 10px; 
+                    border-bottom:1px; 
+                    border-top:1px; 
+                    border-left:0px; 
+                    border-right:0px; 
+                    border-style:solid; 
+                    background-color:#bcddf0;
+               }
+               
+               .tagcloudbox {
+                    text-align:left; 
+                    height:150px; 
+                    background-color:white; 
+                    border-color: #a8bbce; 
+                    border-style:solid; 
+                    border-width: 2px;
+               }
+               
+               .tg5 {
+display: inline;
+padding-right: 2px;
+font-size : 1.1em;
+}
+.tg4 {
+display: inline;
+padding-right: 2px;
+font-size : 1.0em;
+}
+.tg3 {
+display: inline;
+padding-right: 2px;
+font-size : 0.95em;
+}
+.tg2 {
+cursor: hand;
+display: inline;
+padding-right: 2px;
+font-size : 0.9em;
+}
+.tg1 {
+cursor: hand;
+display: inline;
+padding-right: 2px;
+font-size : 0.8em;
+}
+.tg0 {
+cursor: hand;
+display: inline;
+padding-right: 2px;
+font-size : 0.7em;
+}
+.tgc {
+list-style-image: none;
+}
+#tagcloud_content {
+margin-top:8px;
+margin-left:8px;
+}
+#tagcloud_header {
+text-align: center;
+font-weight: bold;
+background-color:#a8bbce;
+}
+               
+               
+                   #TotalFines {
+                         margin-top: 15px;
+                   }
+                    
+                   .TotalFinesHeader {
+                         width:  125px;
+                   }
+                   
+                   .TotalFinesCell {
+                         width:  125px;
+                   }
+            
+.navigation_icon { border:0; position:relative;top: 3px; }
+.SyndeticsContent {
+padding: 20px 10px 10px 10px;
+}
+.SyndeticsHeaderRow {
+min-height: 15px;
+background-color: #3e64a2;
+margin-top: 10px;
+}
+.SyndeticsChapterRow {
+background-color: #f4f4f4;
+width: 125px;
+}
+.SyndeticsChapterRowStripe {
+background-color: #ffffff;
+width: 125px;
+}
+.SyndeticsTitleRow {
+background-color: #f4f4f4;
+}
+.SyndeticsTitleRowStripe {
+background-color: #ffffff;
+}
+.SyndeticsPageRow {
+background-color: #f4f4f4;
+width: 100px;
+}
+.SyndeticsPageRowStripe {
+background-color: #ffffff;
+width: 100px;
+}
+.limitBlock {
+position: relative;
+}
+.hiddenBlock_display {
+display:block;
+border-top: solid 1px #A5CBE6;
+}
+.hiddenBlock_hidden {
+display:none;
+}
+.limitToggle {
+position: absolute;
+top:5px; 
+right:-16px;
+}
+.limitChoice {
+float:left;
+padding:5px; 
+margin-right:10px;
+width:165px;
+}
+.limitChoice input {
+float:left;
+vertical-align: top;
+}
+.limitChoice label {
+margin-left:20px;
+display: block;
+}
+
+
+</style>
+		
+		
+
+<script type="text/javascript" src="script/lib/jquery-1.4.2.min.js"></script>
+
+
+<link type="text/css" href="/script/lib/css/redmond/jquery-ui-1.7.2.custom.1.css" rel="stylesheet" />
+<link type="text/css" href="/script/lib/css/redmond/jquery-ui-1.7.2.custom.2.css" rel="stylesheet" />
+<link type="text/css" href="/script/lib/css/redmond/jquery-ui-1.7.2.custom.3.css" rel="stylesheet" />
+<script type="text/javascript" src="script/lib/jquery-ui-1.7.2.custom.min.js"></script>
+<link media="screen" rel="stylesheet" href="/script/lib/colorbox/colorbox.css" />
+<script src="/script/lib/colorbox/jquery.colorbox.js"></script>
+
+<script type="text/javascript">
+function writeCookie(cookieName, cookieValue)
+{
+document.cookie = cookieName + '=' + cookieValue + ';';
+}
+function readCookie(cookieName) 
+{
+var cookies = document.cookie.split('; ');
+for(var i=0; i < cookies.length; i++)
+{
+var cookie = cookies[i].split('=');
+if(cookie[0] == cookieName)
+return cookie[1];
+}
+return null;
+}
+function checkCountPixel()
+{
+var countPixelCookie = readCookie('pixelCount');
+if( countPixelCookie == null)
+{
+var elem = document.createElement('img');
+elem.setAttribute('src','https://dbspixel.hbz-nrw.de/count?id=GB722&amp;amp;page=2');
+elem.setAttribute('width','1');
+elem.setAttribute('height','1');
+var container = document.getElementById('countPixelContainer');
+container.appendChild(elem);
+writeCookie('pixelCount','done');
+}
+}
+
+var printOptions = "";
+var printExtent = "";
+var documentManager = {
+addStartup : function ( f )
+{
+$( f );
+}
+}
+function OpenPrintFrame() {
+$('PrintLDLG').show();
+}
+function windowWidth()
+            {
+                var myWidth = 0;
+                if( typeof( window.innerWidth ) == 'number' ) {
+                    //Non-IE
+                    myWidth = window.innerWidth;
+                } 
+                else if
+                    ( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) 
+                {
+                    myWidth = document.documentElement.clientWidth;
+                }
+                else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) 
+                {
+                    myWidth = document.body.clientWidth;
+                }
+                return myWidth;
+            }
+            var Printing = true;
+function OfflinePrintList(limit)
+{
+DoPrintList('OfflinePrint',limit);
+}
+function PrintList(limit)
+{
+DoPrintList('Print',limit);
+}
+            
+function DoPrintList(method,limit)
+{
+Printing = true;
+
+if(typeof(limit) != "undefined" && limit != "")
+{
+printOptions+="&Options.MaxItem=" + limit;
+}
+var dialogURL = "Obj_518091357397840?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
+dialogURL += "&Style=Portal2&SubStyle=ForPortal3&Method=" + method + "&PrintOnly=1" + printOptions + printExtent;
+var e = document.getElementById('PrintLDLG');
+var dlg_width = 470;
+e.style.width = dlg_width + "px";
+e.style.left = ((windowWidth() -dlg_width) /2) + "px";  
+               
+if (printOptions != null && printOptions != "" && printOptions.indexOf("Options.Export=1") < 0)
+{
+e.style.height = "300px";
+}
+else
+{
+e.style.height = "100px";
+}
+e.style.display  = "block";
+e.src = dialogURL;
+                
+                
+                    printOptions = "&Options.Choose=1&Options.Type=Notepad";
+                    
+                 
+}
+function OfflineSendList(limit)
+{
+DoSendList('OfflinePrint',limit);
+}
+function SendList(limit)
+{
+DoSendList('Print',limit);
+}
+function DoSendList(method,limit) 
+{
+if(typeof(limit) != "undefined" && limit != "")
+{
+printOptions+="&Options.MaxItem=" + limit;
+}
+
+var options =  "" 
+if(options != "")
+{
+printOptions+= "&" + options;
+}
+Printing = false;
+var dialogURL = "Obj_518091357397840?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
+dialogURL += "&Style=Portal2&SubStyle=ForPortal3&Method=" + method + "&EmailOnly=1" + printOptions;
+var e = document.getElementById('PrintLDLG');
+var dlg_width = 470;
+e.style.width = dlg_width + "px";
+e.style.left = ((windowWidth() -dlg_width) /2) + "px";  
+if (printOptions != "" )
+{
+e.style.height = "300px";
+}
+else
+{
+e.style.height = "100px";
+}
+e.style.display  = "block";
+e.src = dialogURL;  
+}
+function PreviewList( url )
+{
+var e = document.getElementById('PrintLDLG');
+e.style.display  = "block";
+                
+                if (printOptions != null && printOptions.indexOf("Options.Export=1") >= 0)
+                {
+    e.style.height = "100px";
+                }
+                else
+                {
+    e.style.height = "300px";
+                }
+                
+if
+(Printing)
+{
+e.src = url + "&SubStyle=ForPortal3&PrintOnly=true";
+}
+else
+{
+e.src = url + "&SubStyle=ForPortal3&EmailOnly=true";
+}
+}
+function PrintClose ()
+{
+
+printOptions = "";
+printExtent = "";
+
+var e = document.getElementById('PrintLDLG');
+e.style.height = "100px";
+e.style.display  = "none";
+e.src = "/blank.html";  
+}
+
+function Print()
+{
+if (window.print)
+{
+window.print();
+}
+}
+
+
+
+  
+
+
+jQuery.fn.ZonesIdleTimeout  = function(options){ 
+var defaults = {
+
+inactivity: 120 * 1000,
+
+noconfirm: 20000, //in milliseconds
+redirect_url: "APS_ACCOUNT?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=ZonesLogout&ResetFn=LibraryZone",
+logout_url: "APS_ZONES?fn=endsession&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8"
+}
+var opts = $.extend(defaults, options);
+var liveTimeout, sessionTimeout, timer, refModal,timeLeft;
+var counting = false;
+var modal = "<div id='modal_pop'></div>";
+var modal_created = false;
+var clearTimeouts = function(){
+clearTimeout(liveTimeout);
+clearTimeout(timer);
+}
+var start_timeout = function(){
+if (modal_created) refModal.dialog("close");
+else clearTimeouts();
+timeLeft = opts.noconfirm / 1000; //in seconds
+liveTimeout = setTimeout(showOrCreateDialog, opts.inactivity);
+  
+}
+var dialogReady = function(){
+$("#modal_pop span").html(timeLeft);
+if(!modal_created){
+modal_created = true;
+refModal = $(".ui-dialog #modal_pop");
+}
+countDown();
+}
+var showOrCreateDialog = function(){
+if (modal_created){
+refModal.dialog("open");
+dialogReady();
+}
+else{
+$(modal).load("APS_TIMEOUT?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&BrowseAsHloc=",dialogReady).dialog({
+modal: true,
+width: "750px",
+close: clearTimeouts
+});
+}
+}
+var redirect = function(){
+  if(opts.logout_url){
+$.get(opts.logout_url);
+  }
+  window.location.href = opts.redirect_url;
+}
+var keepCounting = function(){
+$("#modal_pop span").html(timeLeft);
+if (timeLeft  > 0){
+timeLeft--;
+return true;
+}
+return false;
+}
+var countDown = function(){
+if (keepCounting())
+{
+timer = setTimeout(countDown, 1000);
+}else{
+clearTimeout(timer);
+redirect();
+}
+}
+//returns the instance of the the plugin
+return this.each(function() {
+obj = $(this);
+start_timeout();
+ 
+$(document).bind('click', start_timeout);
+$(document).bind('keydown', start_timeout);
+$(document).bind('mousemove', start_timeout);
+});
+}
+function Help( sUrl, sData ) {
+                var e = document.getElementById('HelpFrame');
+                e.src = sUrl+"?"+sData;
+                $('#HelpDLG').dialog('open');
+}
+            
+            function PopupUrl( url ) {
+var e = document.getElementById('PopupFrame');
+e.src = url;  
+$('#PopupDLG').dialog('open');
+}
+function PopupUrl2(url , oheight, width, title)
+{
+var popup = $('#PopupDLG');
+popup.dialog("option","title",title);
+if (navigator.userAgent.indexOf("Mozilla/5.0") > 0)
+popup.dialog("option","width",width);
+else
+popup.dialog("option","width",width+"px");
+$("iframe",popup).css({width:"99%",height: oheight+ "px",overflow:"auto"});
+PopupUrl(url);
+}
+function SummaryBookcoverLoaded(id)
+{
+if( $('#'+id).width() > 1)
+{
+$('#Bookcover_' + id).show();
+}
+}
+    $( function () {
+    
+     //$('#buttonAdSearch').html("Suche");
+     //$('#buttonQuickSearch').html("Suche");
+    
+     //$('#buttonAdSearchClr').html("<font color='black'>Eingabe löschen</font>");
+//$('#buttonQuickSearchClr').html("<font color='black'>Eingabe löschen</font>");
+     // $('.button').corner();
+    
+     //$( 'body').css("background","aliceBlue");
+     //$( '#stuff').hide();
+//$('#buttonAdSearch').css("background","orange");
+var zonesTimeoutEnabled = true;
+
+
+
+zonesTimeoutEnabled = false;
+
+
+
+if(zonesTimeoutEnabled) $(document).ZonesIdleTimeout();
+$('.FacetHeader').click( function () {
+$(this).toggleClass('arrow_down').next().slideToggle('fast');
+var img = $('img',this);
+var src = img.attr("src");
+if ($(this).hasClass('arrow_down'))
+{
+img.attr("src","/Portal3/GBQ/Interface/fleche_bas_noir.gif");
+}
+else
+{
+img.attr("src","/Portal3/GBQ/Interface/fleche_top_noir.gif");
+}
+});
+$('#HelpDLG').dialog( 
+{ 
+width: "750px",
+                              
+resizable: false,
+autoOpen: false
+}
+);
+                
+                $('#PopupDLG').dialog( 
+{ 
+width: "750px",
+resizable: false,
+autoOpen: false
+}
+);
+
+$('.limitToggle').toggle(
+function() {
+
+$(this).prev('.hiddenBlock_hidden').removeClass('hiddenBlock_hidden').addClass('hiddenBlock_display');
+$(this).attr('src','/Portal3/GBQ/Interface/fleche_top_noir.gif');
+var newAlt = $(this).attr('data-close');
+$(this).attr('alt',newAlt);
+$(this).attr('title',newAlt);
+}, function() {
+
+$(this).prev('.hiddenBlock_display').removeClass('hiddenBlock_display').addClass('hiddenBlock_hidden');
+$(this).attr('src','/Portal3/GBQ/Interface/fleche_bas_noir.gif');
+var newAlt = $(this).attr('data-open');
+$(this).attr('alt',newAlt);
+$(this).attr('title',newAlt);
+}
+);
+
+
+$('.SerialIssue').toggle( 
+function() { 
+
+$(this).next().removeClass('SerialIssueDetail_hidden').addClass('SerialIssueDetail');
+var img = $('img',this);
+img.attr("src","/Portal3/GBQ/Interface/fleche_top_noir2.gif");
+}, function () { 
+
+$(this).next().removeClass('SerialIssueDetail').addClass('SerialIssueDetail_hidden');
+var img = $('img',this);
+img.attr("src","/Portal3/GBQ/Interface/fleche_bas_noir2.gif");
+}
+);
+
+$('#LanguageComboBox').change(function() {
+var sOption = $("#LanguageComboBox option:selected");
+var url = "Obj_518091357397840?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Lang=" + sOption.val();
+document.location.href = url;
+
+});
+
+
+
+  
+
+
+     });  
+function fnOpenMediaRef(strURL, strTitle, strMode) {
+                strMode = strMode.toLowerCase();
+                
+                if (strMode == "popup") {
+                    PopupUrl(strUrl);
+                } 
+                else if (strMode == "option") {
+                    window.location= ( unescape (strURL) + "&Lang=GER" );
+                }
+                else if (strMode == "replace") {
+                    window.location = unescape (strURL);
+                }
+                else { // either new, include, embed, default
+                    var width = 1024;
+                    if (screen.width - 50 < width) {
+                        width = screen.width - 50;
+                    }
+                    var height = 768;
+                    if (screen.height -100 < height) {
+                        height = screen.height -100;
+                    }
+                    window.open ( unescape ( strURL ), '_blank', 'scrollbars=yes,resizable=yes,width='+width+ ',height='+height );
+                }
+                
+                try{event.returnValue = false;}
+                catch(er){}
+            }
+            
+            function gotoUrl(url)
+            {
+                //alert(url);
+                var t = url;
+                var isComplete = false;
+                if (t.indexOf("http:")==0)
+                {
+                   isComplete = true;
+                }
+                if (t.indexOf("https:")==0)
+                {
+                   isComplete = true;
+                }
+                if (t.indexOf("javascript:")==0)
+                {
+                   isComplete = true;
+                }
+                if (t.indexOf("jscript:")==0)
+                {
+                   isComplete = true;
+                }
+                  
+                if
+                    (!isComplete)
+                {
+                    var temp = "";
+                    temp +=t;
+                    t = temp;
+                    //alert("doctored url is "+t);
+                }
+                window.location.href= t;
+            }
+function OnLoadActions()
+{
+correctPNG();
+
+}
+function PortfolioBookCoverLoaded(isbn)
+{
+if(typeof(isbn) != "undefined")
+{
+if ( $('#SyndeticsBookCover_'+isbn).width() <= 1)
+{
+$.getJSON("APS_SYNDETICS_XML_PROXY" + "?section=mc&isbn="+isbn, function(data) {
+if(data.result == true) {
+$('#BookCover_'+data.isbn).attr("src",data.url);
+}
+});
+}
+}
+}
+$(document).ready(function() {
+$(".FacetsList").each(
+function() {
+if($(this).hasClass("FacetsSortMeAsc"))
+{
+$(".FacetLinkA",this).sort(
+function(a,b) {
+return(a.innerHTML > b.innerHTML) ? 1 : -1;
+}
+).appendTo( $(this) );
+}
+else if($(this).hasClass("FacetsSortMeDesc"))
+{
+$(".FacetLinkA",this).sort(
+function(a,b) {
+return(a.innerHTML < b.innerHTML) ? 1 : -1;
+}
+).appendTo( $(this) );
+}
+}
+);
+});
+</script>
+          
+            
+
+
+
+
+
+			  
+
+		
+
+
+		
+<link href="/portal3/css/btnStyles.css" rel="stylesheet" type="text/css">
+
+
+
+
+<style type="text/css">
+.clickable {
+cursor:pointer; 
+cursor:hand;
+}
+#leftMenuContainer {
+float:left;
+width: 100px;
+}
+.SelectItem {
+background-color: green;
+}
+.printListLink:link, .printListLink:visited {
+color: white;
+font-size: 0.92em;
+}
+body {
+width:100%;
+margin:0px;
+padding:0px;
+}
+#contentContainer {
+width: 1200px;
+margin-left: auto;
+margin-right: auto;
+}
+#toolBar {
+height : 50px;
+background-color: white;
+}
+.enlargeCoverLink:link, .enlargeCoverLink:visited {
+font-size : 0.7em;
+color: black;
+display:block;
+text-align:center;
+width: 100%;
+}
+.IndexHeadingCell {
+padding-top:10px;
+padding-bottom: 10px;
+padding-left: 5px;
+padding-right: 5px;
+font-size: larger;
+background-color: #F4F4F4;
+}
+.IndexHeadingCellStripe {
+padding-top:10px;
+padding-left: 5px;
+padding-right: 5px;
+padding-bottom: 10px;
+font-size : larger;
+background-color: #FFFFFF;
+}
+.button {
+text-decoration:none;
+font-weight : bold;
+color : black;
+}
+.button:link {
+text-decoration:none;
+font-weight : bold;
+color : black;
+}
+.button:Hover {
+text-decoration:none;
+font-weight : bold;
+color : black;
+}
+.button:Visited {
+text-decoration:none;
+font-weight : bold;
+color : black;
+}
+.button_blue {
+text-decoration:none;
+font-weight : bold;
+color : #8c9fad;
+}
+.button_blue:link {
+text-decoration:none;
+font-weight : bold;
+color : #8c9fad;
+}
+.button_blue:Hover {
+text-decoration:none;
+font-weight : bold;
+color : #8c9fad;
+}
+.button_blue:Visited {
+text-decoration:none;
+font-weight : bold;
+color : #8c9fad;
+}
+ 
+
+
+.hi {
+background-color :#D7EAFA;
+text-decoration: none;
+font-weight: normal;
+padding-left: 2px;
+padding-right: 2px;
+}
+.PayImage {
+padding-left: 5px;
+}
+.CannotRenewLink {
+color: #bd5200;
+}
+.searchLimits {
+border-style: solid;
+border-width: 2px;
+border-color: #BBCCD9;
+padding-left : 3px;
+padding-right : 3px;
+}
+.limitBoxLabel {
+float:left;
+width:100px;
+margin-right: 10px;
+text-align: right;
+font-size : smaller;
+font-weight : bold;
+color : #6C8490;
+}
+.limitBoxContent {
+float:left;
+width:200px;
+height:auto;
+}
+.yearInput {
+width: 4em;
+}
+.limitToggle {
+float:right;
+}
+.dateLimitCell {
+width: 230px;
+font-size: smaller;
+}
+.limitCell {
+width: 180px;
+font-size: smaller;
+}
+.limitCell4 {
+width: 85px;
+font-size: smaller;
+}
+.limitCellSplitter {
+border-style: solid;
+border-top-width: 0px;
+border-bottom-width: 0px;
+border-left-width:  0px;
+border-right-width:  2px;
+border-color: #BBCCD9;
+}
+.limitSepLine {
+border-style: solid;
+border-top-width: 0px;
+border-bottom-width: 1px;
+border-left-width:  0px;
+border-right-width:  0px;
+border-color: #BBCCD9;
+width:600px;
+}
+.limitSepLineThick {
+clear : both;
+border-style: solid;
+border-top-width: 0px;
+border-bottom-width: 2px;
+border-left-width:  0px;
+border-right-width:  0px;
+border-color: #BBCCD9;
+width:713px;
+}
+.limitCheckBox {
+width: 150px;
+float: left;
+}
+#searchLimitsTitle {
+color : #6D6D6D;
+font-size: inherit;
+}
+.SearchFieldsTable {
+width: 100%;
+}
+
+.SearchFormRowSep {
+background-color: #6c96b3;
+height          : 2px;
+}
+.SearchFieldsTableCell {
+background-color :#a5cbe6;
+padding-right:5px;
+padding-top : 5px;
+padding-bottom : 5px;
+border-top-width: 0px;
+border-bottom-width: 1px;
+border-left-width:  0px;
+border-right-width:  0px;
+border-color: black;
+vertical-align: top;
+}
+.SearchFormIndexSelect {
+margin-left:10px;
+margin-top: 1px;
+margin-bottom: 1px;
+}
+.SearchFormField {
+margin-left:10px;
+margin-top: 1px;
+margin-bottom: 1px;
+}
+.pageNavLink, .pageNavLink:link, .pageNavLink:visited {
+color: white;
+font-size:smaller;
+}
+.SearchResultsPageNavCell {
+color: white;
+white-space:nowrap;
+}
+            
+                .SearchResultsPrintListCell {
+                    white-space:nowrap;
+                }
+                
+               .SearchResultsEmailListCell {
+                    white-space:nowrap;
+               }
+               
+               .ExportResultsCell {
+                    white-space:nowrap;
+               }
+            
+.browseList {
+width: 100%;
+}
+.SearchHistoryItemContainer {
+
+background-color :#fafafc;
+width: 100%;
+}
+.leftNavButton {
+display: block;
+float: left;
+width: 114px;
+height: 50px;
+border-right : 1px;
+border-left  : 0px;
+border-top   : 0px;
+border-bottom: 0px;
+padding-right : 3px;
+padding-left  : 3px;
+border-color : #EDEEEE;
+border-style : solid;
+cursor : hand;
+cursor : pointer;
+text-decoration : none;
+font-family : Arial;
+font-weight : bold;
+color : #6D6D6D;
+}
+.leftNavButton:hover {
+display: block;
+float: left;
+width: 114px;
+height: 50px;
+border-right : 1px;
+border-left  : 0px;
+border-top   : 0px;
+border-bottom: 0px;
+padding-right : 3px;
+padding-left  : 3px;
+border-color : #EDEEEE;
+border-style : solid;
+background-color : #deeaf6;
+cursor : hand;
+cursor : pointer;
+text-decoration : none;
+font-family : Arial;
+font-weight : bold;
+color : #6D6D6D;
+}
+.rightNavButton {
+display: block;
+float: right;
+width: 114px;
+height: 50px;
+border-left  : 1px;
+border-right : 0px;
+border-top   : 0px;
+border-bottom: 0px;
+padding-right : 3px;
+padding-left  : 3px;
+border-color : #EDEEEE;
+border-style : solid;
+cursor : hand;
+cursor : pointer;
+text-decoration : none;
+font-family : Arial;
+font-weight : bold;
+color : #6D6D6D;
+}
+.rightNavButton:hover {
+display: block;
+float: right;
+width: 114px;
+height: 50px;
+border-left  : 1px;
+border-right : 0px;
+border-top   : 0px;
+border-bottom: 0px;
+padding-right : 3px;
+padding-left  : 3px;
+border-color : black;
+border-style : solid;
+background-color : #deeaf6;
+cursor : hand;
+cursor : pointer;
+font-family : Arial;
+font-weight : bold;
+color : #6D6D6D;
+}
+.FacetBox {
+border-style: solid;
+border-color: #dfedf8;
+border-width: 1px;
+padding: 2px;
+}
+.FacetItem {
+display: block;
+color: #292424;
+font-family: Arial;
+font-size: smaller;
+padding-left:10px;
+}
+.FacetLink {
+color: #292424;
+font-family: Arial;
+}
+.FacetLinkA:link, .FacetLinkA:visited {
+padding-left:5px;
+padding-right:5px;
+margin-top:1px;
+margin-bottom:1px;
+
+color:#3e65a2;
+font-family: Arial;
+text-decoration:none;
+display:block;
+font-size:0.84em;
+}
+.FacetLinkA:hover {
+padding-left:5px;
+padding-right:5px;
+margin-bottom:1px;
+color: black;
+background-color:#dfedf8;
+font-family: Arial;
+text-decoration:none;
+display:block;
+font-size:0.84em;
+}
+.darkLink, .darkLink:link, .darkLink:visited {
+color: black;
+}
+.FacetCount {
+
+color: #7c7c7c
+}
+.FacetHeader {
+display: block;
+
+
+color: white;
+background-color: #7c7c7c;
+font-family: Arial;
+overflow: hidden;
+padding: 5px;
+}
+                
+               .FacetsList {
+                    overflow: hidden;
+               }
+.arrow_down {
+border-style:solid;
+border-bottom-width: 2px;
+border-left-width: 0px;
+border-right-width: 0px;
+border-top-width:0px;
+border-color:white;
+}
+.FacetBoxHeader {
+margin-top     : 103px;
+margin-bottom  : 5px;
+color:#202020;
+font-family:Helvetica,Arial,sans-serif;
+font-size:0.90em;
+font-weight:bold;
+font-variant:small-caps;
+}
+.searchStatementBox {
+background-color : #f1f8fe;
+border-style: solid;
+border-width: 2px;
+border-color: #c8e2f4;
+width: 742px;
+min-height: 40px;
+}
+.searchStatementLabel {
+color:#9fb4c2;
+font-family : Arial;
+width: 100px;
+}
+.searchStatementCell {
+font-family : Arial;
+}
+.searchStatementModifyCell {
+
+width: 100px;
+
+text-align: right;
+padding-right:10px;
+}
+.banner {
+background-color : #559DCF;
+height : 30px;
+}
+.currentFunction {
+background-color : #deeaf6;
+}
+.SearchResultsHeader {
+background-color : #3E65A2;
+border-style: solid;
+border-width: 2px;
+border-color: #3E65A2;
+width: 742px;
+min-height: 20px;
+}
+.SearchResultsTrailer {
+background-color : #3E65A2;
+border-style: solid;
+border-width: 2px;
+
+border-color: #3E65A2;
+width: 742px;
+min-height: 20px;
+}
+.QuickSearchHeader {
+background-color : #3E65A2;
+border-style: solid;
+border-width: 2px;
+border-color: #c8e2f4;
+width: 715px;
+min-height: 40px;
+padding-top:10px;
+}
+.QuickSearchHeaderCollectionButton {
+float:left;
+display:block;
+vertical-align: top;
+}
+.QuickSearchHeaderCollectionLabel {
+padding-left:5px;
+float:left;
+width: 30px;
+display:block;
+font-size:smaller;
+vertical-align: top;
+}
+.QuickSearchHeaderCollectionLabel {
+font-family : Arial;
+float:left;
+width: 80px;
+display:block;
+}
+#RevenuEtJournaux.QuickSearchHeaderCollectionLabel {
+font-family : Arial;
+float:left;
+width: 200px;
+display:block;
+}
+#leftMenuContainer {
+width : 182px;
+padding-right : 0px;
+padding-left  : 0px;
+}
+#mainContent {
+float : left;
+
+
+width : 747px;
+height : 100%;
+border-left  : 1px;
+border-right : 0px;
+border-top   : 0px;
+border-bottom: 0px;
+padding-right : 3px;
+padding-left  : 3px;
+border-color : #EDEEEE;
+border-style : solid;
+}
+.floatClear {
+width: 0px;
+height: 0px;
+clear : both;
+}
+.seperator {
+width: 0px;
+height: 10px;
+clear : both;
+}
+.title {
+float : left;
+}
+.titleText {
+font-weight : bold;
+color : #5A5A5A;
+padding : 0px;
+margin : 0px;
+}
+.titleLink {
+font-size: smaller;
+font-weight: bold;
+display : block;
+padding-left: 16px;
+color : #9C9C9C;
+float:right;
+}
+.titleLink:visited {
+font-size: smaller;
+font-weight: bold;
+display : block;
+padding-left: 16px;
+color : #9C9C9C;
+float:right;
+}
+.SummaryPosInSetCell {
+
+background-color : #F4F4F4;
+width : 20px;
+text-align: center;
+font-weight: bold;
+font-size: smaller;
+}
+.EMediaSummaryPosInSetCell {
+background-color : #B9DAC1;
+width : 20px;
+text-align: right;
+font-weight: bold;
+font-size: smaller;
+}
+.DetailPosInSetCell {
+
+background-color : #f4f4f4;
+width : 20px;
+text-align: right;
+font-weight: bold;
+font-size: smaller;
+}
+.SummaryPosInSetCellStripe {
+
+background-color : #FFFFFF;
+width : 20px;
+text-align: center;
+font-weight: bold;
+font-size: smaller;
+}
+.EMediaSummaryPosInSetCellStripe {
+background-color : #DCEDE0;
+width : 20px;
+text-align: right;
+font-weight: bold;
+font-size: smaller;
+}
+.DetailPosInSetCellStripe {
+
+background-color : #f4f4f4;
+width : 20px;
+text-align: right;
+font-weight: bold;
+font-size: smaller;
+}
+.SummaryImageCell {
+background-color: #F4F4F4;
+width: 80px;
+}
+.SummaryImageCellStripe {
+background-color: #FFFFFF;
+width: 80px;
+}
+.EMediaSummaryImageCell {
+background-color: #B9DAC1;
+width: 80px;
+overflow: hidden;
+}
+.EMediaSummaryImageCellStripe {
+background-color: #DCEDE0;
+width: 80px;
+overflow: hidden;
+}
+.DetailImageCell {
+background-color: #F4F4F4;
+width:100px;
+}
+.DetailImageCellStripe {
+background-color: #F6F6F6;
+}
+.SummaryDataCell {
+background-color: #F4F4F4;
+}
+.SummaryDataCellStripe {
+background-color: #FFFFFF;
+}
+.EMediaSummaryDataCell {
+background-color: #B9DAC1;
+}
+.EMediaSummaryDataCellStripe {
+background-color: #DCEDE0;
+}
+.DetailDataCell {
+background-color: #F4F4F4;
+}
+.DetailDataCellStripe {
+background-color: #FFFFFF;
+}
+.SummaryMaterialTypeField {
+text-align: center;
+font-size   : smaller;
+font-weight: bold;
+}
+.SummaryFieldLegend {
+font-size   : Smaller;
+text-align  : right;
+width: 40px;
+}
+.SummaryFieldLegendSep {
+font-size   : Smaller;
+text-align  : right;
+}
+.SummaryFieldData {
+color: #292424;
+}
+.SummaryFieldLink  {
+font-weight: bold;
+color: #3E65A2;
+text-decoration: underline;
+}
+.SummaryFieldLink:link {
+font-weight: bold;
+text-decoration: underline;
+color: #3E65A2;
+}
+.SummaryFieldLink:visited {
+font-weight: bold;
+color: #3E65A2; 
+text-decoration: underline;
+}
+.SummaryActionBox {
+width:137px;
+
+                    padding-bottom: 12px;
+background-color:white; 
+border-color: #a8bbce; 
+border-style:solid; 
+border-width: 2px;
+}
+.EMediaSummaryActionBox {
+width:137px;
+height:85px; 
+background-color:white; 
+border-color: #a8bbce; 
+border-style:solid; 
+border-width: 2px;
+}
+.SummaryActionLink {
+padding-top:8px;
+margin-left: 10px;
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.SummaryActionLink:link, .SummaryActionLink:visited {
+padding-top:8px;
+margin-left: 10px;
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.SummaryActionLink:hover {
+padding-top:8px;
+margin-left: 10px;
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+               .DetailedActionBox {
+
+
+background-color:white; 
+border-color: #a8bbce; 
+border-style:solid; 
+border-width: 2px;
+}  
+.searchHits {
+margin-top     : 5px;
+margin-bottom  : 5px;
+font-family    : Arial;
+font-size      : larger;
+font-weight    : bold;
+}
+.SearchResultsHeaderSortCell {
+padding-left: 10px;
+padding-top: 5px;
+}
+            
+              .SearchResultsTrailerSortCell {
+padding-left: 10px;
+padding-top: 5px;
+}
+.SearchResultsPageField {
+width : 1.5em;
+}
+.SearchExampleListBox {
+width: 715px;
+min-height : 200px;
+background-color: #fafafc;
+border-color: #e1e8ee;
+border-style: solid;
+border-width: 2px;
+}
+.SearchExampleListHeader {
+color : #a1a1a3;
+font-weight: bold;
+padding-top:10px;
+padding-left: 10px;
+}
+.SearchExampleList {
+color : #a1a1a3;
+padding-top:10px;
+padding-left: 30px;
+list-style-type:none; 
+}
+.MyZonePageLeftMenuItem {
+}
+.MyZonePageLeftMenuList{
+  list-style-type: none;
+  }
+.MyZoneHeaderLink {
+color: #cf8032;
+text-decoration: underline;
+font-size : smaller;
+}
+.MyZoneHeaderSectionSep {
+margin-left: 5px;
+margin-right: 5px;
+font-size : smaller;
+}
+.MyZoneHeaderSection {
+font-size: smaller;
+color: #5d5d5d;
+}
+.MyZonetitleText {
+font-size: 1.30em;
+color: #565656;
+}
+.LoginHelpCell {
+vertical-align : bottom;
+padding-left: 5px;
+}
+.LoginForgotPinCell {
+vertical-align : bottom;
+padding-left: 5px;
+}
+.AccountSummaryHeaderCell {
+background-color: #ECECEC;
+padding-left : 10px;
+font-weight : bold;
+}
+.AccountDetailsHeaderCell {
+background-color: #ECECEC;
+padding-left : 10px;
+font-weight : bold;
+}
+.AccountSummaryCounterNameCell {
+width : 200px;
+padding-left: 20px;
+}
+.AccountDetailFieldNameCell {
+text-align: right;
+width : 65px;
+padding-left: 20px;
+padding-right: 5px;
+}
+.AccountDetailFieldNameCellStripe {
+text-align: right;
+width: 65px;
+padding-left: 20px;
+padding-right: 5px;
+background-color: #f8f8f8;
+}
+               
+                   .CAccountDetailFieldNameCell {
+text-align: right;
+width : 95px;
+padding-left: 20px;
+padding-right: 5px;
+}
+.CAccountDetailFieldNameCellStripe {
+text-align: right;
+width: 95px;
+padding-left: 20px;
+padding-right: 5px;
+background-color: #f8f8f8;
+}
+.AccountSummaryCounterValueCell {
+width:  200px;
+}
+.AccountDetails {
+margin-top : 20px;
+width:745px;
+}
+.AccountDetailFieldValueCell {
+width: 400px;
+}
+.AccountDetailFieldValueCellStripe {
+width: 400px;
+background-color: #f8f8f8;
+}
+.AccountSummaryActionCell {
+}
+.AccountDetailFieldActionCell {
+}
+.AccountDetailFieldActionCellStripe {
+background-color: #f8f8f8;
+}
+.AccountSummaryCounterNameCellStripe {
+width: 200px;
+padding-left: 20px;
+background-color: #f8f8f8;
+}
+.AccountSummaryCounterValueCellStripe {
+width: 200px;
+background-color: #f8f8f8;
+}
+.AccountSummaryActionCellStripe {
+background-color: #f8f8f8;
+}
+.AccountSummaryCounterLink {
+color : #ce8435;
+text-decoration : underline;
+}
+.AccountSummaryActionLink {
+color : #ce8435;
+text-decoration : underline;
+font-size : smaller;
+padding-top:5px;
+padding-bottom:5px;
+padding-left:5px;
+display: block;
+}
+.AccountTrapErrorContainer {
+padding-left:10px;
+}
+.AccountTrapWarningContainer {
+padding-left:10px;
+}
+.BoldTitle {
+font-size: 1.1em;
+font-weight: bold;
+color: #3E65A2;
+}
+.BoldTitle A {
+font-size: 1.1em;
+font-weight: bold;
+color: #3E65A2;
+}
+
+.AccountMenuLink, .AccountMenuLink:link, .AccountMenuLink:visited {
+
+}
+.AccountMenuLink:hover, .AccountMenuLinkSelected, .AccountMenuLinkSelected:link {
+background-color:#eaf3f9;
+color: #727272;
+}
+
+.LoansHistoryBrowseHitNumber {
+width : 20px;
+}
+.LoansHistoryBrowseHitNumberStripe {
+background-color: #f8f8f8;
+width : 20px;
+}
+.LoansBrowseHitNumber {
+width : 100px;
+}
+.LoansBrowseHitNumberStripe {
+background-color: #f8f8f8;
+width : 100px;
+}
+.LoansBrowseItemDetailsCell {
+}
+.LoansBrowseItemDetailsCellStripe {
+background-color: #f8f8f8;
+}
+.LoansBrowseItemDetailsCellSelected {
+background-color: #93F887;
+}
+.LoansBrowseItemDetailsCellStripeSelected {
+background-color: #93F887;
+}
+.LoanBrowseFieldNameCell {
+font-size : smaller;
+width     : 120px;
+}
+.LoansBrowseItemPictureCell {
+width: 100px;
+}
+.LoansBrowseItemPictureCellStripe {
+background-color: #f8f8f8;
+width: 100px;
+}
+.SearchExample {
+background: url(/portal3/img/icon/bullet.gif) left center no-repeat;
+         padding-left: 15px;
+         margin-bottom: 5px;
+}
+.MessageBrowseHitNumberCell {
+width : 40px;
+}
+.MessageBrowseHitNumberCellStripe {
+width : 40px;
+background-color: #f8f8f8;
+}
+.MessageBrowseItemDetailsCell {
+}
+.MessageBrowseItemDetailsCellStripe {
+background-color: #f8f8f8;
+}
+.MessageBrowseItemDetailsCellSelected {
+background-color: #F8ABAB;
+}
+.MessageBrowseItemDetailsCellStripeSelected {
+background-color: #F8ABAB;
+}
+.MessageBrowseItemDetailsCellDisabled {
+background-color: #DBDBDB;
+color: white;
+}
+.MessageBrowseItemDetailsCellStripeDisabled {
+background-color: #DBDBDB;
+color: white;
+}
+.MessageBrowseBodyContainer {
+width: 600px; 
+overflow: hidden;
+}
+.MessageBrowseFieldNameCell {
+width: 75px;
+text-align : right;
+vertical-align: top;
+font-size: smaller;
+padding-right: 5px;
+}
+.MessageBrowseFieldDataCell {
+}
+               
+                   .ReservationBrowseFieldNameCell {
+                         width: 75px;
+text-align : right;
+                         vertical-align: middle;
+font-size: smaller;
+padding-right: 5px;
+                   }
+                   
+                   .ReservationBrowseFieldDataCell {
+                         vertical-align: middle;
+                   }
+                   
+                   .ResvRank {
+                         margin-right: 7px;
+                         padding-top: 8px;
+                         float: left;
+                         display: table-cell;
+                         vertical-align: middle;
+                   }
+                   
+.ChangePinLabelCell {
+font-size:smaller;
+width: 400px;
+}
+.ChangePinFieldCell {
+font-size:smaller;
+width: 250px;
+}
+.SerialIssueDetail_hidden {
+height:1px;
+margin-top:-1px;
+overflow:hidden;
+position:relative;
+visibility:hidden;
+}
+.ElectreLinks {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.ElectreLinks:link, a.ElectreLinks:visited {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+ElectreLinks:hover {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.SyndeticsLinks {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.SyndeticsLinks:link, a.SyndeticsLinks:visited {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+SyndeticsLinks:hover {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.CantookLinks {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.CantookLinks:link, a.CantookLinks:visited {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+CantookLinks:hover {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+        
+                .flipbook-text {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.flipbook-text:link, a.flipbook-text:visited {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+.flipbook-text:hover {
+font-size:0.80em;
+color:black;
+display: block;
+text-align: left;
+}
+            
+               .SerialIssueHeader {
+                    margin-bottom: 10px; 
+                    border-bottom:1px; 
+                    border-top:1px; 
+                    border-left:0px; 
+                    border-right:0px; 
+                    border-style:solid; 
+                    background-color:#bcddf0;
+               }
+               
+               .tagcloudbox {
+                    text-align:left; 
+                    height:150px; 
+                    background-color:white; 
+                    border-color: #a8bbce; 
+                    border-style:solid; 
+                    border-width: 2px;
+               }
+               
+               .tg5 {
+display: inline;
+padding-right: 2px;
+font-size : 1.1em;
+}
+.tg4 {
+display: inline;
+padding-right: 2px;
+font-size : 1.0em;
+}
+.tg3 {
+display: inline;
+padding-right: 2px;
+font-size : 0.95em;
+}
+.tg2 {
+cursor: hand;
+display: inline;
+padding-right: 2px;
+font-size : 0.9em;
+}
+.tg1 {
+cursor: hand;
+display: inline;
+padding-right: 2px;
+font-size : 0.8em;
+}
+.tg0 {
+cursor: hand;
+display: inline;
+padding-right: 2px;
+font-size : 0.7em;
+}
+.tgc {
+list-style-image: none;
+}
+#tagcloud_content {
+margin-top:8px;
+margin-left:8px;
+}
+#tagcloud_header {
+text-align: center;
+font-weight: bold;
+background-color:#a8bbce;
+}
+               
+               
+                   #TotalFines {
+                         margin-top: 15px;
+                   }
+                    
+                   .TotalFinesHeader {
+                         width:  125px;
+                   }
+                   
+                   .TotalFinesCell {
+                         width:  125px;
+                   }
+            
+.navigation_icon { border:0; position:relative;top: 3px; }
+.SyndeticsContent {
+padding: 20px 10px 10px 10px;
+}
+.SyndeticsHeaderRow {
+min-height: 15px;
+background-color: #3e64a2;
+margin-top: 10px;
+}
+.SyndeticsChapterRow {
+background-color: #f4f4f4;
+width: 125px;
+}
+.SyndeticsChapterRowStripe {
+background-color: #ffffff;
+width: 125px;
+}
+.SyndeticsTitleRow {
+background-color: #f4f4f4;
+}
+.SyndeticsTitleRowStripe {
+background-color: #ffffff;
+}
+.SyndeticsPageRow {
+background-color: #f4f4f4;
+width: 100px;
+}
+.SyndeticsPageRowStripe {
+background-color: #ffffff;
+width: 100px;
+}
+.limitBlock {
+position: relative;
+}
+.hiddenBlock_display {
+display:block;
+border-top: solid 1px #A5CBE6;
+}
+.hiddenBlock_hidden {
+display:none;
+}
+.limitToggle {
+position: absolute;
+top:5px; 
+right:-16px;
+}
+.limitChoice {
+float:left;
+padding:5px; 
+margin-right:10px;
+width:165px;
+}
+.limitChoice input {
+float:left;
+vertical-align: top;
+}
+.limitChoice label {
+margin-left:20px;
+display: block;
+}
+
+
+</style>
+		
+		
+
+<script type="text/javascript" src="script/lib/jquery-1.4.2.min.js"></script>
+
+
+<link type="text/css" href="/script/lib/css/redmond/jquery-ui-1.7.2.custom.1.css" rel="stylesheet" />
+<link type="text/css" href="/script/lib/css/redmond/jquery-ui-1.7.2.custom.2.css" rel="stylesheet" />
+<link type="text/css" href="/script/lib/css/redmond/jquery-ui-1.7.2.custom.3.css" rel="stylesheet" />
+<script type="text/javascript" src="script/lib/jquery-ui-1.7.2.custom.min.js"></script>
+<link media="screen" rel="stylesheet" href="/script/lib/colorbox/colorbox.css" />
+<script src="/script/lib/colorbox/jquery.colorbox.js"></script>
+
+<script type="text/javascript">
+function writeCookie(cookieName, cookieValue)
+{
+document.cookie = cookieName + '=' + cookieValue + ';';
+}
+function readCookie(cookieName) 
+{
+var cookies = document.cookie.split('; ');
+for(var i=0; i < cookies.length; i++)
+{
+var cookie = cookies[i].split('=');
+if(cookie[0] == cookieName)
+return cookie[1];
+}
+return null;
+}
+function checkCountPixel()
+{
+var countPixelCookie = readCookie('pixelCount');
+if( countPixelCookie == null)
+{
+var elem = document.createElement('img');
+elem.setAttribute('src','https://dbspixel.hbz-nrw.de/count?id=GB722&amp;amp;page=2');
+elem.setAttribute('width','1');
+elem.setAttribute('height','1');
+var container = document.getElementById('countPixelContainer');
+container.appendChild(elem);
+writeCookie('pixelCount','done');
+}
+}
+
+var printOptions = "";
+var printExtent = "";
+var documentManager = {
+addStartup : function ( f )
+{
+$( f );
+}
+}
+function OpenPrintFrame() {
+$('PrintLDLG').show();
+}
+function windowWidth()
+            {
+                var myWidth = 0;
+                if( typeof( window.innerWidth ) == 'number' ) {
+                    //Non-IE
+                    myWidth = window.innerWidth;
+                } 
+                else if
+                    ( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) 
+                {
+                    myWidth = document.documentElement.clientWidth;
+                }
+                else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) 
+                {
+                    myWidth = document.body.clientWidth;
+                }
+                return myWidth;
+            }
+            var Printing = true;
+function OfflinePrintList(limit)
+{
+DoPrintList('OfflinePrint',limit);
+}
+function PrintList(limit)
+{
+DoPrintList('Print',limit);
+}
+            
+function DoPrintList(method,limit)
+{
+Printing = true;
+
+if(typeof(limit) != "undefined" && limit != "")
+{
+printOptions+="&Options.MaxItem=" + limit;
+}
+var dialogURL = "Obj_518091357397840?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
+dialogURL += "&Style=Portal2&SubStyle=ForPortal3&Method=" + method + "&PrintOnly=1" + printOptions + printExtent;
+var e = document.getElementById('PrintLDLG');
+var dlg_width = 470;
+e.style.width = dlg_width + "px";
+e.style.left = ((windowWidth() -dlg_width) /2) + "px";  
+               
+if (printOptions != null && printOptions != "" && printOptions.indexOf("Options.Export=1") < 0)
+{
+e.style.height = "300px";
+}
+else
+{
+e.style.height = "100px";
+}
+e.style.display  = "block";
+e.src = dialogURL;
+                
+                
+                    printOptions = "&Options.Choose=1&Options.Type=Notepad";
+                    
+                 
+}
+function OfflineSendList(limit)
+{
+DoSendList('OfflinePrint',limit);
+}
+function SendList(limit)
+{
+DoSendList('Print',limit);
+}
+function DoSendList(method,limit) 
+{
+if(typeof(limit) != "undefined" && limit != "")
+{
+printOptions+="&Options.MaxItem=" + limit;
+}
+
+var options =  "" 
+if(options != "")
+{
+printOptions+= "&" + options;
+}
+Printing = false;
+var dialogURL = "Obj_518091357397840?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
+dialogURL += "&Style=Portal2&SubStyle=ForPortal3&Method=" + method + "&EmailOnly=1" + printOptions;
+var e = document.getElementById('PrintLDLG');
+var dlg_width = 470;
+e.style.width = dlg_width + "px";
+e.style.left = ((windowWidth() -dlg_width) /2) + "px";  
+if (printOptions != "" )
+{
+e.style.height = "300px";
+}
+else
+{
+e.style.height = "100px";
+}
+e.style.display  = "block";
+e.src = dialogURL;  
+}
+function PreviewList( url )
+{
+var e = document.getElementById('PrintLDLG');
+e.style.display  = "block";
+                
+                if (printOptions != null && printOptions.indexOf("Options.Export=1") >= 0)
+                {
+    e.style.height = "100px";
+                }
+                else
+                {
+    e.style.height = "300px";
+                }
+                
+if
+(Printing)
+{
+e.src = url + "&SubStyle=ForPortal3&PrintOnly=true";
+}
+else
+{
+e.src = url + "&SubStyle=ForPortal3&EmailOnly=true";
+}
+}
+function PrintClose ()
+{
+
+printOptions = "";
+printExtent = "";
+
+var e = document.getElementById('PrintLDLG');
+e.style.height = "100px";
+e.style.display  = "none";
+e.src = "/blank.html";  
+}
+
+function Print()
+{
+if (window.print)
+{
+window.print();
+}
+}
+
+
+
+  
+
+
+jQuery.fn.ZonesIdleTimeout  = function(options){ 
+var defaults = {
+
+inactivity: 120 * 1000,
+
+noconfirm: 20000, //in milliseconds
+redirect_url: "APS_ACCOUNT?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=ZonesLogout&ResetFn=LibraryZone",
+logout_url: "APS_ZONES?fn=endsession&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8"
+}
+var opts = $.extend(defaults, options);
+var liveTimeout, sessionTimeout, timer, refModal,timeLeft;
+var counting = false;
+var modal = "<div id='modal_pop'></div>";
+var modal_created = false;
+var clearTimeouts = function(){
+clearTimeout(liveTimeout);
+clearTimeout(timer);
+}
+var start_timeout = function(){
+if (modal_created) refModal.dialog("close");
+else clearTimeouts();
+timeLeft = opts.noconfirm / 1000; //in seconds
+liveTimeout = setTimeout(showOrCreateDialog, opts.inactivity);
+  
+}
+var dialogReady = function(){
+$("#modal_pop span").html(timeLeft);
+if(!modal_created){
+modal_created = true;
+refModal = $(".ui-dialog #modal_pop");
+}
+countDown();
+}
+var showOrCreateDialog = function(){
+if (modal_created){
+refModal.dialog("open");
+dialogReady();
+}
+else{
+$(modal).load("APS_TIMEOUT?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&BrowseAsHloc=",dialogReady).dialog({
+modal: true,
+width: "750px",
+close: clearTimeouts
+});
+}
+}
+var redirect = function(){
+  if(opts.logout_url){
+$.get(opts.logout_url);
+  }
+  window.location.href = opts.redirect_url;
+}
+var keepCounting = function(){
+$("#modal_pop span").html(timeLeft);
+if (timeLeft  > 0){
+timeLeft--;
+return true;
+}
+return false;
+}
+var countDown = function(){
+if (keepCounting())
+{
+timer = setTimeout(countDown, 1000);
+}else{
+clearTimeout(timer);
+redirect();
+}
+}
+//returns the instance of the the plugin
+return this.each(function() {
+obj = $(this);
+start_timeout();
+ 
+$(document).bind('click', start_timeout);
+$(document).bind('keydown', start_timeout);
+$(document).bind('mousemove', start_timeout);
+});
+}
+function Help( sUrl, sData ) {
+                var e = document.getElementById('HelpFrame');
+                e.src = sUrl+"?"+sData;
+                $('#HelpDLG').dialog('open');
+}
+            
+            function PopupUrl( url ) {
+var e = document.getElementById('PopupFrame');
+e.src = url;  
+$('#PopupDLG').dialog('open');
+}
+function PopupUrl2(url , oheight, width, title)
+{
+var popup = $('#PopupDLG');
+popup.dialog("option","title",title);
+if (navigator.userAgent.indexOf("Mozilla/5.0") > 0)
+popup.dialog("option","width",width);
+else
+popup.dialog("option","width",width+"px");
+$("iframe",popup).css({width:"99%",height: oheight+ "px",overflow:"auto"});
+PopupUrl(url);
+}
+function SummaryBookcoverLoaded(id)
+{
+if( $('#'+id).width() > 1)
+{
+$('#Bookcover_' + id).show();
+}
+}
+    $( function () {
+    
+     //$('#buttonAdSearch').html("Suche");
+     //$('#buttonQuickSearch').html("Suche");
+    
+     //$('#buttonAdSearchClr').html("<font color='black'>Eingabe löschen</font>");
+//$('#buttonQuickSearchClr').html("<font color='black'>Eingabe löschen</font>");
+     // $('.button').corner();
+    
+     //$( 'body').css("background","aliceBlue");
+     //$( '#stuff').hide();
+//$('#buttonAdSearch').css("background","orange");
+var zonesTimeoutEnabled = true;
+
+
+
+zonesTimeoutEnabled = false;
+
+
+
+if(zonesTimeoutEnabled) $(document).ZonesIdleTimeout();
+$('.FacetHeader').click( function () {
+$(this).toggleClass('arrow_down').next().slideToggle('fast');
+var img = $('img',this);
+var src = img.attr("src");
+if ($(this).hasClass('arrow_down'))
+{
+img.attr("src","/Portal3/GBQ/Interface/fleche_bas_noir.gif");
+}
+else
+{
+img.attr("src","/Portal3/GBQ/Interface/fleche_top_noir.gif");
+}
+});
+$('#HelpDLG').dialog( 
+{ 
+width: "750px",
+                              
+resizable: false,
+autoOpen: false
+}
+);
+                
+                $('#PopupDLG').dialog( 
+{ 
+width: "750px",
+resizable: false,
+autoOpen: false
+}
+);
+
+$('.limitToggle').toggle(
+function() {
+
+$(this).prev('.hiddenBlock_hidden').removeClass('hiddenBlock_hidden').addClass('hiddenBlock_display');
+$(this).attr('src','/Portal3/GBQ/Interface/fleche_top_noir.gif');
+var newAlt = $(this).attr('data-close');
+$(this).attr('alt',newAlt);
+$(this).attr('title',newAlt);
+}, function() {
+
+$(this).prev('.hiddenBlock_display').removeClass('hiddenBlock_display').addClass('hiddenBlock_hidden');
+$(this).attr('src','/Portal3/GBQ/Interface/fleche_bas_noir.gif');
+var newAlt = $(this).attr('data-open');
+$(this).attr('alt',newAlt);
+$(this).attr('title',newAlt);
+}
+);
+
+
+$('.SerialIssue').toggle( 
+function() { 
+
+$(this).next().removeClass('SerialIssueDetail_hidden').addClass('SerialIssueDetail');
+var img = $('img',this);
+img.attr("src","/Portal3/GBQ/Interface/fleche_top_noir2.gif");
+}, function () { 
+
+$(this).next().removeClass('SerialIssueDetail').addClass('SerialIssueDetail_hidden');
+var img = $('img',this);
+img.attr("src","/Portal3/GBQ/Interface/fleche_bas_noir2.gif");
+}
+);
+
+$('#LanguageComboBox').change(function() {
+var sOption = $("#LanguageComboBox option:selected");
+var url = "Obj_518091357397840?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Lang=" + sOption.val();
+document.location.href = url;
+
+});
+
+
+
+  
+
+
+     });  
+function fnOpenMediaRef(strURL, strTitle, strMode) {
+                strMode = strMode.toLowerCase();
+                
+                if (strMode == "popup") {
+                    PopupUrl(strUrl);
+                } 
+                else if (strMode == "option") {
+                    window.location= ( unescape (strURL) + "&Lang=GER" );
+                }
+                else if (strMode == "replace") {
+                    window.location = unescape (strURL);
+                }
+                else { // either new, include, embed, default
+                    var width = 1024;
+                    if (screen.width - 50 < width) {
+                        width = screen.width - 50;
+                    }
+                    var height = 768;
+                    if (screen.height -100 < height) {
+                        height = screen.height -100;
+                    }
+                    window.open ( unescape ( strURL ), '_blank', 'scrollbars=yes,resizable=yes,width='+width+ ',height='+height );
+                }
+                
+                try{event.returnValue = false;}
+                catch(er){}
+            }
+            
+            function gotoUrl(url)
+            {
+                //alert(url);
+                var t = url;
+                var isComplete = false;
+                if (t.indexOf("http:")==0)
+                {
+                   isComplete = true;
+                }
+                if (t.indexOf("https:")==0)
+                {
+                   isComplete = true;
+                }
+                if (t.indexOf("javascript:")==0)
+                {
+                   isComplete = true;
+                }
+                if (t.indexOf("jscript:")==0)
+                {
+                   isComplete = true;
+                }
+                  
+                if
+                    (!isComplete)
+                {
+                    var temp = "";
+                    temp +=t;
+                    t = temp;
+                    //alert("doctored url is "+t);
+                }
+                window.location.href= t;
+            }
+function OnLoadActions()
+{
+correctPNG();
+
+}
+function PortfolioBookCoverLoaded(isbn)
+{
+if(typeof(isbn) != "undefined")
+{
+if ( $('#SyndeticsBookCover_'+isbn).width() <= 1)
+{
+$.getJSON("APS_SYNDETICS_XML_PROXY" + "?section=mc&isbn="+isbn, function(data) {
+if(data.result == true) {
+$('#BookCover_'+data.isbn).attr("src",data.url);
+}
+});
+}
+}
+}
+$(document).ready(function() {
+$(".FacetsList").each(
+function() {
+if($(this).hasClass("FacetsSortMeAsc"))
+{
+$(".FacetLinkA",this).sort(
+function(a,b) {
+return(a.innerHTML > b.innerHTML) ? 1 : -1;
+}
+).appendTo( $(this) );
+}
+else if($(this).hasClass("FacetsSortMeDesc"))
+{
+$(".FacetLinkA",this).sort(
+function(a,b) {
+return(a.innerHTML < b.innerHTML) ? 1 : -1;
+}
+).appendTo( $(this) );
+}
+}
+);
+});
+</script>
+          
+            
+
+
+
+
+
+			  
+
+		
+			  
+		
+
+		<!--[if lte IE 6]><link href="/css/BAnQ09-IE6.css" rel="stylesheet" type="text/css" /><![endif]-->
+		<!--[if IE 7]><link href="/css/BAnQ09-IE7.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+		<link href="/smedia/css/hamburgZones2.css" rel="stylesheet" type="text/css" />
+		
+		
+	</head>
+	<body  >
+		
+     <div id="SSRenewDlgContent">
+		<TABLE  id=textBody class=popupTextBody border=0 width=100% cellpadding=6 cellspacing= 0>
+			<TR>
+				<TD>
+					
+
+						
+
+							Die Verlängerung wurde abgeschlossen.
+
+							
+
+							Bitte geben Sie dieses Medium spätestens am <B> 05/02/2013 </B> zurück
+
+							<TABLE width=100%>
+								<TR>
+									<TD align=right>
+										<INPUT type="submit" name="OkButton" value="OK" onclick="fnRefreshLoans();">
+									</TD>
+								</TR>
+							</TABLE>
+
+						
+
+					
+				</TD>
+			</TR>
+		</TABLE>
+	</div>
+
+	<SCRIPT>
+
+		function fnClose () {
+               if(parent.answerCancelRenew)
+               {
+                    parent.answerCancelRenew();
+               }
+		}
+          
+
+		function fnRefreshLoans () {
+               if(parent.sucessfulLoan)
+               {
+                    parent.sucessfulLoan('99298','05/02/2013')
+               }
+			parent.location.replace(parent.hashHashThis() + "&Method=BrowseFrom&Item=99298");
+
+		}
+
+	</SCRIPT>
+
+
+		
+		
+	</body>
+</html>
+

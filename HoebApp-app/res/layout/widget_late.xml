@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget"
+    style="@style/widget.late"
+    android:layout_width="75dp"
+    android:layout_height="75dp"
+    android:orientation="vertical">
+
+<!--   
+      android:text="12" 
+      -->
+    <TextView android:id="@+id/count"
+        android:textColor="#FF000000" 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingRight="14dp"
+        android:paddingLeft="14dp"
+        android:paddingTop="26dp"
+    />
+
+<!--
+         android:text="30.12."
+         -->
+    <TextView android:id="@+id/duedate"
+        android:textColor="#FF000000"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingRight="4dp"
+        android:paddingLeft="12dp"
+        android:paddingBottom="5dp"
+    />
+
+</LinearLayout>

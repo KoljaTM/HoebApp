@@ -1,0 +1,37 @@
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+           >
+
+        <EditTextPreference
+                android:key="username"
+                android:title="@string/username_preference"
+                android:summary="@string/summary_username_preference"
+                android:dialogTitle="@string/dialog_title_username_preference" />
+
+        <EditTextPreference 
+                android:key="password"
+                android:title="@string/password_preference"
+                android:summary="@string/summary_password_preference"
+                android:dialogTitle="@string/dialog_title_password_preference"
+                android:password="true" />
+
+        <CheckBoxPreference
+            	android:key="doAutoUpdate"
+            	android:title="@string/autoupdate_preference"
+            	android:summary="@string/summary_autoupdate_preference"
+            	android:disableDependentsState="false"
+            	/>
+        
+        <CheckBoxPreference
+            	android:key="doAutoUpdateWifiOnly"
+            	android:title="@string/autoupdatewifi_preference"
+            	android:summary="@string/summary_autoupdatewifi_preference"
+            	android:dependency="doAutoUpdate"
+            	/>
+        
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

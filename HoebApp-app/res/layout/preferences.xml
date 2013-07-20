@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/HoebAppTheme"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp"
+        android:text="@string/accounts"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/accountList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp" >
+
+    </ListView>
+
+    <Button
+        android:id="@+id/addAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/newAccount" />
+
+    <CheckBox
+        android:id="@+id/doAutoUpdate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/summary_autoupdate_preference" />
+
+    <CheckBox
+        android:id="@+id/doAutoUpdateWifiOnly"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/summary_autoupdatewifi_preference" />
+
+</LinearLayout>

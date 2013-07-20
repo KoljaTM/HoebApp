@@ -1,0 +1,10 @@
+/bin
+/build
+/gen
+/test
+/proguard
+/tmp
+/.apt_generated
+/local.properties
+/.dropbox
+/.settings

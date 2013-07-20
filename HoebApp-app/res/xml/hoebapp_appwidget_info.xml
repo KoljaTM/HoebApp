@@ -1,0 +1,11 @@
+<appwidget-provider
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="40dip"
+    android:minHeight="40dip"
+    android:initialLayout="@layout/widget"
+	android:updatePeriodMillis="7200000"
+    />
+<!--  
+	// Updates requested with updatePeriodMillis will not be delivered more than once every 30 minutes.
+    android:updatePeriodMillis="30000"
+-->

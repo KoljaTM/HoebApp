@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="searchcategorylabels">
+        <item>Stichwort</item>
+        <item>Titel</item>
+        <item>Autor</item>
+        <item>Thema</item>
+        <item>ISBN</item>
+        <item>Jahr</item>
+    </string-array>
+
+    <string-array name="searchcategorykeys">
+        <item>kw=</item>
+        <item>ti=</item>
+        <item>au=</item>
+        <item>su=</item>
+        <item>sb=</item>
+        <item>dp=</item>
+    </string-array>
+</resources>

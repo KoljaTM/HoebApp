@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/relativeLayout" 
+  android:layout_height="wrap_content" 
+  android:layout_width="fill_parent"
+  android:background="#FFFFFFFF" >
+	        
+	<TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00FF0000"
+        android:padding="10dp"
+        android:textColor="#FF000000"
+        android:textSize="16sp" 
+        android:drawableLeft="@drawable/expand"/>
+	<TextView
+        android:id="@+id/distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+        android:background="#00FF0000"
+        android:padding="10dp"
+        android:textColor="#FF000000"
+        android:textSize="12sp" />
+
+	<TableLayout
+  		android:id="@+id/locationDetails" 
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content" 
+  		android:layout_below="@id/name" 
+  		android:layout_marginLeft="32dp"
+  		android:background="#FFFFFFFF" 
+  		android:visibility="gone">
+
+	    <TableRow>
+		    <TextView
+		        android:id="@+id/address"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right|fill"
+		        android:background="#0000FF00"
+		        android:textColor="#FF000000" />
+	        <ImageButton 
+	            android:id="@+id/directions_button" 
+		        android:layout_width="64dp"
+		        android:layout_height="32dp"
+		        android:scaleType="center"
+	            android:contentDescription="@string/directions" 
+	            android:src="@drawable/directions" />
+		</TableRow>
+	    <TableRow>
+		    <TextView
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right|fill"
+		        android:background="#0000FF00"
+		        android:id="@+id/phone"
+		        android:textColor="#FF000000" />
+		    <ImageButton
+		        android:id="@+id/call_button" 
+		        android:layout_width="64dp"
+		        android:layout_height="32dp"
+		        android:scaleType="center"
+		        android:contentDescription="@string/directions" 
+		        android:src="@drawable/call"/>
+		</TableRow>
+		<TableRow>
+		    <TextView
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right|fill"
+		        android:background="#0000FF00"
+		        android:id="@+id/mail"
+		        android:textColor="#FF000000" />
+		    <ImageButton
+		        android:id="@+id/mail_button" 
+		        android:layout_width="64dp"
+		        android:layout_height="32dp"
+		        android:scaleType="center"
+		        android:contentDescription="@string/directions" 
+		        android:src="@drawable/email"/>
+		</TableRow>
+		<TableRow>
+		    <TextView
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="right|fill"
+				android:layout_span="2"
+		        android:background="#0000FF00"
+		        android:textStyle="bold"
+		        android:id="@+id/opening_times"
+		        android:textColor="#FF000000" />
+		</TableRow>
+	</TableLayout>
+</RelativeLayout>

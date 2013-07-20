@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    style="@style/HoebAppTheme"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+    	<ScrollView
+		    android:layout_width="fill_parent"
+		    android:layout_height="0dp"
+		    android:layout_weight="1">
+	           
+	    <LinearLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical" >
+	        
+		    <ImageView android:id="@+id/image"
+				android:contentDescription="@string/imageDesc"
+		      	android:layout_gravity="center"
+		      	android:scaleType="centerInside"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="5dp"
+		    />
+	
+		    <TextView android:id="@+id/title"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="16dp"
+		        android:textStyle="bold"
+	    	/>
+	    
+		    <TextView android:id="@+id/subtitle"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+	        	android:textSize="12dp"
+		    />
+		    
+		    <TextView android:id="@+id/author"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		    />
+		    
+		    <TextView android:id="@+id/contents"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		    />
+		
+		    <TextView android:id="@+id/stockTitle"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:paddingTop="10dp"
+	        	android:textStyle="bold"
+		    />
+	
+		    <TextView android:id="@+id/stock"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:paddingLeft="5dp"
+		    />
+	     </LinearLayout>
+	   
+    </ScrollView>
+    
+    <com.google.ads.AdView android:id="@+id/adView"
+            		 android:layout_width="wrap_content"
+    				 android:layout_height="wrap_content" 
+    				 android:gravity="center"
+                     ads:adUnitId="a15007aa87476d1"
+                     ads:adSize="BANNER"
+                     ads:testDevices="TEST_EMULATOR, TEST_DEVICE_ID"
+                     ads:loadAdOnCreate="true"/>
+   
+</LinearLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    style="HoebAppTheme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView android:id="@+id/titlebar"
+        android:textColor="#FF000000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+	    android:layout_height="0dp" 
+        android:layout_weight="1"
+    	android:orientation="vertical">
+    	
+	    <ListView
+	       android:id="@+id/medialist"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" >
+	    </ListView>
+	</LinearLayout>
+    
+    <com.google.ads.AdView android:id="@+id/adView"
+                		 android:layout_width="wrap_content"
+        				 android:layout_height="wrap_content" 
+        				 android:gravity="center"
+                         ads:adUnitId="a15007aa87476d1"
+                         ads:adSize="BANNER"
+                         ads:testDevices="TEST_EMULATOR, TEST_DEVICE_ID"
+                         ads:loadAdOnCreate="false"/>
+</LinearLayout>

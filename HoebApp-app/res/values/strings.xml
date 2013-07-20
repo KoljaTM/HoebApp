@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HÖB-Fans</string>
+    <string name="loginfailed">Login fehlgeschlagen</string>
+    <string name="technicalError">Ein Fehler ist aufgetreten</string>
+    <string name="ioException">Bücherhallen-Server nicht erreichbar</string>
+    <string name="usernameNotSet">Bitte Kundennummer und Geheimnummer konfigurieren</string>
+    <string name="pleaseWait">Bitte warten. Daten werden geladen.</string>
+    <string name="networkNotAvailable">Internet nicht verfügbar</string>
+    <string name="titleCount">%s Titel entliehen</string>
+    <string name="titleCountAndDate" formatted="false">%s Titel entliehen (abgerufen: %s)</string>
+    <string name="dateNotRenewable">%s - (Nicht verlängerbar)</string>
+    <string name="dateNotRenewableReason" formatted="false">%s - (Nicht verlängerbar: %s)</string>
+    <string name="refresh">Aktualisieren</string>
+    <string name="renew">Verlängern</string>
+    <string name="renewAllHint">Keine Medien zur Verlängerung ausgewählt. Alle verlängern?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="preferences">Einstellungen</string>
+    <string name="username_preference">Ausweisnummer</string>
+    <string name="summary_username_preference">Nummer des Bibliotheksausweises (ohne A, mit X)</string>
+    <string name="dialog_title_username_preference">Ausweisnummer</string>
+    <string name="password_preference">Geheimnummer</string>
+    <string name="summary_password_preference">In der Regel Geburtstag plus Jahr (z.B. 3178)</string>
+    <string name="dialog_title_password_preference">Geheimnummer</string>
+    <string name="autoupdate_preference">Automatisch aktualisieren</string>
+    <string name="summary_autoupdate_preference">Ausgeliehene Titel automatisch einmal täglich aktualisieren</string>
+    <string name="autoupdatewifi_preference">Nur WLAN</string>
+    <string name="summary_autoupdatewifi_preference">Für automatische Aktualisierung nur WLAN verwenden</string>
+    <string name="username_empty_warning">Bitte Ausweisnummer eingeben</string>
+    <string name="password_empty_warning">Bitte Geheimnummer eingeben</string>
+    
+    <string name="renewWaitMessage">Medien werden verlängert, bitte warten…</string>
+    <string name="help">Hilfe</string>
+    
+    <string name="eulaHeading">Nutzungsbedingungen</string>
+    <string name="accept">Ja, ich kenne das Risiko</string>
+    <string name="decline">Nein, Danke.</string>
+    <string name="about">App-Info</string>
+
+    <string name="notificationTicker">Bücherhalle: Fälligkeitsdatum erreicht!</string>
+    <string name="notificationTitle">Fälligkeitsdatum erreicht</string>
+    <string name="notificationText">%s Medien fällig.</string>
+    <string name="notificationTextSingle">1 Medium fällig.</string>
+
+    <string name="locationLoadFailure">Ein Fehler ist aufgetreten - Standorte konnten nicht geladen werden</string>
+    <string name="locationWaitMessage">Bitte warten, Position wird abgerufen</string>
+    <string name="locations">Standorte</string>
+    <string name="locationDistance">%.2f km</string>
+    <string name="directions">Navigieren</string>
+    <string name="addressFormatted" formatted="false">%s %s\n%s %s</string>
+    <string name="cannot_navigate">Map-Anwendung nicht gefunden.</string>
+    <string name="cannot_send_mail">Mail-Anwendung nicht gefunden.</string>
+    <string name="cannot_call">Telefon-Anwendung nicht gefunden.</string>
+
+    <string name="search">Katalogsuche</string>
+    <string name="searchHint">Suchbegriff</string>
+    <string name="switchToAdvancedSearchButton">+</string>
+    <string name="switchToSimpleSearchButton">-</string>
+    <string name="searchButton">Suchen</string>
+    <string name="searchButtonWaiting">Suchen…</string>
+    <string name="imageDesc">Cover</string>
+    <string name="yearFormatted"> (%s)</string>
+
+    <string name="details">Medium</string>
+    <string name="detailsLoading">Medium wird geladen…</string>
+    <string name="stockTitle">Bestand:</string>
+    <string name="availableSingle">1 Exemplar verfügbar</string>
+    <string name="available">%s Exemplare verfügbar</string>
+    <string name="unavailableSingle">1 Exemplar entliehen, verfügbar am</string>
+    <string name="unavailable">%s Exemplare entliehen, verfügbar am</string>
+    <string name="unavailableUnknown">&lt;unbekannt&gt;</string>
+    <string name="availableAt">%s</string>
+    <string name="newAccount">Bibliotheksausweis hinzufügen</string>
+    <string name="editAccount">Bibliotheksausweis bearbeiten</string>
+    <string name="changeAppearance">Farbe ändern</string>
+    <string name="save">Speichern</string>
+    <string name="delete">Löschen</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="accounts">Ausweisnummern</string>
+</resources>
