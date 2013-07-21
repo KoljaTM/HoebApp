@@ -1,5 +1,8 @@
 package de.vanmar.android.hoebapp.db;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -68,6 +71,21 @@ public class HoebAppDbHelperTest extends InstrumentationTestCase {
 		assertTrue(accountDataFromPrefs.size() == 1);
 		assertTrue("user".equals(accountDataFromPrefs.get(0).getUsername()));
 		assertTrue("pw123".equals(accountDataFromPrefs.get(0).getPassword()));
+	}
+
+	public void testUpgradeDBFromVer8() throws SQLException {
+		TestUtils.prepareTestDatabase(context, targetContext,
+				"hoebdata.ver8.db");
+
+		dbHelper = new HoebAppDbHelper(targetContext);
+		cursor = dbHelper.getReadableDatabase().query(
+				MediaDbHelper.MEDIA_TABLE_NAME, MediaDbHelper.ALL_COLUMNS,
+				null, null, null, null, null);
+		assertThat("Should contain 18 rows", cursor.getCount(), is(18));
+		while (cursor.moveToNext()) {
+			assertNull("MediumId should be null",
+					cursor.getString(MediaDbHelper.KEY_MEDIUM_ID));
+		}
 	}
 
 	private void setUsernamePasswordPrefs(final String username,

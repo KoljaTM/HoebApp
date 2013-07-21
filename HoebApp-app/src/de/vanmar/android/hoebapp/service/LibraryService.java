@@ -76,9 +76,9 @@ public class LibraryService {
 					Pattern.MULTILINE | Pattern.DOTALL
 							| Pattern.CASE_INSENSITIVE);
 
-	private static final Pattern REGEX_MEDIA_DETAILS_TITLE = Pattern
+	private static final Pattern REGEX_MEDIA_DETAILS_MEDIUM_ID_TITLE = Pattern
 			.compile(
-					"LoanBrowseFieldNameCell\">Titel</td>\\s*<td class=\"LoanBrowseFieldDataCell\">\\s*<a[^>]*>\\s*([^<]*?)\\s*</a>",
+					"LoanBrowseFieldNameCell\">Titel</td>\\s*<td class=\"LoanBrowseFieldDataCell\">\\s*<a[^>]*BACNO=([^&>]*)[^>]*>\\s*([^<]*?)\\s*</a>",
 					Pattern.MULTILINE | Pattern.DOTALL);
 	private static final Pattern REGEX_MEDIA_DETAILS_AUTHOR = Pattern
 			.compile(
@@ -388,6 +388,7 @@ public class LibraryService {
 			value.put(MediaDbHelper.COLUMN_NO_RENEW_REASON,
 					item.getNoRenewReason());
 			value.put(MediaDbHelper.COLUMN_NUM_RENEWS, item.getNumRenews());
+			value.put(MediaDbHelper.COLUMN_MEDIUM_ID, item.getMediumId());
 			value.put(MediaDbHelper.COLUMN_ACCOUNT, account.getUsername());
 			final ContentProviderOperation insertOperation = ContentProviderOperation
 					.newInsert(MediaContentProvider.CONTENT_URI)
@@ -455,9 +456,10 @@ public class LibraryService {
 	private Media findMedia(final String content) {
 		final Media item = new Media();
 
-		Matcher m = REGEX_MEDIA_DETAILS_TITLE.matcher(content);
+		Matcher m = REGEX_MEDIA_DETAILS_MEDIUM_ID_TITLE.matcher(content);
 		if (m.find()) {
-			item.setTitle(Html.fromHtml(m.group(1)).toString());
+			item.setMediumId(Html.fromHtml(m.group(1)).toString());
+			item.setTitle(Html.fromHtml(m.group(2)).toString());
 		}
 
 		m = REGEX_MEDIA_DETAILS_AUTHOR.matcher(content);

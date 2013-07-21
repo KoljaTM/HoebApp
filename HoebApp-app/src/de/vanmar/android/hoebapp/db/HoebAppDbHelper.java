@@ -27,7 +27,7 @@ public class HoebAppDbHelper extends SQLiteOpenHelper {
 
 	private static final String INSERT_LOCATIONS_SQL_PATH = "sql/insert_locations.sql";
 	private static final String DATABASE_NAME = "hoebdata";
-	private static final int DATABASE_VERSION = 8;
+	private static final int DATABASE_VERSION = 9;
 	public static final DateFormat dateFormat = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss", Locale.GERMAN);
 	private final Context context;
@@ -68,7 +68,9 @@ public class HoebAppDbHelper extends SQLiteOpenHelper {
 				prefs.accounts().put(
 						Account.toString(Collections.singletonList(account)));
 			}
-
+		}
+		if (oldVersion < 9) {
+			db.execSQL("alter table media add column medium_id text;");
 		}
 
 		try {

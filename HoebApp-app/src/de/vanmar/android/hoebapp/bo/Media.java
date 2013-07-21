@@ -18,6 +18,7 @@ public class Media {
 	private String renewLink;
 	private String noRenewReason;
 	private int numRenews;
+	private String mediumId;
 
 	public String getAuthor() {
 		return author;
@@ -83,6 +84,14 @@ public class Media {
 		this.numRenews = numRenews;
 	}
 
+	public String getMediumId() {
+		return mediumId;
+	}
+
+	public void setMediumId(final String mediumId) {
+		this.mediumId = mediumId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -91,6 +100,8 @@ public class Media {
 		result = prime * result + ((dueDate == null) ? 0 : dueDate.hashCode());
 		result = prime * result
 				+ ((loanDate == null) ? 0 : loanDate.hashCode());
+		result = prime * result
+				+ ((mediumId == null) ? 0 : mediumId.hashCode());
 		result = prime * result
 				+ ((noRenewReason == null) ? 0 : noRenewReason.hashCode());
 		result = prime * result + numRenews;
@@ -133,6 +144,13 @@ public class Media {
 				return false;
 			}
 		} else if (!loanDate.equals(other.loanDate)) {
+			return false;
+		}
+		if (mediumId == null) {
+			if (other.mediumId != null) {
+				return false;
+			}
+		} else if (!mediumId.equals(other.mediumId)) {
 			return false;
 		}
 		if (noRenewReason == null) {

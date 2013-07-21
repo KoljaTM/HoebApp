@@ -24,6 +24,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -396,6 +398,25 @@ public class HoebAppActivity extends FragmentActivity implements
 		});
 
 		medialist = (ListView) findViewById(R.id.medialist);
+
+		medialist.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(final AdapterView<?> parent,
+					final View view, final int position, final long id) {
+
+				final Cursor item = (Cursor) adapter.getItem(position);
+				final String mediumId = item
+						.getString(MediaDbHelper.KEY_MEDIUM_ID);
+
+				if (mediumId != null) {
+					final Intent intent = new Intent(HoebAppActivity.this,
+							DetailActivity_.class);
+					intent.putExtra(DetailActivity.EXTRA_MEDIUM_ID, mediumId);
+					startActivity(intent);
+				}
+			}
+		});
 		medialist.setAdapter(adapter);
 		refreshList();
 	}

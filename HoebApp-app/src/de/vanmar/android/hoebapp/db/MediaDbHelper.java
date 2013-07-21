@@ -15,6 +15,7 @@ public class MediaDbHelper {
 	public static final String COLUMN_NO_RENEW_REASON = "no_renew_reason";
 	public static final String COLUMN_NUM_RENEWS = "num_renews";
 	public static final String COLUMN_ACCOUNT = "account";
+	public static final String COLUMN_MEDIUM_ID = "medium_id";
 
 	public static final int KEY_ID = 0;
 	public static final int KEY_TITLE = 1;
@@ -26,11 +27,12 @@ public class MediaDbHelper {
 	public static final int KEY_NO_RENEW_REASON = 7;
 	public static final int KEY_NUM_RENEWS = 8;
 	public static final int KEY_ACCOUNT = 9;
+	public static final int KEY_MEDIUM_ID = 10;
 
 	public static String[] ALL_COLUMNS = new String[] { COLUMN_ID,
 			COLUMN_TITLE, COLUMN_AUTHOR, COLUMN_DUEDATE, COLUMN_LOANDATE,
 			COLUMN_SIGNATURE, COLUMN_RENEW_LINK, COLUMN_NO_RENEW_REASON,
-			COLUMN_NUM_RENEWS, COLUMN_ACCOUNT };
+			COLUMN_NUM_RENEWS, COLUMN_ACCOUNT, COLUMN_MEDIUM_ID };
 	public static final DateFormat dateFormat = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss");
 
@@ -47,11 +49,12 @@ public class MediaDbHelper {
 					"%s text," + //
 					"%s text," + //
 					"%s integer," + //
+					"%s text," + //
 					"%s text);", //
 			MEDIA_TABLE_NAME, COLUMN_ID, COLUMN_TITLE, COLUMN_AUTHOR,
 			COLUMN_DUEDATE, COLUMN_LOANDATE, COLUMN_SIGNATURE,
 			COLUMN_RENEW_LINK, COLUMN_NO_RENEW_REASON, COLUMN_NUM_RENEWS,
-			COLUMN_ACCOUNT);
+			COLUMN_ACCOUNT, COLUMN_MEDIUM_ID);
 
 	static final String MEDIA_TABLE_DROP = "DROP TABLE IF EXISTS "
 			+ MEDIA_TABLE_NAME;

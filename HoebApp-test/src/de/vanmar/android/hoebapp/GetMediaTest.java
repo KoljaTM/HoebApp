@@ -107,7 +107,7 @@ public class GetMediaTest extends
 		TestUtils.setUserdata(getInstrumentation().getTargetContext(),
 				new Account("xxx", "yyy"));
 		TestUtils.prepareTestDatabase(getInstrumentation().getContext(),
-				getInstrumentation().getTargetContext(), "hoebdata.ver8.db");
+				getInstrumentation().getTargetContext(), "hoebdata.ver9.db");
 		solo = initActivityAndGetSolo();
 
 		// before
@@ -115,7 +115,6 @@ public class GetMediaTest extends
 		final int firstRenewableItem = 2;
 		CheckBox checkBox = solo.getCurrentCheckBoxes().get(firstRenewableItem);
 		solo.clickOnView(checkBox, true);
-		System.out.println("Checkbox: " + checkBox);
 
 		// when
 		solo.scrollToBottom();
@@ -125,8 +124,53 @@ public class GetMediaTest extends
 
 		// then
 		checkBox = solo.getCurrentCheckBoxes().get(firstRenewableItem);
-		System.out.println("Checkbox: " + checkBox);
 		assertTrue(checkBox.isChecked());
+	}
+
+	public void testGotoDetailActivity() throws InterruptedException {
+		// given
+		TestUtils.setUserdata(getInstrumentation().getTargetContext(),
+				new Account("xxx", "yyy"));
+		TestUtils.prepareTestDatabase(getInstrumentation().getContext(),
+				getInstrumentation().getTargetContext(), "hoebdata.ver9.db");
+		MockResponses.reset();
+		MockResponses
+				.forRequestDoAnswer(
+						"https://www.buecherhallen.de/alswww2.dll/APS_PRESENT_BIB\\?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&no=T010228560",
+						"detailJimKnopfLukas.html");
+
+		solo = initActivityAndGetSolo();
+
+		// before
+		Assert.assertTrue(solo.waitForText("18 Titel entliehen"));
+
+		// when
+		solo.clickOnText("Jim Knopf");
+
+		// then
+		Assert.assertTrue(solo.waitForText("Die beiden Freunde erleben"));
+		solo.assertCurrentActivity("should go to details page",
+				DetailActivity_.class);
+	}
+
+	public void testDontGotoDetailActivityAfterDbUpgrade()
+			throws InterruptedException {
+		// given
+		TestUtils.setUserdata(getInstrumentation().getTargetContext(),
+				new Account("xxx", "yyy"));
+		TestUtils.prepareTestDatabase(getInstrumentation().getContext(),
+				getInstrumentation().getTargetContext(), "hoebdata.ver8.db");
+		solo = initActivityAndGetSolo();
+
+		// before
+		Assert.assertTrue(solo.waitForText("18 Titel entliehen"));
+
+		// when
+		solo.clickOnText("Jim Knopf");
+
+		// then
+		solo.assertCurrentActivity("should not go to details page",
+				HoebAppActivity_.class);
 	}
 
 	public void testInternetNotAvailable() {
