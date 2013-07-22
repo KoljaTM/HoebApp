@@ -4,8 +4,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import android.graphics.drawable.Drawable;
-
 /**
  * An object of this class represents a single media item (book, CD, etc.)
  * returned from details page
@@ -25,7 +23,7 @@ public class MediaDetails {
 			return locationName;
 		}
 
-		public void setLocationName(String locationName) {
+		public void setLocationName(final String locationName) {
 			this.locationName = locationName;
 		}
 
@@ -33,7 +31,7 @@ public class MediaDetails {
 			return locationCode;
 		}
 
-		public void setLocationCode(String locationCode) {
+		public void setLocationCode(final String locationCode) {
 			this.locationCode = locationCode;
 		}
 
@@ -41,7 +39,7 @@ public class MediaDetails {
 			return inStock;
 		}
 
-		public void setInStock(int inStock) {
+		public void setInStock(final int inStock) {
 			this.inStock = inStock;
 		}
 
@@ -49,7 +47,7 @@ public class MediaDetails {
 			return outOfStock;
 		}
 
-		public void setOutOfStock(List<Date> outOfStock) {
+		public void setOutOfStock(final List<Date> outOfStock) {
 			this.outOfStock = outOfStock;
 		}
 	}
@@ -61,7 +59,6 @@ public class MediaDetails {
 	private String id;
 	private String type;
 	private String imgUrl;
-	private Drawable image;
 	private String contents;
 
 	private final List<Stock> stock = new LinkedList<MediaDetails.Stock>();
@@ -70,7 +67,7 @@ public class MediaDetails {
 		return author;
 	}
 
-	public void setAuthor(String author) {
+	public void setAuthor(final String author) {
 		this.author = author;
 	}
 
@@ -78,7 +75,7 @@ public class MediaDetails {
 		return title;
 	}
 
-	public void setTitle(String title) {
+	public void setTitle(final String title) {
 		this.title = title;
 	}
 
@@ -86,7 +83,7 @@ public class MediaDetails {
 		return subTitle;
 	}
 
-	public void setSubTitle(String subTitle) {
+	public void setSubTitle(final String subTitle) {
 		this.subTitle = subTitle;
 	}
 
@@ -94,7 +91,7 @@ public class MediaDetails {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(final String id) {
 		this.id = id;
 	}
 
@@ -102,7 +99,7 @@ public class MediaDetails {
 		return signature;
 	}
 
-	public void setSignature(String signature) {
+	public void setSignature(final String signature) {
 		this.signature = signature;
 	}
 
@@ -110,7 +107,7 @@ public class MediaDetails {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(final String type) {
 		this.type = type;
 	}
 
@@ -118,24 +115,15 @@ public class MediaDetails {
 		return imgUrl;
 	}
 
-	public void setImgUrl(String imgUrl) {
+	public void setImgUrl(final String imgUrl) {
 		this.imgUrl = imgUrl;
-		this.image = null;
-	}
-
-	public Drawable getImage() {
-		return image;
-	}
-
-	public void setImage(Drawable image) {
-		this.image = image;
 	}
 
 	public String getContents() {
 		return contents;
 	}
 
-	public void setContents(String contents) {
+	public void setContents(final String contents) {
 		this.contents = contents;
 	}
 
@@ -151,7 +139,6 @@ public class MediaDetails {
 		result = prime * result
 				+ ((contents == null) ? 0 : contents.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((image == null) ? 0 : image.hashCode());
 		result = prime * result + ((imgUrl == null) ? 0 : imgUrl.hashCode());
 		result = prime * result
 				+ ((signature == null) ? 0 : signature.hashCode());
@@ -164,64 +151,80 @@ public class MediaDetails {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals(final Object obj) {
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
-		MediaDetails other = (MediaDetails) obj;
+		}
+		final MediaDetails other = (MediaDetails) obj;
 		if (author == null) {
-			if (other.author != null)
+			if (other.author != null) {
 				return false;
-		} else if (!author.equals(other.author))
+			}
+		} else if (!author.equals(other.author)) {
 			return false;
+		}
 		if (contents == null) {
-			if (other.contents != null)
+			if (other.contents != null) {
 				return false;
-		} else if (!contents.equals(other.contents))
+			}
+		} else if (!contents.equals(other.contents)) {
 			return false;
+		}
 		if (id == null) {
-			if (other.id != null)
+			if (other.id != null) {
 				return false;
-		} else if (!id.equals(other.id))
+			}
+		} else if (!id.equals(other.id)) {
 			return false;
-		if (image == null) {
-			if (other.image != null)
-				return false;
-		} else if (!image.equals(other.image))
-			return false;
+		}
 		if (imgUrl == null) {
-			if (other.imgUrl != null)
+			if (other.imgUrl != null) {
 				return false;
-		} else if (!imgUrl.equals(other.imgUrl))
+			}
+		} else if (!imgUrl.equals(other.imgUrl)) {
 			return false;
+		}
 		if (signature == null) {
-			if (other.signature != null)
+			if (other.signature != null) {
 				return false;
-		} else if (!signature.equals(other.signature))
+			}
+		} else if (!signature.equals(other.signature)) {
 			return false;
+		}
 		if (stock == null) {
-			if (other.stock != null)
+			if (other.stock != null) {
 				return false;
-		} else if (!stock.equals(other.stock))
+			}
+		} else if (!stock.equals(other.stock)) {
 			return false;
+		}
 		if (subTitle == null) {
-			if (other.subTitle != null)
+			if (other.subTitle != null) {
 				return false;
-		} else if (!subTitle.equals(other.subTitle))
+			}
+		} else if (!subTitle.equals(other.subTitle)) {
 			return false;
+		}
 		if (title == null) {
-			if (other.title != null)
+			if (other.title != null) {
 				return false;
-		} else if (!title.equals(other.title))
+			}
+		} else if (!title.equals(other.title)) {
 			return false;
+		}
 		if (type == null) {
-			if (other.type != null)
+			if (other.type != null) {
 				return false;
-		} else if (!type.equals(other.type))
+			}
+		} else if (!type.equals(other.type)) {
 			return false;
+		}
 		return true;
 	}
 }

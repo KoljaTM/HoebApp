@@ -1,19 +1,17 @@
 package de.vanmar.android.hoebapp;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidquery.AQuery;
 import com.googlecode.androidannotations.annotations.Background;
 import com.googlecode.androidannotations.annotations.Bean;
 import com.googlecode.androidannotations.annotations.EActivity;
@@ -66,14 +64,15 @@ public class DetailActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 
-		String mediumId = getIntent().getExtras().getString(EXTRA_MEDIUM_ID);
+		final String mediumId = getIntent().getExtras().getString(
+				EXTRA_MEDIUM_ID);
 
 		getWindow().setTitle(getString(R.string.detailsLoading));
 		loadDetails(mediumId);
 	}
 
 	@Background
-	void loadDetails(String mediumId) {
+	void loadDetails(final String mediumId) {
 		if (networkHelper.networkAvailable()) {
 			MediaDetails details;
 			try {
@@ -83,7 +82,7 @@ public class DetailActivity extends Activity {
 					finish();
 				}
 				displayDetails(details);
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				displayError(e);
 				finish();
 			}
@@ -95,9 +94,10 @@ public class DetailActivity extends Activity {
 	}
 
 	@UiThread
-	void displayDetails(MediaDetails details) {
+	void displayDetails(final MediaDetails details) {
 		getWindow().setTitle(details.getTitle());
-		setImage(image, details);
+		new AQuery(this).id(image).image(details.getImgUrl());
+		// setImage(image, details);
 		title.setText(details.getTitle());
 		subtitle.setText(details.getSubTitle());
 		author.setText(details.getAuthor());
@@ -106,11 +106,11 @@ public class DetailActivity extends Activity {
 		displayStock(details.getStock());
 	}
 
-	private void displayStock(List<Stock> stock) {
-		StringBuilder sb = new StringBuilder();
-		for (Stock stockItem : stock) {
+	private void displayStock(final List<Stock> stock) {
+		final StringBuilder sb = new StringBuilder();
+		for (final Stock stockItem : stock) {
 			sb.append('\n').append(stockItem.getLocationName()).append('\n');
-			int inStock = stockItem.getInStock();
+			final int inStock = stockItem.getInStock();
 			if (inStock > 0) {
 				if (inStock == 1) {
 					sb.append(getString(R.string.availableSingle)).append('\n');
@@ -119,7 +119,7 @@ public class DetailActivity extends Activity {
 							'\n');
 				}
 			}
-			int outOfStock = stockItem.getOutOfStock().size();
+			final int outOfStock = stockItem.getOutOfStock().size();
 			if (outOfStock > 0) {
 				if (outOfStock == 1) {
 					sb.append(getString(R.string.unavailableSingle)).append(
@@ -128,7 +128,7 @@ public class DetailActivity extends Activity {
 					sb.append(getString(R.string.unavailable, outOfStock))
 							.append('\n');
 				}
-				for (Date returnDate : stockItem.getOutOfStock()) {
+				for (final Date returnDate : stockItem.getOutOfStock()) {
 					if (returnDate != null) {
 						sb.append(
 								getString(R.string.availableAt,
@@ -142,33 +142,6 @@ public class DetailActivity extends Activity {
 			}
 		}
 		stockText.setText(sb);
-	}
-
-	@Background
-	void setImage(ImageView imageView, MediaDetails item) {
-		Drawable drawable = null;
-		if (item.getImage() != null) {
-			// Drawable already loaded
-			drawable = item.getImage();
-		} else if (item.getImgUrl() != null) {
-			try {
-				final Drawable drawableFromUrl = Drawable.createFromStream(
-						((InputStream) new URL(item.getImgUrl()).getContent()),
-						getString(R.string.imageDesc));
-				item.setImage(drawableFromUrl);
-				drawable = drawableFromUrl;
-			} catch (Exception e) {
-				Log.w("SearchActivity", "Error loading drawable from " + item,
-						e);
-				item.setImgUrl(null);
-			}
-		}
-		setDrawable(imageView, drawable);
-	}
-
-	@UiThread
-	void setDrawable(ImageView imageView, Drawable drawable) {
-		imageView.setImageDrawable(drawable);
 	}
 
 	@UiThread

@@ -1,12 +1,9 @@
 package de.vanmar.android.hoebapp;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -18,7 +15,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,6 +22,7 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+import com.androidquery.AQuery;
 import com.google.ads.AdView;
 import com.googlecode.androidannotations.annotations.AfterViews;
 import com.googlecode.androidannotations.annotations.Background;
@@ -214,9 +211,8 @@ public class SearchActivity extends FragmentActivity {
 							item.getYear()));
 				}
 				((TextView) view.findViewById(R.id.type)).setText(type);
-				final ImageView imageView = (ImageView) view
-						.findViewById(R.id.image);
-				setImage(imageView, item);
+
+				new AQuery(view).id(R.id.image).image(item.getImgUrl());
 
 				view.setOnClickListener(new OnClickListener() {
 
@@ -345,33 +341,6 @@ public class SearchActivity extends FragmentActivity {
 	public boolean onSearchRequested() {
 		searchArea.setVisibility(View.VISIBLE);
 		return true;
-	}
-
-	@Background
-	void setImage(final ImageView imageView, final SearchMedia item) {
-		Drawable drawable = null;
-		if (item.getImage() != null) {
-			// Drawable already loaded
-			drawable = item.getImage();
-		} else if (item.getImgUrl() != null) {
-			try {
-				final Drawable drawableFromUrl = Drawable.createFromStream(
-						((InputStream) new URL(item.getImgUrl()).getContent()),
-						getString(R.string.imageDesc));
-				item.setImage(drawableFromUrl);
-				drawable = drawableFromUrl;
-			} catch (final Exception e) {
-				Log.w("SearchActivity", "Error loading drawable from " + item,
-						e);
-				item.setImgUrl(null);
-			}
-		}
-		setDrawable(imageView, drawable);
-	}
-
-	@UiThread
-	void setDrawable(final ImageView imageView, final Drawable drawable) {
-		imageView.setImageDrawable(drawable);
 	}
 
 	@UiThread

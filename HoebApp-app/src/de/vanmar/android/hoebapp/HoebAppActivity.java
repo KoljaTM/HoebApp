@@ -33,6 +33,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidquery.util.AQUtility;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 import com.googlecode.androidannotations.annotations.Background;
@@ -136,6 +137,14 @@ public class HoebAppActivity extends FragmentActivity implements
 	@Override
 	protected void onStop() {
 		super.onStop();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (isTaskRoot()) {
+			AQUtility.cleanCacheAsync(this);
+		}
 	}
 
 	@OptionsItem(R.id.renew)
