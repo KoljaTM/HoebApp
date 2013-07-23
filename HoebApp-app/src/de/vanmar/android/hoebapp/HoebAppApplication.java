@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.androidquery.callback.BitmapAjaxCallback;
 import com.googlecode.androidannotations.annotations.EApplication;
 import com.googlecode.androidannotations.annotations.UiThread;
 
@@ -26,6 +27,9 @@ public class HoebAppApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+
+		// set the max size of the memory cache, default is 1M pixels (4MB)
+		BitmapAjaxCallback.setMaxPixelLimit(2000000);
 
 		setupAlarms();
 	}

@@ -143,7 +143,7 @@ public class HoebAppActivity extends FragmentActivity implements
 	protected void onDestroy() {
 		super.onDestroy();
 		if (isTaskRoot()) {
-			AQUtility.cleanCacheAsync(this);
+			AQUtility.cleanCacheAsync(this, 0, 0);
 		}
 	}
 
