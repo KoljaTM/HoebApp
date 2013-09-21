@@ -79,4 +79,5 @@
     <string name="delete">Löschen</string>
     <string name="cancel">Abbrechen</string>
     <string name="accounts">Ausweisnummern</string>
+    <string name="notepad">Merkliste</string>
 </resources>
