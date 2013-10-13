@@ -52,7 +52,6 @@ public class NotepadActivity extends FragmentActivity {
 
 	@Bean
 	NetworkHelper networkHelper;
-
 	private ArrayAdapter<MediaDetails> notepadAdapter;
 	private List<Account> accounts;
 
@@ -95,22 +94,19 @@ public class NotepadActivity extends FragmentActivity {
 	@AfterViews
 	void setupListAdapter() {
 		notepadAdapter = new ArrayAdapter<MediaDetails>(this,
-				R.layout.searchresultlist_item) {
-
+				R.layout.notepad_item) {
 			@Override
 			public View getView(final int position, final View convertView,
 					final ViewGroup parent) {
 				final View view = getLayoutInflater().inflate(
-						R.layout.searchresultlist_item, null);
+						R.layout.notepad_item, null);
 				final MediaDetails item = getItem(position);
 				((TextView) view.findViewById(R.id.title)).setText(item
 						.getTitle());
-				((TextView) view.findViewById(R.id.author)).setText(item
-						.getAuthor());
-				final StringBuffer type = new StringBuffer();
-				if (item.getType() != null) {
-					type.append(item.getType());
-				}
+				((TextView) view.findViewById(R.id.type)).setText(item
+						.getType());
+				((TextView) view.findViewById(R.id.signature)).setText(item
+						.getSignature());
 
 				final LinearLayout layout = (LinearLayout) view;
 				layout.setBackgroundResource(item.getOwner().getAppearance().getDrawable());
