@@ -36,6 +36,9 @@ public class NotepadActivity extends FragmentActivity {
 	@ViewById(R.id.notepadlist)
 	ListView notepadList;
 
+	@ViewById(R.id.titlebar)
+	TextView titlebar;
+
 	@Bean
 	LibraryService libraryService;
 
@@ -120,11 +123,18 @@ public class NotepadActivity extends FragmentActivity {
 	@Background
 	void loadNotepad() {
 		try {
+			displayInTitle(getString(R.string.pleaseWait));
 			final List<SearchMedia> searchMedia = libraryService.loadNotepad();
 			displaySearchResults(searchMedia);
+			displayInTitle("");
 		} catch (final Exception e) {
 			displayError(e);
 		}
+	}
+
+	@UiThread
+	void displayInTitle(final String text) {
+		titlebar.setText(text);
 	}
 
 	@UiThread
