@@ -3,6 +3,7 @@ package de.vanmar.android.hoebapp;
 import java.util.List;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
@@ -48,21 +49,10 @@ public class NotepadActivity extends FragmentActivity {
 	private ArrayAdapter<SearchMedia> notepadAdapter;
 	
 	@Override
-	protected void onStart() {
-		super.onStart();
-	
-		loadNotepadList();
-	}
-	
-	@Background
-	void loadNotepadList(){
-		loadNotepad();
-	}
+	protected void onCreate(final Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		// The activity has become visible (it is now "resumed").
+		loadNotepadList();
 	}
 
 	@Override
@@ -76,6 +66,12 @@ public class NotepadActivity extends FragmentActivity {
 	protected void onStop() {
 		super.onStop();
 	}
+
+	@Background
+	void loadNotepadList(){
+		loadNotepad();
+	}
+
 
 	@AfterViews
 	void setupListAdapter() {
