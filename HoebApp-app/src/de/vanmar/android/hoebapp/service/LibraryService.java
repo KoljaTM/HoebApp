@@ -566,8 +566,8 @@ public class LibraryService {
 
 	}
 
-	public List<SearchMedia> loadNotepad() throws TechnicalException {
-		final LinkedList<SearchMedia> result = new LinkedList<SearchMedia>();
+	public List<MediaDetails> loadNotepad() throws TechnicalException {
+		final LinkedList<MediaDetails> result = new LinkedList<MediaDetails>();
 
 		final List<Account> accounts = Account.fromString(prefs.accounts()
 				.get());
@@ -605,7 +605,8 @@ public class LibraryService {
 
 				Matcher m = REGEX_SEARCHRESULT_ITEM.matcher(content);
 				while (m.find()) {
-					final SearchMedia foundMedia = findSearchResult(m.group(1));
+					final MediaDetails foundMedia = findMediaDetails(m.group(1));
+					foundMedia.setOwner(account);
 					result.add(foundMedia);
 				}
 
@@ -626,7 +627,8 @@ public class LibraryService {
 							.withParam("PageSize", "10").executeAndGetContent();
 					m = REGEX_SEARCHRESULT_ITEM.matcher(incrementContent);
 					while (m.find()) {
-						final SearchMedia foundMedia = findSearchResult(m.group(1));
+						final MediaDetails foundMedia = findMediaDetails(m.group(1));
+						foundMedia.setOwner(account);
 						if (result.contains(foundMedia)) {
 							foundBottom = true;
 						} else {
@@ -687,6 +689,12 @@ public class LibraryService {
 		if (m.find()) {
 			item.setImgUrl(Html.fromHtml(m.group(1)).toString());
 		}
+
+		return item;
+	}
+
+	public MediaDetails findMediaDetails(final String content) {
+		MediaDetails item = new MediaDetails(findSearchResult(content));
 
 		return item;
 	}

@@ -61,7 +61,24 @@ public class MediaDetails {
 	private String imgUrl;
 	private String contents;
 
+	private Account owner;
+
 	private final List<Stock> stock = new LinkedList<MediaDetails.Stock>();
+
+	public MediaDetails() {
+	}
+
+	/*
+	 * Creates a MediaDetails object from a given SearchMedia.
+	 * The stock information, content and image URL are empty.
+	 */
+	public MediaDetails(SearchMedia media) {
+		this.author = media.getAuthor();
+		this.title = media.getTitle();
+		this.signature = media.getSignature();
+		this.id = media.getId();
+		this.type = media.getType();
+	}
 
 	public String getAuthor() {
 		return author;
@@ -131,6 +148,14 @@ public class MediaDetails {
 		return stock;
 	}
 
+	public Account getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Account owner) {
+		this.owner = owner;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -147,6 +172,7 @@ public class MediaDetails {
 				+ ((subTitle == null) ? 0 : subTitle.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + ((owner == null) ? 0 : owner.hashCode());
 		return result;
 	}
 
@@ -223,6 +249,13 @@ public class MediaDetails {
 				return false;
 			}
 		} else if (!type.equals(other.type)) {
+			return false;
+		}
+		if (owner == null) {
+			if (other.owner != null) {
+				return false;
+			}
+		} else if (!owner.equals(other.owner)) {
 			return false;
 		}
 		return true;

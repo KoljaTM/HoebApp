@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,15 +22,21 @@ import com.googlecode.androidannotations.annotations.Bean;
 import com.googlecode.androidannotations.annotations.EActivity;
 import com.googlecode.androidannotations.annotations.UiThread;
 import com.googlecode.androidannotations.annotations.ViewById;
+import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
 
-import de.vanmar.android.hoebapp.bo.SearchMedia;
+import de.vanmar.android.hoebapp.bo.Account;
+import de.vanmar.android.hoebapp.bo.MediaDetails;
 import de.vanmar.android.hoebapp.service.LibraryService;
 import de.vanmar.android.hoebapp.service.LoginFailedException;
 import de.vanmar.android.hoebapp.service.TechnicalException;
 import de.vanmar.android.hoebapp.util.NetworkHelper;
+import de.vanmar.android.hoebapp.util.Preferences_;
 
 @EActivity(R.layout.notepad)
 public class NotepadActivity extends FragmentActivity {
+	
+	@Pref
+	Preferences_ prefs;
 
 	@ViewById(R.id.adView)
 	AdView adView;
@@ -46,13 +53,25 @@ public class NotepadActivity extends FragmentActivity {
 	@Bean
 	NetworkHelper networkHelper;
 
-	private ArrayAdapter<SearchMedia> notepadAdapter;
-	
+	private ArrayAdapter<MediaDetails> notepadAdapter;
+	private List<Account> accounts;
+
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		loadNotepadList();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		final List<Account> accountPreferences = Account.fromString(prefs
+				.accounts().get());
+		if (accounts == null || !accounts.equals(accountPreferences)) {
+			this.accounts = accountPreferences;
+		}
 	}
 
 	@Override
@@ -75,14 +94,15 @@ public class NotepadActivity extends FragmentActivity {
 
 	@AfterViews
 	void setupListAdapter() {
-		notepadAdapter = new ArrayAdapter<SearchMedia>(this,
+		notepadAdapter = new ArrayAdapter<MediaDetails>(this,
 				R.layout.searchresultlist_item) {
+
 			@Override
 			public View getView(final int position, final View convertView,
 					final ViewGroup parent) {
 				final View view = getLayoutInflater().inflate(
 						R.layout.searchresultlist_item, null);
-				final SearchMedia item = getItem(position);
+				final MediaDetails item = getItem(position);
 				((TextView) view.findViewById(R.id.title)).setText(item
 						.getTitle());
 				((TextView) view.findViewById(R.id.author)).setText(item
@@ -91,11 +111,9 @@ public class NotepadActivity extends FragmentActivity {
 				if (item.getType() != null) {
 					type.append(item.getType());
 				}
-				if (item.getYear() != null) {
-					type.append(getString(R.string.yearFormatted,
-							item.getYear()));
-				}
-				((TextView) view.findViewById(R.id.type)).setText(type);
+
+				final LinearLayout layout = (LinearLayout) view;
+				layout.setBackgroundResource(item.getOwner().getAppearance().getDrawable());
 
 				view.setOnClickListener(new OnClickListener() {
 
@@ -120,7 +138,7 @@ public class NotepadActivity extends FragmentActivity {
 	void loadNotepad() {
 		try {
 			displayInTitle(getString(R.string.pleaseWait));
-			final List<SearchMedia> searchMedia = libraryService.loadNotepad();
+			final List<MediaDetails> searchMedia = libraryService.loadNotepad();
 			displaySearchResults(searchMedia);
 			displayInTitle("");
 		} catch (final Exception e) {
@@ -134,9 +152,9 @@ public class NotepadActivity extends FragmentActivity {
 	}
 
 	@UiThread
-	void displaySearchResults(final List<SearchMedia> searchMedia) {
+	void displaySearchResults(final List<MediaDetails> searchMedia) {
 		notepadAdapter.clear();
-		for (final SearchMedia item : searchMedia) {
+		for (final MediaDetails item : searchMedia) {
 			notepadAdapter.add(item);
 		}
 	}
