@@ -13,3 +13,4 @@ Features
 - Details page for items with date and location availability
 - List of all Bücherhallen locations
 - Catalog search, simple and detailed
+- Display your accounts' notepads (menu->ulgy icon)
