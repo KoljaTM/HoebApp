@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="libs1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/HoebApp-test/libs/junit-4.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HoebApp-test/libs/robotium-solo-3.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

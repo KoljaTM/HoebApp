@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="android">
+    <CLASSES>
+      <root url="jar://C:/Program Files (x86)/Android/android-sdk-windows/add-ons/addon-google_apis-google-16/libs/maps.jar!/" />
+      <root url="jar://C:/Program Files (x86)/Android/android-sdk-windows/extras/android/support/v4/android-support-v4.jar!/" />
+      <root url="jar://C:/Program Files (x86)/Android/android-sdk-windows/platforms/android-16/android.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
