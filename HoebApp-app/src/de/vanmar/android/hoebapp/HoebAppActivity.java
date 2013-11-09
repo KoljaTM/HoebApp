@@ -243,6 +243,11 @@ public class HoebAppActivity extends FragmentActivity implements
 		this.startActivity(new Intent(this, LocationsActivity_.class));
 	}
 
+	@OptionsItem(R.id.notepad)
+	void doNotepad() {
+		this.startActivity(new Intent(this, NotepadActivity_.class));
+	}
+
 	@OptionsItem(R.id.search)
 	void doSearch() {
 		this.startActivity(new Intent(this, SearchActivity_.class));

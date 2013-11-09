@@ -14,6 +14,8 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONObject;
+
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.ContentProviderOperation;
@@ -61,6 +63,8 @@ public class LibraryService {
 					| Pattern.DOTALL);
 
 	private static final String MEDIALIST_URL = "https://www.buecherhallen.de/alswww2.dll/APS_ZONES?fn=MyLoans&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
+	private static final String NOTEPAD_PREFETCH_URL = "https://www.buecherhallen.de/alswww2.dll/APS_ZONES?fn=ViewNotepad&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
+	private static final String NOTEPAD_POSTFETCH_URL = "https://www.buecherhallen.de/alswww2.dll/APS_ZONES?fn=ViewNotepad&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&pad=-";
 	private static final String SERVICE_URL = "https://www.buecherhallen.de/alswww2.dll/";
 	private static final String DETAIL_URL = "https://www.buecherhallen.de/alswww2.dll/APS_PRESENT_BIB";
 
@@ -68,6 +72,9 @@ public class LibraryService {
 			"dd/MM/yyyy", Locale.GERMAN);
 	private static final Pattern REGEX_REQUEST_OBJECT = Pattern.compile(
 			"<META NAME=\"ZonesObjName\"\\s*CONTENT=\"([^\"]*)\">",
+			Pattern.CASE_INSENSITIVE);
+	private static final Pattern REGEX_ZONES_TEMPLATE = Pattern.compile(
+			"<META NAME=\"ZonesTemplate\"\\s*CONTENT=\"([^\"]*)\">",
 			Pattern.CASE_INSENSITIVE);
 
 	private static final Pattern REGEX_MEDIA_ITEM = Pattern
@@ -559,6 +566,92 @@ public class LibraryService {
 
 	}
 
+	public List<MediaDetails> loadNotepad() throws TechnicalException {
+		final LinkedList<MediaDetails> result = new LinkedList<MediaDetails>();
+
+		final List<Account> accounts = Account.fromString(prefs.accounts()
+				.get());
+		try {
+			for (final Account account : accounts) {
+				loginToHoeb(account);
+
+				String content;
+				content = HttpCallBuilder.anHttpCall().toUrl(NOTEPAD_PREFETCH_URL)
+						.usingMethod(Method.GET).executeAndGetContent();
+				
+				// When the notepad has more than a few items, they will be loaded in the background
+				if (needsBackgroundLoading(content)) {
+					String requestObject = findRequestObject(content);
+
+					// Wait until all objects all loaded
+					JSONObject loadingState = new JSONObject();
+					while (! loadingState.optString("state").equalsIgnoreCase("Ready")) {
+						Log.w("loadingState", loadingState.optString("state"));
+						Log.w("loadingPercent", loadingState.optString("percent"));
+						loadingState = new JSONObject(HttpCallBuilder.anHttpCall()
+									.toUrl(SERVICE_URL + requestObject)
+									.usingMethod(Method.GET)
+									.withParam("Style", "Portal3")
+									.withParam("SubStyle", "").withParam("Lang", "GER")
+									.withParam("ResponseEncoding", "utf-8")
+									.withParam("Method", "Start")
+									.withParam("SubView", "LoadingJSON")
+									.executeAndGetContent());
+					}
+					
+					content = HttpCallBuilder.anHttpCall().toUrl(NOTEPAD_POSTFETCH_URL)
+							.usingMethod(Method.GET).executeAndGetContent();
+				}
+
+				Matcher m = REGEX_SEARCHRESULT_ITEM.matcher(content);
+				while (m.find()) {
+					final MediaDetails foundMedia = findMediaDetails(m.group(1));
+					foundMedia.setOwner(account);
+					result.add(foundMedia);
+				}
+
+				String requestObject = findRequestObject(content);
+
+				// Load the incremental list parts
+				boolean foundBottom = false;
+				int tries = 0;
+				while (!foundBottom && tries++ < 10) {
+					String incrementContent;
+					incrementContent = HttpCallBuilder.anHttpCall()
+							.toUrl(SERVICE_URL + requestObject)
+							.usingMethod(Method.GET)
+							.withParam("Style", "Portal3")
+							.withParam("SubStyle", "").withParam("Lang", "GER")
+							.withParam("ResponseEncoding", "utf-8")
+							.withParam("Method", "PageDown")
+							.withParam("PageSize", "10").executeAndGetContent();
+					m = REGEX_SEARCHRESULT_ITEM.matcher(incrementContent);
+					while (m.find()) {
+						final MediaDetails foundMedia = findMediaDetails(m.group(1));
+						foundMedia.setOwner(account);
+						if (result.contains(foundMedia)) {
+							foundBottom = true;
+						} else {
+							result.add(foundMedia);
+						}
+					}
+				}
+			}
+			return result;
+		} catch (final Exception e) {
+			throw new TechnicalException(e);
+		}
+
+	}
+
+	private boolean needsBackgroundLoading(String content) {
+		Matcher m = REGEX_ZONES_TEMPLATE.matcher(content);
+		if (m.find()) {
+			return Html.fromHtml(m.group(1)).toString().equalsIgnoreCase("Notepad2");
+		}
+		return false;
+	}
+
 	private SearchMedia findSearchResult(final String content) {
 		final SearchMedia item = new SearchMedia();
 
@@ -596,6 +689,12 @@ public class LibraryService {
 		if (m.find()) {
 			item.setImgUrl(Html.fromHtml(m.group(1)).toString());
 		}
+
+		return item;
+	}
+
+	public MediaDetails findMediaDetails(final String content) {
+		MediaDetails item = new MediaDetails(findSearchResult(content));
 
 		return item;
 	}
