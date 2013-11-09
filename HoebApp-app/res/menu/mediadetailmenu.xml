@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/addToNotepad"
           android:title="@string/addToNotepad"
+          android:icon="@drawable/notepad"
           android:showAsAction="ifRoom" />
-      <!--android:icon="@drawable/refresh"-->
 </menu>
