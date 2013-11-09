@@ -101,6 +101,8 @@ public class NotepadActivity extends FragmentActivity {
 				final View view = getLayoutInflater().inflate(
 						R.layout.notepad_item, null);
 				final MediaDetails item = getItem(position);
+				((TextView) view.findViewById(R.id.author)).setText(item
+						.getAuthor());
 				((TextView) view.findViewById(R.id.title)).setText(item
 						.getTitle());
 				((TextView) view.findViewById(R.id.type)).setText(item

@@ -32,7 +32,8 @@ public class MockResponses {
 				if (answer instanceof IOException) {
 					throw (IOException) answer;
 				} else {
-					return BASE + answer.toString();
+                    System.out.println("Serving mock answer: "+mappingKey);
+                    return BASE + answer.toString();
 				}
 			}
 		}

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import de.vanmar.android.hoebapp.bo.MediaDetails;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -75,11 +76,7 @@ public class LibraryServiceTest {
 	@Test
 	public void shouldRefreshMediaList() throws Exception {
 		// given
-		TestUtils.setUserdata(context, new Account("username", "password"));
-		MockResponses.reset();
-		MockResponses.forRequestDoAnswer(".*fn=Login.*", "loginform.html");
-		MockResponses.forRequestDoAnswer(".*alswww2.dll/Obj_567281354477961.*",
-				"loginsuccess.html");
+        givenStandardLogin();
 		MockResponses.forRequestDoAnswer(".*fn=MyLoans.*", "medialist.html");
 		MockResponses.forRequestDoAnswer(".*Method=PageDown.*",
 				"medialistbottom.html");
@@ -229,4 +226,55 @@ public class LibraryServiceTest {
 		assertThat("continue medialist (establish bottom (no renew here))",
 				(String) answers.get(10), is("medialistbottom.html"));
 	}
+
+    @Test
+    public void shouldLoadEmptyNotepadList() throws TechnicalException {
+        // given
+        givenStandardLogin();
+        MockResponses.forRequestDoAnswer(".*ViewNotepad.*", "notepadEmpty.html");
+        MockResponses.forRequestDoAnswer(".*LoadingJSON.*", "notepadLoading100.json");
+        MockResponses.forRequestDoAnswer(".*ShowNotes.*", "notepadEmpty.html");
+
+        // when
+        List<MediaDetails> notepad = libraryService.loadNotepad();
+
+        // then
+        assertThat(notepad.size(), is(0));
+    }
+
+    @Test
+    public void shouldLoadShortNotepadList() throws TechnicalException {
+        // given
+        givenStandardLogin();
+        MockResponses.forRequestDoAnswer(".*ViewNotepad.*", "notepadShort.html");
+
+        // when
+        List<MediaDetails> notepad = libraryService.loadNotepad();
+
+        // then
+        assertThat(notepad.size(), is(4));
+    }
+    @Test
+    public void shouldLoadMultipageNotepadList() throws TechnicalException {
+        // given
+        givenStandardLogin();
+        MockResponses.forRequestDoAnswer(".*ViewNotepad.*", "notepadNeedsLoading.html");
+        MockResponses.forRequestDoAnswer(".*LoadingJSON.*", "notepadLoading100.json");
+        MockResponses.forRequestDoAnswer(".*ShowNotes.*", "notepadLongPage1.html");
+        MockResponses.forRequestDoAnswer(".*Method=PageDown.*", "notepadLongPage2.html");
+
+        // when
+        List<MediaDetails> notepad = libraryService.loadNotepad();
+
+        // then
+        assertThat(notepad.size(), is(11));
+    }
+
+    private void givenStandardLogin() {
+        TestUtils.setUserdata(context, new Account("username", "password"));
+        MockResponses.reset();
+        MockResponses.forRequestDoAnswer(".*fn=Login.*", "loginform.html");
+        MockResponses.forRequestDoAnswer(".*alswww2.dll/Obj_567281354477961.*",
+                "loginsuccess.html");
+    }
 }

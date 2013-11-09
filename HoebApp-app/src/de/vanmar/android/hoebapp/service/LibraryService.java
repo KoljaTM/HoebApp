@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.appwidget.AppWidgetManager;
@@ -48,7 +49,6 @@ import de.vanmar.android.hoebapp.util.Preferences_;
 @EBean
 public class LibraryService {
 	public static final String CATEGORY_KEYWORD = "kw=";
-	public static final String METHOD = "method";
 	private static final String LOGIN_FORM_URL = "https://www.buecherhallen.de/alswww2.dll/APS_ZONES?fn=Login&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
 	private static final Pattern REGEX_LOGIN_FORM = Pattern.compile(
 			"<form[^>]*action=\"(Obj_\\d+)\" name=\"LoginForm\"",
@@ -64,11 +64,12 @@ public class LibraryService {
 
 	private static final String MEDIALIST_URL = "https://www.buecherhallen.de/alswww2.dll/APS_ZONES?fn=MyLoans&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
 	private static final String NOTEPAD_PREFETCH_URL = "https://www.buecherhallen.de/alswww2.dll/APS_ZONES?fn=ViewNotepad&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
-	private static final String NOTEPAD_POSTFETCH_URL = "https://www.buecherhallen.de/alswww2.dll/APS_ZONES?fn=ViewNotepad&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&pad=-";
+	private static final String NOTEPAD_POSTFETCH_URL = "https://www.buecherhallen.de/alswww2.dll/APS_ZONES?fn=ShowNotes&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&pad=-";
 	private static final String SERVICE_URL = "https://www.buecherhallen.de/alswww2.dll/";
 	private static final String DETAIL_URL = "https://www.buecherhallen.de/alswww2.dll/APS_PRESENT_BIB";
+    private static final int MAX_RETRIES = 10;
 
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat(
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat(
 			"dd/MM/yyyy", Locale.GERMAN);
 	private static final Pattern REGEX_REQUEST_OBJECT = Pattern.compile(
 			"<META NAME=\"ZonesObjName\"\\s*CONTENT=\"([^\"]*)\">",
@@ -77,6 +78,9 @@ public class LibraryService {
 			"<META NAME=\"ZonesTemplate\"\\s*CONTENT=\"([^\"]*)\">",
 			Pattern.CASE_INSENSITIVE);
 
+	private static final Pattern REGEX_PAGE_DOWN = Pattern.compile(
+			"<a[^>]*Method=PageDown",
+			Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
 	private static final Pattern REGEX_MEDIA_ITEM = Pattern
 			.compile(
 					"TEMPLATE PORTAL2 BROWSEENUM.HTML LoanHeading.*?<TABLE(.*?)</TABLE>",
@@ -288,7 +292,7 @@ public class LibraryService {
 				// Load the incremental list parts
 				boolean foundBottom = false;
 				int tries = 0;
-				while (!foundBottom && tries++ < 10) {
+				while (!foundBottom && tries++ < MAX_RETRIES) {
 					String incrementContent;
 					incrementContent = HttpCallBuilder.anHttpCall()
 							.toUrl(SERVICE_URL + requestObject)
@@ -429,7 +433,7 @@ public class LibraryService {
 
 	/**
 	 * Renew all media (if possible)
-	 * 
+	 *
 	 * @param context
 	 * @throws TechnicalException
 	 * @throws LoginFailedException
@@ -575,33 +579,14 @@ public class LibraryService {
 			for (final Account account : accounts) {
 				loginToHoeb(account);
 
-				String content;
-				content = HttpCallBuilder.anHttpCall().toUrl(NOTEPAD_PREFETCH_URL)
+				String content = HttpCallBuilder.anHttpCall().toUrl(NOTEPAD_PREFETCH_URL)
 						.usingMethod(Method.GET).executeAndGetContent();
-				
+
 				// When the notepad has more than a few items, they will be loaded in the background
 				if (needsBackgroundLoading(content)) {
 					String requestObject = findRequestObject(content);
-
-					// Wait until all objects all loaded
-					JSONObject loadingState = new JSONObject();
-					while (! loadingState.optString("state").equalsIgnoreCase("Ready")) {
-						Log.w("loadingState", loadingState.optString("state"));
-						Log.w("loadingPercent", loadingState.optString("percent"));
-						loadingState = new JSONObject(HttpCallBuilder.anHttpCall()
-									.toUrl(SERVICE_URL + requestObject)
-									.usingMethod(Method.GET)
-									.withParam("Style", "Portal3")
-									.withParam("SubStyle", "").withParam("Lang", "GER")
-									.withParam("ResponseEncoding", "utf-8")
-									.withParam("Method", "Start")
-									.withParam("SubView", "LoadingJSON")
-									.executeAndGetContent());
-					}
-					
-					content = HttpCallBuilder.anHttpCall().toUrl(NOTEPAD_POSTFETCH_URL)
-							.usingMethod(Method.GET).executeAndGetContent();
-				}
+                    content = loadNotepadInBackground(requestObject);
+                }
 
 				Matcher m = REGEX_SEARCHRESULT_ITEM.matcher(content);
 				while (m.find()) {
@@ -613,9 +598,9 @@ public class LibraryService {
 				String requestObject = findRequestObject(content);
 
 				// Load the incremental list parts
-				boolean foundBottom = false;
+				boolean foundBottom = !findPageDownLink(content);
 				int tries = 0;
-				while (!foundBottom && tries++ < 10) {
+				while (!foundBottom && tries++ < MAX_RETRIES) {
 					String incrementContent;
 					incrementContent = HttpCallBuilder.anHttpCall()
 							.toUrl(SERVICE_URL + requestObject)
@@ -625,6 +610,7 @@ public class LibraryService {
 							.withParam("ResponseEncoding", "utf-8")
 							.withParam("Method", "PageDown")
 							.withParam("PageSize", "10").executeAndGetContent();
+                    foundBottom = !findPageDownLink(incrementContent);
 					m = REGEX_SEARCHRESULT_ITEM.matcher(incrementContent);
 					while (m.find()) {
 						final MediaDetails foundMedia = findMediaDetails(m.group(1));
@@ -644,13 +630,40 @@ public class LibraryService {
 
 	}
 
-	private boolean needsBackgroundLoading(String content) {
-		Matcher m = REGEX_ZONES_TEMPLATE.matcher(content);
-		if (m.find()) {
-			return Html.fromHtml(m.group(1)).toString().equalsIgnoreCase("Notepad2");
-		}
-		return false;
-	}
+    private boolean findPageDownLink(String content) {
+        Matcher m = REGEX_PAGE_DOWN.matcher(content);
+        return m.find();
+    }
+
+    private boolean needsBackgroundLoading(String content) {
+        Matcher m = REGEX_ZONES_TEMPLATE.matcher(content);
+        if (m.find()) {
+            return Html.fromHtml(m.group(1)).toString().equalsIgnoreCase("Notepad2");
+        }
+        return false;
+    }
+
+    private String loadNotepadInBackground(String requestObject) throws JSONException, URISyntaxException, IOException {
+        // Wait until all objects all loaded
+        JSONObject loadingState = new JSONObject();
+        int tries=0;
+        while (! loadingState.optString("state").equalsIgnoreCase("Ready") && tries++<MAX_RETRIES) {
+            Log.w("loadingState", loadingState.optString("state"));
+            Log.w("loadingPercent", loadingState.optString("percent"));
+            loadingState = new JSONObject(HttpCallBuilder.anHttpCall()
+                        .toUrl(SERVICE_URL + requestObject)
+                        .usingMethod(Method.GET)
+                        .withParam("Style", "Portal3")
+                        .withParam("SubStyle", "").withParam("Lang", "GER")
+                        .withParam("ResponseEncoding", "utf-8")
+                        .withParam("Method", "Start")
+                        .withParam("SubView", "LoadingJSON")
+                        .executeAndGetContent());
+        }
+
+        return HttpCallBuilder.anHttpCall().toUrl(NOTEPAD_POSTFETCH_URL)
+                .usingMethod(Method.GET).executeAndGetContent();
+    }
 
 	private SearchMedia findSearchResult(final String content) {
 		final SearchMedia item = new SearchMedia();
