@@ -6,26 +6,28 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
-import com.googlecode.androidannotations.annotations.Background;
-import com.googlecode.androidannotations.annotations.Bean;
-import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.UiThread;
-import com.googlecode.androidannotations.annotations.ViewById;
+import com.googlecode.androidannotations.annotations.*;
 
+import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
+import de.vanmar.android.hoebapp.bo.Account;
 import de.vanmar.android.hoebapp.bo.MediaDetails;
 import de.vanmar.android.hoebapp.bo.MediaDetails.Stock;
 import de.vanmar.android.hoebapp.service.LibraryService;
 import de.vanmar.android.hoebapp.service.LoginFailedException;
+import de.vanmar.android.hoebapp.service.TechnicalException;
 import de.vanmar.android.hoebapp.util.NetworkHelper;
+import de.vanmar.android.hoebapp.util.Preferences_;
 
 @SuppressLint("Registered")
 @EActivity(R.layout.detail)
+@OptionsMenu (R.menu.mediadetailmenu)
 public class DetailActivity extends Activity {
 
 	public static final String EXTRA_MEDIUM_ID = "mediumId";
@@ -39,7 +41,10 @@ public class DetailActivity extends Activity {
 	@Bean
 	NetworkHelper networkHelper;
 
-	@ViewById(R.id.image)
+    @Pref
+    Preferences_ prefs;
+
+    @ViewById(R.id.image)
 	ImageView image;
 
 	@ViewById(R.id.title)
@@ -64,14 +69,18 @@ public class DetailActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 
-		final String mediumId = getIntent().getExtras().getString(
-				EXTRA_MEDIUM_ID);
+		final String mediumId = getMediumId();
 
 		getWindow().setTitle(getString(R.string.detailsLoading));
 		loadDetails(mediumId);
 	}
 
-	@Background
+    private String getMediumId() {
+        return getIntent().getExtras().getString(
+                EXTRA_MEDIUM_ID);
+    }
+
+    @Background
 	void loadDetails(final String mediumId) {
 		if (networkHelper.networkAvailable()) {
 			MediaDetails details;
@@ -157,4 +166,33 @@ public class DetailActivity extends Activity {
 					+ exception.getClass() + exception.getMessage());
 		}
 	}
+
+    @OptionsItem(R.id.addToNotepad)
+    void doAddToNotepad() {
+        final List<Account> accounts = Account.fromString(prefs.accounts()
+                .get());
+        if (accounts.isEmpty()) {
+            displayMessage(R.string.usernameNotSet);
+            this.startActivity(new Intent(this, PreferencesActivity_.class));
+            return;
+        }
+        // TODO: Choose account
+        addToNotepad(accounts.get(0));
+    }
+
+    @Background
+    void addToNotepad(Account account) {
+        try {
+            libraryService.addToNotepad(account, getMediumId());
+            displayMessage(R.string.addedToNotepad);
+        } catch (TechnicalException e) {
+            displayError(e);
+        }
+    }
+
+    @UiThread
+    void displayMessage(int resId) {
+        Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
+    }
+
 }

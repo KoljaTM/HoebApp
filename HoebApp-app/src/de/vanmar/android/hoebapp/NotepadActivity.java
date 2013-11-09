@@ -1,29 +1,18 @@
 package de.vanmar.android.hoebapp;
 
-import java.util.List;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
 import com.google.ads.AdView;
-import com.googlecode.androidannotations.annotations.AfterViews;
-import com.googlecode.androidannotations.annotations.Background;
-import com.googlecode.androidannotations.annotations.Bean;
-import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.UiThread;
-import com.googlecode.androidannotations.annotations.ViewById;
+import com.googlecode.androidannotations.annotations.*;
 import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
-
 import de.vanmar.android.hoebapp.bo.Account;
 import de.vanmar.android.hoebapp.bo.MediaDetails;
 import de.vanmar.android.hoebapp.service.LibraryService;
@@ -32,142 +21,180 @@ import de.vanmar.android.hoebapp.service.TechnicalException;
 import de.vanmar.android.hoebapp.util.NetworkHelper;
 import de.vanmar.android.hoebapp.util.Preferences_;
 
+import java.util.List;
+
 @EActivity(R.layout.notepad)
 public class NotepadActivity extends FragmentActivity {
-	
-	@Pref
-	Preferences_ prefs;
 
-	@ViewById(R.id.adView)
-	AdView adView;
+    @Pref
+    Preferences_ prefs;
 
-	@ViewById(R.id.notepadlist)
-	ListView notepadList;
+    @ViewById(R.id.adView)
+    AdView adView;
 
-	@ViewById(R.id.titlebar)
-	TextView titlebar;
+    @ViewById(R.id.notepadlist)
+    ListView notepadList;
 
-	@Bean
-	LibraryService libraryService;
+    @ViewById(R.id.titlebar)
+    TextView titlebar;
 
-	@Bean
-	NetworkHelper networkHelper;
-	private ArrayAdapter<MediaDetails> notepadAdapter;
-	private List<Account> accounts;
+    @Bean
+    LibraryService libraryService;
 
-	@Override
-	protected void onCreate(final Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Bean
+    NetworkHelper networkHelper;
+    private ArrayAdapter<MediaDetails> notepadAdapter;
+    private List<Account> accounts;
 
-		loadNotepadList();
-	}
+    @Override
+    protected void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-	@Override
-	protected void onResume() {
-		super.onResume();
+        loadNotepadList();
+    }
 
-		final List<Account> accountPreferences = Account.fromString(prefs
-				.accounts().get());
-		if (accounts == null || !accounts.equals(accountPreferences)) {
-			this.accounts = accountPreferences;
-		}
-	}
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		// Another activity is taking focus (this activity is about to be
-		// "paused").
-	}
+        final List<Account> accountPreferences = Account.fromString(prefs
+                .accounts().get());
+        if (accounts == null || !accounts.equals(accountPreferences)) {
+            this.accounts = accountPreferences;
+        }
+    }
 
-	@Override
-	protected void onStop() {
-		super.onStop();
-	}
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Another activity is taking focus (this activity is about to be
+        // "paused").
+    }
 
-	@Background
-	void loadNotepadList(){
-		loadNotepad();
-	}
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Background
+    void loadNotepadList() {
+        loadNotepad();
+    }
 
 
-	@AfterViews
-	void setupListAdapter() {
-		notepadAdapter = new ArrayAdapter<MediaDetails>(this,
-				R.layout.notepad_item) {
-			@Override
-			public View getView(final int position, final View convertView,
-					final ViewGroup parent) {
-				final View view = getLayoutInflater().inflate(
-						R.layout.notepad_item, null);
-				final MediaDetails item = getItem(position);
-				((TextView) view.findViewById(R.id.author)).setText(item
-						.getAuthor());
-				((TextView) view.findViewById(R.id.title)).setText(item
-						.getTitle());
-				((TextView) view.findViewById(R.id.type)).setText(item
-						.getType());
-				((TextView) view.findViewById(R.id.signature)).setText(item
-						.getSignature());
+    @AfterViews
+    void setupListAdapter() {
+        notepadAdapter = new ArrayAdapter<MediaDetails>(this,
+                R.layout.notepad_item) {
+            @Override
+            public View getView(final int position, final View convertView,
+                                final ViewGroup parent) {
+                final View view = getLayoutInflater().inflate(
+                        R.layout.notepad_item, null);
+                final MediaDetails item = getItem(position);
+                ((TextView) view.findViewById(R.id.author)).setText(item
+                        .getAuthor());
+                ((TextView) view.findViewById(R.id.title)).setText(item
+                        .getTitle());
+                ((TextView) view.findViewById(R.id.type)).setText(item
+                        .getType());
+                ((TextView) view.findViewById(R.id.signature)).setText(item
+                        .getSignature());
 
-				final LinearLayout layout = (LinearLayout) view;
-				layout.setBackgroundResource(item.getOwner().getAppearance().getDrawable());
+                final LinearLayout layout = (LinearLayout) view;
+                layout.setBackgroundResource(item.getOwner().getAppearance().getDrawable());
 
-				view.setOnClickListener(new OnClickListener() {
+                view.setOnClickListener(new OnClickListener() {
 
-					@Override
-					public void onClick(final View v) {
-						final Intent intent = new Intent(NotepadActivity.this,
-								DetailActivity_.class);
-						intent.putExtra(DetailActivity.EXTRA_MEDIUM_ID,
-								item.getId());
-						startActivity(intent);
-					}
-				});
+                    @Override
+                    public void onClick(final View v) {
+                        final Intent intent = new Intent(NotepadActivity.this,
+                                DetailActivity_.class);
+                        intent.putExtra(DetailActivity.EXTRA_MEDIUM_ID,
+                                item.getId());
+                        startActivity(intent);
+                    }
+                });
+                view.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        openContextMenu(v);
+                        return true;
+                    }
+                });
 
-				return view;
-			}
+                return view;
+            }
 
-		};
-		notepadList.setAdapter(notepadAdapter);
-	}
+        };
+        notepadList.setAdapter(notepadAdapter);
+        registerForContextMenu(notepadList);
+    }
 
-	@Background
-	void loadNotepad() {
-		try {
-			displayInTitle(getString(R.string.pleaseWait));
-			final List<MediaDetails> searchMedia = libraryService.loadNotepad();
-			displaySearchResults(searchMedia);
-			displayInTitle("");
-		} catch (final Exception e) {
-			displayError(e);
-		}
-	}
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        menu.add(0, R.string.removeFromNotepad, 0, R.string.removeFromNotepad);
+    }
 
-	@UiThread
-	void displayInTitle(final String text) {
-		titlebar.setText(text);
-	}
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getItemId() == R.string.removeFromNotepad) {
+            item.getActionView();
+            int selectedPosition = ((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position;
+            MediaDetails mediaDetails = notepadAdapter.getItem(selectedPosition);
+            notepadAdapter.remove(mediaDetails);
+            removeFromNotepad(mediaDetails);
+            return true;
+        }
+        return false;
+    }
 
-	@UiThread
-	void displaySearchResults(final List<MediaDetails> searchMedia) {
-		notepadAdapter.clear();
-		for (final MediaDetails item : searchMedia) {
-			notepadAdapter.add(item);
-		}
-	}
+    @Background
+    void removeFromNotepad(MediaDetails mediaDetails)  {
+        try {
+            libraryService.removeFromNotepad(mediaDetails.getOwner(), mediaDetails.getId());
+        } catch (TechnicalException e) {
+            displayError(e);
+        }
+    }
 
-	@UiThread
-	void displayError(final Exception exception) {
-		if (exception instanceof LoginFailedException) {
-			Toast.makeText(this, R.string.loginfailed, Toast.LENGTH_SHORT)
-					.show();
-			Log.w(getClass().getCanonicalName(), "LoginFailedException");
-		} else if (exception instanceof TechnicalException) {
-			Toast.makeText(this, R.string.technicalError, Toast.LENGTH_SHORT)
-					.show();
-			Log.e(getClass().getCanonicalName(), "TechnicalException: "
-					+ exception.getClass() + exception.getMessage());
-		}
-	}
+    @Background
+    void loadNotepad() {
+        try {
+            displayInTitle(getString(R.string.pleaseWait));
+            final List<MediaDetails> searchMedia = libraryService.loadNotepad();
+            displaySearchResults(searchMedia);
+            displayInTitle("");
+        } catch (final Exception e) {
+            displayError(e);
+        }
+    }
+
+    @UiThread
+    void displayInTitle(final String text) {
+        titlebar.setText(text);
+    }
+
+    @UiThread
+    void displaySearchResults(final List<MediaDetails> searchMedia) {
+        notepadAdapter.clear();
+        for (final MediaDetails item : searchMedia) {
+            notepadAdapter.add(item);
+        }
+    }
+
+    @UiThread
+    void displayError(final Exception exception) {
+        exception.printStackTrace();
+        if (exception instanceof LoginFailedException) {
+            Toast.makeText(this, R.string.loginfailed, Toast.LENGTH_SHORT)
+                    .show();
+            Log.w(getClass().getCanonicalName(), "LoginFailedException");
+        } else if (exception instanceof TechnicalException) {
+            Toast.makeText(this, R.string.technicalError, Toast.LENGTH_SHORT)
+                    .show();
+            Log.e(getClass().getCanonicalName(), "TechnicalException: "
+                    + exception.getClass() + exception.getMessage());
+        }
+    }
 }

@@ -80,4 +80,7 @@
     <string name="cancel">Abbrechen</string>
     <string name="accounts">Ausweisnummern</string>
     <string name="notepad">Merkliste</string>
+    <string name="addToNotepad">Merken</string>
+    <string name="addedToNotepad">Zur Merkliste hinzugefügt</string>
+    <string name="removeFromNotepad">Entfernen</string>
 </resources>
