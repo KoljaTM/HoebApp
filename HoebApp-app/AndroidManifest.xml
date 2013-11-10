@@ -45,7 +45,8 @@
         </activity>
         <activity
             android:name=".NotepadActivity_"
-            android:label="@string/notepad" >
+            android:label="@string/notepad"
+            android:configChanges="orientation|screenSize">
         </activity>
         <activity
             android:name=".SearchActivity_"

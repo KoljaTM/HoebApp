@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -24,6 +22,7 @@ import de.vanmar.android.hoebapp.util.Preferences_;
 import java.util.List;
 
 @EActivity(R.layout.notepad)
+@OptionsMenu(R.menu.notepadmenu)
 public class NotepadActivity extends FragmentActivity {
 
     @Pref
@@ -50,7 +49,7 @@ public class NotepadActivity extends FragmentActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        loadNotepadList();
+        loadNotepad();
     }
 
     @Override
@@ -76,11 +75,10 @@ public class NotepadActivity extends FragmentActivity {
         super.onStop();
     }
 
-    @Background
-    void loadNotepadList() {
+    @OptionsItem(R.id.refresh)
+    void doRefresh() {
         loadNotepad();
     }
-
 
     @AfterViews
     void setupListAdapter() {
@@ -115,11 +113,11 @@ public class NotepadActivity extends FragmentActivity {
                         startActivity(intent);
                     }
                 });
-                view.setOnLongClickListener(new View.OnLongClickListener() {
+                view.findViewById(R.id.removeFromNotepad).setOnClickListener(new OnClickListener() {
                     @Override
-                    public boolean onLongClick(View v) {
-                        openContextMenu(v);
-                        return true;
+                    public void onClick(View v) {
+						notepadAdapter.remove(item);
+                        removeFromNotepad(item);
                     }
                 });
 
@@ -128,29 +126,11 @@ public class NotepadActivity extends FragmentActivity {
 
         };
         notepadList.setAdapter(notepadAdapter);
-        registerForContextMenu(notepadList);
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        menu.add(0, R.string.removeFromNotepad, 0, R.string.removeFromNotepad);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        if (item.getItemId() == R.string.removeFromNotepad) {
-            item.getActionView();
-            int selectedPosition = ((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position;
-            MediaDetails mediaDetails = notepadAdapter.getItem(selectedPosition);
-            notepadAdapter.remove(mediaDetails);
-            removeFromNotepad(mediaDetails);
-            return true;
-        }
-        return false;
-    }
 
     @Background
-    void removeFromNotepad(MediaDetails mediaDetails)  {
+    void removeFromNotepad(MediaDetails mediaDetails) {
         try {
             libraryService.removeFromNotepad(mediaDetails.getOwner(), mediaDetails.getId());
         } catch (TechnicalException e) {

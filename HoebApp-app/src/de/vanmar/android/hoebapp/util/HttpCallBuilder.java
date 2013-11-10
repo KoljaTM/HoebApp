@@ -1,17 +1,6 @@
 package de.vanmar.android.hoebapp.util;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
-
+import android.util.Log;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
@@ -31,13 +20,16 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
 
-import android.util.Log;
+import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Allows to create HttpCalls and get the results
- * 
+ *
  * @author Kolja Markwardt
- * 
  */
 public class HttpCallBuilder {
 
@@ -53,7 +45,7 @@ public class HttpCallBuilder {
 					uri = new URI(context.url
 							+ '?'
 							+ URLEncodedUtils.format(context.parameters,
-									HTTP.UTF_8));
+							HTTP.UTF_8));
 				}
 				final HttpGet httpGet = new HttpGet(uri);
 
@@ -61,7 +53,6 @@ public class HttpCallBuilder {
 			}
 		},
 		POST {
-
 			@Override
 			public HttpUriRequest getRequest(final HttpCallBuilder context)
 					throws URISyntaxException, IOException {
@@ -96,7 +87,7 @@ public class HttpCallBuilder {
 	}
 
 	public HttpCallBuilder withParam(final String paramName,
-			final String paramValue) {
+									 final String paramValue) {
 		this.parameters.add(new BasicNameValuePair(paramName, paramValue));
 		return this;
 	}
@@ -107,19 +98,23 @@ public class HttpCallBuilder {
 
 	public String executeAndGetContent() throws URISyntaxException, IOException {
 		Log.w("REQUEST", method.getRequest(this).getURI().toString());
-		final HttpResponse response = getHttpClient().execute(
-				method.getRequest(this));
-		final InputStream content = response.getEntity().getContent();
-		final String result = convertStreamToString(content);
+		HttpClient localHttpClient = getHttpClient();
+		synchronized (httpClient) {
+			final HttpResponse response = localHttpClient.execute(
+					method.getRequest(this));
+			final InputStream content = response.getEntity().getContent();
+			final String result = convertStreamToString(content);
 
-		return result;
+			return result;
+		}
 	}
 
 	public void executeAndIgnoreContent() throws URISyntaxException,
 			IOException {
 		Log.w("REQUEST", url);
+		HttpClient localHttpClient = getHttpClient();
 		synchronized (httpClient) {
-			final HttpResponse response = getHttpClient().execute(
+			final HttpResponse response = localHttpClient.execute(
 					method.getRequest(this));
 			// need to consume the content
 			response.getEntity().getContent().close();
@@ -128,11 +123,10 @@ public class HttpCallBuilder {
 
 	/**
 	 * convenience method to read a String from an InputStream
-	 * 
-	 * TODO: move into utility class, maybe use IOUils?
-	 * 
-	 * @param is
-	 *            Stream to read from
+	 * <p/>
+	 * TODO: move into utility class, maybe use IOUtils?
+	 *
+	 * @param is Stream to read from
 	 * @return
 	 * @throws IOException
 	 */
