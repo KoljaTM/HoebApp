@@ -71,10 +71,10 @@ public class LibraryService {
 					Pattern.MULTILINE | Pattern.DOTALL
 							| Pattern.CASE_INSENSITIVE);
 
-	private static final Pattern REGEX_MEDIA_DETAILS_MEDIUM_ID_TITLE = Pattern
-			.compile(
-					"LoanBrowseFieldNameCell\">Titel</td>\\s*<td class=\"LoanBrowseFieldDataCell\">\\s*<a[^>]*BACNO=([^&>]*)[^>]*>\\s*([^<]*?)\\s*</a>",
-					Pattern.MULTILINE | Pattern.DOTALL);
+	// $1= MediumId, $2=Title
+	private static final Pattern REGEX_MEDIA_DETAILS_MEDIUM_ID_TITLE = Pattern.compile(
+			"<td class=\"LoanBrowseFieldDataCell\">\\s*<a[^>]*BACNO=([^&>]*)[^>]*>\\s*([^<]*?)\\s*</a>",
+			Pattern.MULTILINE | Pattern.DOTALL);
 	private static final Pattern REGEX_MEDIA_DETAILS_AUTHOR = Pattern
 			.compile(
 					"LoanBrowseFieldNameCell\">Autor</td>\\s*<td class=\"LoanBrowseFieldDataCell\">\\s*([^>]*)\\s*</td>",
@@ -99,7 +99,7 @@ public class LibraryService {
 					Pattern.MULTILINE | Pattern.DOTALL);
 	private static final Pattern REGEX_MEDIA_DETAILS_NUM_RENEWS = Pattern
 			.compile(
-					"LoanBrowseFieldNameCell\"><font face=\"Arial, Helvetica, sans-serif\"></i>Anzahl der Verl.ngerungen</td>\\s*<td class=\"LoanBrowseFieldDataCell\">\\s*(\\d*)\\s*</td>",
+					"LoanBrowseFieldNameCell\"><font face=\"Arial, Helvetica, sans-serif\"></i>Anz. Verl.ng.</td>\\s*<td class=\"LoanBrowseFieldDataCell\">\\s*(\\d*)\\s*</td>",
 					Pattern.MULTILINE | Pattern.DOTALL);
 
 	private static final Pattern REGEX_SEARCHRESULT_ITEM = Pattern.compile(

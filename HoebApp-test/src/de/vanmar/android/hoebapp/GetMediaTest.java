@@ -1,18 +1,15 @@
 package de.vanmar.android.hoebapp;
 
-import java.io.IOException;
-
-import org.junit.Assert;
-
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.CheckBox;
-
 import com.jayway.android.robotium.solo.Solo;
-
 import de.vanmar.android.hoebapp.bo.Account;
 import de.vanmar.android.hoebapp.test.mocking.MockResponses;
 import de.vanmar.android.hoebapp.test.mocking.TestUtils;
 import de.vanmar.android.hoebapp.util.NetworkHelper;
+import org.junit.Assert;
+
+import java.io.IOException;
 
 public class GetMediaTest extends
 		ActivityInstrumentationTestCase2<HoebAppActivity_> {
@@ -94,9 +91,10 @@ public class GetMediaTest extends
 		solo.clickOnActionBarItem(R.id.refresh);
 
 		// then
-		Assert.assertTrue(solo.waitForText("18 Titel entliehen"));
-		Assert.assertTrue(solo.searchText("Drei Männer im Schnee", 1, true));
-		Assert.assertTrue(solo.searchText("Petzi und Paffhans", 1, true));
+		Assert.assertTrue(solo.waitForText("11 Titel entliehen"));
+		Assert.assertTrue(solo.searchText("Das Ende ist mein Anfang", 1, true));
+		Assert.assertTrue(solo.searchText("Der durch den Spiegel kommt", 1, true));
+		Assert.assertTrue(solo.searchText("16.01.2014", 1, true));
 
 		solo.assertCurrentActivity("should stay on main page",
 				HoebAppActivity_.class);

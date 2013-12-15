@@ -16,14 +16,12 @@
 
 
 <head>
-    
-    
-    
-        <title> -Mein Konto - Ausleihen und Verlängerungen</title>
-        
-     
 
-	<META HTTP-EQUIV="Content-Type" CONTENT="text/html charset=UTF-8"><META HTTP-EQUIV="Expires" CONTENT="-1">
+
+<title> - Mein Konto - Ausleihen und Verlängerungen</title>
+
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html charset=UTF-8"><META HTTP-EQUIV="Expires" CONTENT="-1">
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
 
 	
@@ -37,15 +35,14 @@
      
 
 <meta http-equiv="imagetoolbar" content="no" />
-
+<meta http-equiv="X-UA-Compatible" content="IE=7"/>
 <META NAME="ZonesObjClass" CONTENT="CWWWDBSSCircLoanBrowseObject">
-<META NAME="ZonesObjName"  CONTENT="Obj_645831354482846">
+<META NAME="ZonesObjName" CONTENT="Obj_2871387029199">
 <META NAME="ZonesTemplate"  CONTENT="LoanBrowse">
 <META NAME="ZonesTemplateFileName"  CONTENT="templates\Portal3\LoanBrowse.html">
-<META NAME="ZonesRef" CONTENT="Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8">
+<META NAME="ZonesRef" CONTENT="Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8">
 
 
-		
 <link href="/portal3/css/btnStyles.css" rel="stylesheet" type="text/css">
 
 
@@ -1023,10 +1020,10 @@ padding-right: 5px;
                
                    .ReservationBrowseFieldNameCell {
                          width: 75px;
-text-align : right;
-                         vertical-align: middle;
-font-size: smaller;
-padding-right: 5px;
+                       text-align: right;
+                       vertical-align: middle;
+                       font-size: smaller;
+                       padding-right: 5px;
                    }
                    
                    .ReservationBrowseFieldDataCell {
@@ -1244,9 +1241,7 @@ position: relative;
 }
 .hiddenBlock_display {
 display:block;
-border-top: solid;
-border-width: 1px;
-border-color: #A5CBE6;
+    border-top: solid 1px #A5CBE6;
 }
 .hiddenBlock_hidden {
 display:none;
@@ -1364,8 +1359,8 @@ if(typeof(limit) != "undefined" && limit != "")
 {
 printOptions+="&Options.MaxItem=" + limit;
 }
-var dialogURL = "Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
-dialogURL += "&Style=Portal2&SubStyle=ForPortal3&Method=" + method + "&PrintOnly=1" + printOptions + printExtent;
+    var dialogURL = "Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
+    dialogURL += "&Style=Portal2&SubStyle=ForPortal3&Method=" + method + "&PrintOnly=1" + printOptions + printExtent;
 var e = document.getElementById('PrintLDLG');
 var dlg_width = 470;
 e.style.width = dlg_width + "px";
@@ -1381,11 +1376,11 @@ e.style.height = "100px";
 }
 e.style.display  = "block";
 e.src = dialogURL;
-                
-                
-                    printOptions = "&Options.Choose=1&Options.Type=Notepad";
-                    
-                 
+
+
+    printOptions = "&Method=Print&Options.Choose=0&Options.Type=Notepad";
+
+
 }
 function OfflineSendList(limit)
 {
@@ -1408,8 +1403,8 @@ if(options != "")
 printOptions+= "&" + options;
 }
 Printing = false;
-var dialogURL = "Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
-dialogURL += "&Style=Portal2&SubStyle=ForPortal3&Method=" + method + "&EmailOnly=1" + printOptions;
+    var dialogURL = "Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
+    dialogURL += "&Style=Portal2&SubStyle=ForPortal3&Method=" + method + "&EmailOnly=1" + printOptions;
 var e = document.getElementById('PrintLDLG');
 var dlg_width = 470;
 e.style.width = dlg_width + "px";
@@ -1480,8 +1475,8 @@ var defaults = {
 inactivity: 120 * 1000,
 
 noconfirm: 20000, //in milliseconds
-redirect_url: "APS_ACCOUNT?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=ZonesLogout&ResetFn=LibraryZone",
-logout_url: "APS_ZONES?fn=endsession&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8"
+    redirect_url: "APS_ZONES?fn=QuickSearch&Style=Portal3&Method=ZonesLogout",
+    logout_url: "APS_ZONES?fn=endsession&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8"
 }
 var opts = $.extend(defaults, options);
 var liveTimeout, sessionTimeout, timer, refModal,timeLeft;
@@ -1635,12 +1630,20 @@ autoOpen: false
 
 $('.limitToggle').toggle(
 function() {
-$(this).parent().next('.hiddenBlock_hidden').removeClass('hiddenBlock_hidden').addClass('hiddenBlock_display');
-$(this).attr('src','/Portal3/GBQ/Interface/fleche_top_noir.gif');
+
+    $(this).prev('.hiddenBlock_hidden').removeClass('hiddenBlock_hidden').addClass('hiddenBlock_display');
+    $(this).attr('src','/Portal3/GBQ/Interface/fleche_top_noir.gif');
+    var newAlt = $(this).attr('data-close');
+    $(this).attr('alt', newAlt);
+    $(this).attr('title', newAlt);
 }, function() {
-$(this).parent().next('.hiddenBlock_display').removeClass('hiddenBlock_display').addClass('hiddenBlock_hidden');
-$(this).attr('src','/Portal3/GBQ/Interface/fleche_bas_noir.gif');
-}
+
+            $(this).prev('.hiddenBlock_display').removeClass('hiddenBlock_display').addClass('hiddenBlock_hidden');
+            $(this).attr('src','/Portal3/GBQ/Interface/fleche_bas_noir.gif');
+            var newAlt = $(this).attr('data-open');
+            $(this).attr('alt', newAlt);
+            $(this).attr('title', newAlt);
+        }
 );
 
 
@@ -1660,8 +1663,8 @@ img.attr("src","/Portal3/GBQ/Interface/fleche_bas_noir2.gif");
 
 $('#LanguageComboBox').change(function() {
 var sOption = $("#LanguageComboBox option:selected");
-var url = "Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Lang=" + sOption.val();
-document.location.href = url;
+    var url = "Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Lang=" + sOption.val();
+    document.location.href = url;
 
 });
 
@@ -1949,8 +1952,8 @@ return(a.innerHTML < b.innerHTML) ? 1 : -1;
 		
 		function PerformRenewItem( item )
 		{
-			$.getJSON("Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=Renew&Accepted=1", {"Item": item },
-			        function(data){
+            $.getJSON("Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=Renew&Accepted=1", {"Item": item },
+                    function(data){
 						if
 							(data.success=="true")
 						{
@@ -2078,15 +2081,15 @@ return(a.innerHTML < b.innerHTML) ? 1 : -1;
           {
                if ( document.getElementById("rbAll").checked )
 			{
-                    //resultsFrame.src = "Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=BulkRenewAll&BrowseAsHloc=";
-					$.get("Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=BulkRenewAll&BrowseAsHloc=");
-                    Progress();
+                //resultsFrame.src = "Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=BulkRenewAll&BrowseAsHloc=";
+                $.get("Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=BulkRenewAll&BrowseAsHloc=");
+                Progress();
                }
                else if ( document.getElementById("rbDueIn").checked )
                {
-                    //resultsFrame.src = "Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=DueIn&ResponseFormat=JSON&BrowseAsHloc=&Days=" + document.getElementById("DueInXDays").value ;
-					$.get("Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=DueIn&ResponseFormat=JSON&BrowseAsHloc=&Days=" + $("#DueInXDays").val());
-					Progress();
+                   //resultsFrame.src = "Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=DueIn&ResponseFormat=JSON&BrowseAsHloc=&Days=" + document.getElementById("DueInXDays").value ;
+                   $.get("Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=DueIn&ResponseFormat=JSON&BrowseAsHloc=&Days=" + $("#DueInXDays").val());
+                   Progress();
                }
                else if ( document.getElementById("rbDueOn").checked )
                {
@@ -2140,9 +2143,9 @@ return(a.innerHTML < b.innerHTML) ? 1 : -1;
                     
                     if ( valid )
                     {
-                         //resultsFrame.src = "Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=DueOn&BrowseAsHloc=&Date=" + document.getElementById("DueOnBox").value;
-						 $.get("Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=DueOn&BrowseAsHloc=&Date=" + document.getElementById("DueOnBox").value);
-                         Progress();
+                        //resultsFrame.src = "Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=DueOn&BrowseAsHloc=&Date=" + document.getElementById("DueOnBox").value;
+                        $.get("Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=DueOn&BrowseAsHloc=&Date=" + document.getElementById("DueOnBox").value);
+                        Progress();
                     }
                     else
                     {
@@ -2155,9 +2158,9 @@ return(a.innerHTML < b.innerHTML) ? 1 : -1;
           }
 		  var finishedBulkRenewal = false;
 		function Progress(){
-		
-			var url = "Obj_645821354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=BGTasks&Frame=Progress&BrowseAsHloc=&random=";
-			$("#BulkRenewProgressDLG").dialog("open");
+
+            var url = "Obj_2841387029196?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=BGTasks&Frame=Progress&BrowseAsHloc=&random=";
+            $("#BulkRenewProgressDLG").dialog("open");
 			$("#progressBar").progressbar({ value:0});
 			
 			$.getJSON(url,function(data){
@@ -2170,13 +2173,13 @@ return(a.innerHTML < b.innerHTML) ? 1 : -1;
 				}else{
 					 //refreshing loan list
 					$("#progressBar").progressbar({ value:100});
-					url = "Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=BulkRenewFinished&BulkRenew=1&BrowseAsHloc=";
-					location.replace(url);
+                    url = "Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=BulkRenewFinished&BulkRenew=1&BrowseAsHloc=";
+                    location.replace(url);
 					
 					//displaying report
-					url = "Obj_645821354482846?Style=Portal2&Method=BGTasks&BrowseAsHloc="; 	
+                    url = "Obj_2841387029196?Style=Portal2&Method=BGTasks&BrowseAsHloc=";
 
-				}
+                }
 			});
 			
 		}
@@ -2184,9 +2187,9 @@ return(a.innerHTML < b.innerHTML) ? 1 : -1;
 		
 		
 		function BulkRenewReport(){
-			
-			$("#BulkRenewReportDLG").load("Obj_645821354482846?Style=Portal3&Method=BGTasks&BrowseAsHloc=&Content=Report");
-			$("#BulkRenewReportDLG").dialog( "open" );
+
+            $("#BulkRenewReportDLG").load("Obj_2841387029196?Style=Portal3&Method=BGTasks&BrowseAsHloc=&Content=Report");
+            $("#BulkRenewReportDLG").dialog( "open" );
 		}
 		
 		function startup()
@@ -2224,15 +2227,10 @@ document.write ('<link href="/Portal3/CSS/Biblio/Iris09-800.css" rel="stylesheet
 <script type="text/javascript" language="JavaScript" src="/Portal3/CSS/Biblio/Iris.js"></script>
 
 
+<link href="/Portal3/css/hamburgZones2.css" rel="stylesheet" type="text/css"/>
 
-	
-	
-	
-     
-      <link href="/smedia/css/hamburgZones2.css" rel="stylesheet" type="text/css" />
-      
 
-    <style type="text/css">
+<style type="text/css">
      
           #Entete {
                border-bottom:26px solid  #0091c6;
@@ -2441,32 +2439,32 @@ document.write ('<link href="/Portal3/CSS/Biblio/Iris09-800.css" rel="stylesheet
     
      
           a:link, a:visited {
-               color: #3e65a2;
+              color: #000000;
           }
           
           .SummaryActionLink:link, .SummaryActionLink:visited {
-               color: #3e65a2;
+              color: #000000;
           }
           
           .ElectreLinks:link, a.ElectreLinks:visited {
-               color: #3e65a2;          
+              color: #000000;
           }
           
      
           .SummaryFieldLink:link {
-               color: #3e65a2;
+              color: #000000;
           }
 
           .FacetLinkA:link, .FacetLinkA:visited {
-               color: #3e65a2;
+              color: #000000;
           }
           
           .darkLink, .darkLink:link, .darkLink:visited {
-               color: #3e65a2;
+              color: #000000;
           }
         
           #ColCentre #Aide a:link,#ColCentre #Aide a:visited {
-                color: #3e65a2;
+              color: #000000;
           }
           
           
@@ -2517,94 +2515,25 @@ document.write ('<link href="/Portal3/CSS/Biblio/Iris09-800.css" rel="stylesheet
 <a name="haut"></a>
 
 
+<div id="Entete" style="background-image:url(/Portal3/img/header_GER_HM_new2.jpg)">
 
 
-
-
-
-
-
-
-
-
-
-    
-    
-
-
-
-
-
-	
-			
-			 
-	 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-		
-			
-<div id="Entete"  style="background-image:url(/smedia/img/header_GER_HM_new2.jpg)" >
-	 
-		     
-				<a href="http://www.buecherhallen.de" 
+    <a href="http://www.buecherhallen.de"
 				
-				 target="_top" 
-				
-				title="Buecherhallen Hamburg"><img border=0 src="/smedia/img/blankPix.png" width="161" height="66" class="logo" alt="Buecherhallen Hamburg"  /></a>
+				 target="_top"
 
-		      
-		
-        
-	<div id="ZoneMenuEntete">
-
-		
-			
+                 title="Buecherhallen Hamburg"><img border=0 src="/portal3/img/blankPix.png" width="161" height="66"
+                                                    class="logo" alt="Buecherhallen Hamburg"/></a>
 
 
-		
-			
+    <div id="ZoneMenuEntete">
 
 
-		
-			
+        <a href="Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Lang=ENG"
+           title="Go to the page in English">English</a>
 
 
-		
-			
-
-
-		
-		
-		
-
-
-
-
-
-     
-     
-          
-          <a href="Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Lang=ENG" title="Go to the page in English">English</a> 
-          
-     
-     
-		
-		
-	</div>
+    </div>
 	<div id="IdRubrique" ><img src="/Portal3/img/spacer.gif" alt="/Portal3/img/spacer.gif" width="398" height="55" /></div>
     
 </div>  	
@@ -3209,9 +3138,9 @@ Kontoübersicht
 
      
           <div id="BulkRenewContainter" style="padding:5px;display:none">
-               <form ID=BulkRenewForm METHOD=POST ACTION='Obj_645831354482846' TARGET=resultsFrame>
-                    
-                    <table width="100%" cellspacing=0 cellpadding=0>
+              <form ID=BulkRenewForm METHOD=POST ACTION='Obj_2871387029199' TARGET=resultsFrame>
+
+              <table width="100%" cellspacing=0 cellpadding=0>
                          <tr>
                               <td>
                                    <table width="100%" cellspacing=0 cellpadding=2>
@@ -3346,13 +3275,14 @@ href="javascript:ShowBulkRenew()"><span>Alle verlängern</span></a>
 
 
 <div class="SearchResultsHeader">
-<FORM name=sortForm id=sortForm action="Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8" method="POST" style="padding:0px;margin:0px;">                 
-                <INPUT TYPE=HIDDEN NAME="DB" VALUE = "Circ">
+    <FORM name=sortForm id=sortForm action="Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8"
+          method="POST" style="padding:0px;margin:0px;">
+        <INPUT TYPE=HIDDEN NAME="DB" VALUE = "Circ">
                 <INPUT TYPE=HIDDEN NAME="Set" VALUE = "<FONT color='red'>Name not found </FONT>">
                 <INPUT TYPE=HIDDEN NAME="BrowseAsHloc" VALUE= "">
-                <INPUT TYPE=HIDDEN NAME="Query.PageSize" VALUE= "10">
-                
-                <INPUT type='hidden' name="Style" value="Portal3" />
+        <INPUT TYPE=HIDDEN NAME="Query.PageSize" VALUE="20">
+
+        <INPUT type='hidden' name="Style" value="Portal3" />
 <INPUT type='hidden' name="SubStyle" value="" />
 <INPUT type='hidden' name="Lang" value="GER" />
 <INPUT type='hidden' name="ResponseEncoding" value="utf-8" />
@@ -3369,8 +3299,6 @@ href="javascript:ShowBulkRenew()"><span>Alle verlängern</span></a>
 
 </td>
 <td class="SearchResultsEmailListCell">
-                                                                                        
-       
 
 
 <a class="printListLink" href="javascript:SendList()" title="Mailen der Liste."><img style="vertical-align:top;padding-right:5px;" border=0 alt="Mailen der Liste." src="/Portal3/GBQ/ICONE/gr_envoyer_white.png" />Mailen der Liste</a>
@@ -3379,15 +3307,15 @@ href="javascript:ShowBulkRenew()"><span>Alle verlängern</span></a>
 <td align="right" class="SearchResultsPageNavCell">
 
 
-
-
-
-<a class="pageNavLink" href='Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=PageUp&PageSize=10' title="Zur vorherigen Seite"><img class="navigation_icon" id="navigation-icon-previous" alt="Zur vorherigen Seite" src="/portal3/IMG/ICON/zur&uuml;ck.png" /></a> 
-&nbsp;&nbsp;&nbsp;
-<a class="pageNavLink" href='Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=PageDown&PageSize=10' title="zur nächsten Seite"><img class="navigation_icon" id="navigation-icon-next" alt="zur nächste Seite" src="/portal3/IMG/ICON/weiter.png" /></a> 
-
-
-
+    <a class="pageNavLink"
+       href='Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=PageUp&PageSize=20'
+       title="Zur vorherigen Seite"><img class="navigation_icon" id="navigation-icon-previous"
+                                         alt="Zur vorherigen Seite" src="/portal3/IMG/ICON/zurueck.png"/></a>
+    &nbsp;&nbsp;&nbsp;
+    <a class="pageNavLink"
+       href='Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=PageDown&PageSize=20'
+       title="zur nächsten Seite"><img class="navigation_icon" id="navigation-icon-next" alt="zur nächste Seite"
+                                       src="/portal3/IMG/ICON/weiter.png"/></a>
 
 
 </td>
@@ -3426,59 +3354,86 @@ href="javascript:ShowBulkRenew()"><span>Alle verlängern</span></a>
      
       <tr>
           <td valign=top class="LoansBrowseHitNumber">11  </td>
-          <td valign=top id="item_111663" class="LoansBrowseItemDetailsCell">
-               <table>
+          <td valign=top id="item_536" class="LoansBrowseItemDetailsCell">
+              <table>
                     <tr>
                          <td class="LoanBrowseFieldNameCell">Titel</td>
-                         <td class="LoanBrowseFieldDataCell">
-                              <a href="APS_CAT?DB=Catalogue&amp;BACNO=T012763374&amp;Method=ShowCatalogueRecord&amp;Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8">
-                                   GIMP ab Version 2.6 
-                              </a>
-                         </td>
-                    </tr>
-                    <tr>
                          <td class="LoanBrowseFieldNameCell">Autor</td>
-                         <td class="LoanBrowseFieldDataCell">Lechner, Bettina</td>
-                    </tr>
-                    <tr>
                          <td class="LoanBrowseFieldNameCell">Mediennummer</td>
-                         <td class="LoanBrowseFieldDataCell">M59 135 264 4</td>
-                    </tr>
-                    
-                    
-                              
-                                   
-                                   
-                                   
-                              
-                         
-                     
-                    
-                         <tr>
-                              <td class="LoanBrowseFieldNameCell">ausgeliehen in</td>
-                              <td class="LoanBrowseFieldDataCell">  Zentralbibliothek</td>
-                         </tr> 
-                    
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">ausgeliehen</td>
-                         <td class="LoanBrowseFieldDataCell">12/10/2012</td>
-                    </tr>
-                    <tr>
+                        <td class="LoanBrowseFieldNameCell">ausgeliehen in</td>
+                        <td class="LoanBrowseFieldNameCell">ausgeliehen</td>
+                        <!--  <td class="LoanBrowseFieldDataCell">
+                           <a href="APS_CAT?DB=Catalogue&amp;BACNO=T014560722&amp;Method=ShowCatalogueRecord&amp;Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8">
+                                Der durch den Spiegel kommt
+                           </a>
+                      </td>
+                      <td class="LoanBrowseFieldDataCell"> / Boie, Kirsten</td>
+                 </tr>
+                 <!-- <tr>
+                      <td class="LoanBrowseFieldNameCell">Autor</td>
+                      <td class="LoanBrowseFieldDataCell">Boie, Kirsten</td>
+                 </tr>
+                 -->
+                  <tr>
+                      <td class="LoanBrowseFieldDataCell">
+                          <a href="APS_CAT?DB=Catalogue&amp;BACNO=T014560722&amp;Method=ShowCatalogueRecord&amp;Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8">
+                              Der durch den Spiegel kommt
+                          </a>
+                      </td>
+                      <td class="LoanBrowseFieldDataCell">Boie, Kirsten</td>
+                      <td class="LoanBrowseFieldDataCell">M59 551 458 7</td>
+
+
+                      <td class="LoanBrowseFieldDataCell"> Zentralbibliothek</td>
+
+                      <td class="LoanBrowseFieldDataCell">07/11/2013</td>
+                  </tr>
+                  <!-- <tr>
+                        <td class="LoanBrowseFieldNameCell">Mediennummer</td>
+                        <td class="LoanBrowseFieldDataCell">M59 551 458 7</td>
+                   </tr>
+                   -->
+
+                  <!--
+
+
+
+
+
+
+
+
+
+
+                        <tr>
+                            <td class="LoanBrowseFieldNameCell">ausgeliehen in</td>
+                             <td class="LoanBrowseFieldDataCell">  Zentralbibliothek</td>
+                        </tr>
+
+                  <!-- <tr>
+                        <td class="LoanBrowseFieldNameCell">ausgeliehen</td>
+                        <td class="LoanBrowseFieldDataCell">07/11/2013</td>
+                   </tr>
+                   -->
+                  <tr>
                          <td class="LoanBrowseFieldNameCell">fällig</td>
-                         <td class="LoanBrowseFieldDataCell" id="returnDate_111663">
-                              <div class="LoanDate">
-<b>07/12/2012</b>
-                              </div>
-                                   
-                              
-                                   <div class="LateLoan">
+
+                      <td class="LoanBrowseFieldDataCell" id="returnDate_536">
+                          <div class="LoanDate">
+                              <b>16/01/2014</b>
+                          </div>
+                      </td>
+                      <td>
+
+                      <div class="LateLoan">
                                     
                                    </div>
-                              
-                                    
-                              
-          
-               <div style="width:120px; height:30px; padding-top:5px; display:inline;">
+
+                      </td>
+                      <td>
+
+
+                          <div style="width:120px; height:30px; padding-top:5px; display:inline;">
                     
                     
                     
@@ -3487,880 +3442,38 @@ href="javascript:ShowBulkRenew()"><span>Alle verlängern</span></a>
 <a id="buttonRenewLoan" title="Dieses Medium verlängern" 
  target = ''  
 tabindex=""  
-class="button"  
-href="javascript:renewItem('111663','Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&amp;Method=Renew&amp;Style=Portal3&amp;Item=111663')"><span>Verlängern</span></a> 
+class="button"
+href="javascript:renewItem('536','Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&amp;Method=Renew&amp;Style=Portal3&amp;Item=536')"><span>Verlängern</span></a>
 
 
+                          </div>
 
 
+                      </td>
+                  </tr>
 
-    
-    
-               </div>
-          
-     
-                         
-                         </td>
-                    </tr>
-                    
-                    
-                    
-                    
-                    
-                                        
-                         <tr>
-                              <td class="LoanBrowseFieldNameCell"><font face="Arial, Helvetica, sans-serif"></i>Anzahl der Verlängerungen</td>
-                              <td class="LoanBrowseFieldDataCell">1</td>
-                         </tr>
-                    
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">&nbsp;</td>
-                         <td class="LoanBrowseFieldDataCell">&nbsp;</td>
-                    <tr>
-                    
-               </table>
-          </td>
-     </tr>
-               
-     
-          
-          
 
-	<!--TEMPLATE PORTAL2 BROWSEENUM.HTML LoanHeading-->
-	
-     
-     
-     
-     
-     
-          
-          
-     
-     
-     
-     
-               
-                         
-               
-          
+                  <tr>
 
 
+                      <td class="LoanBrowseFieldNameCell"><font face="Arial, Helvetica, sans-serif"></i>Anz. Verläng.
+                      </td>
+                      <td class="LoanBrowseFieldDataCell">1</td>
 
-     
-     
-     
-      <tr>
-          <td valign=top class="LoansBrowseHitNumberStripe">12  </td>
-          <td valign=top id="item_111664" class="LoansBrowseItemDetailsCellStripe">
-               <table>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Titel</td>
-                         <td class="LoanBrowseFieldDataCell">
-                              <a href="APS_CAT?DB=Catalogue&amp;BACNO=T008598219&amp;Method=ShowCatalogueRecord&amp;Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8">
-                                   Petzi und Paffhans 
-                              </a>
-                         </td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Autor</td>
-                         <td class="LoanBrowseFieldDataCell">Kein Autor</td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Mediennummer</td>
-                         <td class="LoanBrowseFieldDataCell">M54 535 269 0</td>
-                    </tr>
-                    
-                    
-                              
-                                   
-                                   
-                                   
-                              
-                         
-                     
-                    
-                         <tr>
-                              <td class="LoanBrowseFieldNameCell">ausgeliehen in</td>
-                              <td class="LoanBrowseFieldDataCell">Barmbek</td>
-                         </tr> 
-                    
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">ausgeliehen</td>
-                         <td class="LoanBrowseFieldDataCell">17/11/2012</td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">fällig</td>
-                         <td class="LoanBrowseFieldDataCell" id="returnDate_111664">
-                              <div class="LoanDate">
-<b>15/12/2012</b>
-                              </div>
-                                   
-                              
-                                   <div class="LateLoan">
-                                    
-                                   </div>
-                              
-                                    
-                              
-          
-               <div style="width:120px; height:30px; padding-top:5px; display:inline;">
-                    
-                    
-                    
-                    
-                    
-<a id="buttonRenewLoan" title="Dieses Medium verlängern" 
- target = ''  
-tabindex=""  
-class="button"  
-href="javascript:renewItem('111664','Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&amp;Method=Renew&amp;Style=Portal3&amp;Item=111664')"><span>Verlängern</span></a> 
+                  </tr>
 
+                  <!--
 
+                   -->
+                  <!--
 
+                        <tr>
+                             <td class="LoanBrowseFieldNameCell"><font face="Arial, Helvetica, sans-serif"></i>Anz. Verläng.</td>
+                             <td class="LoanBrowseFieldDataCell">1</td>
+                        </tr>
 
-
-    
-    
-               </div>
-          
-     
-                         
-                         </td>
-                    </tr>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">&nbsp;</td>
-                         <td class="LoanBrowseFieldDataCell">&nbsp;</td>
-                    <tr>
-                    
-               </table>
-          </td>
-     </tr>
-               
-     
-          
-          
-
-	<!--TEMPLATE PORTAL2 BROWSEENUM.HTML LoanHeading-->
-	
-     
-     
-     
-     
-     
-          
-          
-     
-     
-     
-     
-               
-                         
-               
-          
-
-
-
-     
-     
-     
-      <tr>
-          <td valign=top class="LoansBrowseHitNumber">13  </td>
-          <td valign=top id="item_111665" class="LoansBrowseItemDetailsCell">
-               <table>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Titel</td>
-                         <td class="LoanBrowseFieldDataCell">
-                              <a href="APS_CAT?DB=Catalogue&amp;BACNO=T008123869&amp;Method=ShowCatalogueRecord&amp;Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8">
-                                   Petzi als K&ouml;nig 
-                              </a>
-                         </td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Autor</td>
-                         <td class="LoanBrowseFieldDataCell">Kein Autor</td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Mediennummer</td>
-                         <td class="LoanBrowseFieldDataCell">M55 063 550 8</td>
-                    </tr>
-                    
-                    
-                              
-                                   
-                                   
-                                   
-                              
-                         
-                     
-                    
-                         <tr>
-                              <td class="LoanBrowseFieldNameCell">ausgeliehen in</td>
-                              <td class="LoanBrowseFieldDataCell">Barmbek</td>
-                         </tr> 
-                    
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">ausgeliehen</td>
-                         <td class="LoanBrowseFieldDataCell">17/11/2012</td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">fällig</td>
-                         <td class="LoanBrowseFieldDataCell" id="returnDate_111665">
-                              <div class="LoanDate">
-<b>15/12/2012</b>
-                              </div>
-                                   
-                              
-                                   <div class="LateLoan">
-                                    
-                                   </div>
-                              
-                                    
-                              
-          
-               <div style="width:120px; height:30px; padding-top:5px; display:inline;">
-                    
-                    
-                    
-                    
-                    
-<a id="buttonRenewLoan" title="Dieses Medium verlängern" 
- target = ''  
-tabindex=""  
-class="button"  
-href="javascript:renewItem('111665','Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&amp;Method=Renew&amp;Style=Portal3&amp;Item=111665')"><span>Verlängern</span></a> 
-
-
-
-
-
-    
-    
-               </div>
-          
-     
-                         
-                         </td>
-                    </tr>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">&nbsp;</td>
-                         <td class="LoanBrowseFieldDataCell">&nbsp;</td>
-                    <tr>
-                    
-               </table>
-          </td>
-     </tr>
-               
-     
-          
-          
-
-	<!--TEMPLATE PORTAL2 BROWSEENUM.HTML LoanHeading-->
-	
-     
-     
-     
-     
-     
-          
-          
-     
-     
-     
-     
-               
-                         
-               
-          
-
-
-
-     
-     
-     
-      <tr>
-          <td valign=top class="LoansBrowseHitNumberStripe">14  </td>
-          <td valign=top id="item_111666" class="LoansBrowseItemDetailsCellStripe">
-               <table>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Titel</td>
-                         <td class="LoanBrowseFieldDataCell">
-                              <a href="APS_CAT?DB=Catalogue&amp;BACNO=T010501102&amp;Method=ShowCatalogueRecord&amp;Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8">
-                                   Achtung, Baustelle! 
-                              </a>
-                         </td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Autor</td>
-                         <td class="LoanBrowseFieldDataCell">M&uuml;nter, Daniel</td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Mediennummer</td>
-                         <td class="LoanBrowseFieldDataCell">M55 546 134 0</td>
-                    </tr>
-                    
-                    
-                              
-                                   
-                                   
-                                   
-                              
-                         
-                     
-                    
-                         <tr>
-                              <td class="LoanBrowseFieldNameCell">ausgeliehen in</td>
-                              <td class="LoanBrowseFieldDataCell">Barmbek</td>
-                         </tr> 
-                    
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">ausgeliehen</td>
-                         <td class="LoanBrowseFieldDataCell">17/11/2012</td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">fällig</td>
-                         <td class="LoanBrowseFieldDataCell" id="returnDate_111666">
-                              <div class="LoanDate">
-<b>15/12/2012</b>
-                              </div>
-                                   
-                              
-                                   <div class="LateLoan">
-                                    
-                                   </div>
-                              
-                                    
-                              
-          
-               <div style="width:120px; height:30px; padding-top:5px; display:inline;">
-                    
-                    
-                    
-                    
-                    
-<a id="buttonRenewLoan" title="Dieses Medium verlängern" 
- target = ''  
-tabindex=""  
-class="button"  
-href="javascript:renewItem('111666','Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&amp;Method=Renew&amp;Style=Portal3&amp;Item=111666')"><span>Verlängern</span></a> 
-
-
-
-
-
-    
-    
-               </div>
-          
-     
-                         
-                         </td>
-                    </tr>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">&nbsp;</td>
-                         <td class="LoanBrowseFieldDataCell">&nbsp;</td>
-                    <tr>
-                    
-               </table>
-          </td>
-     </tr>
-               
-     
-          
-          
-
-	<!--TEMPLATE PORTAL2 BROWSEENUM.HTML LoanHeading-->
-	
-     
-     
-     
-     
-     
-          
-          
-     
-     
-     
-     
-               
-                         
-               
-          
-
-
-
-     
-     
-     
-      <tr>
-          <td valign=top class="LoansBrowseHitNumber">15  </td>
-          <td valign=top id="item_111667" class="LoansBrowseItemDetailsCell">
-               <table>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Titel</td>
-                         <td class="LoanBrowseFieldDataCell">
-                              <a href="APS_CAT?DB=Catalogue&amp;BACNO=T012037466&amp;Method=ShowCatalogueRecord&amp;Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8">
-                                   Petzi und das Luftschiff◉39. 
-                              </a>
-                         </td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Autor</td>
-                         <td class="LoanBrowseFieldDataCell">Kein Autor</td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Mediennummer</td>
-                         <td class="LoanBrowseFieldDataCell">M59 150 032 1</td>
-                    </tr>
-                    
-                    
-                              
-                                   
-                                   
-                                   
-                              
-                         
-                     
-                    
-                         <tr>
-                              <td class="LoanBrowseFieldNameCell">ausgeliehen in</td>
-                              <td class="LoanBrowseFieldDataCell">Barmbek</td>
-                         </tr> 
-                    
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">ausgeliehen</td>
-                         <td class="LoanBrowseFieldDataCell">17/11/2012</td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">fällig</td>
-                         <td class="LoanBrowseFieldDataCell" id="returnDate_111667">
-                              <div class="LoanDate">
-<b>15/12/2012</b>
-                              </div>
-                                   
-                              
-                                   <div class="LateLoan">
-                                    
-                                   </div>
-                              
-                                    
-                              
-          
-               <div style="width:120px; height:30px; padding-top:5px; display:inline;">
-                    
-                    
-                    
-                    
-                    
-<a id="buttonRenewLoan" title="Dieses Medium verlängern" 
- target = ''  
-tabindex=""  
-class="button"  
-href="javascript:renewItem('111667','Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&amp;Method=Renew&amp;Style=Portal3&amp;Item=111667')"><span>Verlängern</span></a> 
-
-
-
-
-
-    
-    
-               </div>
-          
-     
-                         
-                         </td>
-                    </tr>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">&nbsp;</td>
-                         <td class="LoanBrowseFieldDataCell">&nbsp;</td>
-                    <tr>
-                    
-               </table>
-          </td>
-     </tr>
-               
-     
-          
-          
-
-	<!--TEMPLATE PORTAL2 BROWSEENUM.HTML LoanHeading-->
-	
-     
-     
-     
-     
-     
-          
-          
-     
-     
-     
-     
-               
-                         
-               
-          
-
-
-
-     
-     
-     
-      <tr>
-          <td valign=top class="LoansBrowseHitNumberStripe">16  </td>
-          <td valign=top id="item_111668" class="LoansBrowseItemDetailsCellStripe">
-               <table>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Titel</td>
-                         <td class="LoanBrowseFieldDataCell">
-                              <a href="APS_CAT?DB=Catalogue&amp;BACNO=T013014241&amp;Method=ShowCatalogueRecord&amp;Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8">
-                                   Weihnachtsgeschichten 
-                              </a>
-                         </td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Autor</td>
-                         <td class="LoanBrowseFieldDataCell">Kein Autor</td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Mediennummer</td>
-                         <td class="LoanBrowseFieldDataCell">M59 026 839 0</td>
-                    </tr>
-                    
-                    
-                              
-                                   
-                                   
-                                   
-                              
-                         
-                     
-                    
-                         <tr>
-                              <td class="LoanBrowseFieldNameCell">ausgeliehen in</td>
-                              <td class="LoanBrowseFieldDataCell">Barmbek</td>
-                         </tr> 
-                    
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">ausgeliehen</td>
-                         <td class="LoanBrowseFieldDataCell">17/11/2012</td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">fällig</td>
-                         <td class="LoanBrowseFieldDataCell" id="returnDate_111668">
-                              <div class="LoanDate">
-<b>15/12/2012</b>
-                              </div>
-                                   
-                              
-                                   <div class="LateLoan">
-                                    
-                                   </div>
-                              
-                                    
-                              
-          
-               <div style="width:120px; height:30px; padding-top:5px; display:inline;">
-                    
-                    
-                    
-                    
-                    
-<a id="buttonRenewLoan" title="Dieses Medium verlängern" 
- target = ''  
-tabindex=""  
-class="button"  
-href="javascript:renewItem('111668','Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&amp;Method=Renew&amp;Style=Portal3&amp;Item=111668')"><span>Verlängern</span></a> 
-
-
-
-
-
-    
-    
-               </div>
-          
-     
-                         
-                         </td>
-                    </tr>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">&nbsp;</td>
-                         <td class="LoanBrowseFieldDataCell">&nbsp;</td>
-                    <tr>
-                    
-               </table>
-          </td>
-     </tr>
-               
-     
-          
-          
-
-	<!--TEMPLATE PORTAL2 BROWSEENUM.HTML LoanHeading-->
-	
-     
-     
-     
-     
-     
-          
-          
-     
-     
-     
-     
-               
-                         
-               
-          
-
-
-
-     
-     
-     
-      <tr>
-          <td valign=top class="LoansBrowseHitNumber">17  </td>
-          <td valign=top id="item_111669" class="LoansBrowseItemDetailsCell">
-               <table>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Titel</td>
-                         <td class="LoanBrowseFieldDataCell">
-                              <a href="APS_CAT?DB=Catalogue&amp;BACNO=T010228560&amp;Method=ShowCatalogueRecord&amp;Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8">
-                                   Jim Knopf und Lukas der Lokomotivf&uuml;hrer 
-                              </a>
-                         </td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Autor</td>
-                         <td class="LoanBrowseFieldDataCell">Ende, Michael</td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Mediennummer</td>
-                         <td class="LoanBrowseFieldDataCell">M60 098 153 7</td>
-                    </tr>
-                    
-                    
-                              
-                                   
-                                   
-                                   
-                              
-                         
-                     
-                    
-                         <tr>
-                              <td class="LoanBrowseFieldNameCell">ausgeliehen in</td>
-                              <td class="LoanBrowseFieldDataCell">Barmbek</td>
-                         </tr> 
-                    
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">ausgeliehen</td>
-                         <td class="LoanBrowseFieldDataCell">17/11/2012</td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">fällig</td>
-                         <td class="LoanBrowseFieldDataCell" id="returnDate_111669">
-                              <div class="LoanDate">
-<b>15/12/2012</b>
-                              </div>
-                                   
-                              
-                                   <div class="LateLoan">
-                                    
-                                   </div>
-                              
-                                    
-                              
-          
-               <div style="width:120px; height:30px; padding-top:5px; display:inline;">
-                    
-                    
-                    
-                    
-                    
-<a id="buttonRenewLoan" title="Dieses Medium verlängern" 
- target = ''  
-tabindex=""  
-class="button"  
-href="javascript:renewItem('111669','Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&amp;Method=Renew&amp;Style=Portal3&amp;Item=111669')"><span>Verlängern</span></a> 
-
-
-
-
-
-    
-    
-               </div>
-          
-     
-                         
-                         </td>
-                    </tr>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">&nbsp;</td>
-                         <td class="LoanBrowseFieldDataCell">&nbsp;</td>
-                    <tr>
-                    
-               </table>
-          </td>
-     </tr>
-               
-     
-          
-          
-
-	<!--TEMPLATE PORTAL2 BROWSEENUM.HTML LoanHeading-->
-	
-     
-     
-     
-     
-     
-          
-          
-     
-     
-     
-     
-               
-                         
-               
-          
-
-
-
-     
-     
-     
-      <tr>
-          <td valign=top class="LoansBrowseHitNumberStripe">18  </td>
-          <td valign=top id="item_111670" class="LoansBrowseItemDetailsCellStripe">
-               <table>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Titel</td>
-                         <td class="LoanBrowseFieldDataCell">
-                              <a href="APS_CAT?DB=Catalogue&amp;BACNO=T015162111&amp;Method=ShowCatalogueRecord&amp;Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8">
-                                   Docma 2012/Heft 4 
-                              </a>
-                         </td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Autor</td>
-                         <td class="LoanBrowseFieldDataCell">Kein Autor</td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">Mediennummer</td>
-                         <td class="LoanBrowseFieldDataCell">M59 824 795 5</td>
-                    </tr>
-                    
-                    
-                              
-                                   
-                                   
-                                   
-                              
-                         
-                     
-                    
-                         <tr>
-                              <td class="LoanBrowseFieldNameCell">ausgeliehen in</td>
-                              <td class="LoanBrowseFieldDataCell">Barmbek</td>
-                         </tr> 
-                    
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">ausgeliehen</td>
-                         <td class="LoanBrowseFieldDataCell">17/11/2012</td>
-                    </tr>
-                    <tr>
-                         <td class="LoanBrowseFieldNameCell">fällig</td>
-                         <td class="LoanBrowseFieldDataCell" id="returnDate_111670">
-                              <div class="LoanDate">
-<b>15/12/2012</b>
-                              </div>
-                                   
-                              
-                                   <div class="LateLoan">
-                                    
-                                   </div>
-                              
-                                    
-                              
-          
-               <div style="width:120px; height:30px; padding-top:5px; display:inline;">
-                    
-                    
-                    
-                    
-                    
-<a id="buttonRenewLoan" title="Dieses Medium verlängern" 
- target = ''  
-tabindex=""  
-class="button"  
-href="javascript:renewItem('111670','Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&amp;Method=Renew&amp;Style=Portal3&amp;Item=111670')"><span>Verlängern</span></a> 
-
-
-
-
-
-    
-    
-               </div>
-          
-     
-                         
-                         </td>
-                    </tr>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <tr>
+                   -->
+                  <tr>
                          <td class="LoanBrowseFieldNameCell">&nbsp;</td>
                          <td class="LoanBrowseFieldDataCell">&nbsp;</td>
                     <tr>
@@ -4381,8 +3494,10 @@ href="javascript:renewItem('111670','Obj_645831354482846?Style=Portal3&SubStyle=
 
 
 <div class="SearchResultsTrailer">
-<FORM name=sortForm id=sortFormTrailer action="Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8" method="POST" style="padding:0px;margin:0px;">                 
-                <INPUT TYPE=HIDDEN NAME="DB" VALUE = "Circ">
+    <FORM name=sortForm id=sortFormTrailer
+          action="Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8" method="POST"
+          style="padding:0px;margin:0px;">
+        <INPUT TYPE=HIDDEN NAME="DB" VALUE = "Circ">
                 <INPUT TYPE=HIDDEN NAME="Set" VALUE = "<FONT color='red'>Name not found </FONT>">
                 <INPUT TYPE=HIDDEN NAME="BrowseAsHloc" VALUE= "">
                 <INPUT TYPE=HIDDEN NAME="Query.PageSize" VALUE= "<FONT color='red'>PageSize not found </FONT>">
@@ -4398,15 +3513,15 @@ href="javascript:renewItem('111670','Obj_645831354482846?Style=Portal3&SubStyle=
 <td align="right" class="SearchResultsPageNavCell">
 
 
-
-
-
-<a class="pageNavLink" href='Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=PageUp&PageSize=10' title="Zur vorherigen Seite"><img class="navigation_icon" id="navigation-icon-previous" alt="Zur vorherigen Seite" src="/portal3/IMG/ICON/zur&uuml;ck.png" /></a> 
-&nbsp;&nbsp;&nbsp;
-<a class="pageNavLink" href='Obj_645831354482846?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=PageDown&PageSize=10' title="zur nächsten Seite"><img class="navigation_icon" id="navigation-icon-next" alt="zur nächste Seite" src="/portal3/IMG/ICON/weiter.png" /></a> 
-
-
-
+    <a class="pageNavLink"
+       href='Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=PageUp&PageSize=20'
+       title="Zur vorherigen Seite"><img class="navigation_icon" id="navigation-icon-previous"
+                                         alt="Zur vorherigen Seite" src="/portal3/IMG/ICON/zurueck.png"/></a>
+    &nbsp;&nbsp;&nbsp;
+    <a class="pageNavLink"
+       href='Obj_2871387029199?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=PageDown&PageSize=20'
+       title="zur nächsten Seite"><img class="navigation_icon" id="navigation-icon-next" alt="zur nächste Seite"
+                                       src="/portal3/IMG/ICON/weiter.png"/></a>
 
 
 </td>
@@ -4555,9 +3670,10 @@ href="javascript:BulkRenewWarningCancel()"><span>Abbrechen</span></a>
                     </tr>
                </table>               
           </div>
-			
-          <div id="BulkRenewProgressDLG" title="Die Verlängerung ist in Arbeit. Bitte warten bis der Vorgang beendet ist." style="display:none;"> 
-			<div id="progressBar"></div>
+
+<div id="BulkRenewProgressDLG" title="Die Verlängerung ist in Arbeit.<br>Bitte warten Sie bis der Vorgang beendet ist."
+     style="display:none;">
+<div id="progressBar"></div>
           </div>
 		  <div id="BulkRenewReportDLG" title="<font face="Arial, Helvetica, sans-serif"></i><font size=+1>Verlängerungsbericht</font>" style="display:none;"></div>
 		  <div id="EmailPrintOutDLG"></div>
@@ -4626,17 +3742,12 @@ href="javascript:BulkRenewWarningCancel()"><span>Abbrechen</span></a>
 	
 	
 	<br>
-	
-	
 
 
-     
-     
-			<span>Zones.2.2.44.73</span>
-		
-     
-     
-</div> 
+        <span>Zones.2.2.45.19</span>
+
+
+  </div>
 
 </div> <!-- FIN DIV PRINCIPAL -->
 
