@@ -68,8 +68,8 @@
     <string name="stockTitle">Bestand:</string>
     <string name="availableSingle">1 Exemplar verfügbar</string>
     <string name="available">%s Exemplare verfügbar</string>
-    <string name="unavailableSingle">1 Exemplar entliehen, verfügbar am</string>
-    <string name="unavailable">%s Exemplare entliehen, verfügbar am</string>
+    <string name="unavailableSingle">1 Exemplar entliehen, fällig am</string>
+    <string name="unavailable">%s Exemplare entliehen, fällig am</string>
     <string name="unavailableUnknown">&lt;unbekannt&gt;</string>
     <string name="availableAt">%s</string>
     <string name="newAccount">Bibliotheksausweis hinzufügen</string>

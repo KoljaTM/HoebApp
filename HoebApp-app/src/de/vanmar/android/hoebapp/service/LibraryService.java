@@ -168,12 +168,12 @@ public class LibraryService {
 					Pattern.MULTILINE | Pattern.DOTALL);
 
 	private static final Pattern REGEX_DETAILS_STOCK_ITEM_AVAILABLE = Pattern
-			.compile("Exemplar ist <b>verf.gbar</b>", Pattern.MULTILINE
+			.compile("Exemplar <b>verf.gbar</b>", Pattern.MULTILINE
 					| Pattern.DOTALL);
 
 	private static final Pattern REGEX_DETAILS_STOCK_ITEM_UNAVAILABLE = Pattern
 			.compile(
-					"Exemplar ist derzeit <b>entliehen</b>.(\\s*<!-- First item truly is on loan -->\\s*Voraussichtlich verf.gbar am\\s*(\\d\\d/\\d\\d/\\d\\d\\d\\d))?",
+					"Exemplar derzeit <b>entliehen</b>.(\\s*<!-- First item truly is on loan -->\\s*F.lligkeitsdatum\\s*(\\d\\d/\\d\\d/\\d\\d\\d\\d))?",
 					Pattern.MULTILINE | Pattern.DOTALL);
 
 	@Pref

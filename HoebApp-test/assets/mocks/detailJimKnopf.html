@@ -66,21 +66,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"	"http://www.w3.org/TR/html4/loose.dtd">
 
 
@@ -100,10 +85,7 @@
 <head>
 
 
-
-
-<title> - Ihre Suche</title>
-
+<title> - Kataloginformation</title>
 
 
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html charset=UTF-8"><META HTTP-EQUIV="Expires" CONTENT="-1">
@@ -123,11 +105,10 @@
 <meta http-equiv="imagetoolbar" content="no" />
 <meta http-equiv="X-UA-Compatible" content="IE=7"/>
 <META NAME="ZonesObjClass" CONTENT="CWWWDBCatRecordObject">
-<META NAME="ZonesObjName"  CONTENT="Obj_176681383601676">
+<META NAME="ZonesObjName" CONTENT="Obj_302161390041887">
 <META NAME="ZonesTemplate"  CONTENT="CatViewRecord">
 <META NAME="ZonesTemplateFileName"  CONTENT="templates\Portal3\CatViewRecord.html">
-<META NAME="ZonesRef" CONTENT="Obj_176681383601676?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8">
-
+<META NAME="ZonesRef" CONTENT="Obj_302161390041887?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8">
 
 
 <link href="/portal3/css/btnStyles.css" rel="stylesheet" type="text/css">
@@ -1373,7 +1354,7 @@ function writeCookie(cookieName, cookieValue)
 {
 document.cookie = cookieName + '=' + cookieValue + ';';
 }
-function readCookie(cookieName)
+function readCookie(cookieName) 
 {
 var cookies = document.cookie.split('; ');
 for(var i=0; i < cookies.length; i++)
@@ -1411,24 +1392,24 @@ function OpenPrintFrame() {
 $('PrintLDLG').show();
 }
 function windowWidth()
-{
-var myWidth = 0;
-if( typeof( window.innerWidth ) == 'number' ) {
-//Non-IE
-myWidth = window.innerWidth;
-}
-else if
-( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) )
-{
-myWidth = document.documentElement.clientWidth;
-}
-else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) )
-{
-myWidth = document.body.clientWidth;
-}
-return myWidth;
-}
-var Printing = true;
+            {
+                var myWidth = 0;
+                if( typeof( window.innerWidth ) == 'number' ) {
+                    //Non-IE
+                    myWidth = window.innerWidth;
+                } 
+                else if
+                    ( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) 
+                {
+                    myWidth = document.documentElement.clientWidth;
+                }
+                else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) 
+                {
+                    myWidth = document.body.clientWidth;
+                }
+                return myWidth;
+            }
+            var Printing = true;
 function OfflinePrintList(limit)
 {
 DoPrintList('OfflinePrint',limit);
@@ -1437,7 +1418,7 @@ function PrintList(limit)
 {
 DoPrintList('Print',limit);
 }
-
+            
 function DoPrintList(method,limit)
 {
 Printing = true;
@@ -1446,13 +1427,13 @@ if(typeof(limit) != "undefined" && limit != "")
 {
 printOptions+="&Options.MaxItem=" + limit;
 }
-var dialogURL = "Obj_176681383601676?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
+var dialogURL = "Obj_302161390041887?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
 dialogURL += "&Style=Portal2&SubStyle=ForPortal3&Method=" + method + "&PrintOnly=1" + printOptions + printExtent;
 var e = document.getElementById('PrintLDLG');
 var dlg_width = 470;
 e.style.width = dlg_width + "px";
-e.style.left = ((windowWidth() -dlg_width) /2) + "px";
-
+e.style.left = ((windowWidth() -dlg_width) /2) + "px";  
+               
 if (printOptions != null && printOptions != "" && printOptions.indexOf("Options.Export=1") < 0)
 {
 e.style.height = "300px";
@@ -1463,12 +1444,12 @@ e.style.height = "100px";
 }
 e.style.display  = "block";
 e.src = dialogURL;
-
-
-
-printOptions = "&Method=Print&Options.Choose=0&Options.Type=Notepad";
-
-
+                
+                
+                    
+                        printOptions = "&Method=Print&Options.Choose=0&Options.Type=Notepad";
+                    
+                 
 }
 function OfflineSendList(limit)
 {
@@ -1478,25 +1459,25 @@ function SendList(limit)
 {
 DoSendList('Print',limit);
 }
-function DoSendList(method,limit)
+function DoSendList(method,limit) 
 {
 if(typeof(limit) != "undefined" && limit != "")
 {
 printOptions+="&Options.MaxItem=" + limit;
 }
 
-var options =  ""
+var options =  "" 
 if(options != "")
 {
 printOptions+= "&" + options;
 }
 Printing = false;
-var dialogURL = "Obj_176681383601676?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
+var dialogURL = "Obj_302161390041887?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
 dialogURL += "&Style=Portal2&SubStyle=ForPortal3&Method=" + method + "&EmailOnly=1" + printOptions;
 var e = document.getElementById('PrintLDLG');
 var dlg_width = 470;
 e.style.width = dlg_width + "px";
-e.style.left = ((windowWidth() -dlg_width) /2) + "px";
+e.style.left = ((windowWidth() -dlg_width) /2) + "px";  
 if (printOptions != "" )
 {
 e.style.height = "300px";
@@ -1506,22 +1487,22 @@ else
 e.style.height = "100px";
 }
 e.style.display  = "block";
-e.src = dialogURL;
+e.src = dialogURL;  
 }
 function PreviewList( url )
 {
 var e = document.getElementById('PrintLDLG');
 e.style.display  = "block";
-
-if (printOptions != null && printOptions.indexOf("Options.Export=1") >= 0)
-{
-e.style.height = "100px";
-}
-else
-{
-e.style.height = "300px";
-}
-
+                
+                if (printOptions != null && printOptions.indexOf("Options.Export=1") >= 0)
+                {
+    e.style.height = "100px";
+                }
+                else
+                {
+    e.style.height = "300px";
+                }
+                
 if
 (Printing)
 {
@@ -1541,7 +1522,7 @@ printExtent = "";
 var e = document.getElementById('PrintLDLG');
 e.style.height = "100px";
 e.style.display  = "none";
-e.src = "/blank.html";
+e.src = "/blank.html";  
 }
 
 function Print()
@@ -1554,10 +1535,10 @@ window.print();
 
 
 
+  
 
 
-
-jQuery.fn.ZonesIdleTimeout  = function(options){
+jQuery.fn.ZonesIdleTimeout  = function(options){ 
 var defaults = {
 
 inactivity: 120 * 1000,
@@ -1580,7 +1561,7 @@ if (modal_created) refModal.dialog("close");
 else clearTimeouts();
 timeLeft = opts.noconfirm / 1000; //in seconds
 liveTimeout = setTimeout(showOrCreateDialog, opts.inactivity);
-
+  
 }
 var dialogReady = function(){
 $("#modal_pop span").html(timeLeft);
@@ -1604,10 +1585,10 @@ close: clearTimeouts
 }
 }
 var redirect = function(){
-if(opts.logout_url){
+  if(opts.logout_url){
 $.get(opts.logout_url);
-}
-window.location.href = opts.redirect_url;
+  }
+  window.location.href = opts.redirect_url;
 }
 var keepCounting = function(){
 $("#modal_pop span").html(timeLeft);
@@ -1630,21 +1611,21 @@ redirect();
 return this.each(function() {
 obj = $(this);
 start_timeout();
-
+ 
 $(document).bind('click', start_timeout);
 $(document).bind('keydown', start_timeout);
 $(document).bind('mousemove', start_timeout);
 });
 }
 function Help( sUrl, sData ) {
-var e = document.getElementById('HelpFrame');
-e.src = sUrl+"?"+sData;
-$('#HelpDLG').dialog('open');
+                var e = document.getElementById('HelpFrame');
+                e.src = sUrl+"?"+sData;
+                $('#HelpDLG').dialog('open');
 }
-
-function PopupUrl( url ) {
+            
+            function PopupUrl( url ) {
 var e = document.getElementById('PopupFrame');
-e.src = url;
+e.src = url;  
 $('#PopupDLG').dialog('open');
 }
 function PopupUrl2(url , oheight, width, title)
@@ -1665,17 +1646,17 @@ if( $('#'+id).width() > 1)
 $('#Bookcover_' + id).show();
 }
 }
-$( function () {
-
-//$('#buttonAdSearch').html("Suche");
-//$('#buttonQuickSearch').html("Suche");
-
-//$('#buttonAdSearchClr').html("<font color='black'>Eingabe löschen</font>");
+    $( function () {
+    
+     //$('#buttonAdSearch').html("Suche");
+     //$('#buttonQuickSearch').html("Suche");
+    
+     //$('#buttonAdSearchClr').html("<font color='black'>Eingabe löschen</font>");
 //$('#buttonQuickSearchClr').html("<font color='black'>Eingabe löschen</font>");
-// $('.button').corner();
-
-//$( 'body').css("background","aliceBlue");
-//$( '#stuff').hide();
+     // $('.button').corner();
+    
+     //$( 'body').css("background","aliceBlue");
+     //$( '#stuff').hide();
 //$('#buttonAdSearch').css("background","orange");
 var zonesTimeoutEnabled = true;
 
@@ -1699,17 +1680,17 @@ else
 img.attr("src","/Portal3/GBQ/Interface/fleche_top_noir.gif");
 }
 });
-$('#HelpDLG').dialog(
-{
+$('#HelpDLG').dialog( 
+{ 
 width: "750px",
-
+                              
 resizable: false,
 autoOpen: false
 }
 );
-
-$('#PopupDLG').dialog(
-{
+                
+                $('#PopupDLG').dialog( 
+{ 
 width: "750px",
 resizable: false,
 autoOpen: false
@@ -1735,13 +1716,13 @@ $(this).attr('title',newAlt);
 );
 
 
-$('.SerialIssue').toggle(
-function() {
+$('.SerialIssue').toggle( 
+function() { 
 
 $(this).next().removeClass('SerialIssueDetail_hidden').addClass('SerialIssueDetail');
 var img = $('img',this);
 img.attr("src","/Portal3/GBQ/Interface/fleche_top_noir2.gif");
-}, function () {
+}, function () { 
 
 $(this).next().removeClass('SerialIssueDetail').addClass('SerialIssueDetail_hidden');
 var img = $('img',this);
@@ -1751,77 +1732,77 @@ img.attr("src","/Portal3/GBQ/Interface/fleche_bas_noir2.gif");
 
 $('#LanguageComboBox').change(function() {
 var sOption = $("#LanguageComboBox option:selected");
-var url = "Obj_176681383601676?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Lang=" + sOption.val();
+var url = "Obj_302161390041887?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Lang=" + sOption.val();
 document.location.href = url;
 
 });
 
 
 
+  
 
 
-
-});
+     });  
 function fnOpenMediaRef(strURL, strTitle, strMode) {
-strMode = strMode.toLowerCase();
-
-if (strMode == "popup") {
-PopupUrl(strUrl);
-}
-else if (strMode == "option") {
-window.location= ( unescape (strURL) + "&Lang=GER" );
-}
-else if (strMode == "replace") {
-window.location = unescape (strURL);
-}
-else { // either new, include, embed, default
-var width = 1024;
-if (screen.width - 50 < width) {
-width = screen.width - 50;
-}
-var height = 768;
-if (screen.height -100 < height) {
-height = screen.height -100;
-}
-window.open ( unescape ( strURL ), '_blank', 'scrollbars=yes,resizable=yes,width='+width+ ',height='+height );
-}
-
-try{event.returnValue = false;}
-catch(er){}
-}
-
-function gotoUrl(url)
-{
-//alert(url);
-var t = url;
-var isComplete = false;
-if (t.indexOf("http:")==0)
-{
-isComplete = true;
-}
-if (t.indexOf("https:")==0)
-{
-isComplete = true;
-}
-if (t.indexOf("javascript:")==0)
-{
-isComplete = true;
-}
-if (t.indexOf("jscript:")==0)
-{
-isComplete = true;
-}
-
-if
-(!isComplete)
-{
-var temp = "";
-temp +=t;
-t = temp;
-//alert("doctored url is "+t);
-}
-window.location.href= t;
-}
+                strMode = strMode.toLowerCase();
+                
+                if (strMode == "popup") {
+                    PopupUrl(strUrl);
+                } 
+                else if (strMode == "option") {
+                    window.location= ( unescape (strURL) + "&Lang=GER" );
+                }
+                else if (strMode == "replace") {
+                    window.location = unescape (strURL);
+                }
+                else { // either new, include, embed, default
+                    var width = 1024;
+                    if (screen.width - 50 < width) {
+                        width = screen.width - 50;
+                    }
+                    var height = 768;
+                    if (screen.height -100 < height) {
+                        height = screen.height -100;
+                    }
+                    window.open ( unescape ( strURL ), '_blank', 'scrollbars=yes,resizable=yes,width='+width+ ',height='+height );
+                }
+                
+                try{event.returnValue = false;}
+                catch(er){}
+            }
+            
+            function gotoUrl(url)
+            {
+                //alert(url);
+                var t = url;
+                var isComplete = false;
+                if (t.indexOf("http:")==0)
+                {
+                   isComplete = true;
+                }
+                if (t.indexOf("https:")==0)
+                {
+                   isComplete = true;
+                }
+                if (t.indexOf("javascript:")==0)
+                {
+                   isComplete = true;
+                }
+                if (t.indexOf("jscript:")==0)
+                {
+                   isComplete = true;
+                }
+                  
+                if
+                    (!isComplete)
+                {
+                    var temp = "";
+                    temp +=t;
+                    t = temp;
+                    //alert("doctored url is "+t);
+                }
+                window.location.href= t;
+            }
 function OnLoadActions()
 {
 correctPNG();
@@ -1867,68 +1848,49 @@ return(a.innerHTML < b.innerHTML) ? 1 : -1;
 
 
 <script type="text/javascript">
-    $(document).ready(function() {
-    $("a[rel='GraphicalStockLink']").colorbox(
-    {
-    iframe: true,
-    width: 500,
-    height: 400
-    }
-    );
-    });
+			$(document).ready(function() {
+				$("a[rel='GraphicalStockLink']").colorbox(
+					{
+						iframe: true,
+						width: 500,
+						height: 400
+					}
+				);			
+			});
+
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <link rel="stylesheet" href="/script/lib/fancybox/jquery.fancybox-1.3.0.css" type="text/css" media="screen">
 <script type="text/javascript" src="/script/lib/fancybox/jquery.fancybox-1.3.0.pack.patch.js"></script>
 
 <script>
-    var syndeticConn = "false";
-    function DetailedBookCoverLoaded(isbn)
-    {
-    if( $('#BookCover').width() > 1)
-    {
-    $('.LargeBookCover').show();
-    }
-    BookCoverLoaded(isbn);
-    }
-    function BookCoverLoaded(isbn)
-    {
+var syndeticConn = "false";
+function DetailedBookCoverLoaded(isbn)
+{
+if( $('#BookCover').width() > 1)
+{
+$('.LargeBookCover').show();
+}
+BookCoverLoaded(isbn);
+}
+function BookCoverLoaded(isbn)
+{
 
-    if ( $('#BookCover').width() >1)
-    {
-    $('#EnlargeBookCover').show();
-    $('.LargeBookCover').click( function () {
-    ShowLargeCover("");
-    }).addClass('clickable');
-
-    }
-
-
-
-    }
-    function ShowLargeCover(isbn)
-    {
+if ( $('#BookCover').width() >1)
+{
+$('#EnlargeBookCover').show();
+$('.LargeBookCover').click( function () {
+ShowLargeCover("");
+}).addClass('clickable');
+                            
+}
 
 
+
+}
+function ShowLargeCover(isbn)
+{
 
 
 
@@ -1954,134 +1916,117 @@ return(a.innerHTML < b.innerHTML) ? 1 : -1;
 
 
 
-    var url = 'http://cover.ekz.de/9783522176514.jpg';
+
+
+var url = 'http://cover.ekz.de/9783522176514.jpg';
 
 
 
 
-    if( $('#BookCover').hasClass("SyndeticsCover"))
-    {
-    url = $("#BookCover").attr("src");
-    }
-    url = url.replace(/&amp;/gi, "&");
-    $.fancybox({
-    //'orig' : $(this),
-    'padding' : 0,
-    'href' : url,
-    'transitionIn' : 'elastic',
-    'transitionOut' : 'elastic'
-
-    });
-
-    }
+if( $('#BookCover').hasClass("SyndeticsCover"))
+{
+url = $("#BookCover").attr("src");
+}
+ url = url.replace(/&amp;/gi, "&");
+ $.fancybox({
+ //'orig' : $(this),
+ 'padding' : 0,
+ 'href' : url,
+ 'transitionIn' : 'elastic',
+ 'transitionOut' : 'elastic'
+ 
+ });
+   
+}
 </script>
 
 
 
 <script type="text/javascript">
+        
+			function PrintList2()
+	        {	  
+	            var dialogURL = "Obj_302161390041887?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&SubStyle=PrintPreview&View=Annotated&Style=Portal2&ParentStyle=Portal3";
+				  
+				PopupUrl2(dialogURL,'400','700','Druck-Vorschau');
+	        }
 
-    function PrintList2()
-    {
-    var dialogURL = "Obj_176681383601676?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&SubStyle=PrintPreview&View=Annotated&Style=Portal2&ParentStyle=Portal3";
-
-    PopupUrl2(dialogURL,'400','700','Druck-Vorschau');
-    }
 </script>
-
-
-
 
 
 <script type="text/javascript">
+		    
+			function BrowseUserReview(){
+			  var url = "APS_ZONES?fn=ShowUserReviews&q=T010228572&parent=Obj_302161390041887&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
+			  document.location = url;
+			}
+			
+            function AddNote(key, detailsHandle, linkElemAdd, linkElemRemove )
+            {
+                //$(linkElemAdd).hide();
+                //$(linkElemRemove).show();
+                        
+                $.getJSON("APS_NOTES2?Style=Portal3&Method=NoteItem", {"id": key , "itemHandle" : detailsHandle },
+                    function(data){
+                        
+                        if
+                            (data.success == "true")
+                        {
+                            $(linkElemAdd).hide();
+                            if (linkElemRemove != null) 
+                            {
+                                $(linkElemRemove).show();
+                            }
+                        }
+                        else
+                        {
+                            $(linkElemAdd).show();
+                            if
+                                (linkElemRemove != null)
+                            {
+                                $(linkElemRemove).hide();
+                            }
+                        }
+                });
+            }	
+            
+            function RemoveNote(key, linkElemAdd, linkElemRemove )
+            {
+                        
+                $.getJSON("APS_NOTES2?Style=Portal3&Method=DeleteNote", {"id": key,"padno": '-'},
+                    function(data){
+                        if
+                            (data.success == "true")
+                        {
+                            linkElemAdd.show();
+                            linkElemRemove.hide();
+                        }
+                        else
+                        {
+                            linkElemAdd.hide();
+                            linkElemRemove.show();
+                        }
+                });
+            }
+            
+            
+            function MakeNote( key, detailsHandle ) {
+                var ae = document.getElementById('AddNote_'+ key);
+                var elem = $(ae);
+                var re = document.getElementById('RemoveNote_'+key);
+                var relem = $(re);
+                AddNote(key, detailsHandle, elem, relem);					
+            }	
+            
+            function DeleteNote(key) {
+                var ae = document.getElementById('AddNote_'+ key);
+                var elem = $(ae);
+                var re = document.getElementById('RemoveNote_'+key);
+                var relem = $(re);				
+                RemoveNote(key,  elem, relem );
+            }           
 
-    function BrowseUserReview(){
-    var url = "APS_ZONES?fn=ShowUserReviews&q=T010228572&parent=Obj_176681383601676&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
-    document.location = url;
-    }
-
-    function AddNote(key, detailsHandle, linkElemAdd, linkElemRemove )
-    {
-    //$(linkElemAdd).hide();
-    //$(linkElemRemove).show();
-
-    $.getJSON("APS_NOTES2?Style=Portal3&Method=NoteItem", {"id": key , "itemHandle" : detailsHandle },
-    function(data){
-
-    if
-    (data.success == "true")
-    {
-    $(linkElemAdd).hide();
-    if (linkElemRemove != null)
-    {
-    $(linkElemRemove).show();
-    }
-    }
-    else
-    {
-    $(linkElemAdd).show();
-    if
-    (linkElemRemove != null)
-    {
-    $(linkElemRemove).hide();
-    }
-    }
-    });
-    }
-
-    function RemoveNote(key, linkElemAdd, linkElemRemove )
-    {
-
-    $.getJSON("APS_NOTES2?Style=Portal3&Method=DeleteNote", {"id": key,"padno": '-'},
-    function(data){
-    if
-    (data.success == "true")
-    {
-    linkElemAdd.show();
-    linkElemRemove.hide();
-    }
-    else
-    {
-    linkElemAdd.hide();
-    linkElemRemove.show();
-    }
-    });
-    }
-
-
-    function MakeNote( key, detailsHandle ) {
-    var ae = document.getElementById('AddNote_'+ key);
-    var elem = $(ae);
-    var re = document.getElementById('RemoveNote_'+key);
-    var relem = $(re);
-    AddNote(key, detailsHandle, elem, relem);
-    }
-
-    function DeleteNote(key) {
-    var ae = document.getElementById('AddNote_'+ key);
-    var elem = $(ae);
-    var re = document.getElementById('RemoveNote_'+key);
-    var relem = $(re);
-    RemoveNote(key,  elem, relem );
-    }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <link href="/Portal3/CSS/Biblio/Iris09.css" rel="stylesheet" type="text/css" />
@@ -2089,10 +2034,10 @@ return(a.innerHTML < b.innerHTML) ? 1 : -1;
 <!--[if IE 7]><link href="/Portal3/CSS/Biblio/Iris09-IE7.css" rel="stylesheet" type="text/css" /><![endif]-->
 
 <script type="text/javascript" language="javascript">
-    var reso=screen.width
-    if(reso < 900) {
-    document.write ('<link href="/Portal3/CSS/Biblio/Iris09-800.css" rel="stylesheet" type="text/css" />');
-    }
+var reso=screen.width
+	if(reso < 900) {
+document.write ('<link href="/Portal3/CSS/Biblio/Iris09-800.css" rel="stylesheet" type="text/css" />');
+	}
 </script>
 
 
@@ -2436,7 +2381,7 @@ color: #777777;
 <div id="Entete"  style="background-image:url(/Portal3/img/header_GER_HM_new2.jpg)" >
 
 
-    <a href="APS_ZONES?fn=QuickSearch&amp;Lang=GER&amp;Style=Portal3"
+    <a href="http://www.buecherhallen.de"
 
        target="_top"
 
@@ -2448,36 +2393,8 @@ color: #777777;
     <div id="ZoneMenuEntete">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <a href="Obj_176681383601676?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Lang=ENG" title="Go to the page in English">English</a>
-
-
-
+        <a href="Obj_302161390041887?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Lang=ENG"
+           title="Go to the page in English">English</a>
 
 
     </div>
@@ -2968,3627 +2885,11 @@ color: #777777;
 
 
 <td valign="top">
-<div id="leftMenuContainer" >
+    <div id="leftMenuContainer">
 
+        &nbsp;
 
-
-
-
-<div class="FacetsContainer" id = "theFacetsContainer">
-<script>
-    $( function () {
-    var h1 = $('.searchHits').height() + $('.SearchStatementBox').height() + 84;
-    $('.FacetBoxHeader').css('margin-top',h1+"px");
-    $('#RefineQueryApply').click( function (){
-    $('#RefineQueryForm').each( function () {
-    this.submit();
-    });
-    });
-    });
-</script>
-<div class="FacetBoxHeader">Einschränken der Suche</div>
-
-
-<div class="FacetBox">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="FacetHeader arrow_down">
-    <div style="float:left">Zweigstelle</div>
-    <img alt="Öffnen" src="/Portal3/GBQ/Interface/fleche_bas_noir.gif" style="float:right;margin-top:2px;margin-right:5px;"/>
-    <div style="clear:both"></div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="FacetsList FacetsSortMeAsc" style="display: none;">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=A&display=Alstertal" title="Schränken Sie Ihre Suche nach Alstertal ein">Alstertal <span class="FacetCount">(30)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=B&display=Bergedorf" title="Schränken Sie Ihre Suche nach Bergedorf ein">Bergedorf <span class="FacetCount">(14)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=B1&display=Neu%20Allerm%26ouml;he" title="Schränken Sie Ihre Suche nach Neu Allermöhe ein">Neu Allermöhe <span class="FacetCount">(21)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=C&display=*%20Zentralbibliothek" title="Schränken Sie Ihre Suche nach * Zentralbibliothek ein">* Zentralbibliothek <span class="FacetCount">(14)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=C1&display=Finkenwerder" title="Schränken Sie Ihre Suche nach Finkenwerder ein">Finkenwerder <span class="FacetCount">(14)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=C2&display=Billstedt" title="Schränken Sie Ihre Suche nach Billstedt ein">Billstedt <span class="FacetCount">(14)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=C3&display=M%26uuml;mmelmannsberg" title="Schränken Sie Ihre Suche nach Mümmelmannsberg ein">Mümmelmannsberg <span class="FacetCount">(5)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=D&display=Dehnhaide" title="Schränken Sie Ihre Suche nach Dehnhaide ein">Dehnhaide <span class="FacetCount">(14)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=E&display=Winterhude" title="Schränken Sie Ihre Suche nach Winterhude ein">Winterhude <span class="FacetCount">(28)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=ELB&display=Elbvororte" title="Schränken Sie Ihre Suche nach Elbvororte ein">Elbvororte <span class="FacetCount">(32)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=G2&display=Fuhlsb%26uuml;ttel" title="Schränken Sie Ihre Suche nach Fuhlsbüttel ein">Fuhlsbüttel <span class="FacetCount">(23)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=G5&display=Langenhorn" title="Schränken Sie Ihre Suche nach Langenhorn ein">Langenhorn <span class="FacetCount">(21)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=K&display=Barmbek" title="Schränken Sie Ihre Suche nach Barmbek ein">Barmbek <span class="FacetCount">(23)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=K1&display=Steilshoop" title="Schränken Sie Ihre Suche nach Steilshoop ein">Steilshoop <span class="FacetCount">(15)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=L&display=%2E%20Kinderbibliothek" title="Schränken Sie Ihre Suche nach . Kinderbibliothek ein">. Kinderbibliothek <span class="FacetCount">(41)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=L2&display=Eidelstedt" title="Schränken Sie Ihre Suche nach Eidelstedt ein">Eidelstedt <span class="FacetCount">(20)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=L3&display=Niendorf" title="Schränken Sie Ihre Suche nach Niendorf ein">Niendorf <span class="FacetCount">(26)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=L5&display=Lokstedt" title="Schränken Sie Ihre Suche nach Lokstedt ein">Lokstedt <span class="FacetCount">(29)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=L6&display=Schnelsen" title="Schränken Sie Ihre Suche nach Schnelsen ein">Schnelsen <span class="FacetCount">(11)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=N&display=Altona" title="Schränken Sie Ihre Suche nach Altona ein">Altona <span class="FacetCount">(33)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=N6&display=Osdorfer%20Born" title="Schränken Sie Ihre Suche nach Osdorfer Born ein">Osdorfer Born <span class="FacetCount">(11)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=R&display=Harburg" title="Schränken Sie Ihre Suche nach Harburg ein">Harburg <span class="FacetCount">(22)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=R2&display=Wilhelmsburg" title="Schränken Sie Ihre Suche nach Wilhelmsburg ein">Wilhelmsburg <span class="FacetCount">(12)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=R4&display=Neugraben" title="Schränken Sie Ihre Suche nach Neugraben ein">Neugraben <span class="FacetCount">(15)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=R7&display=Kirchdorf" title="Schränken Sie Ihre Suche nach Kirchdorf ein">Kirchdorf <span class="FacetCount">(11)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=S&display=Wandsbek" title="Schränken Sie Ihre Suche nach Wandsbek ein">Wandsbek <span class="FacetCount">(30)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=S3&display=Rahlstedt" title="Schränken Sie Ihre Suche nach Rahlstedt ein">Rahlstedt <span class="FacetCount">(27)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=S5&display=Farmsen" title="Schränken Sie Ihre Suche nach Farmsen ein">Farmsen <span class="FacetCount">(30)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=S6&display=Bramfeld" title="Schränken Sie Ihre Suche nach Bramfeld ein">Bramfeld <span class="FacetCount">(23)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=S8&display=Hohenhorst" title="Schränken Sie Ihre Suche nach Hohenhorst ein">Hohenhorst <span class="FacetCount">(10)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=T&display=Eimsb%26uuml;ttel" title="Schränken Sie Ihre Suche nach Eimsbüttel ein">Eimsbüttel <span class="FacetCount">(24)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=V&display=Volksdorf" title="Schränken Sie Ihre Suche nach Volksdorf ein">Volksdorf <span class="FacetCount">(24)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=W&display=Holstenstrasse" title="Schränken Sie Ihre Suche nach Holstenstrasse ein">Holstenstrasse <span class="FacetCount">(17)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=StockHomeLocationCode&term=X&display=Horn" title="Schränken Sie Ihre Suche nach Horn ein">Horn <span class="FacetCount">(12)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="FacetHeader arrow_down">
-    <div style="float:left">Sprache</div>
-    <img alt="Öffnen" src="/Portal3/GBQ/Interface/fleche_bas_noir.gif" style="float:right;margin-top:2px;margin-right:5px;"/>
-    <div style="clear:both"></div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="FacetsList FacetsSortMeAsc" style="display: none;">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=CodeLanguage&term=ger&display=deutsch" title="Schränken Sie Ihre Suche nach deutsch ein">deutsch <span class="FacetCount">(79)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=CodeLanguage&term=pol&display=polnisch" title="Schränken Sie Ihre Suche nach polnisch ein">polnisch <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=CodeLanguage&term=rus&display=russisch" title="Schränken Sie Ihre Suche nach russisch ein">russisch <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=CodeLanguage&term=spa&display=spanisch" title="Schränken Sie Ihre Suche nach spanisch ein">spanisch <span class="FacetCount">(3)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="FacetHeader arrow_down">
-    <div style="float:left">Kategorie</div>
-    <img alt="Öffnen" src="/Portal3/GBQ/Interface/fleche_bas_noir.gif" style="float:right;margin-top:2px;margin-right:5px;"/>
-    <div style="clear:both"></div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="FacetsList FacetsSortMeAsc" style="display: none;">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=BibLevel&term=0&display=Sonstige" title="Schränken Sie Ihre Suche nach Sonstige ein">Sonstige <span class="FacetCount">(12)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=BibLevel&term=esa&display=Erw%2E%20Sachbuch" title="Schränken Sie Ihre Suche nach Erw. Sachbuch ein">Erw. Sachbuch <span class="FacetCount">(3)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=BibLevel&term=kbs&display=Kinderbestseller" title="Schränken Sie Ihre Suche nach Kinderbestseller ein">Kinderbestseller <span class="FacetCount">(38)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="FacetHeader arrow_down">
-    <div style="float:left">Medienart</div>
-    <img alt="Öffnen" src="/Portal3/GBQ/Interface/fleche_bas_noir.gif" style="float:right;margin-top:2px;margin-right:5px;"/>
-    <div style="clear:both"></div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="FacetsList FacetsSortMeAsc" style="display: none;">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=MaterialType&term=acd&display=Compact%20Disk" title="Schränken Sie Ihre Suche nach Compact Disk ein">Compact Disk <span class="FacetCount">(24)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=MaterialType&term=ack&display=Kinderkassette" title="Schränken Sie Ihre Suche nach Kinderkassette ein">Kinderkassette <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=MaterialType&term=blu&display=Blu-Ray%20Disk" title="Schränken Sie Ihre Suche nach Blu-Ray Disk ein">Blu-Ray Disk <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=MaterialType&term=buch&display=Buch" title="Schränken Sie Ihre Suche nach Buch ein">Buch <span class="FacetCount">(41)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=MaterialType&term=bue&display=Buch%20Erwachsene" title="Schränken Sie Ihre Suche nach Buch Erwachsene ein">Buch Erwachsene <span class="FacetCount">(3)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=MaterialType&term=buk&display=Buch%20Kinder%2FJugend" title="Schränken Sie Ihre Suche nach Buch Kinder/Jugend ein">Buch Kinder/Jugend <span class="FacetCount">(38)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=MaterialType&term=cdr&display=CD-ROM" title="Schränken Sie Ihre Suche nach CD-ROM ein">CD-ROM <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=MaterialType&term=dvd&display=DVD" title="Schränken Sie Ihre Suche nach DVD ein">DVD <span class="FacetCount">(9)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=MaterialType&term=eaudio&display=eAudio" title="Schränken Sie Ihre Suche nach eAudio ein">eAudio <span class="FacetCount">(3)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=MaterialType&term=einfo&display=eInfo" title="Schränken Sie Ihre Suche nach eInfo ein">eInfo <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=MaterialType&term=not&display=Note" title="Schränken Sie Ihre Suche nach Note ein">Note <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=MaterialType&term=spi&display=Spiel" title="Schränken Sie Ihre Suche nach Spiel ein">Spiel <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=MaterialType&term=vhs&display=Video-VHS" title="Schränken Sie Ihre Suche nach Video-VHS ein">Video-VHS <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="FacetHeader arrow_down">
-    <div style="float:left">Jahr</div>
-    <img alt="Öffnen" src="/Portal3/GBQ/Interface/fleche_bas_noir.gif" style="float:right;margin-top:2px;margin-right:5px;"/>
-    <div style="clear:both"></div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="FacetsList FacetsSortMeDesc" style="display: none;">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=DateOfPublication&term=2010&display=2010" title="Schränken Sie Ihre Suche nach 2010 ein">2010 <span class="FacetCount">(12)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=DateOfPublication&term=2011&display=2011" title="Schränken Sie Ihre Suche nach 2011 ein">2011 <span class="FacetCount">(8)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=DateOfPublication&term=2004&display=2004" title="Schränken Sie Ihre Suche nach 2004 ein">2004 <span class="FacetCount">(6)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=DateOfPublication&term=2012&display=2012" title="Schränken Sie Ihre Suche nach 2012 ein">2012 <span class="FacetCount">(5)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=DateOfPublication&term=2013&display=2013" title="Schränken Sie Ihre Suche nach 2013 ein">2013 <span class="FacetCount">(5)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=DateOfPublication&term=2000&display=2000" title="Schränken Sie Ihre Suche nach 2000 ein">2000 <span class="FacetCount">(4)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=DateOfPublication&term=2005&display=2005" title="Schränken Sie Ihre Suche nach 2005 ein">2005 <span class="FacetCount">(4)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=DateOfPublication&term=2006&display=2006" title="Schränken Sie Ihre Suche nach 2006 ein">2006 <span class="FacetCount">(4)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=DateOfPublication&term=2007&display=2007" title="Schränken Sie Ihre Suche nach 2007 ein">2007 <span class="FacetCount">(4)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=DateOfPublication&term=2008&display=2008" title="Schränken Sie Ihre Suche nach 2008 ein">2008 <span class="FacetCount">(4)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=DateOfPublication&term=2009&display=2009" title="Schränken Sie Ihre Suche nach 2009 ein">2009 <span class="FacetCount">(4)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=DateOfPublication&term=1995&display=1995" title="Schränken Sie Ihre Suche nach 1995 ein">1995 <span class="FacetCount">(3)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=DateOfPublication&term=1990&display=1990" title="Schränken Sie Ihre Suche nach 1990 ein">1990 <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=DateOfPublication&term=1996&display=1996" title="Schränken Sie Ihre Suche nach 1996 ein">1996 <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=DateOfPublication&term=1999&display=1999" title="Schränken Sie Ihre Suche nach 1999 ein">1999 <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=DateOfPublication&term=2003&display=2003" title="Schränken Sie Ihre Suche nach 2003 ein">2003 <span class="FacetCount">(1)</span></a>
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="FacetHeader arrow_down">
-    <div style="float:left">Herausgeber</div>
-    <img alt="Öffnen" src="/Portal3/GBQ/Interface/fleche_bas_noir.gif" style="float:right;margin-top:2px;margin-right:5px;"/>
-    <div style="clear:both"></div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="FacetsList FacetsSortMeAsc" style="display: none;">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Thienemann&display=Thienemann" title="Schränken Sie Ihre Suche nach Thienemann ein">Thienemann <span class="FacetCount">(26)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Karussell&display=Karussell" title="Schränken Sie Ihre Suche nach Karussell ein">Karussell <span class="FacetCount">(7)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=•&lt;Der&gt;• Audio-Verl.&display=%E2%80%A2%26lt;Der%26gt;%E2%80%A2%20Audio-Verl%2E" title="Schränken Sie Ihre Suche nach •&lt;Der&gt;• Audio-Verl. ein">•<Der>• Audio-Verl. <span class="FacetCount">(5)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=S.A.D. Home Entertainment&display=S%2EA%2ED%2E%20Home%20Entertainment" title="Schränken Sie Ihre Suche nach S.A.D. Home Entertainment ein">S.A.D. Home Entertainment <span class="FacetCount">(4)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Noguer&display=Noguer" title="Schränken Sie Ihre Suche nach Noguer ein">Noguer <span class="FacetCount">(3)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Amfora&display=Amfora" title="Schränken Sie Ihre Suche nach Amfora ein">Amfora <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Der Audio Verlag&display=Der%20Audio%20Verlag" title="Schränken Sie Ihre Suche nach Der Audio Verlag ein">Der Audio Verlag <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Omnibus&display=Omnibus" title="Schränken Sie Ihre Suche nach Omnibus ein">Omnibus <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Pons&display=Pons" title="Schränken Sie Ihre Suche nach Pons ein">Pons <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Społeczny Instytut Wydawniczy Znak&display=Spo%C5%82eczny%20Instytut%20Wydawniczy%20Znak" title="Schränken Sie Ihre Suche nach Społeczny Instytut Wydawniczy Znak ein">Społeczny Instytut Wydawniczy Znak <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Wissenschaftliche Buchgesellschaft&display=Wissenschaftliche%20Buchgesellschaft" title="Schränken Sie Ihre Suche nach Wissenschaftliche Buchgesellschaft ein">Wissenschaftliche Buchgesellschaft <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term= S.A.D. Home Entertainment&display=%20S%2EA%2ED%2E%20Home%20Entertainment" title="Schränken Sie Ihre Suche nach  S.A.D. Home Entertainment ein"> S.A.D. Home Entertainment <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=DAV&display=DAV" title="Schränken Sie Ihre Suche nach DAV ein">DAV <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Eichborn&display=Eichborn" title="Schränken Sie Ihre Suche nach Eichborn ein">Eichborn <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Foreign Media Group&display=Foreign%20Media%20Group" title="Schränken Sie Ihre Suche nach Foreign Media Group ein">Foreign Media Group <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=HörbucHHamburg&display=H%C3%B6rbucHHamburg" title="Schränken Sie Ihre Suche nach HörbucHHamburg ein">HörbucHHamburg <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Hörbuch Hamburg&display=H%C3%B6rbuch%20Hamburg" title="Schränken Sie Ihre Suche nach Hörbuch Hamburg ein">Hörbuch Hamburg <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Karussell Musik und Video&display=Karussell%20Musik%20und%20Video" title="Schränken Sie Ihre Suche nach Karussell Musik und Video ein">Karussell Musik und Video <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Klett&display=Klett" title="Schränken Sie Ihre Suche nach Klett ein">Klett <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Kosmos&display=Kosmos" title="Schränken Sie Ihre Suche nach Kosmos ein">Kosmos <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Lighthouse Home Entertainment&display=Lighthouse%20Home%20Entertainment" title="Schränken Sie Ihre Suche nach Lighthouse Home Entertainment ein">Lighthouse Home Entertainment <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Munzinger-Archiv/Internationales Biographisches Archiv&display=Munzinger-Archiv%2FInternationales%20Biographisches%20Archiv" title="Schränken Sie Ihre Suche nach Munzinger-Archiv/Internationales Biographisches Archiv ein">Munzinger-Archiv/Internationales Biographisches Archiv <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=S.A.D Home Entertainment&display=S%2EA%2ED%20Home%20Entertainment" title="Schränken Sie Ihre Suche nach S.A.D Home Entertainment ein">S.A.D Home Entertainment <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=S.A.D.&display=S%2EA%2ED%2E" title="Schränken Sie Ihre Suche nach S.A.D. ein">S.A.D. <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Schneider-Verl. Hohengehren&display=Schneider-Verl%2E%20Hohengehren" title="Schränken Sie Ihre Suche nach Schneider-Verl. Hohengehren ein">Schneider-Verl. Hohengehren <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Silberfisch&display=Silberfisch" title="Schränken Sie Ihre Suche nach Silberfisch ein">Silberfisch <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=Terzio&display=Terzio" title="Schränken Sie Ihre Suche nach Terzio ein">Terzio <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=hr Media&display=hr%20Media" title="Schränken Sie Ihre Suche nach hr Media ein">hr Media <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=hrMedia&display=hrMedia" title="Schränken Sie Ihre Suche nach hrMedia ein">hrMedia <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=•&lt;Der&gt;&lt; Audio-Velag&display=%E2%80%A2%26lt;Der%26gt;%26lt;%20Audio-Velag" title="Schränken Sie Ihre Suche nach •&lt;Der&gt;&lt; Audio-Velag ein">•<Der>< Audio-Velag <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=PublisherFacet&term=•&lt;S&gt;• Fischer&display=%E2%80%A2%26lt;S%26gt;%E2%80%A2%20Fischer" title="Schränken Sie Ihre Suche nach •&lt;S&gt;• Fischer ein">•<S>• Fischer <span class="FacetCount">(1)</span></a>
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="FacetHeader arrow_down">
-    <div style="float:left">Schlagwort</div>
-    <img alt="Öffnen" src="/Portal3/GBQ/Interface/fleche_bas_noir.gif" style="float:right;margin-top:2px;margin-right:5px;"/>
-    <div style="clear:both"></div>
-</div>
-
-
-
-
-
-
-
-
-
-
-<div class="FacetsList" style="display: none;">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Ende, Miqieer&display=Ende,%20Miqieer" title="Schränken Sie Ihre Suche nach Ende, Miqieer ein">Ende, Miqieer <span class="FacetCount">(25)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Énte, Míchael&display=%C3%89nte,%20M%C3%ADchael" title="Schränken Sie Ihre Suche nach Énte, Míchael ein">Énte, Míchael <span class="FacetCount">(25)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Antolin&display=Antolin" title="Schränken Sie Ihre Suche nach Antolin ein">Antolin <span class="FacetCount">(14)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Klasse 2&display=Klasse%202" title="Schränken Sie Ihre Suche nach Klasse 2 ein">Klasse 2 <span class="FacetCount">(10)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Literatur-CD/Kinder [Texte]&display=Literatur-CD%2FKinder%20[Texte]" title="Schränken Sie Ihre Suche nach Literatur-CD/Kinder [Texte] ein">Literatur-CD/Kinder [Texte] <span class="FacetCount">(10)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Ende, Michael &lt;Schriftsteller&gt; / Jim Knopf und Lukas, der Lokomotivführer&display=Ende,%20Michael%20%26lt;Schriftsteller%26gt;%20%2F%20Jim%20Knopf%20und%20Lukas,%20der%20Lokomotivf%C3%BChrer" title="Schränken Sie Ihre Suche nach Ende, Michael &lt;Schriftsteller&gt; / Jim Knopf und Lukas, der Lokomotivführer ein">Ende, Michael <Schriftsteller> / Jim Knopf und Lukas, der Lokomotivführer <span class="FacetCount">(3)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Klasse 3&display=Klasse%203" title="Schränken Sie Ihre Suche nach Klasse 3 ein">Klasse 3 <span class="FacetCount">(3)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Englisch&display=Englisch" title="Schränken Sie Ihre Suche nach Englisch ein">Englisch <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Geschichte&display=Geschichte" title="Schränken Sie Ihre Suche nach Geschichte ein">Geschichte <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Kinderbuch&display=Kinderbuch" title="Schränken Sie Ihre Suche nach Kinderbuch ein">Kinderbuch <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Kindermusical [Noten]&display=Kindermusical%20[Noten]" title="Schränken Sie Ihre Suche nach Kindermusical [Noten] ein">Kindermusical [Noten] <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Kindersachbuch&display=Kindersachbuch" title="Schränken Sie Ihre Suche nach Kindersachbuch ein">Kindersachbuch <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Klasse 4&display=Klasse%204" title="Schränken Sie Ihre Suche nach Klasse 4 ein">Klasse 4 <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Musical [Noten]&display=Musical%20[Noten]" title="Schränken Sie Ihre Suche nach Musical [Noten] ein">Musical [Noten] <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Puppe [Noten]&display=Puppe%20[Noten]" title="Schränken Sie Ihre Suche nach Puppe [Noten] ein">Puppe [Noten] <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Wortschatz&display=Wortschatz" title="Schränken Sie Ihre Suche nach Wortschatz ein">Wortschatz <span class="FacetCount">(2)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Antirassismus &lt;Motiv&gt;&display=Antirassismus%20%26lt;Motiv%26gt;" title="Schränken Sie Ihre Suche nach Antirassismus &lt;Motiv&gt; ein">Antirassismus <Motiv> <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Bilderbücher&display=Bilderb%C3%BCcher" title="Schränken Sie Ihre Suche nach Bilderbücher ein">Bilderbücher <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=CD&display=CD" title="Schränken Sie Ihre Suche nach CD ein">CD <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=CD &lt;für Kinder&gt;&display=CD%20%26lt;f%C3%BCr%20Kinder%26gt;" title="Schränken Sie Ihre Suche nach CD &lt;für Kinder&gt; ein">CD <für Kinder> <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Darwin, Charles&display=Darwin,%20Charles" title="Schränken Sie Ihre Suche nach Darwin, Charles ein">Darwin, Charles <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Darwin, Charles / Journal of researches into the natural history and geology of the countries visited during the voyage of H.M.S. Beagle round the word&display=Darwin,%20Charles%20%2F%20Journal%20of%20researches%20into%20the%20natural%20history%20and%20geology%20of%20the%20countries%20visited%20during%20the%20voyage%20of%20H%2EM%2ES%2E%20Beagle%20round%20the%20word" title="Schränken Sie Ihre Suche nach Darwin, Charles / Journal of researches into the natural history and geology of the countries visited during the voyage of H.M.S. Beagle round the word ein">Darwin, Charles / Journal of researches into the natural history and geology of the countries visited during the voyage of H.M.S. Beagle round the word <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Deutschunterricht&display=Deutschunterricht" title="Schränken Sie Ihre Suche nach Deutschunterricht ein">Deutschunterricht <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Ende, Michael&display=Ende,%20Michael" title="Schränken Sie Ihre Suche nach Ende, Michael ein">Ende, Michael <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Erzählerische Bilderbücher&display=Erz%C3%A4hlerische%20Bilderb%C3%BCcher" title="Schränken Sie Ihre Suche nach Erzählerische Bilderbücher ein">Erzählerische Bilderbücher <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Evolutionstheorie&display=Evolutionstheorie" title="Schränken Sie Ihre Suche nach Evolutionstheorie ein">Evolutionstheorie <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Humoristische Darstellung&display=Humoristische%20Darstellung" title="Schränken Sie Ihre Suche nach Humoristische Darstellung ein">Humoristische Darstellung <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Interkulturell [IK/SACH]&display=Interkulturell%20[IK%2FSACH]" title="Schränken Sie Ihre Suche nach Interkulturell [IK/SACH] ein">Interkulturell [IK/SACH] <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Interkulturelle Erziehung&display=Interkulturelle%20Erziehung" title="Schränken Sie Ihre Suche nach Interkulturelle Erziehung ein">Interkulturelle Erziehung <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Jim Knopf und Lukas, der Lokomotivführer&display=Jim%20Knopf%20und%20Lukas,%20der%20Lokomotivf%C3%BChrer" title="Schränken Sie Ihre Suche nach Jim Knopf und Lukas, der Lokomotivführer ein">Jim Knopf und Lukas, der Lokomotivführer <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Jugendliteratur&display=Jugendliteratur" title="Schränken Sie Ihre Suche nach Jugendliteratur ein">Jugendliteratur <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Kinderliteratur&display=Kinderliteratur" title="Schränken Sie Ihre Suche nach Kinderliteratur ein">Kinderliteratur <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Kinderspiel&display=Kinderspiel" title="Schränken Sie Ihre Suche nach Kinderspiel ein">Kinderspiel <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Literaturkassette/Kinder [Texte]&display=Literaturkassette%2FKinder%20[Texte]" title="Schränken Sie Ihre Suche nach Literaturkassette/Kinder [Texte] ein">Literaturkassette/Kinder [Texte] <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Nationalsozialismus&display=Nationalsozialismus" title="Schränken Sie Ihre Suche nach Nationalsozialismus ein">Nationalsozialismus <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Pappbilderbücher mit und ohne Zusatzteile, Fühlbilderbücher&display=Pappbilderb%C3%BCcher%20mit%20und%20ohne%20Zusatzteile,%20F%C3%BChlbilderb%C3%BCcher" title="Schränken Sie Ihre Suche nach Pappbilderbücher mit und ohne Zusatzteile, Fühlbilderbücher ein">Pappbilderbücher mit und ohne Zusatzteile, Fühlbilderbücher <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Philosophie&display=Philosophie" title="Schränken Sie Ihre Suche nach Philosophie ein">Philosophie <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Rassismus &lt;Motiv&gt;&display=Rassismus%20%26lt;Motiv%26gt;" title="Schränken Sie Ihre Suche nach Rassismus &lt;Motiv&gt; ein">Rassismus <Motiv> <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Rezeption&display=Rezeption" title="Schränken Sie Ihre Suche nach Rezeption ein">Rezeption <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=SubjectHeadingFacet&term=Vorlesebuch [IK/KI]&display=Vorlesebuch%20[IK%2FKI]" title="Schränken Sie Ihre Suche nach Vorlesebuch [IK/KI] ein">Vorlesebuch [IK/KI] <span class="FacetCount">(1)</span></a>
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="FacetHeader arrow_down">
-    <div style="float:left">Autor</div>
-    <img alt="Öffnen" src="/Portal3/GBQ/Interface/fleche_bas_noir.gif" style="float:right;margin-top:2px;margin-right:5px;"/>
-    <div style="clear:both"></div>
-</div>
-
-
-
-
-
-
-
-
-
-
-<div class="FacetsList" style="display: none;">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=AuthorFacet&term=Berg, Christian&display=Berg,%20Christian" title="Schränken Sie Ihre Suche nach Berg, Christian ein">Berg, Christian <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=AuthorFacet&term=Ende, Michael&display=Ende,%20Michael" title="Schränken Sie Ihre Suche nach Ende, Michael ein">Ende, Michael <span class="FacetCount">(25)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=AuthorFacet&term=Moser, Friedhelm&display=Moser,%20Friedhelm" title="Schränken Sie Ihre Suche nach Moser, Friedhelm ein">Moser, Friedhelm <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=AuthorFacet&term=Rösch, Heidi&display=R%C3%B6sch,%20Heidi" title="Schränken Sie Ihre Suche nach Rösch, Heidi ein">Rösch, Heidi <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=AuthorFacet&term=Voss, Julia&display=Voss,%20Julia" title="Schränken Sie Ihre Suche nach Voss, Julia ein">Voss, Julia <span class="FacetCount">(1)</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <a class="FacetLinkA" href="Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=RefineSearch&index=AuthorFacet&term=Wecker, Konstantin&display=Wecker,%20Konstantin" title="Schränken Sie Ihre Suche nach Wecker, Konstantin ein">Wecker, Konstantin <span class="FacetCount">(3)</span></a>
-
-
-
-
-</div>
-
-
-
-
-
-</div>
-</div>
-&nbsp;
-
-
-
-&nbsp;
-
-</div>
+    </div>
 </td>
 
 
@@ -6610,10 +2911,7 @@ color: #777777;
     </div>
 
 
-
-    <h1 class="titleText1">Ihre Suche</h1>
-
-
+    <h1 class="titleText1">Kataloginformation</h1>
 
 
 </div>
@@ -6627,104 +2925,12 @@ color: #777777;
 
 
 
-
-
-
-
-
-
-
-
-<div class=searchStatementBox>
-    <table style="width:100%">
-        <tr>
-            <td class="searchStatementLabel">Suche </td>
-            <td class="searchStatementCell">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                Jim Knopf
-
-
-
-
-
-
-
-
-
-
-
-            </td>
-            <td class="searchStatementModifyCell">
-
-
-
-
-
-                <a id="buttonModifySearch" title="Suche ändern"
-                   target = ''
-                   tabindex=""
-                   class="button"
-                   href="Obj_176201383601653&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=ModifySearch"><span>Suche ändern</span></a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <a id="buttonNewSearch" title="Neue Suche"
-                   target = ''
-                   tabindex=""
-                   class="button"
-                   href="APS_ZONES?fn=QuickSearch&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8"><span>Neue Suche</span></a>
-
-
-
-
-
-
-
-
-            </td>
-
-        </tr>
-    </table>
-</div>
-<div class="searchHits">
-    Details
-</div>
-
-
-
-
 <div class="SearchResultsHeader">
 
-    <FORM name=sortForm id=sortForm action="Obj_176681383601676?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8" method="POST" style="padding:0px;margin:0px;">
+    <FORM name=sortForm id=sortForm action="Obj_302161390041887?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8"
+          method="POST" style="padding:0px;margin:0px;">
         <INPUT TYPE=HIDDEN NAME="DB" VALUE = "Catalogue">
-        <INPUT TYPE=HIDDEN NAME="Set" VALUE = "SET3">
+        <INPUT TYPE=HIDDEN NAME="Set" VALUE="<FONT color='red'>Name not found </FONT>">
         <INPUT TYPE=HIDDEN NAME="BrowseAsHloc" VALUE= "">
         <INPUT TYPE=HIDDEN NAME="Query.PageSize" VALUE= "10">
         <INPUT type='hidden' name="Style" value="Portal3" />
@@ -6738,7 +2944,9 @@ color: #777777;
             <tr>
                 <td class="SearchResultsHeaderSortCell" width="100%">
 
-                    <a class="pageNavLink" href="Obj_176251383601654&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8" title="Zurück zur Ergebnisliste">Zurück zur Ergebnisliste</a>
+                    <a class="pageNavLink"
+                       href="Obj_273091390040882&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8"
+                       title="Zurück zur Ergebnisliste">Zurück zur Ergebnisliste</a>
 
 
                 </td>
@@ -6751,16 +2959,9 @@ color: #777777;
 
 
 
-                    <a class="pageNavLink" href='Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=GetToRecordInList&PosInSet=1&PageSize=10' title="Zum ersten Eintrag wechseln"><img class="navigation_icon" id="navigation-icon-fisrt"  alt="Erster Eintrag" src="/portal3/IMG/ICON/ende_links.png"/></a>
-                    <a class="pageNavLink" href='Obj_176681383601676?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=PrevRec&PageSize=10' title="Zum vorherigen Eintrag"><img class="navigation_icon" id="navigation-icon-previous" alt="Vorheriger Eintrag" src="/portal3/IMG/ICON/zurueck.png"/></a>
 
 
-                    <label for="SearchResultsPage">Seite:</label> <input disabled="disabled" id="SearchResultsPage" name="Query.Page" value="3" class="SearchResultsPageField">
 
-
-                    von 86
-                    <a class="pageNavLink" href='Obj_176681383601676?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=NextRec&PageSize=10' title="Zum nächsten Eintrag"><img class="navigation_icon" id="navigation-icon-next" alt="Nächster Eintrag" src="/portal3/IMG/ICON/weiter.png"/></a>
-                    <a class="pageNavLink" href='Obj_176251383601654?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=GetToRecordInList&PosInSet=86&PageSize=10' title="Zum letzten Eintrag wechseln"><img class="navigation_icon" id="navigation-icon-last" alt="Letzter Eintrag" src="/portal3/IMG/ICON/ende_rechts.png"/></a>
 
 
 
@@ -6902,7 +3103,7 @@ color: #777777;
                     <td width="90" nowrap align="left"><!-- Titel -->&nbsp;</td>
                     <td>&nbsp;</td>
                     <td width=16><!--
-													<IMG align="absmiddle" ALT="Buch Kinder/Jugendliche" src='IMG/MAT/Book_New1b.gif'/>	
+													<IMG align="absmiddle" ALT="Buch Kinder/Jugendliche" src='IMG/MAT/ic_buch_grau.png'/>	
 												 -->
                         &nbsp;
                     </td>
@@ -7211,75 +3412,12 @@ color: #777777;
     <td valign="top" class="darkLink">
 
 
+        <a class="darkLink"
+           href="APS_CAT_IDENTIFY?Method=CatalogueExplore&DB=Catalogue&ExploreType=Name&Stem=%7B%20%22100%22%7B%20%20%22INDS%22%3D%221%20%22%20%20%22%24a%22%3D%22Ende%2C%20Michael%22%20%20%22INDS%22%3D%221%20%22%20%20%22INDS%22%3D%221%20%22%20%7D%7D&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Parent=Obj_302161390041887?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&BrowseAsHloc="
+           title="Suchen nach der Quelle.">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <a class="darkLink" href="APS_CAT_IDENTIFY?Method=CatalogueExplore&DB=Catalogue&ExploreType=Name&Stem=%7B%20%22100%22%7B%20%20%22INDS%22%3D%221%20%22%20%20%22%24a%22%3D%22Ende%2C%20Michael%22%20%20%22INDS%22%3D%221%20%22%20%20%22INDS%22%3D%221%20%22%20%7D%7D&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Parent=Obj_176681383601676?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&BrowseAsHloc=" title="Suchen nach der Quelle.">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            Ende, Michael
+        Ende, Michael
 
 
 
@@ -8101,72 +4239,71 @@ color: #777777;
 
 <SCRIPT type="text/javascript">
 
-    function InsertStockForBranch( branch, html )
-    {
-    var h = document.getElementById("stock_header_"+ branch);
-    var e = document.getElementById("stock_content_"+ branch);
+			function InsertStockForBranch( branch, html )
+			{
+				var h = document.getElementById("stock_header_"+ branch);
+				var e = document.getElementById("stock_content_"+ branch);
+			
+				if ( h != null)
+				{
+					h.style.display = "block";
+				}	
+				if ( e != null)
+				{
+					e.innerHTML= html;
+				}
+				ofs++;
+				StockUpdateRequest();
+			}
+			
+			var branches = [];
+			var ofs =0;
+			
+			function StockUpdateRequest()
+			{
+				if
+					(branches.length > ofs)
+				{
+					var b = branches[ofs];
+					
+					var f = document.getElementById("stockFetch");
+					
+					if
+						(f)
+					{
+						f.src = "Obj_302161390041887?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=StockAtBranch&Branch=" + b;
+ 					}
+				}
+			}
 
-    if ( h != null)
-    {
-    h.style.display = "block";
-    }
-    if ( e != null)
-    {
-    e.innerHTML= html;
-    }
-    ofs++;
-    StockUpdateRequest();
-    }
+			function doLinkBoxDetails(url,link)
+			{
+				var strTitle;
+				strTitle = "";
+				fnLaunchBrowse ( url, strTitle, link, 800 );
+				if (event.returnValue) event.returnValue = false;
+			}
 
-    var branches = [];
-    var ofs =0;
-
-    function StockUpdateRequest()
-    {
-    if
-    (branches.length > ofs)
-    {
-    var b = branches[ofs];
-
-    var f = document.getElementById("stockFetch");
-
-    if
-    (f)
-    {
-    f.src = "Obj_176681383601676?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=StockAtBranch&Branch=" + b;
-    }
-    }
-    }
-
-    function doLinkBoxDetails(url,link)
-    {
-    var strTitle;
-    strTitle = "";
-    fnLaunchBrowse ( url, strTitle, link, 800 );
-    if (event.returnValue) event.returnValue = false;
-    }
-
-    function doMoreDetails(isMom,link)
-    {
-
-    var strTitle;
-    if (isMom == 1)
-    {
-    strTitle = "";
-    }
-    else
-    {
-    strTitle = "Ansicht unter Amazon"
-    }
-
-    fnLaunchBrowse ( encodeURI(link), strTitle, "1", 710 );
-    if (event.returnValue ) event.returnValue = false;
-    }
-
+			function doMoreDetails(isMom,link)
+			{
+				
+				var strTitle;				
+				if (isMom == 1)
+				{
+					strTitle = "";
+				}
+				else
+				{
+					strTitle = "Ansicht unter Amazon"
+				}
+			
+				fnLaunchBrowse ( encodeURI(link), strTitle, "1", 710 );
+				if (event.returnValue ) event.returnValue = false;
+			}
+	
+			
 
 </SCRIPT>
-
-
 
 
 <br>
@@ -8187,62 +4324,11 @@ color: #777777;
 
 
     Kinderbestand
-    <b>b @Ende+</b>
-    <!--  M59 160 174 X  -->
-
-
-    Exemplar ist <b>verfügbar</b>.
-
-
-
-
-
-    <br>
-
-
-
-    Kinderbestand
     <b>b @ENDE+#Klassiker</b>
     <!--  M59 597 398 X  -->
 
-    <!-- This misleadingly named flag actually
-     means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
 
-    <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    20/11/2013
-
-
-
-
-
-
-
-
-
-    <br>
-
-
-
-    Kinderbestand
-    <b>b @ENDE+#Klassiker</b>
-    <!--  M59 597 399 1  -->
-
-    <!-- This misleadingly named flag actually
-     means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
-
-    <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    25/11/2013
-
-
-
-
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -8255,18 +4341,45 @@ color: #777777;
 
     <!-- This misleadingly named flag actually
      means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
+    Exemplar derzeit <b>entliehen</b>.
 
     <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    30/11/2013
+    Fälligkeitsdatum
+    11/02/2014
+
+
+    <br>
 
 
 
+    Kinderbestand
+    <b>b @ENDE+#Klassiker</b>
+    <!--  M59 597 399 1  -->
+
+    <!-- This misleadingly named flag actually
+     means "not in free stock here" -->
+    Exemplar derzeit <b>entliehen</b>.
+
+    <!-- First item truly is on loan -->
+    Fälligkeitsdatum
+    13/02/2014
+
+
+    <br>
 
 
 
+    Kinderbestand
+    <b>b @Ende+</b>
+    <!--  M59 160 174 X  -->
 
+    <!-- This misleadingly named flag actually
+     means "not in free stock here" -->
+    Exemplar derzeit <b>entliehen</b>.
+
+    <!-- First item truly is on loan -->
+    Fälligkeitsdatum
+    14/02/2014
 
 
     <br>
@@ -8297,10 +4410,7 @@ color: #777777;
     <!--  M58 254 872 4  -->
 
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -8327,20 +4437,8 @@ color: #777777;
     <b>b @ENDE</b>
     <!--  M60 294 662 6  -->
 
-    <!-- This misleadingly named flag actually
-     means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
 
-    <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    12/11/2013
-
-
-
-
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -8353,18 +4451,11 @@ color: #777777;
 
     <!-- This misleadingly named flag actually
      means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
+    Exemplar derzeit <b>entliehen</b>.
 
     <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    20/11/2013
-
-
-
-
-
-
-
+    Fälligkeitsdatum
+    11/02/2014
 
 
     <br>
@@ -8393,18 +4484,11 @@ color: #777777;
 
     <!-- This misleadingly named flag actually
      means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
+    Exemplar derzeit <b>entliehen</b>.
 
     <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    12/11/2013
-
-
-
-
-
-
-
+    Fälligkeitsdatum
+    07/02/2014
 
 
     <br>
@@ -8431,11 +4515,13 @@ color: #777777;
     <b>b @ENDE</b>
     <!--  M59 104 184 4  -->
 
+    <!-- This misleadingly named flag actually
+     means "not in free stock here" -->
+    Exemplar derzeit <b>entliehen</b>.
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    <!-- First item truly is on loan -->
+    Fälligkeitsdatum
+    11/02/2014
 
 
     <br>
@@ -8463,10 +4549,7 @@ color: #777777;
     <!--  M58 034 066 3  -->
 
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -8495,14 +4578,7 @@ color: #777777;
 
     <!-- This misleadingly named flag actually
      means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
-
-
-
-
-
-
-
+    Exemplar derzeit <b>entliehen</b>.
 
 
     <br>
@@ -8526,23 +4602,16 @@ color: #777777;
 
 
     Kinderbestand
-    <b>b @Ende+</b>
-    <!--  M55 003 856 5  -->
+    <b>b @ENDE</b>
+    <!--  M59 333 276 6  -->
 
     <!-- This misleadingly named flag actually
      means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
+    Exemplar derzeit <b>entliehen</b>.
 
     <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    09/11/2013
-
-
-
-
-
-
-
+    Fälligkeitsdatum
+    04/02/2014
 
 
     <br>
@@ -8550,23 +4619,16 @@ color: #777777;
 
 
     Kinderbestand
-    <b>b @ENDE</b>
-    <!--  M59 333 276 6  -->
+    <b>b @Ende+</b>
+    <!--  M55 003 856 5  -->
 
     <!-- This misleadingly named flag actually
      means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
+    Exemplar derzeit <b>entliehen</b>.
 
     <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    03/12/2013
-
-
-
-
-
-
-
+    Fälligkeitsdatum
+    14/02/2014
 
 
     <br>
@@ -8591,13 +4653,15 @@ color: #777777;
 
     Kinderbestand
     <b>b @ENDE</b>
-    <!--  M59 335 868 2  -->
+    <!--  M60 809 715 X  -->
 
+    <!-- This misleadingly named flag actually
+     means "not in free stock here" -->
+    Exemplar derzeit <b>entliehen</b>.
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    <!-- First item truly is on loan -->
+    Fälligkeitsdatum
+    31/01/2014
 
 
     <br>
@@ -8606,13 +4670,15 @@ color: #777777;
 
     Kinderbestand
     <b>b @ENDE</b>
-    <!--  M60 809 715 X  -->
+    <!--  M59 335 868 2  -->
 
+    <!-- This misleadingly named flag actually
+     means "not in free stock here" -->
+    Exemplar derzeit <b>entliehen</b>.
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    <!-- First item truly is on loan -->
+    Fälligkeitsdatum
+    05/02/2014
 
 
     <br>
@@ -8639,11 +4705,13 @@ color: #777777;
     <b>b @ENDE</b>
     <!--  M59 458 602 X  -->
 
+    <!-- This misleadingly named flag actually
+     means "not in free stock here" -->
+    Exemplar derzeit <b>entliehen</b>.
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    <!-- First item truly is on loan -->
+    Fälligkeitsdatum
+    21/01/2014
 
 
     <br>
@@ -8671,10 +4739,7 @@ color: #777777;
     <!--  M59 856 430 2  -->
 
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -8702,10 +4767,7 @@ color: #777777;
     <!--  M59 728 308 3  -->
 
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -8734,18 +4796,11 @@ color: #777777;
 
     <!-- This misleadingly named flag actually
      means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
+    Exemplar derzeit <b>entliehen</b>.
 
     <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    12/11/2013
-
-
-
-
-
-
-
+    Fälligkeitsdatum
+    31/01/2014
 
 
     <br>
@@ -8772,20 +4827,24 @@ color: #777777;
     <b>b @Ende+</b>
     <!--  M58 766 613 4  -->
 
+
+    Exemplar <b>verfügbar</b>.
+
+
+    <br>
+
+
+    Kinderbestand
+    <b>b @ENDE</b>
+    <!--  M60 722 503 8  -->
+
     <!-- This misleadingly named flag actually
      means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
+    Exemplar derzeit <b>entliehen</b>.
 
     <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    16/11/2013
-
-
-
-
-
-
-
+    Fälligkeitsdatum
+    08/02/2014
 
 
     <br>
@@ -8812,20 +4871,8 @@ color: #777777;
     <b>b @Ende#Klassiker</b>
     <!--  M58 765 112 3  -->
 
-    <!-- This misleadingly named flag actually
-     means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
 
-    <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    19/11/2013
-
-
-
-
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -8853,10 +4900,7 @@ color: #777777;
     <!--  M59 312 320 2  -->
 
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -8884,10 +4928,19 @@ color: #777777;
     <!--  M55 003 864 6  -->
 
 
-    Exemplar ist <b>verfügbar</b>.
+    Exemplar <b>verfügbar</b>.
+
+
+    <br>
 
 
 
+    Kinderbestand
+    <b>e @Ende+</b>
+    <!--  M55 003 863 4  -->
+
+
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -8899,34 +4952,7 @@ color: #777777;
     <!--  M59 783 013 5  -->
 
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
-
-
-    <br>
-
-
-
-    Kinderbestand
-    <b>e @Ende+</b>
-    <!--  M55 003 863 4  -->
-
-    <!-- This misleadingly named flag actually
-     means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
-
-    <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    05/11/2013
-
-
-
-
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -8954,25 +4980,7 @@ color: #777777;
     <!--  M55 003 853 X  -->
 
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
-
-
-    <br>
-
-
-
-    -
-    <b>b @ENDE#Abenteuer</b>
-    <!--  M59 641 566 4  -->
-
-
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -8983,11 +4991,30 @@ color: #777777;
     <b>b @Ende+#Abenteuer</b>
     <!--  M59 189 245 7  -->
 
+    <!-- This misleadingly named flag actually
+     means "not in free stock here" -->
+    Exemplar derzeit <b>entliehen</b>.
 
-    Exemplar ist <b>verfügbar</b>.
+    <!-- First item truly is on loan -->
+    Fälligkeitsdatum
+    05/02/2014
+
+
+    <br>
 
 
 
+    -
+    <b>b @ENDE#Abenteuer</b>
+    <!--  M59 641 566 4  -->
+
+    <!-- This misleadingly named flag actually
+     means "not in free stock here" -->
+    Exemplar derzeit <b>entliehen</b>.
+
+    <!-- First item truly is on loan -->
+    Fälligkeitsdatum
+    12/02/2014
 
 
     <br>
@@ -9015,10 +5042,7 @@ color: #777777;
     <!--  M58 010 556 3  -->
 
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -9045,11 +5069,13 @@ color: #777777;
     <b>b @Ende+</b>
     <!--  M59 185 821 5  -->
 
+    <!-- This misleadingly named flag actually
+     means "not in free stock here" -->
+    Exemplar derzeit <b>entliehen</b>.
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    <!-- First item truly is on loan -->
+    Fälligkeitsdatum
+    04/02/2014
 
 
     <br>
@@ -9078,18 +5104,11 @@ color: #777777;
 
     <!-- This misleadingly named flag actually
      means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
+    Exemplar derzeit <b>entliehen</b>.
 
     <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    13/11/2013
-
-
-
-
-
-
-
+    Fälligkeitsdatum
+    05/02/2014
 
 
     <br>
@@ -9117,10 +5136,7 @@ color: #777777;
     <!--  M58 769 285 5  -->
 
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -9131,11 +5147,13 @@ color: #777777;
     <b>b @ENDE</b>
     <!--  M59 576 807 8  -->
 
+    <!-- This misleadingly named flag actually
+     means "not in free stock here" -->
+    Exemplar derzeit <b>entliehen</b>.
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    <!-- First item truly is on loan -->
+    Fälligkeitsdatum
+    04/02/2014
 
 
     <br>
@@ -9163,10 +5181,7 @@ color: #777777;
     <!--  M59 723 251 3  -->
 
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -9193,20 +5208,8 @@ color: #777777;
     <b>b @Ende+</b>
     <!--  M58 413 136 9  -->
 
-    <!-- This misleadingly named flag actually
-     means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
 
-    <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    12/11/2013
-
-
-
-
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -9234,10 +5237,7 @@ color: #777777;
     <!--  M55 003 852 8  -->
 
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -9247,6 +5247,25 @@ color: #777777;
 </div>
 
 
+<div style="margin-left:10px;" id="stock_header_K1">
+    <b>Steilshoop</b>
+</div>
+
+<div style="margin-left:10px;" id="stock_content_K1">
+
+
+    Kinderbestand
+    <b>b @ENDE</b>
+    <!--  M60 746 644 X  -->
+
+
+    Exemplar <b>verfügbar</b>.
+
+
+    <br>
+
+
+</div>
 
 
 <div style="margin-left:10px;" id="stock_header_V">
@@ -9262,13 +5281,10 @@ color: #777777;
 
     Kinderbestand
     <b>b @Ende+</b>
-    <!--  M55 003 859 0  -->
+    <!--  M55 003 860 9  -->
 
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -9277,22 +5293,11 @@ color: #777777;
 
     Kinderbestand
     <b>b @Ende+</b>
-    <!--  M55 003 860 9  -->
+    <!--  M55 003 859 0  -->
 
     <!-- This misleadingly named flag actually
      means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
-
-    <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    05/11/2013
-
-
-
-
-
-
-
+    Exemplar derzeit <b>entliehen</b>.
 
 
     <br>
@@ -9320,10 +5325,7 @@ color: #777777;
     <!--  M59 856 429 4  -->
 
 
-    Exemplar ist <b>verfügbar</b>.
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -9350,20 +5352,8 @@ color: #777777;
     <b>b @ENDE#Klassiker</b>
     <!--  M60 321 743 7  -->
 
-    <!-- This misleadingly named flag actually
-     means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
 
-    <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    15/11/2013
-
-
-
-
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -9390,20 +5380,8 @@ color: #777777;
     <b>b @Ende+</b>
     <!--  M58 529 328 7  -->
 
-    <!-- This misleadingly named flag actually
-     means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
 
-    <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    15/11/2013
-
-
-
-
-
-
-
+    Exemplar <b>verfügbar</b>.
 
 
     <br>
@@ -9416,18 +5394,11 @@ color: #777777;
 
     <!-- This misleadingly named flag actually
      means "not in free stock here" -->
-    Exemplar ist derzeit <b>entliehen</b>.
+    Exemplar derzeit <b>entliehen</b>.
 
     <!-- First item truly is on loan -->
-    Voraussichtlich verfügbar am
-    16/11/2013
-
-
-
-
-
-
-
+    Fälligkeitsdatum
+    12/02/2014
 
 
     <br>
@@ -9439,9 +5410,9 @@ color: #777777;
 
 
 <script>
-    documentManager.addStartup( StockUpdateRequest );
-</script>
+						documentManager.addStartup( StockUpdateRequest );
 
+</script>
 
 
 <!--RECORDPRINTEND-->
@@ -9508,33 +5479,13 @@ color: #777777;
     <div>
 
 
-
-
-
-        <div style="height:180px; background-repeat:no-repeat; background-position:center center;  background-image:url('Portal3/IMG/MAT/BOOK.png') ">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <div style="height:180px; background-repeat:no-repeat; background-position:center center;  background-image:url('Portal3/IMG/MAT/ic_buch_grau.png') ">
 
 
             <img class="LargeBookCover" style="display:none;" width="120" src="http://cover.ekz.de/9783522176514.jpg" alt="Buchcover."/>
             <img id="BookCover" style="display:none;" onLoad="DetailedBookCoverLoaded()"  src="http://cover.ekz.de/9783522176514.jpg" alt="Buchcover."/>
-            <a id="EnlargeBookCover" class="enlargeCoverLink" title="Enlarge" style="display:none;" href="javascript:ShowLargeCover('3522176510')">[Enlarge]</a>
-
-
-
-
+            <a id="EnlargeBookCover" class="enlargeCoverLink" title="vergrößern" style="display:none;"
+               href="javascript:ShowLargeCover('3522176510')">vergößern</a>
 
 
         </div>
@@ -9657,17 +5608,18 @@ color: #777777;
     <iframe title="PopupDialog" id="PopupFrame" src="/blank.html" frameborder=0 style="margin-left:2px;width:730px;height:400px;overflow:auto;"></iframe>
 </div>
 <script type="text/javascript">
-    function resizePrintDLG(height,width)
-    {
-    var oPrintDLG = document.getElementById("PrintLDLG");
-    if(oPrintDLG != null)
-    {
-    oPrintDLG.height=height;
-    oPrintDLG.width=width;
-    oPrintDLG.style.width = width + "px";
-    oPrintDLG.style.height = height + "px";
-    }
-    }
+        function resizePrintDLG(height,width)
+        {
+            var oPrintDLG = document.getElementById("PrintLDLG");
+            if(oPrintDLG != null)
+            {
+                oPrintDLG.height=height;
+                oPrintDLG.width=width;
+                oPrintDLG.style.width = width + "px";
+                oPrintDLG.style.height = height + "px";
+            }
+        }
+
 </script>
 
 <iframe title="PrintDLG" src="/blank.html"  style="background:white; position:absolute; top:360px; left:100px; display:none; margin:0; padding:0" id="PrintLDLG" frameborder="0" scrolling="no" width="470" height="400">
@@ -9684,10 +5636,9 @@ color: #777777;
 <div id="countPixelContainer">
 </div>
 <script type="text/javascript">
-    checkCountPixel();
+				checkCountPixel();
+
 </script>
-
-
 
 
 </body>
