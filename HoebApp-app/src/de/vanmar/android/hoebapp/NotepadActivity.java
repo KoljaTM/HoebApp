@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.google.ads.AdView;
 import com.googlecode.androidannotations.annotations.*;
 import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
 import de.vanmar.android.hoebapp.bo.Account;
@@ -28,9 +27,6 @@ public class NotepadActivity extends FragmentActivity {
 
 	@Pref
 	Preferences_ prefs;
-
-	@ViewById(R.id.adView)
-	AdView adView;
 
 	@ViewById(R.id.notepadlist)
 	ListView notepadList;

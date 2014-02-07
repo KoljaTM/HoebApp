@@ -1,8 +1,5 @@
 package de.vanmar.android.hoebapp;
 
-import java.util.Collections;
-import java.util.List;
-
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -12,27 +9,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.*;
 import android.widget.TextView.OnEditorActionListener;
-import android.widget.Toast;
-import android.widget.ViewSwitcher;
-
 import com.androidquery.AQuery;
-import com.google.ads.AdView;
-import com.googlecode.androidannotations.annotations.AfterViews;
-import com.googlecode.androidannotations.annotations.Background;
-import com.googlecode.androidannotations.annotations.Bean;
-import com.googlecode.androidannotations.annotations.Click;
-import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.SystemService;
-import com.googlecode.androidannotations.annotations.UiThread;
-import com.googlecode.androidannotations.annotations.ViewById;
-
+import com.googlecode.androidannotations.annotations.*;
 import de.vanmar.android.hoebapp.bo.SearchMedia;
 import de.vanmar.android.hoebapp.service.LibraryService;
 import de.vanmar.android.hoebapp.service.LoginFailedException;
@@ -40,14 +20,14 @@ import de.vanmar.android.hoebapp.service.TechnicalException;
 import de.vanmar.android.hoebapp.util.NetworkHelper;
 import de.vanmar.android.hoebapp.util.StringUtils;
 
+import java.util.Collections;
+import java.util.List;
+
 @EActivity(R.layout.search)
 public class SearchActivity extends FragmentActivity {
 
 	private static final int SEARCH_AREA_SIMPLE = 0;
 	private static final int SEARCH_AREA_ADVANCED = 1;
-
-	@ViewById(R.id.adView)
-	AdView adView;
 
 	@ViewById(R.id.searchArea)
 	ViewSwitcher searchArea;
@@ -123,7 +103,7 @@ public class SearchActivity extends FragmentActivity {
 			// enter key in search box triggers search
 			@Override
 			public boolean onEditorAction(final TextView v, final int actionId,
-					final KeyEvent event) {
+										  final KeyEvent event) {
 				if (event != null && event.getAction() != KeyEvent.ACTION_DOWN) {
 					return false;
 				}
@@ -138,7 +118,7 @@ public class SearchActivity extends FragmentActivity {
 			// enter key in advanced search box 1 switches to next search box
 			@Override
 			public boolean onEditorAction(final TextView v, final int actionId,
-					final KeyEvent event) {
+										  final KeyEvent event) {
 				if (event != null && event.getAction() != KeyEvent.ACTION_DOWN) {
 					return false;
 				}
@@ -153,7 +133,7 @@ public class SearchActivity extends FragmentActivity {
 			// enter key in advanced search box 2 switches to next search box
 			@Override
 			public boolean onEditorAction(final TextView v, final int actionId,
-					final KeyEvent event) {
+										  final KeyEvent event) {
 				if (event != null && event.getAction() != KeyEvent.ACTION_DOWN) {
 					return false;
 				}
@@ -168,7 +148,7 @@ public class SearchActivity extends FragmentActivity {
 			// enter key in advanced search box 3 triggers search
 			@Override
 			public boolean onEditorAction(final TextView v, final int actionId,
-					final KeyEvent event) {
+										  final KeyEvent event) {
 				if (event != null && event.getAction() != KeyEvent.ACTION_DOWN) {
 					return false;
 				}
@@ -194,7 +174,7 @@ public class SearchActivity extends FragmentActivity {
 				R.layout.searchresultlist_item) {
 			@Override
 			public View getView(final int position, final View convertView,
-					final ViewGroup parent) {
+								final ViewGroup parent) {
 				final View view = getLayoutInflater().inflate(
 						R.layout.searchresultlist_item, null);
 				final SearchMedia item = getItem(position);
@@ -236,7 +216,7 @@ public class SearchActivity extends FragmentActivity {
 	@Click(R.id.simpleSearchButton)
 	void onSimpleSearchButtonClicked() {
 		if (networkHelper.networkAvailable()) {
-			displaySearchResults(Collections.<SearchMedia> emptyList());
+			displaySearchResults(Collections.<SearchMedia>emptyList());
 			setSearchButtonActive(false);
 			executeSearch(searchBox.getText(), LibraryService.CATEGORY_KEYWORD,
 					"", "", "", "");
@@ -251,7 +231,7 @@ public class SearchActivity extends FragmentActivity {
 	@Click(R.id.advancedSearchButton)
 	void onAdvancedSearchButtonClicked() {
 		if (networkHelper.networkAvailable()) {
-			displaySearchResults(Collections.<SearchMedia> emptyList());
+			displaySearchResults(Collections.<SearchMedia>emptyList());
 			setSearchButtonActive(false);
 			final String category1 = getResources().getStringArray(
 					R.array.searchcategorykeys)[searchType1
@@ -264,7 +244,7 @@ public class SearchActivity extends FragmentActivity {
 					.getSelectedItemPosition()];
 			executeSearch(searchBox1.getText().toString(), category1,
 					searchBox2.getText().toString(), category2, searchBox3
-							.getText().toString(), category3);
+					.getText().toString(), category3);
 			inputMethodManager.hideSoftInputFromWindow(
 					searchBox.getWindowToken(), 0);
 		} else {
@@ -301,8 +281,8 @@ public class SearchActivity extends FragmentActivity {
 
 	@Background
 	void executeSearch(final CharSequence text1, final CharSequence type1,
-			final CharSequence text2, final CharSequence type2,
-			final CharSequence text3, final CharSequence type3) {
+					   final CharSequence text2, final CharSequence type2,
+					   final CharSequence text3, final CharSequence type3) {
 		try {
 			final List<SearchMedia> searchMedia = libraryService.searchMedia(
 					this, text1.toString(), type1.toString(), text2.toString(),

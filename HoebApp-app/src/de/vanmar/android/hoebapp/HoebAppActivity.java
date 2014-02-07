@@ -1,13 +1,5 @@
 package de.vanmar.android.hoebapp;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -24,27 +16,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
-import android.widget.AdapterView;
+import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.CheckBox;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.androidquery.util.AQUtility;
-import com.google.ads.AdRequest;
-import com.google.ads.AdView;
-import com.googlecode.androidannotations.annotations.Background;
-import com.googlecode.androidannotations.annotations.Bean;
-import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.OptionsItem;
-import com.googlecode.androidannotations.annotations.OptionsMenu;
-import com.googlecode.androidannotations.annotations.UiThread;
-import com.googlecode.androidannotations.annotations.ViewById;
+import com.googlecode.androidannotations.annotations.*;
 import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
-
 import de.vanmar.android.hoebapp.bo.Account;
 import de.vanmar.android.hoebapp.bo.Account.Appearance;
 import de.vanmar.android.hoebapp.bo.RenewItem;
@@ -55,6 +31,10 @@ import de.vanmar.android.hoebapp.service.LoginFailedException;
 import de.vanmar.android.hoebapp.service.TechnicalException;
 import de.vanmar.android.hoebapp.util.NetworkHelper;
 import de.vanmar.android.hoebapp.util.Preferences_;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @EActivity
 @OptionsMenu(R.menu.menu)
@@ -74,9 +54,6 @@ public class HoebAppActivity extends FragmentActivity implements
 
 	@ViewById(R.id.titlebar)
 	TextView titlebar;
-
-	@ViewById(R.id.adView)
-	AdView adView;
 
 	ListView medialist;
 
@@ -106,7 +83,9 @@ public class HoebAppActivity extends FragmentActivity implements
 
 	private List<Account> accounts;
 
-	/** Called when the activity is first created. */
+	/**
+	 * Called when the activity is first created.
+	 */
 	@Override
 	public void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -181,7 +160,7 @@ public class HoebAppActivity extends FragmentActivity implements
 						new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(final DialogInterface dialog,
-									final int id) {
+												final int id) {
 								dialog.cancel();
 								executeRenewAllInBackground(progressDialog);
 							}
@@ -190,7 +169,7 @@ public class HoebAppActivity extends FragmentActivity implements
 						new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(final DialogInterface dialog,
-									final int id) {
+												final int id) {
 								dialog.cancel();
 								progressDialog.cancel();
 							}
@@ -204,7 +183,6 @@ public class HoebAppActivity extends FragmentActivity implements
 		try {
 			libraryService.renewMedia(renewList, this);
 			dialog.dismiss();
-			loadAds();
 		} catch (final Exception e) {
 			displayError(e);
 			dialog.cancel();
@@ -216,7 +194,6 @@ public class HoebAppActivity extends FragmentActivity implements
 		try {
 			libraryService.renewAllMedia(this);
 			dialog.dismiss();
-			loadAds();
 		} catch (final Exception e) {
 			displayError(e);
 			dialog.cancel();
@@ -281,7 +258,6 @@ public class HoebAppActivity extends FragmentActivity implements
 			}
 			displayInTitle(getString(R.string.pleaseWait));
 			libraryService.refreshMediaList(this);
-			loadAds();
 		} catch (final Exception e) {
 			displayError(e);
 			displayTitleCount(medialist.getCount());
@@ -333,22 +309,15 @@ public class HoebAppActivity extends FragmentActivity implements
 		}
 	}
 
-	@UiThread
-	void loadAds() {
-		final AdRequest adRequest = new AdRequest();
-		adRequest.addTestDevice(AdRequest.TEST_EMULATOR);
-		adView.loadAd(adRequest);
-	}
-
 	private void initList() {
 		// Fields from the database (projection)
 		// Must include the _id column for the adapter to work
-		final String[] from = new String[] { MediaDbHelper.COLUMN_TITLE,
+		final String[] from = new String[]{MediaDbHelper.COLUMN_TITLE,
 				MediaDbHelper.COLUMN_DUEDATE, MediaDbHelper.COLUMN_RENEW_LINK,
-				MediaDbHelper.COLUMN_ACCOUNT };
+				MediaDbHelper.COLUMN_ACCOUNT};
 		// Fields on the UI to which we map
-		final int[] to = new int[] { R.id.title, R.id.dueDate, R.id.checkBox,
-				R.id.tableLayout };
+		final int[] to = new int[]{R.id.title, R.id.dueDate, R.id.checkBox,
+				R.id.tableLayout};
 
 		getSupportLoaderManager().initLoader(0, null, this);
 		adapter = new SimpleCursorAdapter(this, R.layout.medialist_item, null,
@@ -357,7 +326,7 @@ public class HoebAppActivity extends FragmentActivity implements
 
 			@Override
 			public boolean setViewValue(final View view, final Cursor cursor,
-					final int columnIndex) {
+										final int columnIndex) {
 
 				if (columnIndex == MediaDbHelper.KEY_DUEDATE) {
 					final long dueDate = cursor.getLong(columnIndex);
@@ -417,7 +386,7 @@ public class HoebAppActivity extends FragmentActivity implements
 
 			@Override
 			public void onItemClick(final AdapterView<?> parent,
-					final View view, final int position, final long id) {
+									final View view, final int position, final long id) {
 
 				final Cursor item = (Cursor) adapter.getItem(position);
 				final String mediumId = item

@@ -1,8 +1,5 @@
 package de.vanmar.android.hoebapp;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -26,18 +23,13 @@ import android.view.View.OnClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.ads.AdView;
-import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.OptionsItem;
-import com.googlecode.androidannotations.annotations.OptionsMenu;
-import com.googlecode.androidannotations.annotations.SystemService;
-import com.googlecode.androidannotations.annotations.UiThread;
-import com.googlecode.androidannotations.annotations.ViewById;
-
+import com.googlecode.androidannotations.annotations.*;
 import de.vanmar.android.hoebapp.db.LocationContentProvider;
 import de.vanmar.android.hoebapp.db.LocationDbHelper;
 import de.vanmar.android.hoebapp.util.GeoCalculationHelper;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @EActivity
 @OptionsMenu(R.menu.locationsmenu)
@@ -53,9 +45,6 @@ public class LocationsActivity extends FragmentActivity implements
 
 	@SystemService
 	LocationManager locationManager;
-
-	@ViewById(R.id.adView)
-	AdView adView;
 
 	private SimpleCursorAdapter adapter;
 	private ListView locationlist;
@@ -89,7 +78,7 @@ public class LocationsActivity extends FragmentActivity implements
 
 		@Override
 		public void onStatusChanged(final String provider, final int status,
-				final Bundle extras) {
+									final Bundle extras) {
 			// TODO Auto-generated method stub
 
 		}
@@ -131,7 +120,9 @@ public class LocationsActivity extends FragmentActivity implements
 
 	private boolean loading = false;
 
-	/** Called when the activity is first created. */
+	/**
+	 * Called when the activity is first created.
+	 */
 	@Override
 	public void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -174,14 +165,14 @@ public class LocationsActivity extends FragmentActivity implements
 	private void initList() {
 		// Fields from the database (projection)
 		// Must include the _id column for the adapter to work
-		final String[] from = new String[] { LocationDbHelper.COLUMN_ID,
+		final String[] from = new String[]{LocationDbHelper.COLUMN_ID,
 				LocationDbHelper.COLUMN_NAME, LocationDbHelper.COLUMN_ADDRESS,
 				LocationDbHelper.COLUMN_OPENING_TIMES,
 				LocationDbHelper.COLUMN_PHONE, LocationDbHelper.COLUMN_MAIL,
-				LocationDbHelper.COLUMN_LATITUDE };
+				LocationDbHelper.COLUMN_LATITUDE};
 		// Fields on the UI to which we map
-		final int[] to = new int[] { R.id.name, R.id.name, R.id.address,
-				R.id.opening_times, R.id.phone, R.id.mail, R.id.distance };
+		final int[] to = new int[]{R.id.name, R.id.name, R.id.address,
+				R.id.opening_times, R.id.phone, R.id.mail, R.id.distance};
 
 		getSupportLoaderManager().initLoader(0, null, this);
 		adapter = new SimpleCursorAdapter(this, R.layout.locationlist_item,
@@ -191,118 +182,118 @@ public class LocationsActivity extends FragmentActivity implements
 
 			@Override
 			public boolean setViewValue(final View view, final Cursor cursor,
-					final int columnIndex) {
+										final int columnIndex) {
 				switch (columnIndex) {
-				case LocationDbHelper.KEY_ID:
-					return false;
-				case LocationDbHelper.KEY_ADDRESS:
-					final String address = cursor
-							.getString(LocationDbHelper.KEY_ADDRESS);
-					final String address2 = cursor
-							.getString(LocationDbHelper.KEY_ADDRESS2);
-					final String addressExtra = (address2 == null ? "" : "("
-							+ address2 + ")");
-					final String postalCode = cursor
-							.getString(LocationDbHelper.KEY_POSTALCODE);
-					final String city = cursor
-							.getString(LocationDbHelper.KEY_CITY);
-					final String latitude = cursor
-							.getString(LocationDbHelper.KEY_LATITUDE);
-					final String longitude = cursor
-							.getString(LocationDbHelper.KEY_LONGITUDE);
+					case LocationDbHelper.KEY_ID:
+						return false;
+					case LocationDbHelper.KEY_ADDRESS:
+						final String address = cursor
+								.getString(LocationDbHelper.KEY_ADDRESS);
+						final String address2 = cursor
+								.getString(LocationDbHelper.KEY_ADDRESS2);
+						final String addressExtra = (address2 == null ? "" : "("
+								+ address2 + ")");
+						final String postalCode = cursor
+								.getString(LocationDbHelper.KEY_POSTALCODE);
+						final String city = cursor
+								.getString(LocationDbHelper.KEY_CITY);
+						final String latitude = cursor
+								.getString(LocationDbHelper.KEY_LATITUDE);
+						final String longitude = cursor
+								.getString(LocationDbHelper.KEY_LONGITUDE);
 
-					((TextView) view).setText(String.format(
-							getString(R.string.addressFormatted), address,
-							addressExtra, postalCode, city));
+						((TextView) view).setText(String.format(
+								getString(R.string.addressFormatted), address,
+								addressExtra, postalCode, city));
 
-					((View) view.getParent()).findViewById(
-							R.id.directions_button).setOnClickListener(
-							new OnClickListener() {
+						((View) view.getParent()).findViewById(
+								R.id.directions_button).setOnClickListener(
+								new OnClickListener() {
 
-								@Override
-								public void onClick(final View v) {
-									final Intent intent = new Intent(
-											Intent.ACTION_VIEW, Uri
-													.parse(String.format(
-															GEO_STRING,
-															latitude,
-															longitude, address,
-															postalCode, city)));
-									// +
-									// cursor.getString(LocationDbHelper.KEY_PHONE)));
-									try {
-										startActivity(intent);
-									} catch (final ActivityNotFoundException e) {
-										Toast.makeText(LocationsActivity.this,
-												R.string.cannot_navigate,
-												Toast.LENGTH_LONG).show();
+									@Override
+									public void onClick(final View v) {
+										final Intent intent = new Intent(
+												Intent.ACTION_VIEW, Uri
+												.parse(String.format(
+														GEO_STRING,
+														latitude,
+														longitude, address,
+														postalCode, city)));
+										// +
+										// cursor.getString(LocationDbHelper.KEY_PHONE)));
+										try {
+											startActivity(intent);
+										} catch (final ActivityNotFoundException e) {
+											Toast.makeText(LocationsActivity.this,
+													R.string.cannot_navigate,
+													Toast.LENGTH_LONG).show();
+										}
 									}
-								}
-							});
+								});
 
-					return true;
-				case LocationDbHelper.KEY_NAME:
-					final long id = cursor.getLong(LocationDbHelper.KEY_ID);
-					view.setTag(id);
-					setListItemAppearance(expandedItems.contains(id),
-							(TextView) view, ((View) view.getParent())
-									.findViewById(R.id.locationDetails));
-					view.setOnClickListener(onClickListener);
-					return false;
-				case LocationDbHelper.KEY_MAIL:
-					((View) view.getParent()).findViewById(R.id.mail_button)
-							.setOnClickListener(new OnClickListener() {
-								final String email = cursor
-										.getString(LocationDbHelper.KEY_MAIL);
+						return true;
+					case LocationDbHelper.KEY_NAME:
+						final long id = cursor.getLong(LocationDbHelper.KEY_ID);
+						view.setTag(id);
+						setListItemAppearance(expandedItems.contains(id),
+								(TextView) view, ((View) view.getParent())
+								.findViewById(R.id.locationDetails));
+						view.setOnClickListener(onClickListener);
+						return false;
+					case LocationDbHelper.KEY_MAIL:
+						((View) view.getParent()).findViewById(R.id.mail_button)
+								.setOnClickListener(new OnClickListener() {
+									final String email = cursor
+											.getString(LocationDbHelper.KEY_MAIL);
 
-								@Override
-								public void onClick(final View v) {
-									final Intent emailIntent = new Intent(
-											android.content.Intent.ACTION_SEND);
-									final String emailList[] = { email };
-									emailIntent.putExtra(
-											android.content.Intent.EXTRA_EMAIL,
-											emailList);
-									emailIntent.setType("plain/text");
-									try {
-										startActivity(emailIntent);
-									} catch (final ActivityNotFoundException e) {
-										Toast.makeText(LocationsActivity.this,
-												R.string.cannot_send_mail,
-												Toast.LENGTH_LONG).show();
+									@Override
+									public void onClick(final View v) {
+										final Intent emailIntent = new Intent(
+												android.content.Intent.ACTION_SEND);
+										final String emailList[] = {email};
+										emailIntent.putExtra(
+												android.content.Intent.EXTRA_EMAIL,
+												emailList);
+										emailIntent.setType("plain/text");
+										try {
+											startActivity(emailIntent);
+										} catch (final ActivityNotFoundException e) {
+											Toast.makeText(LocationsActivity.this,
+													R.string.cannot_send_mail,
+													Toast.LENGTH_LONG).show();
+										}
 									}
-								}
-							});
-					return false;
-				case LocationDbHelper.KEY_PHONE:
-					final String phone = cursor
-							.getString(LocationDbHelper.KEY_PHONE);
-					((View) view.getParent()).findViewById(R.id.call_button)
-							.setOnClickListener(new OnClickListener() {
+								});
+						return false;
+					case LocationDbHelper.KEY_PHONE:
+						final String phone = cursor
+								.getString(LocationDbHelper.KEY_PHONE);
+						((View) view.getParent()).findViewById(R.id.call_button)
+								.setOnClickListener(new OnClickListener() {
 
-								@Override
-								public void onClick(final View v) {
-									final Intent dialIntent = new Intent();
-									dialIntent.setAction(Intent.ACTION_DIAL);
-									dialIntent.setData(Uri
-											.parse("tel:" + phone));
-									try {
-										startActivity(dialIntent);
-									} catch (final ActivityNotFoundException e) {
-										Toast.makeText(LocationsActivity.this,
-												R.string.cannot_call,
-												Toast.LENGTH_LONG).show();
+									@Override
+									public void onClick(final View v) {
+										final Intent dialIntent = new Intent();
+										dialIntent.setAction(Intent.ACTION_DIAL);
+										dialIntent.setData(Uri
+												.parse("tel:" + phone));
+										try {
+											startActivity(dialIntent);
+										} catch (final ActivityNotFoundException e) {
+											Toast.makeText(LocationsActivity.this,
+													R.string.cannot_call,
+													Toast.LENGTH_LONG).show();
+										}
 									}
-								}
-							});
-					return false;
-				case LocationDbHelper.KEY_LATITUDE:
-					final double lat = cursor
-							.getDouble(LocationDbHelper.KEY_LATITUDE);
-					final double lon = cursor
-							.getDouble(LocationDbHelper.KEY_LONGITUDE);
-					((TextView) view).setText(getDistance(lat, lon));
-					return true;
+								});
+						return false;
+					case LocationDbHelper.KEY_LATITUDE:
+						final double lat = cursor
+								.getDouble(LocationDbHelper.KEY_LATITUDE);
+						final double lon = cursor
+								.getDouble(LocationDbHelper.KEY_LONGITUDE);
+						((TextView) view).setText(getDistance(lat, lon));
+						return true;
 				}
 				return false;
 			}
@@ -313,7 +304,7 @@ public class LocationsActivity extends FragmentActivity implements
 	}
 
 	private void setListItemAppearance(final boolean visible,
-			final TextView nameView, final View detailsView) {
+									   final TextView nameView, final View detailsView) {
 		if (visible) {
 			nameView.setCompoundDrawablesWithIntrinsicBounds(
 					R.drawable.expanded, 0, 0, 0);
