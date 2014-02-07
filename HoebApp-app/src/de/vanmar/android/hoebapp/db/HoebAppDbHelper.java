@@ -1,14 +1,5 @@
 package de.vanmar.android.hoebapp.db;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Locale;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -21,13 +12,22 @@ import de.vanmar.android.hoebapp.bo.Account;
 import de.vanmar.android.hoebapp.util.Preferences_;
 import de.vanmar.android.hoebapp.util.StringUtils;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Locale;
+
 public class HoebAppDbHelper extends SQLiteOpenHelper {
 
 	final Preferences_ prefs;
 
 	private static final String INSERT_LOCATIONS_SQL_PATH = "sql/insert_locations.sql";
 	private static final String DATABASE_NAME = "hoebdata";
-	private static final int DATABASE_VERSION = 9;
+	private static final int DATABASE_VERSION = 10;
 	public static final DateFormat dateFormat = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss", Locale.GERMAN);
 	private final Context context;
