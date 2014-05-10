@@ -85,11 +85,11 @@ public class LibraryService {
 					Pattern.MULTILINE | Pattern.DOTALL);
 	private static final Pattern REGEX_MEDIA_DETAILS_DUEDATE = Pattern
 			.compile(
-					"LoanBrowseFieldNameCell\">f.llig</td>\\s*<td class=\"LoanBrowseFieldDataCell\"[^>]*>\\s*<div class=\"LoanDate\">\\s*<b>([^>]*)</b>",
+					"LoanBrowseFieldNameCell\"><i>f.llig</i></td>\\s*<td class=\"LoanBrowseFieldDataCell\"[^>]*>\\s*<div class=\"LoanDate\">\\s*<b>([^>]*)</b>",
 					Pattern.MULTILINE | Pattern.DOTALL);
 	private static final Pattern REGEX_MEDIA_DETAILS_LOANDATE = Pattern
 			.compile(
-					"LoanBrowseFieldNameCell\">ausgeliehen</td>\\s*<td class=\"LoanBrowseFieldDataCell\">\\s*([^>]*)\\s*</td>",
+					"LoanBrowseFieldNameCell\"><i>ausgeliehen</i></td>\\s*<td class=\"LoanBrowseFieldDataCell\">\\s*([^>]*)\\s*</td>",
 					Pattern.MULTILINE | Pattern.DOTALL);
 	private static final Pattern REGEX_MEDIA_DETAILS_RENEW = Pattern.compile(
 			"javascript:renewItem\\('\\d*','([^']*Method=Renew[^']*)'\\)",
@@ -504,7 +504,7 @@ public class LibraryService {
 		if (m.find()) {
 			item.setNumRenews(Integer.parseInt(m.group(1)));
 		}
-		if (item.getTitle() == null || item.getDueDate() == null) {
+		if (item.getTitle() == null || item.getDueDate() == null || item.getLoanDate() == null) {
 			throw new RuntimeException("Media not found: " + content);
 		}
 		return item;
