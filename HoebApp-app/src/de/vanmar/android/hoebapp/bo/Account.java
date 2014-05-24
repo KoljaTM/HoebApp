@@ -1,21 +1,19 @@
 package de.vanmar.android.hoebapp.bo;
 
-import java.util.LinkedList;
-import java.util.List;
-
+import android.util.Log;
+import de.vanmar.android.hoebapp.R;
+import de.vanmar.android.hoebapp.util.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
-import de.vanmar.android.hoebapp.R;
-import de.vanmar.android.hoebapp.util.StringUtils;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Value object representing a library account
- * 
+ *
  * @author Kolja
- * 
  */
 public class Account {
 
@@ -35,7 +33,9 @@ public class Account {
 
 		public int getDrawable() {
 			return drawable;
-		};
+		}
+
+		;
 
 		public String getName() {
 			return name;
@@ -47,11 +47,13 @@ public class Account {
 
 	private final String username;
 	private final String password;
+	private String checkedUsername;
 	private Appearance appearance = Appearance.NONE;
 
-	public Account(final String username, final String password,
-			final Appearance appearance) {
+	public Account(final String username, final String checkedUsername, final String password,
+				   final Appearance appearance) {
 		this.username = username;
+		this.checkedUsername = checkedUsername;
 		this.password = password;
 		this.appearance = appearance;
 	}
@@ -69,6 +71,7 @@ public class Account {
 				for (int i = 0; i < jsonArray.length(); i++) {
 					final JSONObject json = jsonArray.getJSONObject(i);
 					final String username = json.getString("username");
+					final String checkedUsername = json.getString("checkedUsername");
 					final String password = json.getString("password");
 					final Appearance appearance;
 					if (json.has("appearance")) {
@@ -77,8 +80,7 @@ public class Account {
 					} else {
 						appearance = Appearance.NONE;
 					}
-					final Account account = new Account(username, password,
-							appearance);
+					final Account account = new Account(username, checkedUsername, password, appearance);
 					accountsFromJSON.add(account);
 				}
 			} catch (final JSONException e) {
@@ -95,6 +97,7 @@ public class Account {
 				try {
 					final JSONObject json = new JSONObject();
 					json.put("username", account.getUsername());
+					json.put("checkedUsername", account.getCheckedUsername());
 					json.put("password", account.getPassword());
 					json.put("appearance", account.getAppearance());
 					jsonAccounts.put(json);
@@ -111,6 +114,10 @@ public class Account {
 		return username;
 	}
 
+	public String getCheckedUsername() {
+		return checkedUsername;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -120,53 +127,38 @@ public class Account {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((appearance == null) ? 0 : appearance.hashCode());
-		result = prime * result
-				+ ((password == null) ? 0 : password.hashCode());
-		result = prime * result
-				+ ((username == null) ? 0 : username.hashCode());
-		return result;
-	}
+	public boolean equals(Object o) {
 
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Account account = (Account) o;
+
+		if (appearance != account.appearance) return false;
+		if (checkedUsername != null ? !checkedUsername.equals(account.checkedUsername) : account.checkedUsername != null)
 			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final Account other = (Account) obj;
-		if (appearance != other.appearance) {
-			return false;
-		}
-		if (password == null) {
-			if (other.password != null) {
-				return false;
-			}
-		} else if (!password.equals(other.password)) {
-			return false;
-		}
-		if (username == null) {
-			if (other.username != null) {
-				return false;
-			}
-		} else if (!username.equals(other.username)) {
-			return false;
-		}
+		if (password != null ? !password.equals(account.password) : account.password != null) return false;
+		if (username != null ? !username.equals(account.username) : account.username != null) return false;
+
 		return true;
 	}
 
 	@Override
+	public int hashCode() {
+		int result = username != null ? username.hashCode() : 0;
+		result = 31 * result + (password != null ? password.hashCode() : 0);
+		result = 31 * result + (checkedUsername != null ? checkedUsername.hashCode() : 0);
+		result = 31 * result + (appearance != null ? appearance.hashCode() : 0);
+		return result;
+	}
+
+	@Override
 	public String toString() {
-		return "Account [username=" + username + ", password=" + password
-				+ ", appearance=" + appearance + "]";
+		return "Account{" +
+				"username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", checkedUsername='" + checkedUsername + '\'' +
+				", appearance=" + appearance +
+				'}';
 	}
 }

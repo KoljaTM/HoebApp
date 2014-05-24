@@ -8,14 +8,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.androidquery.AQuery;
 import com.googlecode.androidannotations.annotations.*;
 import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
 import de.vanmar.android.hoebapp.bo.Account;
 import de.vanmar.android.hoebapp.bo.MediaDetails;
-import de.vanmar.android.hoebapp.service.LibraryService;
-import de.vanmar.android.hoebapp.service.LoginFailedException;
-import de.vanmar.android.hoebapp.service.NetworkNotAvailableException;
-import de.vanmar.android.hoebapp.service.TechnicalException;
+import de.vanmar.android.hoebapp.service.*;
 import de.vanmar.android.hoebapp.util.NetworkHelper;
 import de.vanmar.android.hoebapp.util.Preferences_;
 
@@ -36,6 +34,8 @@ public class NotepadActivity extends FragmentActivity {
 
 	@Bean
 	LibraryService libraryService;
+	@Bean
+	SoapLibraryService soapLibraryService;
 
 	@Bean
 	NetworkHelper networkHelper;
@@ -88,14 +88,12 @@ public class NotepadActivity extends FragmentActivity {
 				final View view = getLayoutInflater().inflate(
 						R.layout.notepad_item, null);
 				final MediaDetails item = getItem(position);
-				((TextView) view.findViewById(R.id.author)).setText(item
-						.getAuthor());
-				((TextView) view.findViewById(R.id.title)).setText(item
-						.getTitle());
-				((TextView) view.findViewById(R.id.type)).setText(item
-						.getType());
-				((TextView) view.findViewById(R.id.signature)).setText(item
-						.getSignature());
+				AQuery aq = new AQuery(view);
+				aq.find(R.id.author).text(item.getAuthor());
+				aq.find(R.id.title).text(item.getTitle());
+				aq.find(R.id.type).text(item.getType());
+				aq.find(R.id.signature).text(item.getSignature());
+				aq.find(R.id.image).image(item.getImgUrl());
 
 				final LinearLayout layout = (LinearLayout) view;
 				layout.setBackgroundResource(item.getOwner().getAppearance().getDrawable());
@@ -143,7 +141,7 @@ public class NotepadActivity extends FragmentActivity {
 				throw new NetworkNotAvailableException();
 			}
 			displayInTitle(getString(R.string.pleaseWait));
-			final List<MediaDetails> searchMedia = libraryService.loadNotepad();
+			final List<MediaDetails> searchMedia = soapLibraryService.loadNotepad();
 			displaySearchResults(searchMedia);
 		} catch (final Exception e) {
 			displayError(e);

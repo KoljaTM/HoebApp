@@ -42,7 +42,8 @@ public class LibraryService {
 			Pattern.MULTILINE | Pattern.DOTALL);
 	private static final Pattern REGEX_WRONG_PASSWORD = Pattern.compile(
 			".*Die eingegebene Geheimnummer ist falsch.*", Pattern.MULTILINE
-			| Pattern.DOTALL);
+					| Pattern.DOTALL
+	);
 
 	private static final String MEDIALIST_URL = "https://www.buecherhallen.de/alswww2.dll/APS_ZONES?fn=MyLoans&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
 	private static final String NOTEPAD_PREFETCH_URL = "https://www.buecherhallen.de/alswww2.dll/APS_ZONES?fn=ViewNotepad&Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8";
@@ -69,7 +70,8 @@ public class LibraryService {
 			.compile(
 					"TEMPLATE PORTAL2 BROWSEENUM.HTML LoanHeading.*?<TABLE(.*?)</TABLE>",
 					Pattern.MULTILINE | Pattern.DOTALL
-							| Pattern.CASE_INSENSITIVE);
+							| Pattern.CASE_INSENSITIVE
+			);
 
 	// $1= MediumId, $2=Title
 	private static final Pattern REGEX_MEDIA_DETAILS_MEDIUM_ID_TITLE = Pattern.compile(
@@ -104,7 +106,8 @@ public class LibraryService {
 
 	private static final Pattern REGEX_SEARCHRESULT_ITEM = Pattern.compile(
 			"\"SummaryImageCell(.*?)Merkliste", Pattern.MULTILINE
-			| Pattern.DOTALL | Pattern.CASE_INSENSITIVE);
+					| Pattern.DOTALL | Pattern.CASE_INSENSITIVE
+	);
 
 	private static final Pattern REGEX_SEARCHRESULT_TITLE = Pattern.compile(
 			"SummaryFieldLink\"\\s*title=\"([^\"]*)  .ffnen\"",
@@ -131,7 +134,8 @@ public class LibraryService {
 
 	private static final Pattern REGEX_SEARCHRESULT_IMGURL = Pattern.compile(
 			"(http://cover.ekz.de/\\d*.jpg)", Pattern.MULTILINE
-			| Pattern.DOTALL);
+					| Pattern.DOTALL
+	);
 
 	private static final Pattern REGEX_SEARCHRESULT_ID = Pattern
 			.compile(
@@ -150,7 +154,8 @@ public class LibraryService {
 
 	private static final Pattern REGEX_DETAILS_IMGURL = Pattern.compile(
 			"(http://cover.ekz.de/\\d*.jpg)", Pattern.MULTILINE
-			| Pattern.DOTALL);
+					| Pattern.DOTALL
+	);
 
 	private static final Pattern REGEX_DETAILS_CONTENTS = Pattern
 			.compile(
@@ -402,7 +407,9 @@ public class LibraryService {
 				AppWidgetManager.getInstance(context)
 						.getAppWidgetIds(
 								new ComponentName(context,
-										HoebAppWidgetProvider_.class)));
+										HoebAppWidgetProvider_.class)
+						)
+		);
 		context.sendBroadcast(widgetIntent);
 	}
 
