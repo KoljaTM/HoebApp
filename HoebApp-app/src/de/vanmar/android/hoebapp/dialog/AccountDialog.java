@@ -92,7 +92,7 @@ public class AccountDialog extends Dialog {
 					makeToast(R.string.password_empty_warning);
 					password.requestFocus();
 				} else {
-					account = new Account(username.getText().toString(),
+					account = new Account(username.getText().toString(), null,
 							password.getText().toString(), selectedAppearance);
 					AccountDialog.this.dismiss();
 				}

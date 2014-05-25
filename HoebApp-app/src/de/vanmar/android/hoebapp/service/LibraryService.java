@@ -200,7 +200,7 @@ public class LibraryService {
 			LoginFailedException {
 		if (account == null || account.getUsername() == null
 				|| account.getPassword() == null) {
-			throw new LoginFailedException();
+			throw new LoginFailedException(null);
 		}
 
 		final String content;
@@ -238,7 +238,7 @@ public class LibraryService {
 		} else if (REGEX_WRONG_LOGIN.matcher(content).matches()
 				|| REGEX_WRONG_PASSWORD.matcher(content).matches()) {
 			// check if it is a login problem
-			throw new LoginFailedException();
+			throw new LoginFailedException(account.getUsername());
 		} else {
 			throw new TechnicalException(
 					"Could not find username in loginresponse");
@@ -272,7 +272,7 @@ public class LibraryService {
 				while (m.find()) {
 					final Media foundMedia = findMedia(m.group(1));
 					renewIfNeeded(foundMedia, itemsToRenew,
-							account.getUsername());
+							account);
 					output.add(foundMedia);
 				}
 
@@ -298,7 +298,7 @@ public class LibraryService {
 							foundBottom = true;
 						} else {
 							renewIfNeeded(foundMedia, itemsToRenew,
-									account.getUsername());
+									account);
 							output.add(foundMedia);
 						}
 					}
@@ -308,7 +308,7 @@ public class LibraryService {
 						&& (REGEX_WRONG_LOGIN.matcher(content).matches() || REGEX_WRONG_LOGIN
 						.matcher(content).matches())) {
 					// check if it is a login problem
-					throw new LoginFailedException();
+					throw new LoginFailedException(account.getUsername());
 				}
 				operations
 						.addAll(updateMedialistInDb(output, context, account));
@@ -335,16 +335,16 @@ public class LibraryService {
 		}
 	}
 
-	private void updateNotifications(final Context context) {
+	public void updateNotifications(final Context context) {
 		context.sendBroadcast(new Intent(context, UpdateService_.class));
 	}
 
 	private void renewIfNeeded(final Media foundMedia,
-							   final Set<RenewItem> itemsToRenew, final String username)
+							   final Set<RenewItem> itemsToRenew, Account account)
 			throws URISyntaxException, IOException {
-		if (itemsToRenew.contains(new RenewItem(username, foundMedia
+		if (itemsToRenew.contains(new RenewItem(account, foundMedia
 				.getSignature()))) {
-			final String renewLink = foundMedia.getRenewLink();
+			final String renewLink = null; // TODO remove foundMedia.getRenewLink();
 			if (renewLink != null) {
 				HttpCallBuilder.anHttpCall().toUrl(SERVICE_URL + renewLink)
 						.executeAndIgnoreContent();
@@ -362,7 +362,7 @@ public class LibraryService {
 		}
 	}
 
-	private void updateLastAccessDate() {
+	public void updateLastAccessDate() {
 		prefs.lastAccess().put(new Date().getTime());
 		prefs.notificationSent().put(0);
 	}
@@ -384,7 +384,7 @@ public class LibraryService {
 			value.put(MediaDbHelper.COLUMN_LOANDATE, item.getLoanDate()
 					.getTime());
 			value.put(MediaDbHelper.COLUMN_SIGNATURE, item.getSignature());
-			value.put(MediaDbHelper.COLUMN_RENEW_LINK, item.getRenewLink());
+			//value.put(MediaDbHelper.COLUMN_RENEW_LINK, item.getRenewLink());
 			value.put(MediaDbHelper.COLUMN_NO_RENEW_REASON,
 					item.getNoRenewReason());
 			value.put(MediaDbHelper.COLUMN_NUM_RENEWS, item.getNumRenews());
@@ -398,7 +398,7 @@ public class LibraryService {
 		return operations;
 	}
 
-	private void notifyWidget(final Context context) {
+	public void notifyWidget(final Context context) {
 		final Intent widgetIntent = new Intent(context,
 				HoebAppWidgetProvider_.class);
 		widgetIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
@@ -501,7 +501,7 @@ public class LibraryService {
 		m = REGEX_MEDIA_DETAILS_RENEW.matcher(content);
 		if (m.find()) {
 			// link has mixed "&" and "&amp;"
-			item.setRenewLink(m.group(1).replaceAll("&amp;", "&"));
+			//item.setRenewLink(m.group(1).replaceAll("&amp;", "&"));
 		}
 		m = REGEX_MEDIA_DETAILS_NO_RENEW_REASON.matcher(content);
 		if (m.find()) {

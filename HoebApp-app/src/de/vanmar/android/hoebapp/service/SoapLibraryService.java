@@ -5,14 +5,17 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.OperationApplicationException;
 import android.os.RemoteException;
+import com.googlecode.androidannotations.annotations.Bean;
 import com.googlecode.androidannotations.annotations.EBean;
 import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
 import de.vanmar.android.hoebapp.bo.Account;
 import de.vanmar.android.hoebapp.bo.Media;
 import de.vanmar.android.hoebapp.bo.MediaDetails;
+import de.vanmar.android.hoebapp.bo.RenewItem;
 import de.vanmar.android.hoebapp.db.MediaContentProvider;
 import de.vanmar.android.hoebapp.db.MediaDbHelper;
 import de.vanmar.android.hoebapp.util.Preferences_;
+import de.vanmar.android.hoebapp.util.StringUtils;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
@@ -35,6 +38,12 @@ public class SoapLibraryService {
 	@Pref
 	Preferences_ prefs;
 
+	@Bean
+	SoapHelper soapHelper;
+
+	@Bean
+	LibraryService libraryService;
+
 	public List<MediaDetails> loadNotepad() throws TechnicalException {
 		checkUsernames();
 		final List<Account> accounts = Account.fromString(prefs.accounts().get());
@@ -50,13 +59,13 @@ public class SoapLibraryService {
 				SoapObject item = (SoapObject) items.getProperty(i);
 				MediaDetails details = new MediaDetails();
 				details.setOwner(account);
-				details.setTitle(item.getPrimitivePropertySafelyAsString("title"));
-				details.setAuthor(item.getPrimitivePropertySafelyAsString("author"));
-				details.setId(item.getPrimitivePropertySafelyAsString("catalogueId"));
-				String isbn = item.getPrimitivePropertySafelyAsString("isbn");
+				details.setTitle(soapHelper.getString(item, "title"));
+				details.setAuthor(soapHelper.getString(item, "author"));
+				details.setId(soapHelper.getString(item, "catalogueId"));
+				String isbn = soapHelper.getString(item, "isbn");
 				details.setSignature(isbn);
 				details.setImgUrl(getImgUrl(isbn));
-				details.setType(MaterialType.valueOf(item.getPrimitivePropertySafelyAsString("materialType")));
+				details.setType(MaterialType.valueOf(soapHelper.getString(item, "materialType")));
 				result.add(details);
 			}
 		}
@@ -81,27 +90,48 @@ public class SoapLibraryService {
 				parameters.put("borrowerNumber", account.getCheckedUsername());
 				parameters.put("borrowerPin", account.getPassword());
 				SoapObject response = doRequest(USER_NAMESPACE, "GetBorrowerLoans", USER_URL, parameters);
-				SoapObject loan = (SoapObject) response.getProperty("..."); // TODO: richtigen Pfad verwenden
-				Media media = new Media();
-				media.setAuthor(loan.getPrimitivePropertySafelyAsString("Author"));
-				media.setTitle(loan.getPrimitivePropertySafelyAsString("Title"));
-				media.setType(loan.getPrimitivePropertySafelyAsString("MaterialName"));
-				media.setMediumId(loan.getPrimitivePropertySafelyAsString("BacNo"));
-				media.setSignature(loan.getPrimitivePropertySafelyAsString("ItemNumber"));
-				String isbn = loan.getPrimitivePropertySafelyAsString("ISBN");
-				media.setImgUrl(getImgUrl(isbn));
-				SimpleDateFormat dateFormat = getDateFormat();
-				media.setLoanDate(dateFormat.parse(loan.getPrimitivePropertySafelyAsString("DateIssued")));
-				media.setDueDate(dateFormat.parse(loan.getPrimitivePropertySafelyAsString("DateDue")));
-				operations.add(updateMediaInDb(media, context, account));
+				List<SoapObject> loans = soapHelper.getLoans(response);
+				for (SoapObject loan : loans) {
+					Media media = new Media();
+					media.setTitle(soapHelper.getString(loan, "Title"));
+					media.setAuthor(soapHelper.getString(loan, "Author"));
+					SimpleDateFormat dateFormat = getDateFormat();
+					media.setDueDate(dateFormat.parse(soapHelper.getString(loan, "DateDue")));
+					media.setLoanDate(dateFormat.parse(soapHelper.getString(loan, "DateIssued")));
+					media.setSignature(soapHelper.getString(loan, "ItemNumber"));
+					String canRenew = soapHelper.getString(soapHelper.get(loan, "SIP2"), "CanRenew");
+					media.setCanRenew("1".equals(canRenew));
+					media.setNoRenewReason(soapHelper.getString(soapHelper.get(loan, "PrimaryTrapIdText"), "GER"));
+					String renewalCount = soapHelper.getString(loan, "RenewalCount");
+					if (!StringUtils.isEmpty(renewalCount)) {
+						media.setNumRenews(Integer.parseInt(renewalCount));
+					}
+					media.setMediumId(soapHelper.getString(loan, "BacNo"));
+					media.setType(soapHelper.getString(loan, "MaterialName"));
+					String isbn = soapHelper.getString(loan, "ISBN");
+					media.setImgUrl(getImgUrl(isbn));
+					operations.add(updateMediaInDb(media, account));
+				}
 			}
+			// execute content operations in batch
+			context.getContentResolver()
+					.applyBatch(
+							MediaContentProvider.CONTENT_URI.getAuthority(),
+							operations);
+
+			// notify Widget of changes
+			libraryService.notifyWidget(context);
+
+			libraryService.updateLastAccessDate();
+			libraryService.updateNotifications(context);
+
 		} catch (Exception e) {
 			throw new TechnicalException(e);
 		}
 	}
 
 	private ContentProviderOperation updateMediaInDb(
-			final Media item, final Context context, final Account account) throws RemoteException,
+			final Media item, final Account account) throws RemoteException,
 			OperationApplicationException {
 		// insert new value
 		final ContentValues value = new ContentValues();
@@ -111,11 +141,13 @@ public class SoapLibraryService {
 		value.put(MediaDbHelper.COLUMN_LOANDATE, item.getLoanDate()
 				.getTime());
 		value.put(MediaDbHelper.COLUMN_SIGNATURE, item.getSignature());
-		value.put(MediaDbHelper.COLUMN_RENEW_LINK, item.getRenewLink());
+		value.put(MediaDbHelper.COLUMN_CAN_RENEW, item.isCanRenew() ? 1 : 0);
 		value.put(MediaDbHelper.COLUMN_NO_RENEW_REASON,
 				item.getNoRenewReason());
 		value.put(MediaDbHelper.COLUMN_NUM_RENEWS, item.getNumRenews());
 		value.put(MediaDbHelper.COLUMN_MEDIUM_ID, item.getMediumId());
+		value.put(MediaDbHelper.COLUMN_TYPE, item.getType());
+		value.put(MediaDbHelper.COLUMN_IMG_URL, item.getImgUrl());
 		value.put(MediaDbHelper.COLUMN_ACCOUNT, account.getUsername());
 		return ContentProviderOperation
 				.newInsert(MediaContentProvider.CONTENT_URI)
@@ -144,9 +176,9 @@ public class SoapLibraryService {
 
 	private void checkUsernames() throws TechnicalException {
 		final List<Account> accounts = Account.fromString(prefs.accounts().get());
-		final List<Account> checkedAccounts = Account.fromString(prefs.accounts().get());
+		final List<Account> checkedAccounts = new LinkedList<Account>();
 		for (Account account : accounts) {
-			if (account.getCheckedUsername() != null) {
+			if (!StringUtils.isEmpty(account.getCheckedUsername())) {
 				checkedAccounts.add(account);
 				continue;
 			}
@@ -154,9 +186,8 @@ public class SoapLibraryService {
 			parameters.put("borrowerNumber", account.getUsername());
 			parameters.put("pin", account.getPassword());
 			SoapObject checkBorrowerResult = doRequest(USER_NAMESPACE, "CheckBorrower", USER_URL, parameters);
-			if (checkBorrowerResult.hasProperty("record")) {
-				// TODO: Ganzen Weg checken
-				String checkedUsername = "A57 311 458 5";
+			String checkedUsername = soapHelper.getCheckedUsername(checkBorrowerResult);
+			if (!StringUtils.isEmpty(checkedUsername)) {
 				checkedAccounts.add(new Account(account.getUsername(), checkedUsername, account.getPassword(), account.getAppearance()));
 			} else {
 				throw new LoginFailedException(account.getUsername());
@@ -167,5 +198,16 @@ public class SoapLibraryService {
 
 	private SimpleDateFormat getDateFormat() {
 		return new SimpleDateFormat("dd/MM/yyyy", Locale.GERMAN);
+	}
+
+	public void renewMedia(Set<RenewItem> renewList, Context context) throws TechnicalException {
+		for (RenewItem item : renewList) {
+			HashMap<String, String> parameters = new HashMap<String, String>();
+			parameters.put("borrowerNumber", item.getAccount().getCheckedUsername());
+			parameters.put("borrowerPin", item.getAccount().getPassword());
+			parameters.put("itemNumber", item.getSignature());
+			doRequest(USER_NAMESPACE, "RenewItem", USER_URL, parameters);
+		}
+		refreshMedialist(context);
 	}
 }

@@ -4,9 +4,8 @@ import java.util.Date;
 
 /**
  * An object of this class represents a single media item (book, CD, etc.)
- * 
+ *
  * @author Kolja
- * 
  */
 public class Media {
 
@@ -15,10 +14,12 @@ public class Media {
 	private Date loanDate;
 	private Date dueDate;
 	private String signature;
-	private String renewLink;
+	private boolean canRenew;
 	private String noRenewReason;
 	private int numRenews;
 	private String mediumId;
+	private String type;
+	private String imgUrl;
 
 	public String getAuthor() {
 		return author;
@@ -52,12 +53,12 @@ public class Media {
 		this.dueDate = dueDate;
 	}
 
-	public String getRenewLink() {
-		return renewLink;
+	public boolean isCanRenew() {
+		return canRenew;
 	}
 
-	public void setRenewLink(final String renewLink) {
-		this.renewLink = renewLink;
+	public void setCanRenew(boolean canRenew) {
+		this.canRenew = canRenew;
 	}
 
 	public String getSignature() {
@@ -92,99 +93,58 @@ public class Media {
 		this.mediumId = mediumId;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((author == null) ? 0 : author.hashCode());
-		result = prime * result + ((dueDate == null) ? 0 : dueDate.hashCode());
-		result = prime * result
-				+ ((loanDate == null) ? 0 : loanDate.hashCode());
-		result = prime * result
-				+ ((mediumId == null) ? 0 : mediumId.hashCode());
-		result = prime * result
-				+ ((noRenewReason == null) ? 0 : noRenewReason.hashCode());
-		result = prime * result + numRenews;
-		result = prime * result
-				+ ((renewLink == null) ? 0 : renewLink.hashCode());
-		result = prime * result
-				+ ((signature == null) ? 0 : signature.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		return result;
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Media media = (Media) o;
+
+		if (canRenew != media.canRenew) return false;
+		if (numRenews != media.numRenews) return false;
+		if (author != null ? !author.equals(media.author) : media.author != null) return false;
+		if (dueDate != null ? !dueDate.equals(media.dueDate) : media.dueDate != null) return false;
+		if (imgUrl != null ? !imgUrl.equals(media.imgUrl) : media.imgUrl != null) return false;
+		if (loanDate != null ? !loanDate.equals(media.loanDate) : media.loanDate != null) return false;
+		if (mediumId != null ? !mediumId.equals(media.mediumId) : media.mediumId != null) return false;
+		if (noRenewReason != null ? !noRenewReason.equals(media.noRenewReason) : media.noRenewReason != null)
 			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final Media other = (Media) obj;
-		if (author == null) {
-			if (other.author != null) {
-				return false;
-			}
-		} else if (!author.equals(other.author)) {
-			return false;
-		}
-		if (dueDate == null) {
-			if (other.dueDate != null) {
-				return false;
-			}
-		} else if (!dueDate.equals(other.dueDate)) {
-			return false;
-		}
-		if (loanDate == null) {
-			if (other.loanDate != null) {
-				return false;
-			}
-		} else if (!loanDate.equals(other.loanDate)) {
-			return false;
-		}
-		if (mediumId == null) {
-			if (other.mediumId != null) {
-				return false;
-			}
-		} else if (!mediumId.equals(other.mediumId)) {
-			return false;
-		}
-		if (noRenewReason == null) {
-			if (other.noRenewReason != null) {
-				return false;
-			}
-		} else if (!noRenewReason.equals(other.noRenewReason)) {
-			return false;
-		}
-		if (numRenews != other.numRenews) {
-			return false;
-		}
-		if (renewLink == null) {
-			if (other.renewLink != null) {
-				return false;
-			}
-		} else if (!renewLink.equals(other.renewLink)) {
-			return false;
-		}
-		if (signature == null) {
-			if (other.signature != null) {
-				return false;
-			}
-		} else if (!signature.equals(other.signature)) {
-			return false;
-		}
-		if (title == null) {
-			if (other.title != null) {
-				return false;
-			}
-		} else if (!title.equals(other.title)) {
-			return false;
-		}
+		if (signature != null ? !signature.equals(media.signature) : media.signature != null) return false;
+		if (title != null ? !title.equals(media.title) : media.title != null) return false;
+		if (type != null ? !type.equals(media.type) : media.type != null) return false;
+
 		return true;
 	}
 
+	@Override
+	public int hashCode() {
+		int result = author != null ? author.hashCode() : 0;
+		result = 31 * result + (title != null ? title.hashCode() : 0);
+		result = 31 * result + (loanDate != null ? loanDate.hashCode() : 0);
+		result = 31 * result + (dueDate != null ? dueDate.hashCode() : 0);
+		result = 31 * result + (signature != null ? signature.hashCode() : 0);
+		result = 31 * result + (canRenew ? 1 : 0);
+		result = 31 * result + (noRenewReason != null ? noRenewReason.hashCode() : 0);
+		result = 31 * result + numRenews;
+		result = 31 * result + (mediumId != null ? mediumId.hashCode() : 0);
+		result = 31 * result + (type != null ? type.hashCode() : 0);
+		result = 31 * result + (imgUrl != null ? imgUrl.hashCode() : 0);
+		return result;
+	}
 }

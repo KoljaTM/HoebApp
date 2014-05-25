@@ -2,6 +2,7 @@ package de.vanmar.android.hoebapp;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,13 +12,13 @@ import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
+import com.androidquery.AQuery;
 import com.androidquery.util.AQUtility;
 import com.googlecode.androidannotations.annotations.*;
 import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
@@ -28,6 +29,7 @@ import de.vanmar.android.hoebapp.db.MediaContentProvider;
 import de.vanmar.android.hoebapp.db.MediaDbHelper;
 import de.vanmar.android.hoebapp.service.LibraryService;
 import de.vanmar.android.hoebapp.service.LoginFailedException;
+import de.vanmar.android.hoebapp.service.SoapLibraryService;
 import de.vanmar.android.hoebapp.service.TechnicalException;
 import de.vanmar.android.hoebapp.util.NetworkHelper;
 import de.vanmar.android.hoebapp.util.Preferences_;
@@ -61,6 +63,9 @@ public class HoebAppActivity extends FragmentActivity implements
 
 	@Bean
 	LibraryService libraryService;
+
+	@Bean
+	SoapLibraryService soapLibraryService;
 
 	boolean libraryServiceBound = false;
 
@@ -181,7 +186,7 @@ public class HoebAppActivity extends FragmentActivity implements
 	@Background
 	void executeRenewInBackground(final ProgressDialog dialog) {
 		try {
-			libraryService.renewMedia(renewList, this);
+			soapLibraryService.renewMedia(renewList, this);
 			dialog.dismiss();
 		} catch (final Exception e) {
 			displayError(e);
@@ -257,7 +262,8 @@ public class HoebAppActivity extends FragmentActivity implements
 				return;
 			}
 			displayInTitle(getString(R.string.pleaseWait));
-			libraryService.refreshMediaList(this);
+			//libraryService.refreshMediaList(this);
+			soapLibraryService.refreshMedialist(this);
 		} catch (final Exception e) {
 			displayError(e);
 			displayTitleCount(medialist.getCount());
@@ -312,55 +318,50 @@ public class HoebAppActivity extends FragmentActivity implements
 	private void initList() {
 		// Fields from the database (projection)
 		// Must include the _id column for the adapter to work
-		final String[] from = new String[]{MediaDbHelper.COLUMN_TITLE,
-				MediaDbHelper.COLUMN_DUEDATE, MediaDbHelper.COLUMN_RENEW_LINK,
-				MediaDbHelper.COLUMN_ACCOUNT};
+		final String[] from = new String[]{};
 		// Fields on the UI to which we map
-		final int[] to = new int[]{R.id.title, R.id.dueDate, R.id.checkBox,
-				R.id.tableLayout};
+		final int[] to = new int[]{};
 
 		getSupportLoaderManager().initLoader(0, null, this);
 		adapter = new SimpleCursorAdapter(this, R.layout.medialist_item, null,
-				from, to, 0);
-		adapter.setViewBinder(new ViewBinder() {
-
+				from, to, 0) {
 			@Override
-			public boolean setViewValue(final View view, final Cursor cursor,
-										final int columnIndex) {
+			public void bindView(View view, Context context, Cursor cursor) {
+				AQuery aq = new AQuery(view);
+				aq.find(R.id.title).text(cursor.getString(MediaDbHelper.KEY_TITLE));
+				String dueDate = DISPLAY_DATE_FORMAT.format(new Date(cursor.getLong(MediaDbHelper.KEY_DUEDATE)));
+				CheckBox checkBox = aq.find(R.id.checkBox).getCheckBox();
 
-				if (columnIndex == MediaDbHelper.KEY_DUEDATE) {
-					final long dueDate = cursor.getLong(columnIndex);
-					final TextView textView = (TextView) view;
-					if (cursor.getString(MediaDbHelper.KEY_RENEW_LINK) == null) {
-						// item can not be renewed
-						final String noRenewReasonString = cursor
-								.getString(MediaDbHelper.KEY_NO_RENEW_REASON);
-						if (noRenewReasonString == null) {
-							textView.setText(getString(
-									R.string.dateNotRenewable,
-									DISPLAY_DATE_FORMAT
-											.format(new Date(dueDate))));
-						} else {
-							textView.setText(String.format(
-									getString(R.string.dateNotRenewableReason),
-									DISPLAY_DATE_FORMAT
-											.format(new Date(dueDate)),
-									noRenewReasonString));
-						}
-					} else {
-						// item can be renewed
-						textView.setText(DISPLAY_DATE_FORMAT.format(new Date(
-								dueDate)));
-					}
-					return true;
-				} else if (columnIndex == MediaDbHelper.KEY_RENEW_LINK) {
-					final String renewName = cursor.getString(columnIndex);
+				boolean canRenew = cursor.getInt(MediaDbHelper.KEY_CAN_RENEW) == 1;
+				checkBox.setEnabled(canRenew);
+				if (canRenew) {
+					aq.find(R.id.dueDate).text(dueDate);
+				} else {
+					aq.find(R.id.dueDate).text(String.format(
+							getString(R.string.dateNotRenewableReason),
+							dueDate, cursor.getString(MediaDbHelper.KEY_NO_RENEW_REASON)));
+				}
+				final String signature = cursor
+						.getString(MediaDbHelper.KEY_SIGNATURE);
+				final String username = cursor
+						.getString(MediaDbHelper.KEY_ACCOUNT);
+				final RenewItem renewItem = new RenewItem(getAccount(username), signature);
+				checkBox.setTag(renewItem);
+				checkBox.setChecked(canRenew && renewList.contains(renewItem));
+				checkBox.setOnClickListener(checkboxListener);
+
+				view.setBackgroundResource(getResourceForAccount(username));
+			}
+		};
+		/*adapter.setViewBinder(new ViewBinder() {
+
+
 					final String signature = cursor
 							.getString(MediaDbHelper.KEY_SIGNATURE);
 					final String username = cursor
 							.getString(MediaDbHelper.KEY_ACCOUNT);
 					final CheckBox checkbox = (CheckBox) view;
-					final boolean renewPossible = renewName != null;
+					final boolean renewPossible = cursor.getInt(columnIndex) == 1;
 					checkbox.setEnabled(renewPossible);
 					final RenewItem renewItem = new RenewItem(username,
 							signature);
@@ -379,7 +380,7 @@ public class HoebAppActivity extends FragmentActivity implements
 				return false;
 			}
 		});
-
+*/
 		medialist = (ListView) findViewById(R.id.medialist);
 
 		medialist.setOnItemClickListener(new OnItemClickListener() {
@@ -474,6 +475,15 @@ public class HoebAppActivity extends FragmentActivity implements
 			}
 		}
 		return Appearance.NONE.getDrawable();
+	}
+
+	private Account getAccount(final String username) {
+		for (final Account account : accounts) {
+			if (account.getUsername().equals(username)) {
+				return account;
+			}
+		}
+		return null;
 	}
 
 }
