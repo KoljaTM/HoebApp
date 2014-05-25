@@ -79,11 +79,11 @@ public class LibraryService {
 			Pattern.MULTILINE | Pattern.DOTALL);
 	private static final Pattern REGEX_MEDIA_DETAILS_AUTHOR = Pattern
 			.compile(
-					"LoanBrowseFieldNameCell\">Autor</td>\\s*<td class=\"LoanBrowseFieldDataCell\">\\s*([^>]*)\\s*</td>",
+					"LoanBrowseFieldNameCell\"><i>Autor</i></td>\\s*<td class=\"LoanBrowseFieldDataCell\">\\s*([^>]*)\\s*</td>",
 					Pattern.MULTILINE | Pattern.DOTALL);
 	private static final Pattern REGEX_MEDIA_DETAILS_SIGNATURE = Pattern
 			.compile(
-					"LoanBrowseFieldNameCell\">Mediennummer</td>\\s*<td class=\"LoanBrowseFieldDataCell\">\\s*([^>]*)\\s*</td>",
+					"LoanBrowseFieldNameCell\"><i>Mediennummer</i></td>\\s*<td class=\"LoanBrowseFieldDataCell\">\\s*([^>]*)\\s*</td>",
 					Pattern.MULTILINE | Pattern.DOTALL);
 	private static final Pattern REGEX_MEDIA_DETAILS_DUEDATE = Pattern
 			.compile(
