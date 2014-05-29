@@ -5,22 +5,32 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.OperationApplicationException;
 import android.os.RemoteException;
+import android.util.Log;
 import com.googlecode.androidannotations.annotations.Bean;
 import com.googlecode.androidannotations.annotations.EBean;
 import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
-import de.vanmar.android.hoebapp.bo.Account;
-import de.vanmar.android.hoebapp.bo.Media;
-import de.vanmar.android.hoebapp.bo.MediaDetails;
-import de.vanmar.android.hoebapp.bo.RenewItem;
+import de.vanmar.android.hoebapp.R;
+import de.vanmar.android.hoebapp.bo.*;
 import de.vanmar.android.hoebapp.db.MediaContentProvider;
 import de.vanmar.android.hoebapp.db.MediaDbHelper;
 import de.vanmar.android.hoebapp.util.Preferences_;
 import de.vanmar.android.hoebapp.util.StringUtils;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathFactory;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -34,6 +44,7 @@ public class SoapLibraryService {
 	public static final String NOTES_URL = "https://www.buecherhallen.de/app_webnote/Service1.asmx";
 	public static final String USER_NAMESPACE = "http://bibliomondo.com/websevices/webuser";
 	public static final String USER_URL = "https://www.buecherhallen.de/app_webuser/WebUserSvc.asmx";
+	public static final String CATEGORY_KEYWORD = "text_auto:";
 
 	@Pref
 	Preferences_ prefs;
@@ -209,5 +220,62 @@ public class SoapLibraryService {
 			doRequest(USER_NAMESPACE, "RenewItem", USER_URL, parameters);
 		}
 		refreshMedialist(context);
+	}
+
+	public List<SearchMedia> searchMedia(final Context context,
+										 final String text1, final String category1, final String text2,
+										 final String category2, final String text3, final String category3, int offset, int pageSize) {
+		LinkedList<SearchMedia> resultList = new LinkedList<SearchMedia>();
+		try {
+			StringBuilder query = new StringBuilder();
+			addToQuery(query, text1, category1);
+			addToQuery(query, text2, category2);
+			addToQuery(query, text3, category3);
+			String searchUrl = String.format(context.getString(R.string.searchUrl), URLEncoder.encode(query.toString(), "UTF-8"), offset, pageSize);
+			Log.i("Search", searchUrl);
+			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+			HttpResponse response = new DefaultHttpClient().execute(new HttpGet(searchUrl));
+			Document document = documentBuilderFactory.newDocumentBuilder().parse(response.getEntity().getContent());
+			NodeList results = (NodeList) XPathFactory.newInstance().newXPath().compile("//response/result/doc").evaluate(document, XPathConstants.NODESET);
+
+			XPathExpression xpathTitle = XPathFactory.newInstance().newXPath().compile("arr[@name=\"Title\"]/str[1]");
+			XPathExpression xpathAuthor = XPathFactory.newInstance().newXPath().compile("arr[@name=\"Author\"]/str[1]");
+			XPathExpression xpathISBN = XPathFactory.newInstance().newXPath().compile("arr[@name=\"ISBN\"]/str");
+			XPathExpression xpathId = XPathFactory.newInstance().newXPath().compile("str[@name=\"id\"]");
+			XPathExpression xpathType = XPathFactory.newInstance().newXPath().compile("arr[@name=\"MaterialType\"]/str[2]");
+
+			for (int i = 0; i < results.getLength(); i++) {
+				Node item = results.item(i);
+				String title = xpathTitle.evaluate(item);
+				String author = xpathAuthor.evaluate(item);
+				String isbn = xpathISBN.evaluate(item);
+				if (isbn.contains(" ")) {
+					isbn = isbn.substring(0, isbn.indexOf(" "));
+				}
+				String id = xpathId.evaluate(item);
+				String type = xpathType.evaluate(item);
+				if (!StringUtils.isEmpty(id) && !StringUtils.isEmpty(title)) {
+					SearchMedia searchMedia = new SearchMedia();
+					searchMedia.setAuthor(author);
+					searchMedia.setTitle(title);
+					searchMedia.setId(id);
+					searchMedia.setImgUrl(getImgUrl(isbn));
+					searchMedia.setType(type);
+					resultList.add(searchMedia);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultList;
+	}
+
+	private void addToQuery(StringBuilder query, String text, String category) {
+		if (!StringUtils.isEmpty(text) && !StringUtils.isEmpty(category)) {
+			if (query.length() != 0) {
+				query.append(" AND ");
+			}
+			query.append(category).append('"').append(text).append('"');
+		}
 	}
 }

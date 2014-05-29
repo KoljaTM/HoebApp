@@ -16,6 +16,7 @@ import com.googlecode.androidannotations.annotations.*;
 import de.vanmar.android.hoebapp.bo.SearchMedia;
 import de.vanmar.android.hoebapp.service.LibraryService;
 import de.vanmar.android.hoebapp.service.LoginFailedException;
+import de.vanmar.android.hoebapp.service.SoapLibraryService;
 import de.vanmar.android.hoebapp.service.TechnicalException;
 import de.vanmar.android.hoebapp.util.NetworkHelper;
 import de.vanmar.android.hoebapp.util.StringUtils;
@@ -28,6 +29,7 @@ public class SearchActivity extends FragmentActivity {
 
 	private static final int SEARCH_AREA_SIMPLE = 0;
 	private static final int SEARCH_AREA_ADVANCED = 1;
+	public static final int PAGE_SIZE = 15;
 
 	@ViewById(R.id.searchArea)
 	ViewSwitcher searchArea;
@@ -64,6 +66,8 @@ public class SearchActivity extends FragmentActivity {
 
 	@Bean
 	LibraryService libraryService;
+	@Bean
+	SoapLibraryService soapLibraryService;
 
 	@SystemService
 	InputMethodManager inputMethodManager;
@@ -72,6 +76,13 @@ public class SearchActivity extends FragmentActivity {
 	NetworkHelper networkHelper;
 
 	private ArrayAdapter<SearchMedia> searchResultAdapter;
+	private String text1;
+	private String text2;
+	private String text3;
+	private String type1;
+	private String type2;
+	private String type3;
+	private int offset = -1;
 
 	@Override
 	protected void onStart() {
@@ -211,6 +222,7 @@ public class SearchActivity extends FragmentActivity {
 
 		};
 		searchResults.setAdapter(searchResultAdapter);
+		searchResults.setOnScrollListener(new ScrollListener());
 	}
 
 	@Click(R.id.simpleSearchButton)
@@ -218,7 +230,7 @@ public class SearchActivity extends FragmentActivity {
 		if (networkHelper.networkAvailable()) {
 			displaySearchResults(Collections.<SearchMedia>emptyList());
 			setSearchButtonActive(false);
-			executeSearch(searchBox.getText(), LibraryService.CATEGORY_KEYWORD,
+			startNewSearch(searchBox.getText().toString(), SoapLibraryService.CATEGORY_KEYWORD,
 					"", "", "", "");
 			inputMethodManager.hideSoftInputFromWindow(
 					searchBox.getWindowToken(), 0);
@@ -242,9 +254,10 @@ public class SearchActivity extends FragmentActivity {
 			final String category3 = getResources().getStringArray(
 					R.array.searchcategorykeys)[searchType3
 					.getSelectedItemPosition()];
-			executeSearch(searchBox1.getText().toString(), category1,
+			startNewSearch(searchBox1.getText().toString(), category1,
 					searchBox2.getText().toString(), category2, searchBox3
-					.getText().toString(), category3);
+							.getText().toString(), category3
+			);
 			inputMethodManager.hideSoftInputFromWindow(
 					searchBox.getWindowToken(), 0);
 		} else {
@@ -279,25 +292,40 @@ public class SearchActivity extends FragmentActivity {
 				: R.string.searchButtonWaiting);
 	}
 
+	void startNewSearch(final String text1, final String type1,
+						final String text2, final String type2,
+						final String text3, final String type3) {
+		clearSearchResults();
+		this.text1 = text1;
+		this.text2 = text2;
+		this.text3 = text3;
+		this.type1 = type1;
+		this.type2 = type2;
+		this.type3 = type3;
+		this.offset = 0;
+		loadSearchResults();
+		setSearchButtonActive(true);
+	}
+
 	@Background
-	void executeSearch(final CharSequence text1, final CharSequence type1,
-					   final CharSequence text2, final CharSequence type2,
-					   final CharSequence text3, final CharSequence type3) {
+	void loadSearchResults() {
 		try {
-			final List<SearchMedia> searchMedia = libraryService.searchMedia(
-					this, text1.toString(), type1.toString(), text2.toString(),
-					type2.toString(), text3.toString(), type3.toString());
+			final List<SearchMedia> searchMedia = soapLibraryService.searchMedia(
+					this, text1, type1, text2, type2, text3, type3, offset, PAGE_SIZE);
 			displaySearchResults(searchMedia);
 			hideSearchArea();
 		} catch (final Exception e) {
 			displayError(e);
 		}
-		setSearchButtonActive(true);
+	}
+
+	@UiThread
+	void clearSearchResults() {
+		searchResultAdapter.clear();
 	}
 
 	@UiThread
 	void displaySearchResults(final List<SearchMedia> searchMedia) {
-		searchResultAdapter.clear();
 		for (final SearchMedia item : searchMedia) {
 			searchResultAdapter.add(item);
 		}
@@ -310,6 +338,7 @@ public class SearchActivity extends FragmentActivity {
 
 	@Override
 	public void onBackPressed() {
+		offset = -1;
 		if (searchArea.getVisibility() != View.VISIBLE) {
 			searchArea.setVisibility(View.VISIBLE);
 		} else {
@@ -336,4 +365,20 @@ public class SearchActivity extends FragmentActivity {
 					+ exception.getClass() + exception.getMessage());
 		}
 	}
+
+	private class ScrollListener implements AbsListView.OnScrollListener {
+
+		@Override
+		public void onScrollStateChanged(AbsListView view, int scrollState) {
+		}
+
+		@Override
+		public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+			if (offset >= 0 && firstVisibleItem + visibleItemCount >= offset + PAGE_SIZE - 1) {
+				offset += PAGE_SIZE;
+				loadSearchResults();
+			}
+		}
+	}
 }
+

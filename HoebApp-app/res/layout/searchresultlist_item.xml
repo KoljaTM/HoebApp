@@ -3,23 +3,23 @@
   android:orientation="horizontal"
   android:layout_height="wrap_content" android:background="#FFFFFFFF" android:layout_width="fill_parent">
 
-	<ImageView 
-      android:id="@+id/image" 
+    <ImageView
+            android:id="@+id/image"
       android:contentDescription="@string/imageDesc"
       android:layout_gravity="center"
-      android:layout_width="64dp"
-      android:layout_height="64dp"
+      android:layout_width="80dp"
+      android:layout_height="80dp"
       android:scaleType="centerInside"
-      />  
-    
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	  android:orientation="vertical"
 	  android:id="@+id/tableLayout"
       android:layout_height="wrap_content"
       android:background="#FFFFFFFF"
       android:layout_width="fill_parent">
-	
-	    <TextView
+
+        <TextView
 	        android:id="@+id/author"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -27,8 +27,8 @@
 	        android:padding="5dp"
 	        android:textColor="#FF000000"
 	        android:textSize="16sp" />
-	
-	    <TextView
+
+        <TextView
 	        android:id="@+id/title"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -36,8 +36,8 @@
 	        android:padding="5dp"
 	        android:textColor="#FF000000"
 	        android:textSize="16sp" />
-	
-	    <TextView
+
+        <TextView
 	        android:id="@+id/type"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -45,6 +45,6 @@
 	        android:padding="5dp"
 	        android:textColor="#FF000000"
 	        android:textSize="12sp" />
-	
-	</LinearLayout>
+
+    </LinearLayout>
 </LinearLayout>

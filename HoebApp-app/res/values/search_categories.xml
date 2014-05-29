@@ -10,11 +10,11 @@
     </string-array>
 
     <string-array name="searchcategorykeys">
-        <item>kw=</item>
-        <item>ti=</item>
-        <item>au=</item>
-        <item>su=</item>
-        <item>sb=</item>
-        <item>dp=</item>
+        <item>text_auto:</item>
+        <item>Title:</item>
+        <item>Author:</item>
+        <item>SubjectHeading:</item>
+        <item>ISBN:</item>
+        <item>DateOfPublication:</item>
     </string-array>
 </resources>
