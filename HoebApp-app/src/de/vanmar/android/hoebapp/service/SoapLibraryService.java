@@ -31,6 +31,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -44,6 +45,8 @@ public class SoapLibraryService {
 	public static final String NOTES_URL = "https://www.buecherhallen.de/app_webnote/Service1.asmx";
 	public static final String USER_NAMESPACE = "http://bibliomondo.com/websevices/webuser";
 	public static final String USER_URL = "https://www.buecherhallen.de/app_webuser/WebUserSvc.asmx";
+	public static final String CATALOG_NAMESPACE = "http://bibliomondo.com/websevices/webcatalogue";
+	public static final String CATALOG_URL = "https://www.buecherhallen.de/WebCat/WebCatalogueSvc.asmx";
 	public static final String CATEGORY_KEYWORD = "text_auto:";
 
 	@Pref
@@ -104,21 +107,21 @@ public class SoapLibraryService {
 				List<SoapObject> loans = soapHelper.getLoans(response);
 				for (SoapObject loan : loans) {
 					Media media = new Media();
-					media.setTitle(soapHelper.getString(loan, "Title"));
-					media.setAuthor(soapHelper.getString(loan, "Author"));
+					media.setTitle(soapHelper.getStringFromHtml(loan, "Title"));
+					media.setAuthor(soapHelper.getStringFromHtml(loan, "Author"));
 					SimpleDateFormat dateFormat = getDateFormat();
 					media.setDueDate(dateFormat.parse(soapHelper.getString(loan, "DateDue")));
 					media.setLoanDate(dateFormat.parse(soapHelper.getString(loan, "DateIssued")));
 					media.setSignature(soapHelper.getString(loan, "ItemNumber"));
 					String canRenew = soapHelper.getString(soapHelper.get(loan, "SIP2"), "CanRenew");
 					media.setCanRenew("1".equals(canRenew));
-					media.setNoRenewReason(soapHelper.getString(soapHelper.get(loan, "PrimaryTrapIdText"), "GER"));
+					media.setNoRenewReason(soapHelper.getStringFromHtml(soapHelper.get(loan, "PrimaryTrapIdText"), "GER"));
 					String renewalCount = soapHelper.getString(loan, "RenewalCount");
 					if (!StringUtils.isEmpty(renewalCount)) {
 						media.setNumRenews(Integer.parseInt(renewalCount));
 					}
 					media.setMediumId(soapHelper.getString(loan, "BacNo"));
-					media.setType(soapHelper.getString(loan, "MaterialName"));
+					media.setType(soapHelper.getStringFromHtml(loan, "MaterialName"));
 					String isbn = soapHelper.getString(loan, "ISBN");
 					media.setImgUrl(getImgUrl(isbn));
 					operations.add(updateMediaInDb(media, account));
@@ -277,5 +280,54 @@ public class SoapLibraryService {
 			}
 			query.append(category).append('"').append(text).append('"');
 		}
+	}
+
+	public MediaDetails getMediaDetails(String mediumId) throws TechnicalException {
+		HashMap<String, String> parameters = new HashMap<String, String>();
+		parameters.put("CatalogueNumber", mediumId);
+		SoapObject response = doRequest(CATALOG_NAMESPACE, "GetCatalogueItems", CATALOG_URL, parameters);
+		MediaDetails mediaDetails = new MediaDetails();
+		SoapObject item = soapHelper.get(soapHelper.get(soapHelper.get(soapHelper.get(response, "xmlDoc"), "GetCatalogueItemsResult"), "SoapActionResult"), "Items");
+
+		mediaDetails.setAuthor(soapHelper.getString(item, "Author"));
+		mediaDetails.setTitle(soapHelper.getString(item, "Title"));
+		mediaDetails.setSignature(soapHelper.getString(item, "ClassMark"));
+		mediaDetails.setType(MaterialType.valueOf(soapHelper.getString(item, "MaterialType")));
+		String isbn = soapHelper.getString(item, "ISBN");
+		mediaDetails.setImgUrl(getImgUrl(isbn));
+
+		SortedMap<String, MediaDetails.Stock> stockByLocation = new TreeMap<String, MediaDetails.Stock>();
+
+		for (SoapObject stockItem : soapHelper.getList(item)) {
+			String currentStatus = soapHelper.getString(stockItem, "CurrentStatus");
+			if (!StringUtils.isEmpty(currentStatus)) {
+				String owner = soapHelper.getString(stockItem, "Owner");
+				MediaDetails.Stock stock = stockByLocation.get(owner);
+				if (stock == null) {
+					stock = new MediaDetails.Stock();
+					stock.setLocationCode(Location.getCode(owner));
+					stock.setLocationName(Location.getName(owner));
+					stockByLocation.put(owner, stock);
+				}
+				if ("0".equals(currentStatus)) {
+					stock.setInStock(stock.getInStock() + 1);
+				} else {
+					String statusChangeDate = soapHelper.getString(stockItem, "StatusChangeDate");
+					if (StringUtils.isEmpty(statusChangeDate)) {
+						stock.getOutOfStock().add(null);
+					} else {
+						try {
+							stock.getOutOfStock().add(getDateFormat().parse(statusChangeDate));
+						} catch (ParseException e) {
+							stock.getOutOfStock().add(null);
+						}
+					}
+				}
+			}
+		}
+		for (MediaDetails.Stock stock : stockByLocation.values()) {
+			mediaDetails.getStock().add(stock);
+		}
+		return mediaDetails;
 	}
 }

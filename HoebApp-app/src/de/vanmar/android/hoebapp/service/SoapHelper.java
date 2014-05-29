@@ -40,6 +40,14 @@ public class SoapHelper {
 		if (soapObject == null) {
 			return null;
 		} else {
+			return soapObject.getPrimitivePropertySafelyAsString(property);
+		}
+	}
+
+	public String getStringFromHtml(SoapObject soapObject, String property) {
+		if (soapObject == null) {
+			return null;
+		} else {
 			return Html.fromHtml(soapObject.getPrimitivePropertySafelyAsString(property)).toString();
 		}
 	}
@@ -50,7 +58,9 @@ public class SoapHelper {
 		} else {
 			LinkedList<SoapObject> result = new LinkedList<SoapObject>();
 			for (int i = 0; i < soapObject.getPropertyCount(); i++) {
-				result.add((SoapObject) soapObject.getProperty(i));
+				Object property = soapObject.getProperty(i);
+				if (property instanceof SoapObject)
+					result.add((SoapObject) property);
 			}
 			return result;
 		}

@@ -1,9 +1,5 @@
 package de.vanmar.android.hoebapp;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,19 +7,22 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.androidquery.AQuery;
 import com.googlecode.androidannotations.annotations.*;
-
 import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
 import de.vanmar.android.hoebapp.bo.Account;
 import de.vanmar.android.hoebapp.bo.MediaDetails;
 import de.vanmar.android.hoebapp.bo.MediaDetails.Stock;
 import de.vanmar.android.hoebapp.service.LibraryService;
 import de.vanmar.android.hoebapp.service.LoginFailedException;
+import de.vanmar.android.hoebapp.service.SoapLibraryService;
 import de.vanmar.android.hoebapp.service.TechnicalException;
 import de.vanmar.android.hoebapp.util.NetworkHelper;
 import de.vanmar.android.hoebapp.util.Preferences_;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 @SuppressLint("Registered")
 @EActivity(R.layout.detail)
@@ -39,6 +38,9 @@ public class DetailActivity extends Activity {
 	LibraryService libraryService;
 
 	@Bean
+	SoapLibraryService soapLibraryService;
+
+	@Bean
 	NetworkHelper networkHelper;
 
     @Pref
@@ -50,14 +52,11 @@ public class DetailActivity extends Activity {
 	@ViewById(R.id.title)
 	TextView title;
 
-	@ViewById(R.id.subtitle)
-	TextView subtitle;
+	@ViewById(R.id.signature)
+	TextView signature;
 
 	@ViewById(R.id.author)
 	TextView author;
-
-	@ViewById(R.id.contents)
-	TextView contents;
 
 	@ViewById(R.id.stock)
 	TextView stockText;
@@ -85,7 +84,7 @@ public class DetailActivity extends Activity {
 		if (networkHelper.networkAvailable()) {
 			MediaDetails details;
 			try {
-				details = libraryService.getMediaDetails(mediumId);
+				details = soapLibraryService.getMediaDetails(mediumId);
 				if (details == null
 						|| (details.getTitle() == null && details.getAuthor() == null)) {
 					finish();
@@ -106,11 +105,9 @@ public class DetailActivity extends Activity {
 	void displayDetails(final MediaDetails details) {
 		getWindow().setTitle(details.getTitle());
 		new AQuery(this).id(image).image(details.getImgUrl());
-		// setImage(image, details);
 		title.setText(details.getTitle());
-		subtitle.setText(details.getSubTitle());
+		signature.setText(details.getSignature());
 		author.setText(details.getAuthor());
-		contents.setText(details.getContents());
 		stockTitle.setText(getString(R.string.stockTitle));
 		displayStock(details.getStock());
 	}
