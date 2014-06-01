@@ -13,7 +13,10 @@ import com.googlecode.androidannotations.annotations.*;
 import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
 import de.vanmar.android.hoebapp.bo.Account;
 import de.vanmar.android.hoebapp.bo.MediaDetails;
-import de.vanmar.android.hoebapp.service.*;
+import de.vanmar.android.hoebapp.service.LoginFailedException;
+import de.vanmar.android.hoebapp.service.NetworkNotAvailableException;
+import de.vanmar.android.hoebapp.service.SoapLibraryService;
+import de.vanmar.android.hoebapp.service.TechnicalException;
 import de.vanmar.android.hoebapp.util.NetworkHelper;
 import de.vanmar.android.hoebapp.util.Preferences_;
 
@@ -32,8 +35,6 @@ public class NotepadActivity extends FragmentActivity {
 	@ViewById(R.id.titlebar)
 	TextView titlebar;
 
-	@Bean
-	LibraryService libraryService;
 	@Bean
 	SoapLibraryService soapLibraryService;
 
@@ -128,7 +129,7 @@ public class NotepadActivity extends FragmentActivity {
 	@Background
 	void removeFromNotepad(MediaDetails mediaDetails) {
 		try {
-			libraryService.removeFromNotepad(mediaDetails.getOwner(), mediaDetails.getId());
+			soapLibraryService.removeFromNotepad(mediaDetails.getOwner(), mediaDetails.getId());
 		} catch (TechnicalException e) {
 			displayError(e);
 		}

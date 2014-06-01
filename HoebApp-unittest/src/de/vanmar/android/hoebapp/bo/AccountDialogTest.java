@@ -1,28 +1,22 @@
 package de.vanmar.android.hoebapp.bo;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.CoreMatchers.sameInstance;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.MockitoAnnotations;
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.xtremelabs.robolectric.RobolectricTestRunner;
-
 import de.vanmar.android.hoebapp.R;
 import de.vanmar.android.hoebapp.bo.Account.Appearance;
 import de.vanmar.android.hoebapp.dialog.AccountDialog;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.MockitoAnnotations;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
 public class AccountDialogTest {
@@ -67,7 +61,7 @@ public class AccountDialogTest {
 	@Test
 	public void shouldShowInitialValues() {
 		// given
-		createDialog(new Account("user", "pass", Appearance.GREEN));
+		createDialog(new Account("user", "user", "pass", Appearance.GREEN));
 
 		// then
 		assertThat(((EditText) dialog.findViewById(R.id.username)).getText()
@@ -112,7 +106,7 @@ public class AccountDialogTest {
 	@Test
 	public void shouldReturnUnchangedOnCancelWhenStartedWithAccount() {
 		// given
-		final Account account = new Account("aa", "bb", Appearance.BLUE);
+		final Account account = new Account("aa", "aa", "bb", Appearance.BLUE);
 		createDialog(account);
 
 		// when
@@ -136,7 +130,7 @@ public class AccountDialogTest {
 
 		// then
 		assertThat(dialog.isShowing(), is((false)));
-		assertThat(dialog.getAccount(), is(equalTo(new Account("newUsername",
+		assertThat(dialog.getAccount(), is(equalTo(new Account("newUsername", null,
 				"newPassword", Appearance.BLUE))));
 
 	}
@@ -144,7 +138,7 @@ public class AccountDialogTest {
 	@Test
 	public void shouldUseDialogDataOnSaveForEditAccount() {
 		// given
-		createDialog(new Account("oldUsername", "oldPassword", Appearance.BLUE));
+		createDialog(new Account("oldUsername", "oldUsername", "oldPassword", Appearance.BLUE));
 
 		editData("newUsername", "newPassword");
 		changeAppearance();
@@ -152,7 +146,7 @@ public class AccountDialogTest {
 
 		// then
 		assertThat(dialog.isShowing(), is((false)));
-		assertThat(dialog.getAccount(), is(equalTo(new Account("newUsername",
+		assertThat(dialog.getAccount(), is(equalTo(new Account("newUsername", null,
 				"newPassword", Appearance.RED))));
 	}
 
@@ -200,7 +194,7 @@ public class AccountDialogTest {
 	@Test
 	public void shouldCycleAppearances() {
 		// given
-		createDialog(new Account("username", "password", Appearance.NONE));
+		createDialog(new Account("username", "username", "password", Appearance.NONE));
 
 		// when
 		changeAppearance();

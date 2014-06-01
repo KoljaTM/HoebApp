@@ -1,7 +1,5 @@
 package de.vanmar.android.hoebapp;
 
-import java.util.Date;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -10,18 +8,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.util.Log;
-
 import com.googlecode.androidannotations.annotations.Background;
 import com.googlecode.androidannotations.annotations.Bean;
 import com.googlecode.androidannotations.annotations.EReceiver;
 import com.googlecode.androidannotations.annotations.SystemService;
 import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
-
 import de.vanmar.android.hoebapp.db.MediaContentProvider;
 import de.vanmar.android.hoebapp.db.MediaDbHelper;
-import de.vanmar.android.hoebapp.service.LibraryService;
+import de.vanmar.android.hoebapp.service.SoapLibraryService;
 import de.vanmar.android.hoebapp.util.NetworkHelper;
 import de.vanmar.android.hoebapp.util.Preferences_;
+
+import java.util.Date;
 
 @EReceiver
 public class UpdateService extends BroadcastReceiver {
@@ -34,7 +32,7 @@ public class UpdateService extends BroadcastReceiver {
 	Preferences_ prefs;
 
 	@Bean
-	LibraryService libraryService;
+	SoapLibraryService soapLibraryService;
 
 	@Bean
 	NetworkHelper networkHelper;
@@ -49,7 +47,7 @@ public class UpdateService extends BroadcastReceiver {
 		// refresh media list if necessary and autoupdate activated
 		if (doAutoUpdate
 				&& (doAutoUpdateWifiOnly ? networkHelper.wifiAvailable()
-						: networkHelper.networkAvailable())) {
+				: networkHelper.networkAvailable())) {
 			refreshListIfNecessary(context);
 		}
 
@@ -62,7 +60,7 @@ public class UpdateService extends BroadcastReceiver {
 		final long now = new Date().getTime();
 		if (now - lastAccess > DAY_IN_MILLIS) {
 			try {
-				libraryService.refreshMediaList(context);
+				soapLibraryService.refreshMediaList(context);
 			} catch (final Exception e) {
 				// Refresh failed; no point in bothering the user with it
 				Log.e("UpdateService", "Update failed", e);
@@ -108,9 +106,9 @@ public class UpdateService extends BroadcastReceiver {
 
 	private int mediaDueCount(final Context context, final long dueDate) {
 		final Cursor mediaDueCursor = context.getContentResolver().query(
-				MediaContentProvider.CONTENT_URI, new String[] {},
+				MediaContentProvider.CONTENT_URI, new String[]{},
 				MediaDbHelper.COLUMN_DUEDATE + "<=?",
-				new String[] { String.valueOf(dueDate) }, null);
+				new String[]{String.valueOf(dueDate)}, null);
 		final int mediaCount = mediaDueCursor.getCount();
 		mediaDueCursor.close();
 		return mediaCount;

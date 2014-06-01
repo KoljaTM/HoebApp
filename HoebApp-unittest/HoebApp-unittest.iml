@@ -11,7 +11,7 @@
     <orderEntry type="library" scope="PROVIDED" name="libs1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="android" level="project" />
     <orderEntry type="module" module-name="HoebApp-app" scope="PROVIDED" />
-    <orderEntry type="module" module-name="HoebApp-test" scope="PROVIDED" />
+    <orderEntry type="module" module-name="HoebApp-test" exported="" scope="PROVIDED" />
   </component>
 </module>
 

@@ -27,7 +27,6 @@ import de.vanmar.android.hoebapp.bo.Account.Appearance;
 import de.vanmar.android.hoebapp.bo.RenewItem;
 import de.vanmar.android.hoebapp.db.MediaContentProvider;
 import de.vanmar.android.hoebapp.db.MediaDbHelper;
-import de.vanmar.android.hoebapp.service.LibraryService;
 import de.vanmar.android.hoebapp.service.LoginFailedException;
 import de.vanmar.android.hoebapp.service.SoapLibraryService;
 import de.vanmar.android.hoebapp.service.TechnicalException;
@@ -60,9 +59,6 @@ public class HoebAppActivity extends FragmentActivity implements
 	ListView medialist;
 
 	private SimpleCursorAdapter adapter;
-
-	@Bean
-	LibraryService libraryService;
 
 	@Bean
 	SoapLibraryService soapLibraryService;
@@ -145,7 +141,21 @@ public class HoebAppActivity extends FragmentActivity implements
 					getString(R.string.renewWaitMessage), true);
 
 			if (renewList.isEmpty()) {
-				doRenewAll(dialog);
+				final AlertDialog alertDialog = new AlertDialog.Builder(this)
+						.setTitle(R.string.renew)
+						.setMessage(R.string.renewNoItemsSelected)
+						.setPositiveButton(R.string.ok,
+								new DialogInterface.OnClickListener() {
+									@Override
+									public void onClick(final DialogInterface dialog,
+														final int id) {
+										dialog.cancel();
+									}
+								}
+						)
+						.create();
+
+				alertDialog.show();
 				return;
 			}
 
@@ -157,47 +167,10 @@ public class HoebAppActivity extends FragmentActivity implements
 
 	}
 
-	private void doRenewAll(final ProgressDialog progressDialog) {
-		final AlertDialog confirmDialog = new AlertDialog.Builder(this)
-				.setTitle(R.string.renew)
-				.setMessage(R.string.renewAllHint)
-				.setPositiveButton(R.string.yes,
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(final DialogInterface dialog,
-												final int id) {
-								dialog.cancel();
-								executeRenewAllInBackground(progressDialog);
-							}
-						})
-				.setNegativeButton(R.string.no,
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(final DialogInterface dialog,
-												final int id) {
-								dialog.cancel();
-								progressDialog.cancel();
-							}
-						}).create();
-
-		confirmDialog.show();
-	}
-
 	@Background
 	void executeRenewInBackground(final ProgressDialog dialog) {
 		try {
 			soapLibraryService.renewMedia(renewList, this);
-			dialog.dismiss();
-		} catch (final Exception e) {
-			displayError(e);
-			dialog.cancel();
-		}
-	}
-
-	@Background
-	void executeRenewAllInBackground(final ProgressDialog dialog) {
-		try {
-			libraryService.renewAllMedia(this);
 			dialog.dismiss();
 		} catch (final Exception e) {
 			displayError(e);
@@ -263,7 +236,7 @@ public class HoebAppActivity extends FragmentActivity implements
 			}
 			displayInTitle(getString(R.string.pleaseWait));
 			//libraryService.refreshMediaList(this);
-			soapLibraryService.refreshMedialist(this);
+			soapLibraryService.refreshMediaList(this);
 		} catch (final Exception e) {
 			displayError(e);
 			displayTitleCount(medialist.getCount());
@@ -297,20 +270,22 @@ public class HoebAppActivity extends FragmentActivity implements
 		if (exception instanceof LoginFailedException) {
 			Toast.makeText(this, R.string.loginfailed, Toast.LENGTH_SHORT)
 					.show();
-			Log.w(getClass().getCanonicalName(), "LoginFailedException");
+			Log.w(HoebAppActivity.class.getCanonicalName(), "LoginFailedException");
 		} else if (exception instanceof TechnicalException) {
 			if (exception.getCause() instanceof IOException) {
 				Toast.makeText(this, R.string.ioException, Toast.LENGTH_SHORT)
 						.show();
-				Log.e(getClass().getCanonicalName(), "IOException: "
-						+ exception.getClass() + exception.getMessage(),
-						exception);
+				Log.e(HoebAppActivity.class.getCanonicalName(), "IOException: "
+								+ exception.getClass() + exception.getMessage(),
+						exception
+				);
 			} else {
 				Toast.makeText(this, R.string.technicalError,
 						Toast.LENGTH_SHORT).show();
-				Log.e(getClass().getCanonicalName(), "TechnicalException: "
-						+ exception.getClass() + exception.getMessage(),
-						exception);
+				Log.e(HoebAppActivity.class.getCanonicalName(), "TechnicalException: "
+								+ exception.getClass() + exception.getMessage(),
+						exception
+				);
 			}
 		}
 	}
@@ -430,7 +405,8 @@ public class HoebAppActivity extends FragmentActivity implements
 									prefs.acceptedEULA().put(EULA_VERSION);
 									dialog.cancel();
 								}
-							})
+							}
+					)
 					.setNegativeButton(R.string.decline,
 							new DialogInterface.OnClickListener() {
 								@Override
@@ -439,7 +415,8 @@ public class HoebAppActivity extends FragmentActivity implements
 										final int id) {
 									HoebAppActivity.this.finish();
 								}
-							}).create();
+							}
+					).create();
 
 			dialog.show();
 		}

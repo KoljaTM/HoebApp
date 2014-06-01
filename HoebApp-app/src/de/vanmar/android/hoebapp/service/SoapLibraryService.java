@@ -1,15 +1,15 @@
 package de.vanmar.android.hoebapp.service;
 
-import android.content.ContentProviderOperation;
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.OperationApplicationException;
+import android.appwidget.AppWidgetManager;
+import android.content.*;
 import android.os.RemoteException;
 import android.util.Log;
 import com.googlecode.androidannotations.annotations.Bean;
 import com.googlecode.androidannotations.annotations.EBean;
 import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
+import de.vanmar.android.hoebapp.HoebAppWidgetProvider_;
 import de.vanmar.android.hoebapp.R;
+import de.vanmar.android.hoebapp.UpdateService_;
 import de.vanmar.android.hoebapp.bo.*;
 import de.vanmar.android.hoebapp.db.MediaContentProvider;
 import de.vanmar.android.hoebapp.db.MediaDbHelper;
@@ -20,6 +20,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 import org.w3c.dom.Document;
@@ -43,6 +44,8 @@ public class SoapLibraryService {
 
 	public static final String NOTES_NAMESPACE = "http://bibliomondo.com/websevices/webcatalogue";
 	public static final String NOTES_URL = "https://www.buecherhallen.de/app_webnote/Service1.asmx";
+	public static final String NOTE_NAMESPACE = "http://bibliomondo.com/ZoneServices/";
+	public static final String NOTE_URL = "https://www.buecherhallen.de/app_ZonesServices/Service1.asmx";
 	public static final String USER_NAMESPACE = "http://bibliomondo.com/websevices/webuser";
 	public static final String USER_URL = "https://www.buecherhallen.de/app_webuser/WebUserSvc.asmx";
 	public static final String CATALOG_NAMESPACE = "http://bibliomondo.com/websevices/webcatalogue";
@@ -55,16 +58,13 @@ public class SoapLibraryService {
 	@Bean
 	SoapHelper soapHelper;
 
-	@Bean
-	LibraryService libraryService;
-
 	public List<MediaDetails> loadNotepad() throws TechnicalException {
 		checkUsernames();
 		final List<Account> accounts = Account.fromString(prefs.accounts().get());
 
 		LinkedList<MediaDetails> result = new LinkedList<MediaDetails>();
 		for (final Account account : accounts) {
-			HashMap<String, String> parameters = new HashMap<String, String>();
+			HashMap<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("patronId", account.getCheckedUsername());
 			parameters.put("patronPin", account.getPassword());
 			SoapObject response = doRequest(NOTES_NAMESPACE, "ReadNotesExt", NOTES_URL, parameters);
@@ -90,7 +90,7 @@ public class SoapLibraryService {
 		return "http://cover.ekz.de/" + isbn.replaceAll(" ", "") + ".jpg";
 	}
 
-	public void refreshMedialist(Context context) throws TechnicalException {
+	public void refreshMediaList(Context context) throws TechnicalException {
 		checkUsernames();
 
 		try {
@@ -100,7 +100,7 @@ public class SoapLibraryService {
 			final List<Account> accounts = Account.fromString(prefs.accounts()
 					.get());
 			for (final Account account : accounts) {
-				HashMap<String, String> parameters = new HashMap<String, String>();
+				HashMap<String, Object> parameters = new HashMap<String, Object>();
 				parameters.put("borrowerNumber", account.getCheckedUsername());
 				parameters.put("borrowerPin", account.getPassword());
 				SoapObject response = doRequest(USER_NAMESPACE, "GetBorrowerLoans", USER_URL, parameters);
@@ -134,10 +134,10 @@ public class SoapLibraryService {
 							operations);
 
 			// notify Widget of changes
-			libraryService.notifyWidget(context);
+			notifyWidget(context);
 
-			libraryService.updateLastAccessDate();
-			libraryService.updateNotifications(context);
+			updateLastAccessDate();
+			updateNotifications(context);
 
 		} catch (Exception e) {
 			throw new TechnicalException(e);
@@ -168,10 +168,41 @@ public class SoapLibraryService {
 				.withValues(value).build();
 	}
 
+	private void notifyWidget(final Context context) {
+		final Intent widgetIntent = new Intent(context,
+				HoebAppWidgetProvider_.class);
+		widgetIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+		widgetIntent.putExtra(
+				AppWidgetManager.EXTRA_APPWIDGET_IDS,
+				AppWidgetManager.getInstance(context)
+						.getAppWidgetIds(
+								new ComponentName(context,
+										HoebAppWidgetProvider_.class)
+						)
+		);
+		context.sendBroadcast(widgetIntent);
+	}
 
-	private SoapObject doRequest(String namespace, String action, String url, Map<String, String> parameters) throws TechnicalException {
+	private void updateLastAccessDate() {
+		prefs.lastAccess().put(new Date().getTime());
+		prefs.notificationSent().put(0);
+	}
+
+	private void updateNotifications(final Context context) {
+		context.sendBroadcast(new Intent(context, UpdateService_.class));
+	}
+
+	private SoapPrimitive doRequestForPrimitive(String namespace, String action, String url, HashMap<String, Object> parameters) throws TechnicalException {
+		return doRequestInternal(namespace, action, url, parameters, SoapPrimitive.class);
+	}
+
+	private SoapObject doRequest(String namespace, String action, String url, HashMap<String, Object> parameters) throws TechnicalException {
+		return doRequestInternal(namespace, action, url, parameters, SoapObject.class);
+	}
+
+	private <TYPE> TYPE doRequestInternal(String namespace, String action, String url, HashMap<String, Object> parameters, Class<TYPE> clazz) throws TechnicalException {
 		SoapObject request = new SoapObject(namespace, action);
-		for (Map.Entry<String, String> parameter : parameters.entrySet()) {
+		for (Map.Entry<String, Object> parameter : parameters.entrySet()) {
 			request.addProperty(parameter.getKey(), parameter.getValue());
 		}
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
@@ -181,8 +212,11 @@ public class SoapLibraryService {
 		HttpTransportSE httpTransport = new HttpTransportSE(url);
 
 		try {
-			httpTransport.call(namespace + "/" + action, envelope);
-			return (SoapObject) envelope.getResponse();
+			if (!namespace.endsWith("/")) {
+				namespace += "/";
+			}
+			httpTransport.call(namespace + action, envelope);
+			return (TYPE) envelope.getResponse();
 		} catch (Exception exception) {
 			throw new TechnicalException(exception);
 		}
@@ -196,7 +230,7 @@ public class SoapLibraryService {
 				checkedAccounts.add(account);
 				continue;
 			}
-			Map<String, String> parameters = new HashMap<String, String>();
+			HashMap<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("borrowerNumber", account.getUsername());
 			parameters.put("pin", account.getPassword());
 			SoapObject checkBorrowerResult = doRequest(USER_NAMESPACE, "CheckBorrower", USER_URL, parameters);
@@ -216,13 +250,13 @@ public class SoapLibraryService {
 
 	public void renewMedia(Set<RenewItem> renewList, Context context) throws TechnicalException {
 		for (RenewItem item : renewList) {
-			HashMap<String, String> parameters = new HashMap<String, String>();
+			HashMap<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("borrowerNumber", item.getAccount().getCheckedUsername());
 			parameters.put("borrowerPin", item.getAccount().getPassword());
 			parameters.put("itemNumber", item.getSignature());
 			doRequest(USER_NAMESPACE, "RenewItem", USER_URL, parameters);
 		}
-		refreshMedialist(context);
+		refreshMediaList(context);
 	}
 
 	public List<SearchMedia> searchMedia(final Context context,
@@ -283,7 +317,7 @@ public class SoapLibraryService {
 	}
 
 	public MediaDetails getMediaDetails(String mediumId) throws TechnicalException {
-		HashMap<String, String> parameters = new HashMap<String, String>();
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("CatalogueNumber", mediumId);
 		SoapObject response = doRequest(CATALOG_NAMESPACE, "GetCatalogueItems", CATALOG_URL, parameters);
 		MediaDetails mediaDetails = new MediaDetails();
@@ -329,5 +363,48 @@ public class SoapLibraryService {
 			mediaDetails.getStock().add(stock);
 		}
 		return mediaDetails;
+	}
+
+	public void addToNotepad(Account account, String mediumId) throws TechnicalException {
+		// checkUsernames(); TODO: richtigen Account bestimmen
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("patronid", account.getCheckedUsername());
+		parameters.put("patronpin", account.getPassword());
+		parameters.put("padName", "-");
+		mediumId = trim(mediumId);
+		parameters.put("catalogueId", mediumId);
+		SoapObject details = new SoapObject("", "");
+		details.addProperty("r", "");
+		parameters.put("details", details);
+		SoapObject response = doRequest(NOTE_NAMESPACE, "NoteRecord", NOTE_URL, parameters);
+
+		Log.i("Response:", response.toString());
+	}
+
+	private String trim(String mediumId) {
+		if (mediumId == null)
+			return null;
+		if (mediumId.startsWith("T")) {
+			mediumId = mediumId.substring(1);
+		}
+		while (mediumId.startsWith("0")) {
+			mediumId = mediumId.substring(1);
+		}
+		mediumId = mediumId.substring(0, mediumId.length() - 1);
+		return mediumId;
+	}
+
+	public void removeFromNotepad(Account account, String mediumId) throws TechnicalException {
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("patronid", account.getCheckedUsername());
+		parameters.put("patronpin", account.getPassword());
+		parameters.put("padName", "-");
+		parameters.put("catalogueId", mediumId);
+		SoapObject details = new SoapObject("", "");
+		details.addProperty("r", "");
+		parameters.put("details", details);
+		SoapPrimitive response = doRequestForPrimitive(NOTE_NAMESPACE, "DeleteNote", NOTE_URL, parameters);
+
+		Log.i("Response:", response.toString());
 	}
 }

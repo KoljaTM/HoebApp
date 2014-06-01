@@ -13,7 +13,6 @@ import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
 import de.vanmar.android.hoebapp.bo.Account;
 import de.vanmar.android.hoebapp.bo.MediaDetails;
 import de.vanmar.android.hoebapp.bo.MediaDetails.Stock;
-import de.vanmar.android.hoebapp.service.LibraryService;
 import de.vanmar.android.hoebapp.service.LoginFailedException;
 import de.vanmar.android.hoebapp.service.SoapLibraryService;
 import de.vanmar.android.hoebapp.service.TechnicalException;
@@ -26,7 +25,7 @@ import java.util.List;
 
 @SuppressLint("Registered")
 @EActivity(R.layout.detail)
-@OptionsMenu (R.menu.mediadetailmenu)
+@OptionsMenu(R.menu.mediadetailmenu)
 public class DetailActivity extends Activity {
 
 	public static final String EXTRA_MEDIUM_ID = "mediumId";
@@ -35,18 +34,15 @@ public class DetailActivity extends Activity {
 			"dd.MM.yyyy");
 
 	@Bean
-	LibraryService libraryService;
-
-	@Bean
 	SoapLibraryService soapLibraryService;
 
 	@Bean
 	NetworkHelper networkHelper;
 
-    @Pref
-    Preferences_ prefs;
+	@Pref
+	Preferences_ prefs;
 
-    @ViewById(R.id.image)
+	@ViewById(R.id.image)
 	ImageView image;
 
 	@ViewById(R.id.title)
@@ -74,12 +70,12 @@ public class DetailActivity extends Activity {
 		loadDetails(mediumId);
 	}
 
-    private String getMediumId() {
-        return getIntent().getExtras().getString(
-                EXTRA_MEDIUM_ID);
-    }
+	private String getMediumId() {
+		return getIntent().getExtras().getString(
+				EXTRA_MEDIUM_ID);
+	}
 
-    @Background
+	@Background
 	void loadDetails(final String mediumId) {
 		if (networkHelper.networkAvailable()) {
 			MediaDetails details;
@@ -138,7 +134,8 @@ public class DetailActivity extends Activity {
 					if (returnDate != null) {
 						sb.append(
 								getString(R.string.availableAt,
-										DISPLAY_DATE_FORMAT.format(returnDate)))
+										DISPLAY_DATE_FORMAT.format(returnDate))
+						)
 								.append('\n');
 					} else {
 						sb.append(getString(R.string.unavailableUnknown))
@@ -164,32 +161,32 @@ public class DetailActivity extends Activity {
 		}
 	}
 
-    @OptionsItem(R.id.addToNotepad)
-    void doAddToNotepad() {
-        final List<Account> accounts = Account.fromString(prefs.accounts()
-                .get());
-        if (accounts.isEmpty()) {
-            displayMessage(R.string.usernameNotSet);
-            this.startActivity(new Intent(this, PreferencesActivity_.class));
-            return;
-        }
-        // TODO: Choose account
-        addToNotepad(accounts.get(0));
-    }
+	@OptionsItem(R.id.addToNotepad)
+	void doAddToNotepad() {
+		final List<Account> accounts = Account.fromString(prefs.accounts()
+				.get());
+		if (accounts.isEmpty()) {
+			displayMessage(R.string.usernameNotSet);
+			this.startActivity(new Intent(this, PreferencesActivity_.class));
+			return;
+		}
+		// TODO: Choose account
+		addToNotepad(accounts.get(0));
+	}
 
-    @Background
-    void addToNotepad(Account account) {
-        try {
-            libraryService.addToNotepad(account, getMediumId());
-            displayMessage(R.string.addedToNotepad);
-        } catch (TechnicalException e) {
-            displayError(e);
-        }
-    }
+	@Background
+	void addToNotepad(Account account) {
+		try {
+			soapLibraryService.addToNotepad(account, getMediumId());
+			displayMessage(R.string.addedToNotepad);
+		} catch (TechnicalException e) {
+			displayError(e);
+		}
+	}
 
-    @UiThread
-    void displayMessage(int resId) {
-        Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
-    }
+	@UiThread
+	void displayMessage(int resId) {
+		Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
+	}
 
 }

@@ -14,7 +14,6 @@ import android.widget.TextView.OnEditorActionListener;
 import com.androidquery.AQuery;
 import com.googlecode.androidannotations.annotations.*;
 import de.vanmar.android.hoebapp.bo.SearchMedia;
-import de.vanmar.android.hoebapp.service.LibraryService;
 import de.vanmar.android.hoebapp.service.LoginFailedException;
 import de.vanmar.android.hoebapp.service.SoapLibraryService;
 import de.vanmar.android.hoebapp.service.TechnicalException;
@@ -64,8 +63,6 @@ public class SearchActivity extends FragmentActivity {
 	@ViewById(R.id.searchResults)
 	ListView searchResults;
 
-	@Bean
-	LibraryService libraryService;
 	@Bean
 	SoapLibraryService soapLibraryService;
 

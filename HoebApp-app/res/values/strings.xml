@@ -14,9 +14,8 @@
     <string name="dateNotRenewableReason" formatted="false">%s - (Nicht verlängerbar: %s)</string>
     <string name="refresh">Aktualisieren</string>
     <string name="renew">Verlängern</string>
-    <string name="renewAllHint">Keine Medien zur Verlängerung ausgewählt. Alle verlängern?</string>
-    <string name="yes">Ja</string>
-    <string name="no">Nein</string>
+    <string name="renewNoItemsSelected">Keine Medien zur Verlängerung ausgewählt. Bitte Checkboxen auswählen.</string>
+    <string name="ok">OK</string>
     <string name="preferences">Einstellungen</string>
     <string name="username_preference">Ausweisnummer</string>
     <string name="summary_username_preference">Nummer des Bibliotheksausweises (ohne A, mit X)</string>

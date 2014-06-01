@@ -1,17 +1,16 @@
 package de.vanmar.android.hoebapp.bo;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import de.vanmar.android.hoebapp.bo.Account.Appearance;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import de.vanmar.android.hoebapp.bo.Account.Appearance;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 @RunWith(JUnit4.class)
 public class AccountTest {
@@ -21,7 +20,7 @@ public class AccountTest {
 		// given
 		final List<Account> accounts = new ArrayList<Account>();
 		accounts.add(new Account("username1", "password1"));
-		accounts.add(new Account("username2", "password2", Appearance.RED));
+		accounts.add(new Account("username2", "username2", "password2", Appearance.RED));
 
 		// when
 		final String jsonString = Account.toString(accounts);
