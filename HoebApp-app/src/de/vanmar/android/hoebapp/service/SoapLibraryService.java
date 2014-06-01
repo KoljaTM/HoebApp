@@ -275,7 +275,7 @@ public class SoapLibraryService {
 			Document document = documentBuilderFactory.newDocumentBuilder().parse(response.getEntity().getContent());
 			NodeList results = (NodeList) XPathFactory.newInstance().newXPath().compile("//response/result/doc").evaluate(document, XPathConstants.NODESET);
 
-			XPathExpression xpathTitle = XPathFactory.newInstance().newXPath().compile("arr[@name=\"Title\"]/str[1]");
+			XPathExpression xpathTitle = XPathFactory.newInstance().newXPath().compile("arr[@name=\"Title\"]");
 			XPathExpression xpathAuthor = XPathFactory.newInstance().newXPath().compile("arr[@name=\"Author\"]/str[1]");
 			XPathExpression xpathISBN = XPathFactory.newInstance().newXPath().compile("arr[@name=\"ISBN\"]/str");
 			XPathExpression xpathId = XPathFactory.newInstance().newXPath().compile("str[@name=\"id\"]");
@@ -311,6 +311,9 @@ public class SoapLibraryService {
 		if (!StringUtils.isEmpty(text) && !StringUtils.isEmpty(category)) {
 			if (query.length() != 0) {
 				query.append(" AND ");
+			}
+			if (CATEGORY_KEYWORD.equals(category)) {
+				category = ""; // keyword search is just the plain text as query
 			}
 			query.append(category).append('"').append(text).append('"');
 		}
