@@ -58,6 +58,8 @@ public class SoapLibraryService {
 	@Bean
 	SoapHelper soapHelper;
 
+	HttpTransportFactory httpTransportFactory = new HttpTransportFactory();
+
 	public List<MediaDetails> loadNotepad() throws TechnicalException {
 		checkUsernames();
 		final List<Account> accounts = Account.fromString(prefs.accounts().get());
@@ -67,7 +69,7 @@ public class SoapLibraryService {
 			HashMap<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("patronId", account.getCheckedUsername());
 			parameters.put("patronPin", account.getPassword());
-			SoapObject response = doRequest(NOTES_NAMESPACE, "ReadNotesExt", NOTES_URL, parameters);
+			SoapObject response = doRequest(NOTES_NAMESPACE, "ReadNotesExt", NOTES_URL, parameters, SoapEnvelope.VER11);
 			SoapObject items = (SoapObject) response.getProperty("items");
 			for (int i = 0; i < items.getPropertyCount(); i++) {
 				SoapObject item = (SoapObject) items.getProperty(i);
@@ -103,7 +105,7 @@ public class SoapLibraryService {
 				HashMap<String, Object> parameters = new HashMap<String, Object>();
 				parameters.put("borrowerNumber", account.getCheckedUsername());
 				parameters.put("borrowerPin", account.getPassword());
-				SoapObject response = doRequest(USER_NAMESPACE, "GetBorrowerLoans", USER_URL, parameters);
+				SoapObject response = doRequest(USER_NAMESPACE, "GetBorrowerLoans", USER_URL, parameters, SoapEnvelope.VER11);
 				List<SoapObject> loans = soapHelper.getLoans(response);
 				for (SoapObject loan : loans) {
 					Media media = new Media();
@@ -192,24 +194,24 @@ public class SoapLibraryService {
 		context.sendBroadcast(new Intent(context, UpdateService_.class));
 	}
 
-	private SoapPrimitive doRequestForPrimitive(String namespace, String action, String url, HashMap<String, Object> parameters) throws TechnicalException {
-		return doRequestInternal(namespace, action, url, parameters, SoapPrimitive.class);
+	private SoapPrimitive doRequestForPrimitive(String namespace, String action, String url, HashMap<String, Object> parameters, int soapEnvelopeVersion) throws TechnicalException {
+		return doRequestInternal(namespace, action, url, parameters, SoapPrimitive.class, soapEnvelopeVersion);
 	}
 
-	private SoapObject doRequest(String namespace, String action, String url, HashMap<String, Object> parameters) throws TechnicalException {
-		return doRequestInternal(namespace, action, url, parameters, SoapObject.class);
+	private SoapObject doRequest(String namespace, String action, String url, HashMap<String, Object> parameters, int soapEnvelopeVersion) throws TechnicalException {
+		return doRequestInternal(namespace, action, url, parameters, SoapObject.class, soapEnvelopeVersion);
 	}
 
-	private <TYPE> TYPE doRequestInternal(String namespace, String action, String url, HashMap<String, Object> parameters, Class<TYPE> clazz) throws TechnicalException {
+	private <TYPE> TYPE doRequestInternal(String namespace, String action, String url, HashMap<String, Object> parameters, Class<TYPE> clazz, int soapEnvelopeVersion) throws TechnicalException {
 		SoapObject request = new SoapObject(namespace, action);
 		for (Map.Entry<String, Object> parameter : parameters.entrySet()) {
 			request.addProperty(parameter.getKey(), parameter.getValue());
 		}
-		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(soapEnvelopeVersion);
 		envelope.dotNet = true;
 		envelope.setOutputSoapObject(request);
 
-		HttpTransportSE httpTransport = new HttpTransportSE(url);
+		HttpTransportSE httpTransport = getHttpTransport(url);
 
 		try {
 			if (!namespace.endsWith("/")) {
@@ -220,6 +222,10 @@ public class SoapLibraryService {
 		} catch (Exception exception) {
 			throw new TechnicalException(exception);
 		}
+	}
+
+	private HttpTransportSE getHttpTransport(String url) {
+		return httpTransportFactory.getHttpTransport(url);
 	}
 
 	private void checkUsernames() throws TechnicalException {
@@ -233,7 +239,7 @@ public class SoapLibraryService {
 			HashMap<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("borrowerNumber", account.getUsername());
 			parameters.put("pin", account.getPassword());
-			SoapObject checkBorrowerResult = doRequest(USER_NAMESPACE, "CheckBorrower", USER_URL, parameters);
+			SoapObject checkBorrowerResult = doRequest(USER_NAMESPACE, "CheckBorrower", USER_URL, parameters, SoapEnvelope.VER12);
 			String checkedUsername = soapHelper.getCheckedUsername(checkBorrowerResult);
 			if (!StringUtils.isEmpty(checkedUsername)) {
 				checkedAccounts.add(new Account(account.getUsername(), checkedUsername, account.getPassword(), account.getAppearance()));
@@ -254,7 +260,7 @@ public class SoapLibraryService {
 			parameters.put("borrowerNumber", item.getAccount().getCheckedUsername());
 			parameters.put("borrowerPin", item.getAccount().getPassword());
 			parameters.put("itemNumber", item.getSignature());
-			doRequest(USER_NAMESPACE, "RenewItem", USER_URL, parameters);
+			doRequest(USER_NAMESPACE, "RenewItem", USER_URL, parameters, SoapEnvelope.VER11);
 		}
 		refreshMediaList(context);
 	}
@@ -322,7 +328,7 @@ public class SoapLibraryService {
 	public MediaDetails getMediaDetails(String mediumId) throws TechnicalException {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("CatalogueNumber", mediumId);
-		SoapObject response = doRequest(CATALOG_NAMESPACE, "GetCatalogueItems", CATALOG_URL, parameters);
+		SoapObject response = doRequest(CATALOG_NAMESPACE, "GetCatalogueItems", CATALOG_URL, parameters, SoapEnvelope.VER12);
 		MediaDetails mediaDetails = new MediaDetails();
 		SoapObject item = soapHelper.get(soapHelper.get(soapHelper.get(soapHelper.get(response, "xmlDoc"), "GetCatalogueItemsResult"), "SoapActionResult"), "Items");
 
@@ -379,7 +385,7 @@ public class SoapLibraryService {
 		SoapObject details = new SoapObject("", "");
 		details.addProperty("r", "");
 		parameters.put("details", details);
-		SoapObject response = doRequest(NOTE_NAMESPACE, "NoteRecord", NOTE_URL, parameters);
+		SoapObject response = doRequest(NOTE_NAMESPACE, "NoteRecord", NOTE_URL, parameters, SoapEnvelope.VER11);
 
 		Log.i("Response:", response.toString());
 	}
@@ -406,7 +412,7 @@ public class SoapLibraryService {
 		SoapObject details = new SoapObject("", "");
 		details.addProperty("r", "");
 		parameters.put("details", details);
-		SoapPrimitive response = doRequestForPrimitive(NOTE_NAMESPACE, "DeleteNote", NOTE_URL, parameters);
+		SoapPrimitive response = doRequestForPrimitive(NOTE_NAMESPACE, "DeleteNote", NOTE_URL, parameters, SoapEnvelope.VER11);
 
 		Log.i("Response:", response.toString());
 	}

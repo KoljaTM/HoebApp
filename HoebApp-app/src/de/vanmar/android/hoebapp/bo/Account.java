@@ -71,7 +71,7 @@ public class Account {
 				for (int i = 0; i < jsonArray.length(); i++) {
 					final JSONObject json = jsonArray.getJSONObject(i);
 					final String username = json.getString("username");
-					final String checkedUsername = json.optString("checkedUsername");
+					final String checkedUsername = json.optString("checkedUsername", null);
 					final String password = json.getString("password");
 					final Appearance appearance;
 					if (json.has("appearance")) {

@@ -1,0 +1,21 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+    <soap:Body>
+        <CheckBorrowerResponse xmlns="http://bibliomondo.com/websevices/webuser">
+            <CheckBorrowerResult>
+                <userId>error</userId>
+                <record>
+                    <soap:Fault xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+                        <faultcode xmlns="">AppProxyErrorSeeDetail</faultcode>
+                        <faultString xmlns="">Failed To Set Control Number (from error) : Impossible</faultString>
+                        <detail xmlns="">
+                            <fromProxy>1</fromProxy>
+                            <description>Failed To Set Control Number (from error) : Impossible</description>
+                            <id>NoID</id>
+                            <level>APPLICATION</level>
+                        </detail>
+                    </soap:Fault>
+                </record>
+            </CheckBorrowerResult>
+        </CheckBorrowerResponse>
+    </soap:Body>
+</soap:Envelope>

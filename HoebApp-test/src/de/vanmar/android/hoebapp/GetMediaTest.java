@@ -1,7 +1,6 @@
 package de.vanmar.android.hoebapp;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.widget.CheckBox;
 import com.jayway.android.robotium.solo.Solo;
 import de.vanmar.android.hoebapp.bo.Account;
 import de.vanmar.android.hoebapp.test.mocking.MockResponses;
@@ -111,8 +110,7 @@ public class GetMediaTest extends
 		// before
 		Assert.assertTrue(solo.waitForText("18 Titel entliehen"));
 		final int firstRenewableItem = 2;
-		CheckBox checkBox = solo.getCurrentCheckBoxes().get(firstRenewableItem);
-		solo.clickOnView(checkBox, true);
+		solo.clickOnCheckBox(firstRenewableItem);
 
 		// when
 		solo.scrollToBottom();
@@ -121,8 +119,7 @@ public class GetMediaTest extends
 		solo.waitForText("Drei Männer im Schnee");
 
 		// then
-		checkBox = solo.getCurrentCheckBoxes().get(firstRenewableItem);
-		assertTrue(checkBox.isChecked());
+		assertTrue(solo.isCheckBoxChecked(firstRenewableItem));
 	}
 
 	public void testGotoDetailActivity() throws InterruptedException {

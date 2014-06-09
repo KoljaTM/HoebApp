@@ -29,10 +29,10 @@
     <string name="summary_autoupdatewifi_preference">Für automatische Aktualisierung nur WLAN verwenden</string>
     <string name="username_empty_warning">Bitte Ausweisnummer eingeben</string>
     <string name="password_empty_warning">Bitte Geheimnummer eingeben</string>
-    
+
     <string name="renewWaitMessage">Medien werden verlängert, bitte warten…</string>
     <string name="help">Hilfe</string>
-    
+
     <string name="eulaHeading">Nutzungsbedingungen</string>
     <string name="accept">Ja, ich kenne das Risiko</string>
     <string name="decline">Nein, Danke.</string>
@@ -60,7 +60,7 @@
     <string name="searchButton">Suchen</string>
     <string name="searchButtonWaiting">Suchen…</string>
     <string name="imageDesc">Cover</string>
-    <string name="yearFormatted"> (%s)</string>
+    <string name="yearFormatted">(%s)</string>
 
     <string name="details">Medium</string>
     <string name="detailsLoading">Medium wird geladen…</string>

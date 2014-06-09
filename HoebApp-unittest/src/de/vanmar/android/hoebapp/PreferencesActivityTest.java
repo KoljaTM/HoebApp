@@ -1,31 +1,28 @@
 package de.vanmar.android.hoebapp;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-
-import java.util.Collections;
-import java.util.List;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.MockitoAnnotations;
-
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
-
-import com.xtremelabs.robolectric.RobolectricTestRunner;
-
 import de.vanmar.android.hoebapp.bo.Account;
 import de.vanmar.android.hoebapp.dialog.AccountDialog;
+import de.vanmar.android.hoebapp.util.MyRobolectricTestRunner;
 import de.vanmar.android.hoebapp.util.Preferences_;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.MockitoAnnotations;
+import org.robolectric.Robolectric;
+import org.robolectric.util.ActivityController;
 
-@RunWith(RobolectricTestRunner.class)
+import java.util.Collections;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.*;
+
+@RunWith(MyRobolectricTestRunner.class)
 public class PreferencesActivityTest {
 
 	private PreferencesActivity_ activity;
@@ -40,8 +37,10 @@ public class PreferencesActivityTest {
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 
-		activity = new PreferencesActivity_();
-		activity.onCreate(null);
+		ActivityController<PreferencesActivity_> activityController = Robolectric.buildActivity(PreferencesActivity_.class);
+		activityController.create();
+		activity = activityController.get();
+
 		prefs = activity.prefs;
 
 		doAutoUpdate = (CheckBox) activity.findViewById(R.id.doAutoUpdate);

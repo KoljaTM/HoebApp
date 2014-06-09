@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>de.vanmar.android.hoebapp</groupId>
+        <artifactId>hoebapp-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>HoebApp</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>apk</packaging>
+    <name>HoebApp</name>
+
+    <!--   <repositories>
+           <repository>
+               <id>project.local</id>
+               <name>project</name>
+               <url>file://repo</url>
+           </repository>
+       </repositories>
+   -->
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>support-v4</artifactId>
+            <version>r13</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.androidannotations</groupId>
+            <artifactId>androidannotations</artifactId>
+            <version>2.7</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.androidannotations</groupId>
+            <artifactId>androidannotations-api</artifactId>
+            <version>2.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.ksoap2-android</groupId>
+            <artifactId>ksoap2-android</artifactId>
+            <version>3.3.0-patched</version>
+        </dependency>
+
+        <!--        <dependency>
+                    <groupId>com.actionbarsherlock</groupId>
+                    <artifactId>actionbarsherlock</artifactId>
+                    <version>4.4.0</version>
+                    <type>apklib</type>
+                </dependency>-->
+        <dependency>
+            <groupId>com.googlecode.android-query</groupId>
+            <artifactId>android-query</artifactId>
+            <version>0.25.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.android.admob</groupId>
+            <artifactId>admob</artifactId>
+            <version>6.4.1-r11.0.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <version>${android.plugin.version}</version>
+                <configuration>
+                    <sdk>
+                        <platform>19</platform>
+                    </sdk>
+                    <undeployBeforeDeploy>false</undeployBeforeDeploy>
+                </configuration>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

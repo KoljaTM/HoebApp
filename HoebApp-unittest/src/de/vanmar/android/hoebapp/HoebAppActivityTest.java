@@ -1,15 +1,13 @@
 package de.vanmar.android.hoebapp;
 
+import de.vanmar.android.hoebapp.util.MyRobolectricTestRunner;
+import de.vanmar.android.hoebapp.util.Preferences_;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 
-import com.xtremelabs.robolectric.RobolectricTestRunner;
-
-import de.vanmar.android.hoebapp.util.Preferences_;
-
-@RunWith(RobolectricTestRunner.class)
+@RunWith(MyRobolectricTestRunner.class)
 public class HoebAppActivityTest {
 
 	private HoebAppActivity_ activity;

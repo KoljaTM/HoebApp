@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
+        >
+    <soap:Body>
+        <CheckBorrowerResponse xmlns="http://bibliomondo.com/websevices/webuser">
+            <CheckBorrowerResult>
+                <userId>user2name</userId>
+                <record>
+                    <CheckBorrowerResult xmlns="http://bibliomondo.com/webservices/webuser">
+                        <IgnorePin>0</IgnorePin>
+                        <WantUserDetails>0</WantUserDetails>
+                        <Brwr>use r2n ame</Brwr>
+                        <Pin>password2</Pin>
+                        <IsEncrypted>0</IsEncrypted>
+                        <TapNo>0</TapNo>
+                        <LRB>Ok</LRB>
+                        <Validated>1</Validated>
+                        <IsInvalidBrwrNum>0</IsInvalidBrwrNum>
+                    </CheckBorrowerResult>
+                </record>
+            </CheckBorrowerResult>
+        </CheckBorrowerResponse>
+    </soap:Body>
+</soap:Envelope>

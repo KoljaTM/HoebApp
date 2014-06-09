@@ -23,6 +23,15 @@
           <entry name="$PROJECT_DIR$/HoebApp-app/ext-libs/codemodel-2.4.1.jar" />
         </processorPath>
       </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="HoebApp-app" />
+        <module name="HoebApp-test" />
+        <module name="HoebApp-unittest" />
+      </profile>
     </annotationProcessing>
   </component>
 </project>

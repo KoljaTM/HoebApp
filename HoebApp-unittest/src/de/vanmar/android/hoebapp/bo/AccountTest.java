@@ -28,7 +28,7 @@ public class AccountTest {
 		// then
 		assertThat(
 				jsonString,
-				is(equalTo("[{\"username\":\"username1\",\"appearance\":\"NONE\",\"password\":\"password1\"},{\"username\":\"username2\",\"appearance\":\"RED\",\"password\":\"password2\"}]")));
+				is(equalTo("[{\"username\":\"username1\",\"appearance\":\"NONE\",\"password\":\"password1\"},{\"username\":\"username2\",\"appearance\":\"RED\",\"checkedUsername\":\"username2\",\"password\":\"password2\"}]")));
 	}
 
 	@Test

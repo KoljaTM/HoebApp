@@ -1,0 +1,609 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <GetBorrowerLoansResponse xmlns="http://bibliomondo.com/websevices/webuser">
+            <GetBorrowerLoansResult>
+                <userId>use rna me</userId>
+                <record>
+                    <GetBorrowerLoansHMResult xmlns="http://bibliomondo.com/webservices/webuser">
+                        <LoanDetails>
+                            <LoanDetail>
+                                <SynNo>1</SynNo>
+                                <Odd>1</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>3073859</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T012370097</BacNo>
+                                <ISBN>978 3 89326322 6</ISBN>
+                                <EAN/>
+                                <Author>Stein, Arnd</Author>
+                                <Title>•&amp;lt;Die&amp;gt;• Wunschinsel ...</Title>
+                                <DateIssued>20/05/2014</DateIssued>
+                                <DateDue>17/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>0</RenewalCount>
+                                <LocationIssued>39</LocationIssued>
+                                <LocationIssuedText>Wandsbek</LocationIssuedText>
+                                <ItemNumber>M58 888 140 4</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>7</Material>
+                                <MaterialName>Compact Disc</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Stein, Arnd</Author>
+                                    <Title>Die Wunschinsel ...</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>20/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>2</SynNo>
+                                <Odd>0</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>3552588</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T012878304</BacNo>
+                                <ISBN>978 3 86804033 3</ISBN>
+                                <EAN/>
+                                <Author>Kein Autor</Author>
+                                <Title>Geschichte Europas</Title>
+                                <DateIssued>20/05/2014</DateIssued>
+                                <DateDue>17/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>0</RenewalCount>
+                                <LocationIssued>39</LocationIssued>
+                                <LocationIssuedText>Wandsbek</LocationIssuedText>
+                                <ItemNumber>M59 472 901 0</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>7</Material>
+                                <MaterialName>Compact Disc</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Geschichte Europas</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>20/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>3</SynNo>
+                                <Odd>1</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>2706869</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T011363688</BacNo>
+                                <ISBN>3 78913163 6</ISBN>
+                                <EAN/>
+                                <Author>Boie, Kirsten</Author>
+                                <Title>•&amp;lt;Der&amp;gt;• kleine Ritter Trenk</Title>
+                                <DateIssued>23/05/2014</DateIssued>
+                                <DateDue>20/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>0</RenewalCount>
+                                <LocationIssued>1</LocationIssued>
+                                <LocationIssuedText>Zentralbibliothek</LocationIssuedText>
+                                <ItemNumber>M58 146 459 7</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>8</Material>
+                                <MaterialName>Buch Kinder/Jugendliche</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Boie, Kirsten</Author>
+                                    <Title>Der kleine Ritter Trenk</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>23/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>4</SynNo>
+                                <Odd>0</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>2207122</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T010352000</BacNo>
+                                <ISBN>3 89835743 0</ISBN>
+                                <EAN/>
+                                <Author>Kein Autor</Author>
+                                <Title>Willy Werkels Schiffe-Buch</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>2</RenewalCount>
+                                <LocationIssued>35</LocationIssued>
+                                <LocationIssuedText>Barmbek</LocationIssuedText>
+                                <ItemNumber>M55 821 977 3</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>8</Material>
+                                <MaterialName>Buch Kinder/Jugendliche</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>237</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Item renewal limit reached</ENG>
+                                    <GER>Verl&amp;auml;ngerungslimit erreicht</GER>
+                                    <DUT>Object is te vaak verlengd</DUT>
+                                    <FRE>Limite prolongations atteinte</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>2</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Soft trap</ENG>
+                                    <GER>Weiche Sperre</GER>
+                                    <DUT>Zachte stop</DUT>
+                                    <FRE>Pi&amp;egrave;ge doux</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>0</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Willy Werkels Schiffe-Buch</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>5</SynNo>
+                                <Odd>1</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>2612951</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T01069917X</BacNo>
+                                <ISBN>3 44620609 4</ISBN>
+                                <EAN/>
+                                <Author>Biemann, Christoph</Author>
+                                <Title>Mit 100 Sachen durch die Küche</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>2</RenewalCount>
+                                <LocationIssued>35</LocationIssued>
+                                <LocationIssuedText>Barmbek</LocationIssuedText>
+                                <ItemNumber>M58 327 646 5</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>8</Material>
+                                <MaterialName>Buch Kinder/Jugendliche</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>237</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Item renewal limit reached</ENG>
+                                    <GER>Verl&amp;auml;ngerungslimit erreicht</GER>
+                                    <DUT>Object is te vaak verlengd</DUT>
+                                    <FRE>Limite prolongations atteinte</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>2</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Soft trap</ENG>
+                                    <GER>Weiche Sperre</GER>
+                                    <DUT>Zachte stop</DUT>
+                                    <FRE>Pi&amp;egrave;ge doux</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>0</CanRenew>
+                                    <Author>Biemann, Christoph</Author>
+                                    <Title>Mit 100 Sachen durch die Küche</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>6</SynNo>
+                                <Odd>0</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>2755725</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T011368315</BacNo>
+                                <ISBN>3 41170792 5</ISBN>
+                                <EAN/>
+                                <Author>Kein Autor</Author>
+                                <Title>Sarah und der Findekompass</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>2</RenewalCount>
+                                <LocationIssued>1</LocationIssued>
+                                <LocationIssuedText>Zentralbibliothek</LocationIssuedText>
+                                <ItemNumber>M58 071 076 6</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>8</Material>
+                                <MaterialName>Buch Kinder/Jugendliche</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>237</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Item renewal limit reached</ENG>
+                                    <GER>Verl&amp;auml;ngerungslimit erreicht</GER>
+                                    <DUT>Object is te vaak verlengd</DUT>
+                                    <FRE>Limite prolongations atteinte</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>2</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Soft trap</ENG>
+                                    <GER>Weiche Sperre</GER>
+                                    <DUT>Zachte stop</DUT>
+                                    <FRE>Pi&amp;egrave;ge doux</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>0</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Sarah und der Findekompass</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>7</SynNo>
+                                <Odd>1</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>2954765</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T01538854X</BacNo>
+                                <ISBN>978 3 83730274 5</ISBN>
+                                <EAN>978 3 78910274 5</EAN>
+                                <Author>Kein Autor</Author>
+                                <Title>Mama Muh baut ein Baumhaus</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>2</RenewalCount>
+                                <LocationIssued>1</LocationIssued>
+                                <LocationIssuedText>Zentralbibliothek</LocationIssuedText>
+                                <ItemNumber>M58 764 155 1</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>7</Material>
+                                <MaterialName>Compact Disc</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>237</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Item renewal limit reached</ENG>
+                                    <GER>Verl&amp;auml;ngerungslimit erreicht</GER>
+                                    <DUT>Object is te vaak verlengd</DUT>
+                                    <FRE>Limite prolongations atteinte</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>2</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Soft trap</ENG>
+                                    <GER>Weiche Sperre</GER>
+                                    <DUT>Zachte stop</DUT>
+                                    <FRE>Pi&amp;egrave;ge doux</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>0</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Mama Muh baut ein Baumhaus</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>8</SynNo>
+                                <Odd>0</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>3373986</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T013174273</BacNo>
+                                <ISBN>978 3 83372400 8</ISBN>
+                                <EAN/>
+                                <Author>Kein Autor</Author>
+                                <Title>Seeräubermoses</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>2</RenewalCount>
+                                <LocationIssued>1</LocationIssued>
+                                <LocationIssuedText>Zentralbibliothek</LocationIssuedText>
+                                <ItemNumber>M58 807 634 6</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>7</Material>
+                                <MaterialName>Compact Disc</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>237</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Item renewal limit reached</ENG>
+                                    <GER>Verl&amp;auml;ngerungslimit erreicht</GER>
+                                    <DUT>Object is te vaak verlengd</DUT>
+                                    <FRE>Limite prolongations atteinte</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>2</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Soft trap</ENG>
+                                    <GER>Weiche Sperre</GER>
+                                    <DUT>Zachte stop</DUT>
+                                    <FRE>Pi&amp;egrave;ge doux</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>0</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Seeräubermoses</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>9</SynNo>
+                                <Odd>1</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>3406275</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T013179309</BacNo>
+                                <ISBN>978 3 42415003 2</ISBN>
+                                <EAN/>
+                                <Author>Scheffer, Mechthild</Author>
+                                <Title>Bach-Blüten nach Reaktionstyp</Title>
+                                <DateIssued>23/05/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>1</RenewalCount>
+                                <LocationIssued>1</LocationIssued>
+                                <LocationIssuedText>Zentralbibliothek</LocationIssuedText>
+                                <ItemNumber>M59 214 365 3</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>1</Material>
+                                <MaterialName>Buch Erwachsene</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Scheffer, Mechthild</Author>
+                                    <Title>Bach-Blüten nach Reaktionstyp</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>10</SynNo>
+                                <Odd>0</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>3525467</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T014470574</BacNo>
+                                <ISBN>978 3 40106567 0</ISBN>
+                                <EAN/>
+                                <Author>Cowell, Cressida</Author>
+                                <Title>Drachenzähmen leicht gemacht◉[Bd. 1].</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>1</RenewalCount>
+                                <LocationIssued>35</LocationIssued>
+                                <LocationIssuedText>Barmbek</LocationIssuedText>
+                                <ItemNumber>M59 498 103 2</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>8</Material>
+                                <MaterialName>Buch Kinder/Jugendliche</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Cowell, Cressida</Author>
+                                    <Title>Drachenzähmen leicht gemacht◉[Bd. 1].</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>11</SynNo>
+                                <Odd>1</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>3565930</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T01125677X</BacNo>
+                                <ISBN>3 42663287 X</ISBN>
+                                <EAN/>
+                                <Author>Butcher, Jim</Author>
+                                <Title>Sturmnacht</Title>
+                                <DateIssued>12/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>2</RenewalCount>
+                                <LocationIssued>1</LocationIssued>
+                                <LocationIssuedText>Zentralbibliothek</LocationIssuedText>
+                                <ItemNumber>M59 644 042 0</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>1</Material>
+                                <MaterialName>Buch Erwachsene</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>237</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Item renewal limit reached</ENG>
+                                    <GER>Verl&amp;auml;ngerungslimit erreicht</GER>
+                                    <DUT>Object is te vaak verlengd</DUT>
+                                    <FRE>Limite prolongations atteinte</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>2</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Soft trap</ENG>
+                                    <GER>Weiche Sperre</GER>
+                                    <DUT>Zachte stop</DUT>
+                                    <FRE>Pi&amp;egrave;ge doux</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>0</CanRenew>
+                                    <Author>Butcher, Jim</Author>
+                                    <Title>Sturmnacht</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                        </LoanDetails>
+                    </GetBorrowerLoansHMResult>
+                </record>
+            </GetBorrowerLoansResult>
+        </GetBorrowerLoansResponse>
+    </soap:Body>
+</soap:Envelope>

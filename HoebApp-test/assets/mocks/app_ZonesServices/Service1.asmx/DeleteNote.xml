@@ -1,0 +1,7 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <DeleteNoteResponse xmlns="http://bibliomondo.com/ZoneServices/">
+            <DeleteNoteResult>true</DeleteNoteResult>
+        </DeleteNoteResponse>
+    </soap:Body>
+</soap:Envelope>

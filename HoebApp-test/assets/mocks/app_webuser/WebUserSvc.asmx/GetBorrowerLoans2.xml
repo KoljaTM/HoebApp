@@ -1,0 +1,1041 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <GetBorrowerLoansResponse xmlns="http://bibliomondo.com/websevices/webuser">
+            <GetBorrowerLoansResult>
+                <userId>use rna me</userId>
+                <record>
+                    <GetBorrowerLoansHMResult xmlns="http://bibliomondo.com/webservices/webuser">
+                        <LoanDetails>
+                            <LoanDetail>
+                                <SynNo>12</SynNo>
+                                <Odd>0</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>3736627</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T014903547</BacNo>
+                                <ISBN>978 3 86731081 9</ISBN>
+                                <EAN>978 3 86731081 9</EAN>
+                                <Author>Kein Autor</Author>
+                                <Title>Übungen für Partnerschaft, Familie und Kommunik</Title>
+                                <DateIssued>20/05/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>1</RenewalCount>
+                                <LocationIssued>39</LocationIssued>
+                                <LocationIssuedText>Wandsbek</LocationIssuedText>
+                                <ItemNumber>M60 014 048 8</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>7</Material>
+                                <MaterialName>Compact Disc</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Übungen für Partnerschaft, Familie und Kommunik</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>13</SynNo>
+                                <Odd>1</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>3794835</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T01371866X</BacNo>
+                                <ISBN>978 3 83730400 8</ISBN>
+                                <EAN/>
+                                <Author>Kein Autor</Author>
+                                <Title>•&amp;lt;Die&amp;gt;• schlaue kleine Hexe</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>1</RenewalCount>
+                                <LocationIssued>1</LocationIssued>
+                                <LocationIssuedText>Zentralbibliothek</LocationIssuedText>
+                                <ItemNumber>M60 049 263 1</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>7</Material>
+                                <MaterialName>Compact Disc</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Die schlaue kleine Hexe</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>14</SynNo>
+                                <Odd>0</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>3823977</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T015019202</BacNo>
+                                <ISBN>978 3 83984010 8</ISBN>
+                                <EAN>978 3 83984010 8</EAN>
+                                <Author>Kein Autor</Author>
+                                <Title>Dr. Brumm versteht das nicht</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>1</RenewalCount>
+                                <LocationIssued>1</LocationIssued>
+                                <LocationIssuedText>Zentralbibliothek</LocationIssuedText>
+                                <ItemNumber>M60 001 273 8</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>7</Material>
+                                <MaterialName>Compact Disc</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Dr. Brumm versteht das nicht</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>15</SynNo>
+                                <Odd>1</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>3871826</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T01526667X</BacNo>
+                                <ISBN>978 3 98143320 3</ISBN>
+                                <EAN>978 3 98143320 3</EAN>
+                                <Author>Kein Autor</Author>
+                                <Title>Katuscha</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>1</RenewalCount>
+                                <LocationIssued>1</LocationIssued>
+                                <LocationIssuedText>Zentralbibliothek</LocationIssuedText>
+                                <ItemNumber>M59 798 713 5</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>8</Material>
+                                <MaterialName>Buch Kinder/Jugendliche</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Katuscha</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>16</SynNo>
+                                <Odd>0</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>4107000</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T015744565</BacNo>
+                                <ISBN>978 3 89903552 0</ISBN>
+                                <EAN/>
+                                <Author>Kein Autor</Author>
+                                <Title>Body blessing</Title>
+                                <DateIssued>20/05/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>1</RenewalCount>
+                                <LocationIssued>39</LocationIssued>
+                                <LocationIssuedText>Wandsbek</LocationIssuedText>
+                                <ItemNumber>M60 185 435 7</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>7</Material>
+                                <MaterialName>Compact Disc</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Body blessing</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>17</SynNo>
+                                <Odd>1</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>4133377</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T015778606</BacNo>
+                                <ISBN>978 3 41180859 5</ISBN>
+                                <EAN>978 3 41180859 5</EAN>
+                                <Author>Kein Autor</Author>
+                                <Title>Finn und Papa spielen Steinzeit</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>2</RenewalCount>
+                                <LocationIssued>1</LocationIssued>
+                                <LocationIssuedText>Zentralbibliothek</LocationIssuedText>
+                                <ItemNumber>M60 277 285 9</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>8</Material>
+                                <MaterialName>Buch Kinder/Jugendliche</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>237</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Item renewal limit reached</ENG>
+                                    <GER>Verl&amp;auml;ngerungslimit erreicht</GER>
+                                    <DUT>Object is te vaak verlengd</DUT>
+                                    <FRE>Limite prolongations atteinte</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>2</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Soft trap</ENG>
+                                    <GER>Weiche Sperre</GER>
+                                    <DUT>Zachte stop</DUT>
+                                    <FRE>Pi&amp;egrave;ge doux</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>0</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Finn und Papa spielen Steinzeit</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>18</SynNo>
+                                <Odd>0</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>4141540</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T015814878</BacNo>
+                                <ISBN>978 3 46630937 5</ISBN>
+                                <EAN>978 3 46630937 5</EAN>
+                                <Author>Kamer, Fritz</Author>
+                                <Title>Depression! Wie helfen?</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>2</RenewalCount>
+                                <LocationIssued>35</LocationIssued>
+                                <LocationIssuedText>Barmbek</LocationIssuedText>
+                                <ItemNumber>M60 320 272 X</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>1</Material>
+                                <MaterialName>Buch Erwachsene</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>237</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Item renewal limit reached</ENG>
+                                    <GER>Verl&amp;auml;ngerungslimit erreicht</GER>
+                                    <DUT>Object is te vaak verlengd</DUT>
+                                    <FRE>Limite prolongations atteinte</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>2</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Soft trap</ENG>
+                                    <GER>Weiche Sperre</GER>
+                                    <DUT>Zachte stop</DUT>
+                                    <FRE>Pi&amp;egrave;ge doux</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>0</CanRenew>
+                                    <Author>Kamer, Fritz</Author>
+                                    <Title>Depression! Wie helfen?</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>19</SynNo>
+                                <Odd>1</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>4175176</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T011723257</BacNo>
+                                <ISBN>978 3 86604527 9</ISBN>
+                                <EAN/>
+                                <Author>Kein Autor</Author>
+                                <Title>•&amp;lt;Der&amp;gt;• kleine Drache Kokosnuss und die Wetterhex</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>2</RenewalCount>
+                                <LocationIssued>35</LocationIssued>
+                                <LocationIssuedText>Barmbek</LocationIssuedText>
+                                <ItemNumber>M60 540 575 5</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>7</Material>
+                                <MaterialName>Compact Disc</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>237</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Item renewal limit reached</ENG>
+                                    <GER>Verl&amp;auml;ngerungslimit erreicht</GER>
+                                    <DUT>Object is te vaak verlengd</DUT>
+                                    <FRE>Limite prolongations atteinte</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>2</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Soft trap</ENG>
+                                    <GER>Weiche Sperre</GER>
+                                    <DUT>Zachte stop</DUT>
+                                    <FRE>Pi&amp;egrave;ge doux</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>0</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Der kleine Drache Kokosnuss und die Wetterhex</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>20</SynNo>
+                                <Odd>0</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>4192678</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T015895906</BacNo>
+                                <ISBN>978 3 94217525 8</ISBN>
+                                <EAN>978 3 94217525 8</EAN>
+                                <Author>Kein Autor</Author>
+                                <Title>•&amp;lt;Die&amp;gt;• große Wörterfabrik</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>2</RenewalCount>
+                                <LocationIssued>1</LocationIssued>
+                                <LocationIssuedText>Zentralbibliothek</LocationIssuedText>
+                                <ItemNumber>M60 536 187 1</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>7</Material>
+                                <MaterialName>Compact Disc</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>237</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Item renewal limit reached</ENG>
+                                    <GER>Verl&amp;auml;ngerungslimit erreicht</GER>
+                                    <DUT>Object is te vaak verlengd</DUT>
+                                    <FRE>Limite prolongations atteinte</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>2</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Soft trap</ENG>
+                                    <GER>Weiche Sperre</GER>
+                                    <DUT>Zachte stop</DUT>
+                                    <FRE>Pi&amp;egrave;ge doux</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>0</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Die große Wörterfabrik</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>21</SynNo>
+                                <Odd>1</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>4200815</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T012411089</BacNo>
+                                <ISBN>978 3 00022275 7</ISBN>
+                                <EAN/>
+                                <Author>Kein Autor</Author>
+                                <Title>Tom, der THW-Helfer</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>2</RenewalCount>
+                                <LocationIssued>35</LocationIssued>
+                                <LocationIssuedText>Barmbek</LocationIssuedText>
+                                <ItemNumber>M60 391 071 3</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>8</Material>
+                                <MaterialName>Buch Kinder/Jugendliche</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>237</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Item renewal limit reached</ENG>
+                                    <GER>Verl&amp;auml;ngerungslimit erreicht</GER>
+                                    <DUT>Object is te vaak verlengd</DUT>
+                                    <FRE>Limite prolongations atteinte</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>2</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Soft trap</ENG>
+                                    <GER>Weiche Sperre</GER>
+                                    <DUT>Zachte stop</DUT>
+                                    <FRE>Pi&amp;egrave;ge doux</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>0</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Tom, der THW-Helfer</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>25/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>22</SynNo>
+                                <Odd>0</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>4231582</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T016153352</BacNo>
+                                <ISBN>978 3 95440000 3</ISBN>
+                                <EAN>978 3 95440000 3</EAN>
+                                <Author>Kein Autor</Author>
+                                <Title>Basics Heimwerken</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>2</RenewalCount>
+                                <LocationIssued>35</LocationIssued>
+                                <LocationIssuedText>Barmbek</LocationIssuedText>
+                                <ItemNumber>M60 811 379 3</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>1</Material>
+                                <MaterialName>Buch Erwachsene</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>237</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Item renewal limit reached</ENG>
+                                    <GER>Verl&amp;auml;ngerungslimit erreicht</GER>
+                                    <DUT>Object is te vaak verlengd</DUT>
+                                    <FRE>Limite prolongations atteinte</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>2</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Soft trap</ENG>
+                                    <GER>Weiche Sperre</GER>
+                                    <DUT>Zachte stop</DUT>
+                                    <FRE>Pi&amp;egrave;ge doux</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>0</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Basics Heimwerken</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>25/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>23</SynNo>
+                                <Odd>1</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>4344369</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T016422459</BacNo>
+                                <ISBN>978 3 44233976 1</ISBN>
+                                <EAN>978 3 44233976 1</EAN>
+                                <Author>Kein Autor</Author>
+                                <Title>Ida, die Lösung liegt in dir [Tonträger]</Title>
+                                <DateIssued>20/05/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>1</RenewalCount>
+                                <LocationIssued>39</LocationIssued>
+                                <LocationIssuedText>Wandsbek</LocationIssuedText>
+                                <ItemNumber>M60 526 852 4</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>7</Material>
+                                <MaterialName>Compact Disc</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Ida, die Lösung liegt in dir [Tonträger]</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>24</SynNo>
+                                <Odd>0</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>4423884</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T015991220</BacNo>
+                                <ISBN/>
+                                <EAN/>
+                                <Author>Kein Autor</Author>
+                                <Title>Popular Photography 2014/1</Title>
+                                <DateIssued>23/05/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>1</RenewalCount>
+                                <LocationIssued>1</LocationIssued>
+                                <LocationIssuedText>Zentralbibliothek</LocationIssuedText>
+                                <ItemNumber>M61 146 848 5</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>2</Material>
+                                <MaterialName>Zeitschrift</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Popular Photography 2014/1</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>25</SynNo>
+                                <Odd>1</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>4442431</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T016659613</BacNo>
+                                <ISBN>978 3 83712180 3</ISBN>
+                                <EAN>978 3 83712180 3</EAN>
+                                <Author>Kein Autor</Author>
+                                <Title>•&amp;lt;Der&amp;gt;• kleine Drache Kokosnuss bei den Dinosauri</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>1</RenewalCount>
+                                <LocationIssued>1</LocationIssued>
+                                <LocationIssuedText>Zentralbibliothek</LocationIssuedText>
+                                <ItemNumber>M60 463 854 9</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>7</Material>
+                                <MaterialName>Compact Disc</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Der kleine Drache Kokosnuss bei den Dinosauri</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>26</SynNo>
+                                <Odd>0</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>4469744</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T016774322</BacNo>
+                                <ISBN>978 3 83730775 7</ISBN>
+                                <EAN>978 3 83730775 7</EAN>
+                                <Author>Kein Autor</Author>
+                                <Title>Wie Findus zu Pettersson kam</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>1</RenewalCount>
+                                <LocationIssued>35</LocationIssued>
+                                <LocationIssuedText>Barmbek</LocationIssuedText>
+                                <ItemNumber>M60 478 524 8</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>7</Material>
+                                <MaterialName>Compact Disc</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Wie Findus zu Pettersson kam</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>27</SynNo>
+                                <Odd>1</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>4475776</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T016794018</BacNo>
+                                <ISBN>978 3 78912020 6</ISBN>
+                                <EAN>978 3 78912020 6</EAN>
+                                <Author>Boie, Kirsten</Author>
+                                <Title>Leinen los, Seeräubermoses</Title>
+                                <DateIssued>23/05/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>1</RenewalCount>
+                                <LocationIssued>1</LocationIssued>
+                                <LocationIssuedText>Zentralbibliothek</LocationIssuedText>
+                                <ItemNumber>M61 196 853 9</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>8</Material>
+                                <MaterialName>Buch Kinder/Jugendliche</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Boie, Kirsten</Author>
+                                    <Title>Leinen los, Seeräubermoses</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>28</SynNo>
+                                <Odd>0</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>4482476</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T01686662X</BacNo>
+                                <ISBN>978 3 83373269 0</ISBN>
+                                <EAN>978 3 83373269 0</EAN>
+                                <Author>Kein Autor</Author>
+                                <Title>Tilda Apfelkern / [...] Frühling, Sommer, Herbs</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>1</RenewalCount>
+                                <LocationIssued>1</LocationIssued>
+                                <LocationIssuedText>Zentralbibliothek</LocationIssuedText>
+                                <ItemNumber>M60 872 866 4</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>7</Material>
+                                <MaterialName>Compact Disc</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Kein Autor</Author>
+                                    <Title>Tilda Apfelkern / [...] Frühling, Sommer, Herbs</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>29</SynNo>
+                                <Odd>1</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>4497766</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T016838910</BacNo>
+                                <ISBN>978 3 87387985 0</ISBN>
+                                <EAN>978 3 87387985 0</EAN>
+                                <Author>Rosenberg, Marshall B.</Author>
+                                <Title>Was deine Wut dir sagen will: überraschende Ein</Title>
+                                <DateIssued>26/04/2014</DateIssued>
+                                <DateDue>24/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>1</RenewalCount>
+                                <LocationIssued>35</LocationIssued>
+                                <LocationIssuedText>Barmbek</LocationIssuedText>
+                                <ItemNumber>M60 742 295 1</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>1</Material>
+                                <MaterialName>Buch Erwachsene</MaterialName>
+                                <IsReserved>1</IsReserved>
+                                <PrimaryTrapId>232</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Item reserved</ENG>
+                                    <GER>Medium vorgemerkt</GER>
+                                    <DUT>Gereserveerd object</DUT>
+                                    <FRE>Exemplaire r&amp;eacute;serv&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>2</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Soft trap</ENG>
+                                    <GER>Weiche Sperre</GER>
+                                    <DUT>Zachte stop</DUT>
+                                    <FRE>Pi&amp;egrave;ge doux</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>0</CanRenew>
+                                    <Author>Rosenberg, Marshall B.</Author>
+                                    <Title>Was deine Wut dir sagen will: überraschende Ein</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>24/05/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                            <LoanDetail>
+                                <SynNo>30</SynNo>
+                                <Odd>0</Odd>
+                                <HLEN>36</HLEN>
+                                <RecNo>3959122</RecNo>
+                                <Auth>0</Auth>
+                                <BrwrRecNo>63018</BrwrRecNo>
+                                <BacNo>T015453169</BacNo>
+                                <ISBN>978 3 86762113 7</ISBN>
+                                <EAN>978 3 86762113 7</EAN>
+                                <Author>Butcher, Jim</Author>
+                                <Title>•&amp;lt;Die&amp;gt;• dunklen Fälle des Harry Dresden * Bd. 3.</Title>
+                                <DateIssued>02/06/2014</DateIssued>
+                                <DateDue>30/06/2014</DateDue>
+                                <IssuedToday>0</IssuedToday>
+                                <DueToday>0</DueToday>
+                                <Overdue>0</Overdue>
+                                <Recalled>0</Recalled>
+                                <RenewalCount>0</RenewalCount>
+                                <LocationIssued>1</LocationIssued>
+                                <LocationIssuedText>Zentralbibliothek</LocationIssuedText>
+                                <ItemNumber>M59 865 976 3</ItemNumber>
+                                <HaveC201Fields>1</HaveC201Fields>
+                                <Material>1</Material>
+                                <MaterialName>Buch Erwachsene</MaterialName>
+                                <IsReserved>0</IsReserved>
+                                <PrimaryTrapId>0</PrimaryTrapId>
+                                <PrimaryTrapIdText>
+                                    <ENG>Not trapped</ENG>
+                                    <GER>Nicht gesperrt</GER>
+                                    <DUT>Niet gestopt</DUT>
+                                    <FRE>Non pi&amp;eacute;g&amp;eacute;</FRE>
+                                </PrimaryTrapIdText>
+                                <PrimaryTrapLevel>0</PrimaryTrapLevel>
+                                <PrimaryTrapLevelText>
+                                    <ENG>Information</ENG>
+                                    <GER>Information</GER>
+                                    <DUT>Informatie</DUT>
+                                    <FRE>Information</FRE>
+                                </PrimaryTrapLevelText>
+                                <RenewalFee>€ 0,00</RenewalFee>
+                                <Fine>€ 0,00</Fine>
+                                <SIP2>
+                                    <RenewalFee>0</RenewalFee>
+                                    <Fine>0</Fine>
+                                    <CanRenew>1</CanRenew>
+                                    <Author>Butcher, Jim</Author>
+                                    <Title>Die dunklen Fälle des Harry Dresden * Bd. 3.</Title>
+                                </SIP2>
+                                <HaveFee>0</HaveFee>
+                                <HaveFine>0</HaveFine>
+                                <DateRenewed>02/06/2014</DateRenewed>
+                                <RenewedToday>0</RenewedToday>
+                            </LoanDetail>
+                        </LoanDetails>
+                    </GetBorrowerLoansHMResult>
+                </record>
+            </GetBorrowerLoansResult>
+        </GetBorrowerLoansResponse>
+    </soap:Body>
+</soap:Envelope>

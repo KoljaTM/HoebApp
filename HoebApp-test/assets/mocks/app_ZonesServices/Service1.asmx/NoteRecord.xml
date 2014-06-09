@@ -1,0 +1,10 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <NoteRecordResponse xmlns="http://bibliomondo.com/ZoneServices/">
+            <NoteRecordResult>
+                <result>Note Added</result>
+                <notePadId>0</notePadId>
+            </NoteRecordResult>
+        </NoteRecordResponse>
+    </soap:Body>
+</soap:Envelope>

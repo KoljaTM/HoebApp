@@ -11,9 +11,7 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-
 import com.jayway.android.robotium.solo.Solo;
-
 import de.vanmar.android.hoebapp.test.mocking.TestUtils;
 
 public class LocationTest extends
@@ -47,7 +45,7 @@ public class LocationTest extends
 		// then
 		assertFalse(solo.searchText("Bitte warten, Position wird abgerufen"));
 		solo.scrollToTop();
-		final ListView locationList = solo.getCurrentListViews().get(0);
+		final ListView locationList = solo.getCurrentViews(ListView.class).get(0);
 
 		final ListAdapter adapter = locationList.getAdapter();
 		final String lastEntry = null;
@@ -56,8 +54,9 @@ public class LocationTest extends
 					.getString(1);
 			if (lastEntry != null) {
 				assertTrue(String.format("%s should be greater than %s",
-						currentEntry, lastEntry),
-						currentEntry.compareTo(lastEntry) >= 0);
+								currentEntry, lastEntry),
+						currentEntry.compareTo(lastEntry) >= 0
+				);
 			}
 		}
 	}
@@ -105,7 +104,7 @@ public class LocationTest extends
 		// then
 		assertFalse(solo.searchText("Bitte warten, Position wird abgerufen"));
 		solo.scrollToTop();
-		final ListView locationList = solo.getCurrentListViews().get(0);
+		final ListView locationList = solo.getCurrentViews(ListView.class).get(0);
 
 		final ListAdapter adapter = locationList.getAdapter();
 		final String lastEntry = null;
@@ -114,8 +113,9 @@ public class LocationTest extends
 					.getString(1);
 			if (lastEntry != null) {
 				assertTrue(String.format("%s should be greater than %s",
-						currentEntry, lastEntry),
-						currentEntry.compareTo(lastEntry) >= 0);
+								currentEntry, lastEntry),
+						currentEntry.compareTo(lastEntry) >= 0
+				);
 			}
 		}
 	}

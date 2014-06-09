@@ -32,7 +32,7 @@ public class SoapHelper {
 		if (soapObject == null) {
 			return null;
 		} else {
-			return (SoapObject) soapObject.getPropertySafely(property);
+			return (SoapObject) soapObject.getPropertySafely(property, null);
 		}
 	}
 

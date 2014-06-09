@@ -1,0 +1,28 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <RenewItemResponse xmlns="http://bibliomondo.com/websevices/webuser">
+            <RenewItemResult>
+                <userId>use rna me</userId>
+                <record>
+                    <RenewItemHMResult xmlns="http://bibliomondo.com/webservices/webuser">
+                        <BrwrNo>use rna me</BrwrNo>
+                        <ItemNo>M58 888 140 4</ItemNo>
+                        <FunctionType>1</FunctionType>
+                        <BrwrAmountOwing>0</BrwrAmountOwing>
+                        <BrwrAmountLoanVouchers>0</BrwrAmountLoanVouchers>
+                        <BrwrAmountGeneralCredit>0</BrwrAmountGeneralCredit>
+                        <BrwrOnLoan>30</BrwrOnLoan>
+                        <BrwrOnLoanOverdue>0</BrwrOnLoanOverdue>
+                        <BrwrOnLoanWithFines>0</BrwrOnLoanWithFines>
+                        <BrwrOnLoanRecalled>0</BrwrOnLoanRecalled>
+                        <ItemNewDueDate>08/07/2014</ItemNewDueDate>
+                        <ItemAction>0</ItemAction>
+                        <ItemSortIndicator>0</ItemSortIndicator>
+                        <ItemSensitiseDesensitise>1</ItemSensitiseDesensitise>
+                        <ItemError>0</ItemError>
+                    </RenewItemHMResult>
+                </record>
+            </RenewItemResult>
+        </RenewItemResponse>
+    </soap:Body>
+</soap:Envelope>

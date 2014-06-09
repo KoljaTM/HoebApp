@@ -1,0 +1,68 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <ReadNotesExtResponse xmlns="http://bibliomondo.com/websevices/webcatalogue">
+            <ReadNotesExtResult>
+                <patronid>use rna me</patronid>
+                <validPin>true</validPin>
+                <items>
+                    <NotePadItemExt>
+                        <catalogueId>1545316</catalogueId>
+                        <padname>-</padname>
+                        <dlc>2014-06-01T21:29:21.376</dlc>
+                        <author>Butcher, Jim</author>
+                        <title>•&lt;Die>• dunklen Fälle des Harry Dresden * Bd. 3. ‡ Grabesruh / [Dt. von: Jürgen
+                            Langowski]
+                        </title>
+                        <isbn>978 3 86762113 7</isbn>
+                        <materialType>1</materialType>
+                    </NotePadItemExt>
+                    <NotePadItemExt>
+                        <catalogueId>1005248</catalogueId>
+                        <padname>-</padname>
+                        <dlc>2014-02-11T08:00:05.976</dlc>
+                        <author>Birck, Jan</author>
+                        <title>Geheimagent Morris und das Geheimnis der alten Windmühle</title>
+                        <isbn>3 83150360 5</isbn>
+                        <materialType>8</materialType>
+                    </NotePadItemExt>
+                    <NotePadItemExt>
+                        <catalogueId>1644269</catalogueId>
+                        <padname>-</padname>
+                        <dlc>2014-01-18T11:25:32.41</dlc>
+                        <author/>
+                        <title>•&lt;Der>• kleine Ritter Trenk und der Turmbau zu Babel</title>
+                        <isbn>978 3 78913200 1</isbn>
+                        <materialType>8</materialType>
+                    </NotePadItemExt>
+                    <NotePadItemExt>
+                        <catalogueId>1244153</catalogueId>
+                        <padname>-</padname>
+                        <dlc>2013-12-23T10:34:17.676</dlc>
+                        <author/>
+                        <title>Auf dem Ponyhof</title>
+                        <isbn>978 3 47331494 2</isbn>
+                        <materialType>8</materialType>
+                    </NotePadItemExt>
+                    <NotePadItemExt>
+                        <catalogueId>1583565</catalogueId>
+                        <padname>-</padname>
+                        <dlc>2013-11-29T23:38:03.093</dlc>
+                        <author>Meier-Pauken, Klaus</author>
+                        <title>Architekturskizzen</title>
+                        <isbn>978 3 86230228 4</isbn>
+                        <materialType>1</materialType>
+                    </NotePadItemExt>
+                    <NotePadItemExt>
+                        <catalogueId>1647707</catalogueId>
+                        <padname>-</padname>
+                        <dlc>2013-11-29T23:30:11.966</dlc>
+                        <author/>
+                        <title>Workshop Aquarell - Stadt und Land</title>
+                        <isbn>978 3 86230245 1</isbn>
+                        <materialType>1</materialType>
+                    </NotePadItemExt>
+                </items>
+            </ReadNotesExtResult>
+        </ReadNotesExtResponse>
+    </soap:Body>
+</soap:Envelope>

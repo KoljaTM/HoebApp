@@ -5,23 +5,25 @@ import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.AssetManager;
-import com.xtremelabs.robolectric.Robolectric;
-import com.xtremelabs.robolectric.RobolectricTestRunner;
-import com.xtremelabs.robolectric.shadows.ShadowContentProviderOperation;
 import de.vanmar.android.hoebapp.bo.Account;
 import de.vanmar.android.hoebapp.bo.MediaDetails;
 import de.vanmar.android.hoebapp.bo.RenewItem;
 import de.vanmar.android.hoebapp.db.MediaContentProvider;
 import de.vanmar.android.hoebapp.db.MediaDbHelper;
-import de.vanmar.android.hoebapp.test.mocking.MockResponses;
+import de.vanmar.android.hoebapp.test.mocking.SoapMockNanoHTTPD;
 import de.vanmar.android.hoebapp.test.mocking.TestUtils;
-import de.vanmar.android.hoebapp.util.HtmlMockAnswer;
+import de.vanmar.android.hoebapp.util.MyRobolectricTestRunner;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.ksoap2.transport.HttpTransportSE;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+import org.robolectric.Robolectric;
+import org.robolectric.shadows.ShadowContentProviderOperation;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,10 +38,13 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
+import static org.robolectric.shadows.ShadowContentProviderOperation.TYPE_DELETE;
+import static org.robolectric.shadows.ShadowContentProviderOperation.TYPE_INSERT;
 
-@RunWith(RobolectricTestRunner.class)
+@RunWith(MyRobolectricTestRunner.class)
 public class SoapLibraryServiceTest {
 
+	public static final String CHECKED_USERNAME = "use rna me";
 	private SoapLibraryService libraryService;
 	private Context context;
 
@@ -48,9 +53,20 @@ public class SoapLibraryServiceTest {
 
 	@Mock
 	private AssetManager assetManager;
+	@Mock
+	private HttpTransportFactory mockHttpTransportFactory;
+	@Mock
+	private HttpTransportSE mockHttpTransport;
+
+	public static SoapMockNanoHTTPD httpMock;
 
 	@Before
 	public void setUp() throws Exception {
+		if (httpMock == null) {
+			// cannot use @BeforeClass
+			// because unfortunately RobolectricTestRunner runs the @BeforeClass method in another classLoader.
+			httpMock = new SoapMockNanoHTTPD();
+		}
 		MockitoAnnotations.initMocks(this);
 		context = new Activity() {
 
@@ -66,18 +82,30 @@ public class SoapLibraryServiceTest {
 
 		};
 		libraryService = SoapLibraryService_.getInstance_(context);
+		libraryService.httpTransportFactory = mockHttpTransportFactory;
+		given(mockHttpTransportFactory.getHttpTransport(anyString())).willAnswer(new Answer<HttpTransportSE>() {
+			@Override
+			public HttpTransportSE answer(InvocationOnMock invocationOnMock) throws Throwable {
+				String url = (String) invocationOnMock.getArguments()[0];
+				return new HttpTransportSE(getMockUrl(url));
+			}
+		});
 
-		TestUtils.initMocks(context);
-		given(assetManager.open(anyString())).willAnswer(new HtmlMockAnswer());
+//		given(assetManager.open(anyString())).willAnswer(new HtmlMockAnswer());
+		httpMock.clearUris();
+	}
+
+	private String getMockUrl(String url) {
+		String replaced = url.replaceAll("(http|https)://[^/]*", "http://localhost:8888");
+		System.out.println(url);
+		System.out.println(replaced);
+		return replaced;
 	}
 
 	@Test
 	public void shouldRefreshMediaList() throws Exception {
 		// given
 		givenStandardLogin();
-		MockResponses.forRequestDoAnswer(".*fn=MyLoans.*", "medialist.html");
-		MockResponses.forRequestDoAnswer(".*Method=PageDown.*",
-				"medialistbottom.html");
 
 		// when
 		libraryService.refreshMediaList(context);
@@ -91,58 +119,52 @@ public class SoapLibraryServiceTest {
 		final ArrayList<ContentProviderOperation> operations = capturer
 				.getValue();
 		assertThat("1 delete, 11 inserts", operations.size(), is(12));
+		ContentProviderOperation operation = operations.get(0);
 		final ShadowContentProviderOperation deleteOperation = Robolectric
-				.shadowOf(operations.get(0));
-		assertThat("delete old", deleteOperation.isDelete(), is(true));
-		assertThat("delete old", deleteOperation.getUri(),
+				.shadowOf(operation);
+		assertThat("delete old", deleteOperation.getType() == TYPE_DELETE, is(true));
+		assertThat("delete old", operation.getUri(),
 				is(equalTo(MediaContentProvider.CONTENT_URI)));
 
-		for (int i = 1; i < 12; i++) {
+		for (int i = 1; i < 11; i++) {
+			ContentProviderOperation operationI = operations.get(i);
 			final ShadowContentProviderOperation insertOperation = Robolectric
-					.shadowOf(operations.get(i));
-			assertThat("insert " + i, insertOperation.isInsert(), is(true));
-			assertThat("insert " + i, insertOperation.getUri(),
+					.shadowOf(operationI);
+			assertThat("insert " + i, insertOperation.getType() == TYPE_INSERT, is(true));
+			assertThat("insert " + i, operationI.getUri(),
 					is(equalTo(MediaContentProvider.CONTENT_URI)));
 			assertThat(
 					"insert " + i,
-					(String) insertOperation.getValues().get(
+					(String) insertOperation.getContentValues().get(
 							MediaDbHelper.COLUMN_ACCOUNT),
-					is(equalTo("username")));
+					is(equalTo("username"))
+			);
 		}
 		final ShadowContentProviderOperation insertOperation = Robolectric
 				.shadowOf(operations.get(1));
-		assertThat(insertOperation.getValues().get(MediaDbHelper.COLUMN_AUTHOR).toString(), is("Kein Autor"));
-		assertThat(insertOperation.getValues().get(MediaDbHelper.COLUMN_TITLE).toString(), is("Das Ende ist mein Anfang"));
-		assertThat(insertOperation.getValues().get(MediaDbHelper.COLUMN_MEDIUM_ID).toString(), is("T014946840"));
-		assertThat(insertOperation.getValues().get(MediaDbHelper.COLUMN_SIGNATURE).toString(), is("M60 005 431 3"));
-		assertThat(insertOperation.getValues().get(MediaDbHelper.COLUMN_NO_RENEW_REASON).toString(), is("Verl&auml;ngerungslimit erreicht"));
-		assertThat(insertOperation.getValues().get(MediaDbHelper.COLUMN_NUM_RENEWS).toString(), is("2"));
+		assertThat(insertOperation.getContentValues().get(MediaDbHelper.COLUMN_AUTHOR).toString(), is("Stein, Arnd"));
+		assertThat(insertOperation.getContentValues().get(MediaDbHelper.COLUMN_TITLE).toString(), is("•<Die>• Wunschinsel ..."));
+		assertThat(insertOperation.getContentValues().get(MediaDbHelper.COLUMN_MEDIUM_ID).toString(), is("T012370097"));
+		assertThat(insertOperation.getContentValues().get(MediaDbHelper.COLUMN_SIGNATURE).toString(), is("M58 888 140 4"));
+		assertThat(insertOperation.getContentValues().get(MediaDbHelper.COLUMN_NO_RENEW_REASON).toString(), is("Nicht gesperrt"));
+		assertThat(insertOperation.getContentValues().get(MediaDbHelper.COLUMN_NUM_RENEWS).toString(), is("0"));
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat(
 				"dd/MM/yyyy", Locale.GERMAN);
-		assertThat((Long) insertOperation.getValues().get(MediaDbHelper.COLUMN_LOANDATE), is(dateFormat.parse("29/11/2013").getTime()));
-		assertThat((Long) insertOperation.getValues().get(MediaDbHelper.COLUMN_DUEDATE), is(dateFormat.parse("20/12/2013").getTime()));
-		assertThat((Integer) insertOperation.getValues().get(MediaDbHelper.COLUMN_CAN_RENEW), is(0));
+		assertThat((Long) insertOperation.getContentValues().get(MediaDbHelper.COLUMN_LOANDATE), is(dateFormat.parse("20/05/2014").getTime()));
+		assertThat((Long) insertOperation.getContentValues().get(MediaDbHelper.COLUMN_DUEDATE), is(dateFormat.parse("17/06/2014").getTime()));
+		assertThat((Integer) insertOperation.getContentValues().get(MediaDbHelper.COLUMN_CAN_RENEW), is(1));
 
 		final ShadowContentProviderOperation insertOperation2 = Robolectric
 				.shadowOf(operations.get(2));
-		assertThat((Integer) insertOperation2.getValues().get(MediaDbHelper.COLUMN_CAN_RENEW), is(1));
+		assertThat((Integer) insertOperation2.getContentValues().get(MediaDbHelper.COLUMN_CAN_RENEW), is(1));
 	}
 
 	@Test
 	public void shouldRefreshMediaListWithTwoAccounts() throws Exception {
 		// given
 		TestUtils.setUserdata(context, new Account("username1", "password1"),
-				new Account("username2", "password2"));
-		MockResponses.reset();
-		MockResponses.forRequestDoAnswer(".*fn=Login.*", "loginform.html");
-		MockResponses.forRequestDoAnswer(".*alswww2.dll/Obj_567281354477961.*",
-				"loginsuccess.html");
-		MockResponses.forRequestDoAnswer(".*fn=MyLoans.*", "medialist.html",
-				"medialist2.html");
-		MockResponses.forRequestDoAnswer(".*Method=PageDown.*",
-				"medialistbottom.html", "medialistbottom.html",
-				"medialist2bottom.html", "medialist2bottom.html");
+				new Account("user2name", "password2"));
 
 		// when
 		libraryService.refreshMediaList(context);
@@ -156,36 +178,35 @@ public class SoapLibraryServiceTest {
 		final ArrayList<ContentProviderOperation> operations = capturer
 				.getValue();
 
-		assertThat("1 delete, 11 inserts (account1), 18 inserts (account2)",
-				operations.size(), is(30));
+		assertThat("1 delete, 11 inserts (account1), 19 inserts (account2)",
+				operations.size(), is(31));
+		ContentProviderOperation operation = operations.get(0);
 		final ShadowContentProviderOperation deleteOperation = Robolectric
-				.shadowOf(operations.get(0));
-		assertThat("delete old", deleteOperation.isDelete(), is(true));
-		assertThat("delete old", deleteOperation.getUri(),
+				.shadowOf(operation);
+		assertThat("delete old", deleteOperation.getType() == TYPE_DELETE, is(true));
+		assertThat("delete old", operation.getUri(),
 				is(equalTo(MediaContentProvider.CONTENT_URI)));
 
 		for (int i = 1; i < 12; i++) {
+			ContentProviderOperation operationI = operations.get(i);
 			final ShadowContentProviderOperation insertOperation = Robolectric
-					.shadowOf(operations.get(i));
-			assertThat("insert " + i, insertOperation.isInsert(), is(true));
-			assertThat("insert " + i, insertOperation.getUri(),
+					.shadowOf(operationI);
+			assertThat("insert " + i, insertOperation.getType() == TYPE_INSERT, is(true));
+			assertThat("insert " + i, operationI.getUri(),
 					is(equalTo(MediaContentProvider.CONTENT_URI)));
 			assertThat(
 					"insert " + i,
-					(String) insertOperation.getValues().get(
+					(String) insertOperation.getContentValues().get(
 							MediaDbHelper.COLUMN_ACCOUNT),
-					is(equalTo("username1")));
+					is(equalTo("username1"))
+			);
 		}
 	}
 
 	@Test
 	public void shouldFailWithWrongLogin() throws Exception {
 		// given
-		TestUtils.setUserdata(context, new Account("username", "password"));
-		MockResponses.reset();
-		MockResponses.forRequestDoAnswer(".*fn=Login.*", "loginform.html");
-		MockResponses.forRequestDoAnswer(".*alswww2.dll/Obj_567281354477961.*",
-				"loginfailed.html");
+		TestUtils.setUserdata(context, new Account("error", "password"));
 
 		// when
 		try {
@@ -199,125 +220,60 @@ public class SoapLibraryServiceTest {
 	@Test
 	public void shouldRenewMediaItem() throws Exception {
 		// given
-		Account account = new Account("username1", "password1");
-		Account account2 = new Account("username2", "password2");
+		Account account = new Account("username", "use rna me", "password1", Account.Appearance.GREEN);
+		Account account2 = new Account("user2name", "use r2n ame", "password2", Account.Appearance.BLUE);
 		TestUtils.setUserdata(context, account, account2);
-		MockResponses.reset();
-		MockResponses.forRequestDoAnswer(".*fn=Login.*", "loginform.html");
-		MockResponses.forRequestDoAnswer(".*alswww2.dll/Obj_567281354477961.*",
-				"loginsuccess.html");
-		MockResponses.forRequestDoAnswer(".*fn=MyLoans.*", "medialist.html");
-		MockResponses.forRequestDoAnswer(".*Method=PageDown.*",
-				"medialistbottom.html");
-		MockResponses
-				.forRequestDoAnswer(
-						"https://www.buecherhallen.de/alswww2.dll/Obj_2871387029199\\?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=Renew&Style=Portal3&Item=536",
-						"renewresult.html");
 
 		// when
 		libraryService.renewMedia(Collections.singleton(new RenewItem(account, "M59 551 458 7")), context);
 
 		// then
-		final List<Object> answers = MockResponses.getAnswerLog();
 		// assert correct sequence of calls
-		assertThat("get login form", (String) answers.get(0),
-				is("loginform.html"));
-		assertThat("login username1", (String) answers.get(1),
-				is("loginsuccess.html"));
-		assertThat("medialist", (String) answers.get(2), is("medialist.html"));
-		assertThat("continue medialist", (String) answers.get(3),
-				is("medialistbottom.html"));
-		assertThat("renew item", (String) answers.get(4),
-				is("renewresult.html"));
-		assertThat("continue medialist (establish bottom)",
-				(String) answers.get(5), is("medialistbottom.html"));
-
-		assertThat("get login form", (String) answers.get(6),
-				is("loginform.html"));
-		assertThat("login username1", (String) answers.get(7),
-				is("loginsuccess.html"));
-		assertThat("medialist", (String) answers.get(8), is("medialist.html"));
-		assertThat("continue medialist", (String) answers.get(9),
-				is("medialistbottom.html"));
-		assertThat("continue medialist (establish bottom (no renew here))",
-				(String) answers.get(10), is("medialistbottom.html"));
+		List<String> uris = httpMock.getCalledUris();
+		assertFalse("dont check username, because checkedUsername is known", uris.contains("/app_webuser/WebUserSvc.asmx/CheckBorrower.xml"));
+		assertThat("renew item", uris.get(0), is("/app_webuser/WebUserSvc.asmx/RenewItem.xml"));
+		assertThat("refresh list user1", uris.get(1), is("/app_webuser/WebUserSvc.asmx/GetBorrowerLoans.xml"));
+		assertThat("refresh list user2", uris.get(2), is("/app_webuser/WebUserSvc.asmx/GetBorrowerLoans2.xml"));
 	}
 
 	@Test
-	public void shouldLoadEmptyNotepadList() throws TechnicalException {
+	public void shouldLoadNotepadList() throws TechnicalException {
 		// given
 		givenStandardLogin();
-		MockResponses.forRequestDoAnswer(".*ViewNotepad.*", "notepadEmpty.html");
-		MockResponses.forRequestDoAnswer(".*LoadingJSON.*", "notepadLoading100.json");
-		MockResponses.forRequestDoAnswer(".*ShowNotes.*", "notepadEmpty.html");
 
 		// when
 		List<MediaDetails> notepad = libraryService.loadNotepad();
 
 		// then
-		assertThat(notepad.size(), is(0));
-	}
-
-	@Test
-	public void shouldLoadShortNotepadList() throws TechnicalException {
-		// given
-		givenStandardLogin();
-		MockResponses.forRequestDoAnswer(".*ViewNotepad.*", "notepadShort.html");
-
-		// when
-		List<MediaDetails> notepad = libraryService.loadNotepad();
-
-		// then
-		assertThat(notepad.size(), is(4));
-	}
-
-	@Test
-	public void shouldLoadMultipageNotepadList() throws TechnicalException {
-		// given
-		givenStandardLogin();
-		MockResponses.forRequestDoAnswer(".*ViewNotepad.*", "notepadNeedsLoading.html");
-		MockResponses.forRequestDoAnswer(".*LoadingJSON.*", "notepadLoading100.json");
-		MockResponses.forRequestDoAnswer(".*ShowNotes.*", "notepadLongPage1.html");
-		MockResponses.forRequestDoAnswer(".*Method=PageDown.*", "notepadLongPage2.html");
-
-		// when
-		List<MediaDetails> notepad = libraryService.loadNotepad();
-
-		// then
-		assertThat(notepad.size(), is(11));
+		assertThat(notepad.size(), is(6));
 	}
 
 	@Test
 	public void shouldAddToNotepad() throws TechnicalException {
 		// given
 		givenStandardLogin();
-		MockResponses.forRequestDoAnswer(".*Method=NoteItem&id=T1234567890", "addToNotepad.json");
 
 		// when
 		libraryService.addToNotepad(new Account("username", "password"), "T1234567890");
 
 		// then
-		assertTrue("add to notepad called", MockResponses.getAnswerLog().contains("addToNotepad.json"));
+		assertTrue("add to notepad called", httpMock.getCalledUris().contains("/app_ZonesServices/Service1.asmx/NoteRecord.xml"));
 	}
 
 	@Test
 	public void shouldRemoveFromNotepad() throws TechnicalException {
 		// given
 		givenStandardLogin();
-		MockResponses.forRequestDoAnswer(".*Method=DeleteNote&id=T1234567890", "removeFromNotepad.json");
 
 		// when
 		libraryService.removeFromNotepad(new Account("username", "password"), "T1234567890");
 
 		// then
-		assertTrue("add to notepad called", MockResponses.getAnswerLog().contains("removeFromNotepad.json"));
+		assertTrue("remove from notepad called", httpMock.getCalledUris().contains("/app_ZonesServices/Service1.asmx/DeleteNote.xml"));
 	}
 
 	private void givenStandardLogin() {
 		TestUtils.setUserdata(context, new Account("username", "password"));
-		MockResponses.reset();
-		MockResponses.forRequestDoAnswer(".*fn=Login.*", "loginform.html");
-		MockResponses.forRequestDoAnswer(".*alswww2.dll/Obj_567281354477961.*",
-				"loginsuccess.html");
 	}
+
 }

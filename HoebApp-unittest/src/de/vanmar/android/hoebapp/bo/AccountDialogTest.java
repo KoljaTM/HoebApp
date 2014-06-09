@@ -1,24 +1,26 @@
 package de.vanmar.android.hoebapp.bo;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import com.xtremelabs.robolectric.RobolectricTestRunner;
+import de.vanmar.android.hoebapp.PreferencesActivity_;
 import de.vanmar.android.hoebapp.R;
 import de.vanmar.android.hoebapp.bo.Account.Appearance;
 import de.vanmar.android.hoebapp.dialog.AccountDialog;
+import de.vanmar.android.hoebapp.util.MyRobolectricTestRunner;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
+import org.robolectric.Robolectric;
+import org.robolectric.util.ActivityController;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-@RunWith(RobolectricTestRunner.class)
+@RunWith(MyRobolectricTestRunner.class)
 public class AccountDialogTest {
 
 	private AccountDialog dialog;
@@ -28,16 +30,20 @@ public class AccountDialogTest {
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		context = new Activity();
+		ActivityController<PreferencesActivity_> activityController = Robolectric.buildActivity(PreferencesActivity_.class);
+		activityController.create();
+		context = activityController.get();
 	}
 
 	private void createDialog(final Account account) {
+
+
 		dialog = new AccountDialog(context, account);
 		dialog.show();
 	}
 
 	private void editData(final CharSequence newUsername,
-			final CharSequence newPassword) {
+						  final CharSequence newPassword) {
 		((EditText) dialog.findViewById(R.id.username)).setText(newUsername);
 		((EditText) dialog.findViewById(R.id.password)).setText(newPassword);
 	}
