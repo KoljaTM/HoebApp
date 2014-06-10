@@ -1,11 +1,8 @@
 package de.vanmar.android.hoebapp;
 
 import android.test.ActivityInstrumentationTestCase2;
-
 import com.jayway.android.robotium.solo.Solo;
-
-import de.vanmar.android.hoebapp.test.mocking.MockResponses;
-import de.vanmar.android.hoebapp.test.mocking.TestUtils;
+import de.vanmar.android.hoebapp.test.mocking.SoapMockNanoHTTPD;
 
 public class SearchTest extends
 		ActivityInstrumentationTestCase2<SearchActivity_> {
@@ -18,8 +15,7 @@ public class SearchTest extends
 
 	@Override
 	public void setUp() throws Exception {
-		TestUtils.initMocks(getInstrumentation().getContext());
-
+		SoapMockNanoHTTPD.ensureRunningAndSetup();
 		solo = new Solo(getInstrumentation(), getActivity());
 	}
 
@@ -29,22 +25,15 @@ public class SearchTest extends
 	}
 
 	public void testSimpleSearch() throws Exception {
-		MockResponses.reset();
-		MockResponses
-				.forRequestDoAnswer(
-						"https://www.buecherhallen.de/alswww2.dll/\\?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=QueryWithLimits&SearchType=AdvancedSearch&TargetSearchType=AdvancedSearch&DB=SearchServer&q.PageSize=20&q.form.t1.term=kw%3D&q.form.t1.expr=Android&q.form.t2.logic=\\+and\\+&q.form.t2.term=&q.form.t2.expr=&q.form.t3.logic=\\+and\\+&q.form.t3.term=&q.form.t3.expr=",
-						"searchResultAndroid.html");
-
 		assertTrue(solo.searchText("Katalogsuche"));
 		solo.enterText(0, "Android");
 		solo.clickOnButton("Suchen");
 
-		assertTrue(solo.waitForText("Der Android-Tablet-PC"));
+		assertTrue(solo.waitForText("Android User  2014/2 alles zum Thema Android"));
 
-		assertTrue(solo.searchText("Post, Uwe"));
-		assertTrue(solo.searchText("Android-Apps entwickeln"));
-		assertTrue(solo.searchText("eBook"));
-		assertTrue(solo.searchText("2012"));
+		assertTrue(solo.searchText("Rehberg, Andreas Itzchak"));
+		assertTrue(solo.searchText("Buch Erwachsene"));
+		assertTrue(solo.searchText("Zeitschrift"));
 	}
 
 }

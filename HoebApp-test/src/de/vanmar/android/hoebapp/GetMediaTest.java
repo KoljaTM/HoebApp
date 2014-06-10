@@ -3,17 +3,16 @@ package de.vanmar.android.hoebapp;
 import android.test.ActivityInstrumentationTestCase2;
 import com.jayway.android.robotium.solo.Solo;
 import de.vanmar.android.hoebapp.bo.Account;
-import de.vanmar.android.hoebapp.test.mocking.MockResponses;
+import de.vanmar.android.hoebapp.test.mocking.SoapMockNanoHTTPD;
 import de.vanmar.android.hoebapp.test.mocking.TestUtils;
 import de.vanmar.android.hoebapp.util.NetworkHelper;
 import org.junit.Assert;
-
-import java.io.IOException;
 
 public class GetMediaTest extends
 		ActivityInstrumentationTestCase2<HoebAppActivity_> {
 
 	private Solo solo;
+	private SoapMockNanoHTTPD httpMock;
 
 	public GetMediaTest() {
 		super(HoebAppActivity_.class);
@@ -22,7 +21,8 @@ public class GetMediaTest extends
 	@Override
 	public void setUp() throws Exception {
 		TestUtils.initEmpty(getInstrumentation().getTargetContext());
-		TestUtils.initMocks(getInstrumentation().getContext());
+
+		httpMock = SoapMockNanoHTTPD.ensureRunningAndSetup();
 	}
 
 	private Solo initActivityAndGetSolo() {
@@ -52,11 +52,7 @@ public class GetMediaTest extends
 	public void testDisplayLoginError() {
 		// given
 		TestUtils.setUserdata(getInstrumentation().getTargetContext(),
-				new Account("xxx", "yyy"));
-		MockResponses.reset();
-		MockResponses.forRequestDoAnswer(".*fn=Login.*", "loginform.html");
-		MockResponses.forRequestDoAnswer(".*alswww2.dll/Obj_567281354477961.*",
-				"loginfailed.html");
+				new Account("error", "password"));
 		solo = initActivityAndGetSolo();
 
 		// when
@@ -71,29 +67,21 @@ public class GetMediaTest extends
 	public void testGetMediaList() throws InterruptedException {
 		// given
 		TestUtils.setUserdata(getInstrumentation().getTargetContext(),
-				new Account("xxx", "yyy"));
-		MockResponses.reset();
-		MockResponses.forRequestDoAnswer(".*fn=Login.*", "loginform.html");
-		MockResponses.forRequestDoAnswer(".*alswww2.dll/Obj_567281354477961.*",
-				"loginsuccess.html");
-		MockResponses.forRequestDoAnswer(".*fn=MyLoans.*", "medialist.html");
-		MockResponses.forRequestDoAnswer(".*Method=PageDown.*",
-				"medialistbottom.html");
+				new Account("username", "yyy"));
 		solo = initActivityAndGetSolo();
 
 		// before
 		Assert.assertTrue(solo.searchText("HÖB-Fans"));
 		Assert.assertTrue(solo.searchText("0 Titel entliehen"));
-		Assert.assertEquals(0, solo.getView(R.id.adView).getHeight());
 
 		// when
 		solo.clickOnActionBarItem(R.id.refresh);
 
 		// then
 		Assert.assertTrue(solo.waitForText("11 Titel entliehen"));
-		Assert.assertTrue(solo.searchText("Das Ende ist mein Anfang", 1, true));
-		Assert.assertTrue(solo.searchText("Der durch den Spiegel kommt", 1, true));
-		Assert.assertTrue(solo.searchText("16.01.2014", 1, true));
+		Assert.assertTrue(solo.searchText("•<Die>• Wunschinsel ...", 1, true));
+		Assert.assertTrue(solo.searchText("Willy Werkels Schiffe-Buch", 1, true));
+		Assert.assertTrue(solo.searchText("24.06.2014", 1, true));
 
 		solo.assertCurrentActivity("should stay on main page",
 				HoebAppActivity_.class);
@@ -102,21 +90,21 @@ public class GetMediaTest extends
 	public void testRememberRenewCheckbox() throws InterruptedException {
 		// given
 		TestUtils.setUserdata(getInstrumentation().getTargetContext(),
-				new Account("xxx", "yyy"));
+				new Account("username", "yyy"));
 		TestUtils.prepareTestDatabase(getInstrumentation().getContext(),
-				getInstrumentation().getTargetContext(), "hoebdata.ver9.db");
+				getInstrumentation().getTargetContext(), "hoebdata.ver12.db");
 		solo = initActivityAndGetSolo();
 
 		// before
-		Assert.assertTrue(solo.waitForText("18 Titel entliehen"));
+		Assert.assertTrue(solo.waitForText("11 Titel entliehen"));
 		final int firstRenewableItem = 2;
 		solo.clickOnCheckBox(firstRenewableItem);
 
 		// when
 		solo.scrollToBottom();
-		solo.waitForText("Jim Knopf");
+		solo.waitForText("Sturmnacht");
 		solo.scrollToTop();
-		solo.waitForText("Drei Männer im Schnee");
+		solo.waitForText("Geschichte Europas");
 
 		// then
 		assertTrue(solo.isCheckBoxChecked(firstRenewableItem));
@@ -125,14 +113,9 @@ public class GetMediaTest extends
 	public void testGotoDetailActivity() throws InterruptedException {
 		// given
 		TestUtils.setUserdata(getInstrumentation().getTargetContext(),
-				new Account("xxx", "yyy"));
+				new Account("username", "yyy"));
 		TestUtils.prepareTestDatabase(getInstrumentation().getContext(),
 				getInstrumentation().getTargetContext(), "hoebdata.ver9.db");
-		MockResponses.reset();
-		MockResponses
-				.forRequestDoAnswer(
-						"https://www.buecherhallen.de/alswww2.dll/APS_PRESENT_BIB\\?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&no=T010228560",
-						"detailJimKnopfLukas.html");
 
 		solo = initActivityAndGetSolo();
 
@@ -143,7 +126,9 @@ public class GetMediaTest extends
 		solo.clickOnText("Jim Knopf");
 
 		// then
-		Assert.assertTrue(solo.waitForText("Die beiden Freunde erleben"));
+		Assert.assertTrue(solo.waitForText("Ende, Michael"));
+		Assert.assertTrue(solo.waitForText("b ENDE"));
+		Assert.assertTrue(solo.waitForText("4 Exemplare verfügbar"));
 		solo.assertCurrentActivity("should go to details page",
 				DetailActivity_.class);
 	}
@@ -152,7 +137,7 @@ public class GetMediaTest extends
 			throws InterruptedException {
 		// given
 		TestUtils.setUserdata(getInstrumentation().getTargetContext(),
-				new Account("xxx", "yyy"));
+				new Account("username", "yyy"));
 		TestUtils.prepareTestDatabase(getInstrumentation().getContext(),
 				getInstrumentation().getTargetContext(), "hoebdata.ver8.db");
 		solo = initActivityAndGetSolo();
@@ -187,11 +172,9 @@ public class GetMediaTest extends
 
 	public void testIOException() {
 		// given
+		SoapMockNanoHTTPD.stopServer();
 		TestUtils.setUserdata(getInstrumentation().getTargetContext(),
-				new Account("xxx", "yyy"));
-		MockResponses.reset();
-		MockResponses.forRequestDoAnswer(".*fn=Login.*", new IOException(
-				"Test Exception"));
+				new Account("username", "yyy"));
 		solo = initActivityAndGetSolo();
 
 		// when

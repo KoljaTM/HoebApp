@@ -1,7 +1,5 @@
 package de.vanmar.android.hoebapp.service;
 
-import android.util.Log;
-
 /**
  * Created by Kolja on 29.05.2014.
  */
@@ -56,24 +54,20 @@ public enum Location {
 		this.owner = owner;
 	}
 
-	public static String getCode(String owner) {
+	public static Location get(String owner) {
 		for (Location location : values()) {
 			if (location.owner.equals(owner)) {
-				return location.code;
+				return location;
 			}
 		}
-		return XX.code;
+		return XX;
 	}
 
-	public static String getName(String owner) {
-		boolean found = false;
-		for (Location location : values()) {
-			if (location.owner.equals(owner)) {
-				found = true;
-				return location.name;
-			}
-		}
-		Log.i("Location " + owner, "found: " + found);
-		return XX.name;
+	public String getCode() {
+		return code;
+	}
+
+	public String getName() {
+		return name;
 	}
 }

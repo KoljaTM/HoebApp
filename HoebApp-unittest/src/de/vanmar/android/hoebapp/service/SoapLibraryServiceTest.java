@@ -8,11 +8,13 @@ import android.content.res.AssetManager;
 import de.vanmar.android.hoebapp.bo.Account;
 import de.vanmar.android.hoebapp.bo.MediaDetails;
 import de.vanmar.android.hoebapp.bo.RenewItem;
+import de.vanmar.android.hoebapp.bo.SearchMedia;
 import de.vanmar.android.hoebapp.db.MediaContentProvider;
 import de.vanmar.android.hoebapp.db.MediaDbHelper;
 import de.vanmar.android.hoebapp.test.mocking.SoapMockNanoHTTPD;
 import de.vanmar.android.hoebapp.test.mocking.TestUtils;
 import de.vanmar.android.hoebapp.util.MyRobolectricTestRunner;
+import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,11 +22,12 @@ import org.ksoap2.transport.HttpTransportSE;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 import org.robolectric.Robolectric;
 import org.robolectric.shadows.ShadowContentProviderOperation;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,8 +37,6 @@ import java.util.Locale;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.robolectric.shadows.ShadowContentProviderOperation.TYPE_DELETE;
@@ -54,8 +55,6 @@ public class SoapLibraryServiceTest {
 	@Mock
 	private AssetManager assetManager;
 	@Mock
-	private HttpTransportFactory mockHttpTransportFactory;
-	@Mock
 	private HttpTransportSE mockHttpTransport;
 
 	public static SoapMockNanoHTTPD httpMock;
@@ -65,7 +64,7 @@ public class SoapLibraryServiceTest {
 		if (httpMock == null) {
 			// cannot use @BeforeClass
 			// because unfortunately RobolectricTestRunner runs the @BeforeClass method in another classLoader.
-			httpMock = new SoapMockNanoHTTPD();
+			httpMock = SoapMockNanoHTTPD.ensureRunningAndSetup();
 		}
 		MockitoAnnotations.initMocks(this);
 		context = new Activity() {
@@ -75,31 +74,14 @@ public class SoapLibraryServiceTest {
 				return contentResolver;
 			}
 
-			@Override
+		/*	@Override
 			public AssetManager getAssets() {
 				return assetManager;
 			}
-
+*/
 		};
 		libraryService = SoapLibraryService_.getInstance_(context);
-		libraryService.httpTransportFactory = mockHttpTransportFactory;
-		given(mockHttpTransportFactory.getHttpTransport(anyString())).willAnswer(new Answer<HttpTransportSE>() {
-			@Override
-			public HttpTransportSE answer(InvocationOnMock invocationOnMock) throws Throwable {
-				String url = (String) invocationOnMock.getArguments()[0];
-				return new HttpTransportSE(getMockUrl(url));
-			}
-		});
-
-//		given(assetManager.open(anyString())).willAnswer(new HtmlMockAnswer());
 		httpMock.clearUris();
-	}
-
-	private String getMockUrl(String url) {
-		String replaced = url.replaceAll("(http|https)://[^/]*", "http://localhost:8888");
-		System.out.println(url);
-		System.out.println(replaced);
-		return replaced;
 	}
 
 	@Test
@@ -270,6 +252,75 @@ public class SoapLibraryServiceTest {
 
 		// then
 		assertTrue("remove from notepad called", httpMock.getCalledUris().contains("/app_ZonesServices/Service1.asmx/DeleteNote.xml"));
+	}
+
+
+	@Test
+	public void shouldSearchForKeyword() throws IOException {
+		// given
+		String searchUriForKeyword = "http://www.buecherhallen.de:8982/solr/select/?q=%22android%22+AND+NOT+MaterialType:BES+AND+HasStock:1&fl=Title,ISBN,id,Author,PersonalName,Abstract,MaterialType,DateOfAcquisition,DateOfPublication,LocalClassification,Publisher,NUMERO,ISMN,BibLevel&start=10&rows=15";
+		int offset = 10;
+		int pageSize = 15;
+		String fileForMockResults = "../../HoebApp-unittest/assets/mocks/searchResultAndroid.xml";
+		InputStream inputStream = context.getAssets().open(fileForMockResults);
+		Robolectric.addHttpResponseRule(searchUriForKeyword, IOUtils.toString(inputStream));
+
+		// when
+		List<SearchMedia> searchResult = libraryService.searchMedia(context, "android", SoapLibraryService.CATEGORY_KEYWORD, "", null, "", null, offset, pageSize);
+
+		// then
+		assertThat(searchResult.size(), is(15));
+		assertTrue("proper search called", Robolectric.httpRequestWasMade(searchUriForKeyword));
+	}
+
+	@Test
+	public void shouldSearchForCategories() throws IOException {
+		// given
+		String searchUriForCategories = "http://www.buecherhallen.de:8982/solr/select/?q=Title%3A%22Jim+Knopf%22+AND+Author%3A%22Ende%22+AND+NOT+MaterialType:BES+AND+HasStock:1&fl=Title,ISBN,id,Author,PersonalName,Abstract,MaterialType,DateOfAcquisition,DateOfPublication,LocalClassification,Publisher,NUMERO,ISMN,BibLevel&start=45&rows=15";
+		int offset = 45;
+		int pageSize = 15;
+		String fileForMockResults = "../../HoebApp-unittest/assets/mocks/searchResultJimKnopf.xml";
+		InputStream inputStream = context.getAssets().open(fileForMockResults);
+		Robolectric.addHttpResponseRule(searchUriForCategories, IOUtils.toString(inputStream));
+
+		// when
+		List<SearchMedia> searchResult = libraryService.searchMedia(context, "Jim Knopf", "Title:", "Ende", "Author:", "", null, offset, pageSize);
+
+		// then
+		assertThat(searchResult.size(), is(9));
+		assertTrue("proper search called", Robolectric.httpRequestWasMade(searchUriForCategories));
+	}
+
+	@Test
+	public void shouldCalculateIsbn13Correctly() {
+		assertThat("Correct isbn13 is unchanged", libraryService.getIsbn13("9783867422031"), is("9783867422031"));
+		assertThat("Dashes and spaces are removed", libraryService.getIsbn13("978-3-86742 203 1"), is("9783867422031"));
+		assertThat("Isbn10 is converted correctly", libraryService.getIsbn13("3522176502"), is("9783522176507"));
+		assertThat("Isbn10 is converted correctly with dashes", libraryService.getIsbn13("3-522-17650-2"), is("9783522176507"));
+		assertThat("Isbn10 is converted correctly with X", libraryService.getIsbn13("3-499-13599-X"), is("9783499135996"));
+		assertThat("Isbn with 0 security number works", libraryService.getIsbn13("3-446-19313-8"), is("9783446193130"));
+	}
+
+	@Test
+	public void shouldLoadMediaDetails() throws TechnicalException, ParseException {
+		// when
+		MediaDetails mediaDetails = libraryService.getMediaDetails("T010228560");
+
+		// then
+		assertNotNull(mediaDetails);
+		assertThat(mediaDetails.getAuthor(), is("Ende, Michael"));
+		assertThat(mediaDetails.getTitle(), is("Jim Knopf und Lukas der Lokomotivführer"));
+		assertThat(mediaDetails.getType(), is("Buch Kinder/Jugendliche"));
+		assertThat(mediaDetails.getSignature(), is("b ENDE"));
+		assertThat(mediaDetails.getImgUrl(), is("http://cover.ekz.de/9783522176507.jpg"));
+		List<MediaDetails.Stock> stock = mediaDetails.getStock();
+		assertThat(stock.size(), is(33));
+		assertThat(stock.get(0).getLocationName(), is("Kinderbibliothek"));
+		assertThat(stock.get(0).getInStock(), is(0));
+		assertThat(stock.get(1).getLocationName(), is("Alstertal"));
+		assertThat(stock.get(1).getInStock(), is(1));
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.GERMAN);
+		assertThat(stock.get(1).getOutOfStock().get(0), is(dateFormat.parse("02/07/2014")));
 	}
 
 	private void givenStandardLogin() {

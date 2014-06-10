@@ -32,6 +32,7 @@ import de.vanmar.android.hoebapp.service.SoapLibraryService;
 import de.vanmar.android.hoebapp.service.TechnicalException;
 import de.vanmar.android.hoebapp.util.NetworkHelper;
 import de.vanmar.android.hoebapp.util.Preferences_;
+import de.vanmar.android.hoebapp.util.StringUtils;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -312,9 +313,12 @@ public class HoebAppActivity extends FragmentActivity implements
 				if (canRenew) {
 					aq.find(R.id.dueDate).text(dueDate);
 				} else {
-					aq.find(R.id.dueDate).text(String.format(
-							getString(R.string.dateNotRenewableReason),
-							dueDate, cursor.getString(MediaDbHelper.KEY_NO_RENEW_REASON)));
+					String noRenewReason = cursor.getString(MediaDbHelper.KEY_NO_RENEW_REASON);
+					if (StringUtils.isEmpty(noRenewReason)) {
+						aq.find(R.id.dueDate).text(String.format(getString(R.string.dateNotRenewable), dueDate));
+					} else {
+						aq.find(R.id.dueDate).text(String.format(getString(R.string.dateNotRenewableReason), dueDate, noRenewReason));
+					}
 				}
 				final String signature = cursor
 						.getString(MediaDbHelper.KEY_SIGNATURE);

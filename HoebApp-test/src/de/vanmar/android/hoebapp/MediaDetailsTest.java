@@ -1,14 +1,10 @@
 package de.vanmar.android.hoebapp;
 
-import org.junit.Assert;
-
 import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
-
 import com.jayway.android.robotium.solo.Solo;
-
-import de.vanmar.android.hoebapp.test.mocking.MockResponses;
-import de.vanmar.android.hoebapp.test.mocking.TestUtils;
+import de.vanmar.android.hoebapp.test.mocking.SoapMockNanoHTTPD;
+import org.junit.Assert;
 
 public class MediaDetailsTest extends
 		ActivityInstrumentationTestCase2<DetailActivity_> {
@@ -21,7 +17,7 @@ public class MediaDetailsTest extends
 
 	@Override
 	public void setUp() throws Exception {
-
+		SoapMockNanoHTTPD.ensureRunningAndSetup();
 	}
 
 	@Override
@@ -30,36 +26,27 @@ public class MediaDetailsTest extends
 	}
 
 	public void testDetails() throws Exception {
-		TestUtils.initMocks(getInstrumentation().getContext());
-		MockResponses.reset();
-		MockResponses
-				.forRequestDoAnswer(
-						"https://www.buecherhallen.de/alswww2.dll/APS_PRESENT_BIB\\?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&no=T010228572",
-						"detailJimKnopf.html");
-
 		final Intent intent = new Intent(getInstrumentation()
 				.getTargetContext(), DetailActivity_.class);
-		intent.putExtra(DetailActivity.EXTRA_MEDIUM_ID, "T010228572");
+		intent.putExtra(DetailActivity.EXTRA_MEDIUM_ID, "T010228560");
 		setActivityIntent(intent);
 
 		solo = new Solo(getInstrumentation(), getActivity());
 
-		Assert.assertTrue(solo.waitForText("Jim Knopf und die wilde 13"));
+		Assert.assertTrue(solo.waitForText("Jim Knopf und Lukas der Lokomotivführer"));
 		Assert.assertTrue(solo.searchText("Barmbek"));
 		Assert.assertTrue(solo.searchText("verfügbar"));
 	}
 
 	public void testDetailsNoMocks() throws Exception {
-		TestUtils.noMocks();
-
 		final Intent intent = new Intent(getInstrumentation()
 				.getTargetContext(), DetailActivity_.class);
-		intent.putExtra(DetailActivity.EXTRA_MEDIUM_ID, "T010228572");
+		intent.putExtra(DetailActivity.EXTRA_MEDIUM_ID, "T010228560");
 		setActivityIntent(intent);
 
 		solo = new Solo(getInstrumentation(), getActivity());
 
-		Assert.assertTrue(solo.waitForText("Jim Knopf und die wilde 13"));
+		Assert.assertTrue(solo.waitForText("Jim Knopf und Lukas der Lokomotivführer"));
 		Assert.assertTrue(solo.searchText("Barmbek"));
 		Assert.assertTrue(solo.searchText("Exemplar"));
 	}

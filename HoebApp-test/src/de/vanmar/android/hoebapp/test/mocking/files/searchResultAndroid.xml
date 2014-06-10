@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <lst name="responseHeader">
+        <int name="status">0</int>
+        <int name="QTime">352</int>
+        <lst name="params">
+            <str name="fl">
+                Title,ISBN,id,Author,PersonalName,Abstract,MaterialType,DateOfAcquisition,DateOfPublication,LocalClassification,Publisher,NUMERO,ISMN,BibLevel
+            </str>
+            <str name="start">10</str>
+            <str name="q">"android" AND NOT MaterialType:BES AND HasStock:1</str>
+            <str name="rows">15</str>
+        </lst>
+    </lst>
+    <result name="response" numFound="215" start="10">
+        <doc>
+            <arr name="DateOfAcquisition">
+                <str>20140205</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Zs J</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>ZS</str>
+                <str>Zeitschrift</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>2192-9033</str>
+            </arr>
+            <arr name="Publisher">
+                <str>Medialinx AG</str>
+            </arr>
+            <arr name="Title">
+                <str>Android User 2014/3 alles zum Thema Android</str>
+                <str>Android-User</str>
+                <str>Smart developer</str>
+            </arr>
+            <str name="id">T016610958</str>
+        </doc>
+        <doc>
+            <arr name="DateOfAcquisition">
+                <str>20140311</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Zs J</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>ZS</str>
+                <str>Zeitschrift</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>2192-9033</str>
+            </arr>
+            <arr name="Publisher">
+                <str>Medialinx AG</str>
+            </arr>
+            <arr name="Title">
+                <str>Android User 2014/4 alles zum Thema Android</str>
+                <str>Android-User</str>
+                <str>Smart developer</str>
+            </arr>
+            <str name="id">T01661096X</str>
+        </doc>
+        <doc>
+            <arr name="DateOfAcquisition">
+                <str>20131230</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Zs J</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>ZS</str>
+                <str>Zeitschrift</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>2192-9033</str>
+            </arr>
+            <arr name="Publisher">
+                <str>Medialinx AG</str>
+            </arr>
+            <arr name="Title">
+                <str>Android User 2014/2 alles zum Thema Android</str>
+                <str>Android-User</str>
+                <str>Smart developer</str>
+            </arr>
+            <str name="id">T016760891</str>
+        </doc>
+        <doc>
+            <arr name="Abstract">
+                <str>Zusätzliches Online-Angebot mit QR-Code über Handy abrufbar</str>
+            </arr>
+            <arr name="Author">
+                <str>Rehberg, Andreas Itzchak</str>
+            </arr>
+            <arr name="BibLevel">
+                <str>ESA</str>
+                <str>Erw.Sachb.</str>
+            </arr>
+            <arr name="DateOfAcquisition">
+                <str>20130206</str>
+            </arr>
+            <arr name="DateOfPublication">
+                <str>2012</str>
+            </arr>
+            <arr name="ISBN">
+                <str>9783645602150 978-3-645-60215-0</str>
+                <str>3645602151 3-645-60215-1</str>
+            </arr>
+            <arr name="ISMN">
+                <str>9783645602150</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Jfb 0#REHB</str>
+                <str>Jfb 0</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>BUE</str>
+                <str>Buch Erwachsene</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>9783645602150 978-3-645-60215-0</str>
+                <str>3645602151 3-645-60215-1</str>
+                <str>9783645602150</str>
+            </arr>
+            <arr name="PersonalName">
+                <str>Rehberg, Andreas Itzchak</str>
+            </arr>
+            <arr name="Publisher">
+                <str>Franzis</str>
+            </arr>
+            <arr name="Title">
+                <str>•&lt;Das&gt;• inoffizielle Android-System-Handbuch [dem Android-System unter die Haube geschaut! ;
+                    in Zusammenarbeit mit AndroidPIT, der größten deutschsprachigen Community zu Android]
+                </str>
+            </arr>
+            <str name="id">T016128771</str>
+        </doc>
+        <doc>
+            <arr name="Abstract">
+                <str>Zusätzliches Online-Angebot mit QR-Code über Android-Gerät abrufbar</str>
+                <str>Informationen zum Systemtuning von Android-Smartphones, zu Installation und Deinstallation von Apps
+                    sowie zur Datensicherheit.
+                </str>
+            </arr>
+            <arr name="Author">
+                <str>Rehberg, Andreas Itzchak</str>
+            </arr>
+            <arr name="BibLevel">
+                <str>ESA</str>
+                <str>Erw.Sachb.</str>
+            </arr>
+            <arr name="DateOfAcquisition">
+                <str>20130718</str>
+            </arr>
+            <arr name="DateOfPublication">
+                <str>2013</str>
+            </arr>
+            <arr name="ISBN">
+                <str>9783645602532 978-3-645-60253-2</str>
+                <str>3645602534 3-645-60253-4</str>
+            </arr>
+            <arr name="ISMN">
+                <str>9783645602532</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Jfb 0#REHB</str>
+                <str>Jfb 0</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>BUE</str>
+                <str>Buch Erwachsene</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>9783645602532 978-3-645-60253-2</str>
+                <str>3645602534 3-645-60253-4</str>
+                <str>9783645602532</str>
+            </arr>
+            <arr name="PersonalName">
+                <str>Rehberg, Andreas Itzchak</str>
+            </arr>
+            <arr name="Publisher">
+                <str>Franzis</str>
+            </arr>
+            <arr name="Title">
+                <str>•&lt;Das&gt;• inoffizielle Android-Handbuch [in Zusammenarbeit mit AndroidPIT, dem größten
+                    deutschsprachigen Android-Forum!]
+                </str>
+                <str>Android: Know-how und Tuning</str>
+            </arr>
+            <str name="id">T016401220</str>
+        </doc>
+        <doc>
+            <arr name="Author">
+                <str>Rehberg, Andreas Itzchak</str>
+            </arr>
+            <arr name="BibLevel">
+                <str>ESA</str>
+                <str>Erw.Sachb.</str>
+            </arr>
+            <arr name="DateOfAcquisition">
+                <str>20120330</str>
+            </arr>
+            <arr name="DateOfPublication">
+                <str>2012</str>
+            </arr>
+            <arr name="ISBN">
+                <str>9783645601634 978-3-645-60163-4</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Jfb 0#REHB</str>
+                <str>Jfb 0</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>BUE</str>
+                <str>Buch Erwachsene</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>9783645601634 978-3-645-60163-4</str>
+            </arr>
+            <arr name="PersonalName">
+                <str>Rehberg, Andreas Itzchak</str>
+            </arr>
+            <arr name="Publisher">
+                <str>Franzis</str>
+            </arr>
+            <arr name="Title">
+                <str>•&lt;Das&gt;• inoffizielle Android-Handbuch [in Zusammenarbeit mit AndroidPIT, dem größten
+                    deutschsprachigen Android-Forum!]
+                </str>
+                <str>Know-how ist blau</str>
+            </arr>
+            <str name="id">T01551730X</str>
+        </doc>
+        <doc>
+            <arr name="Abstract">
+                <str>Literaturangaben</str>
+            </arr>
+            <arr name="Author">
+                <str>Haiges, Sven</str>
+            </arr>
+            <arr name="BibLevel">
+                <str>ESA</str>
+                <str>Erw.Sachb.</str>
+            </arr>
+            <arr name="DateOfAcquisition">
+                <str>20111007</str>
+            </arr>
+            <arr name="DateOfPublication">
+                <str>2011</str>
+            </arr>
+            <arr name="ISBN">
+                <str>9783868020670 978-3-86802-067-0</str>
+            </arr>
+            <arr name="ISMN">
+                <str>9783868020670</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Jk 0#HAIG</str>
+                <str>Jk 0</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>BUE</str>
+                <str>Buch Erwachsene</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>9783868020670 978-3-86802-067-0</str>
+                <str>9783868020670</str>
+            </arr>
+            <arr name="PersonalName">
+                <str>Haiges, Sven</str>
+            </arr>
+            <arr name="Publisher">
+                <str>Entwickler.press</str>
+            </arr>
+            <arr name="Title">
+                <str>Android : Schnelleinstieg ; [inkl. NFC-Kapitel]</str>
+                <str>Schnell + kompakt</str>
+            </arr>
+            <str name="id">T01526219X</str>
+        </doc>
+        <doc>
+            <arr name="DateOfAcquisition">
+                <str>20130121</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Zs J</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>ZS</str>
+                <str>Zeitschrift</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>2193-8873</str>
+            </arr>
+            <arr name="Publisher">
+                <str>IDG-Magazine-Media</str>
+            </arr>
+            <arr name="Title">
+                <str>Android-Welt 2013/1 das Magazin für Samsung Galaxy, HTC, LG, Sony u.v.m.</str>
+                <str>Android Welt</str>
+            </arr>
+            <str name="id">T016090656</str>
+        </doc>
+        <doc>
+            <arr name="DateOfAcquisition">
+                <str>20130201</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Zs J</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>ZS</str>
+                <str>Zeitschrift</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>2193-8873</str>
+            </arr>
+            <arr name="Publisher">
+                <str>IDG-Magazine-Media</str>
+            </arr>
+            <arr name="Title">
+                <str>Android-Welt 2013/2 das Magazin für Samsung Galaxy, HTC, LG, Sony u.v.m.</str>
+                <str>Android Welt</str>
+            </arr>
+            <str name="id">T016090668</str>
+        </doc>
+        <doc>
+            <arr name="DateOfAcquisition">
+                <str>20130405</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Zs J</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>ZS</str>
+                <str>Zeitschrift</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>2193-8873</str>
+            </arr>
+            <arr name="Publisher">
+                <str>IDG-Magazine-Media</str>
+            </arr>
+            <arr name="Title">
+                <str>Android-Welt 2013/3 das Magazin für Samsung Galaxy, HTC, LG, Sony u.v.m.</str>
+                <str>Android Welt</str>
+            </arr>
+            <str name="id">T01609067X</str>
+        </doc>
+        <doc>
+            <arr name="DateOfAcquisition">
+                <str>20130614</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Zs J</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>ZS</str>
+                <str>Zeitschrift</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>2193-8873</str>
+            </arr>
+            <arr name="Publisher">
+                <str>IDG-Magazine-Media</str>
+            </arr>
+            <arr name="Title">
+                <str>Android-Welt 2013/4 das Magazin für Samsung Galaxy, HTC, LG, Sony u.v.m.</str>
+                <str>Android Welt</str>
+            </arr>
+            <str name="id">T016090681</str>
+        </doc>
+        <doc>
+            <arr name="DateOfAcquisition">
+                <str>20130808</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Zs J</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>ZS</str>
+                <str>Zeitschrift</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>2193-8873</str>
+            </arr>
+            <arr name="Publisher">
+                <str>IDG-Magazine-Media</str>
+            </arr>
+            <arr name="Title">
+                <str>Android-Welt 2013/5 das Magazin für Samsung Galaxy, HTC, LG, Sony u.v.m.</str>
+                <str>Android Welt</str>
+            </arr>
+            <str name="id">T016090693</str>
+        </doc>
+        <doc>
+            <arr name="DateOfAcquisition">
+                <str>20131009</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Zs J</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>ZS</str>
+                <str>Zeitschrift</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>2193-8873</str>
+            </arr>
+            <arr name="Publisher">
+                <str>IDG-Magazine-Media</str>
+            </arr>
+            <arr name="Title">
+                <str>Android-Welt 2013/6 das Magazin für Samsung Galaxy, HTC, LG, Sony u.v.m.</str>
+                <str>Android Welt</str>
+            </arr>
+            <str name="id">T016090701</str>
+        </doc>
+        <doc>
+            <arr name="DateOfAcquisition">
+                <str>20140207</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Zs J</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>ZS</str>
+                <str>Zeitschrift</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>2193-8873</str>
+            </arr>
+            <arr name="Publisher">
+                <str>IDG-Magazine-Media</str>
+            </arr>
+            <arr name="Title">
+                <str>Android-Welt 2014/2 das Magazin für Samsung Galaxy, HTC, LG, Sony u.v.m.</str>
+                <str>Android Welt</str>
+            </arr>
+            <str name="id">T016608991</str>
+        </doc>
+        <doc>
+            <arr name="DateOfAcquisition">
+                <str>20140411</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Zs J</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>ZS</str>
+                <str>Zeitschrift</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>2193-8873</str>
+            </arr>
+            <arr name="Publisher">
+                <str>IDG-Magazine-Media</str>
+            </arr>
+            <arr name="Title">
+                <str>Android-Welt 2014/3 das Magazin für Samsung Galaxy, HTC, LG, Sony u.v.m.</str>
+                <str>Android Welt</str>
+            </arr>
+            <str name="id">T016609007</str>
+        </doc>
+    </result>
+</response>

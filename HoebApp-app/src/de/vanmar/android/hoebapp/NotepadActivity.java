@@ -90,11 +90,11 @@ public class NotepadActivity extends FragmentActivity {
 						R.layout.notepad_item, null);
 				final MediaDetails item = getItem(position);
 				AQuery aq = new AQuery(view);
-				aq.find(R.id.author).text(item.getAuthor());
-				aq.find(R.id.title).text(item.getTitle());
-				aq.find(R.id.type).text(item.getType());
-				aq.find(R.id.signature).text(item.getSignature());
-				aq.find(R.id.image).image(item.getImgUrl());
+				aq.id(R.id.author).text(item.getAuthor());
+				aq.id(R.id.title).text(item.getTitle());
+				aq.id(R.id.type).text(item.getType());
+				aq.id(R.id.signature).text(item.getSignature());
+				aq.id(R.id.image).image(item.getImgUrl());
 
 				final LinearLayout layout = (LinearLayout) view;
 				layout.setBackgroundResource(item.getOwner().getAppearance().getDrawable());

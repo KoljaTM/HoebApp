@@ -1,12 +1,5 @@
 package de.vanmar.android.hoebapp.test.mocking;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Arrays;
-import java.util.List;
-
 import android.content.ContentProviderClient;
 import android.content.Context;
 import android.net.Uri;
@@ -15,8 +8,14 @@ import android.util.Log;
 import de.vanmar.android.hoebapp.HoebAppActivity;
 import de.vanmar.android.hoebapp.bo.Account;
 import de.vanmar.android.hoebapp.db.MediaContentProvider;
-import de.vanmar.android.hoebapp.util.HttpCallBuilder;
 import de.vanmar.android.hoebapp.util.Preferences_;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Arrays;
+import java.util.List;
 
 public class TestUtils {
 	private static final String DB_NAME = "hoebdata";
@@ -29,7 +28,7 @@ public class TestUtils {
 	 * <li>EULA accepted</li>
 	 * <li>Dummy account set</li>
 	 * </ul>
-	 * 
+	 *
 	 * @param context
 	 */
 	public static void initEmpty(final Context context) {
@@ -40,7 +39,7 @@ public class TestUtils {
 
 	/**
 	 * Initializes the database to empty
-	 * 
+	 *
 	 * @param context
 	 * @throws IOException
 	 */
@@ -62,9 +61,11 @@ public class TestUtils {
 		}
 	}
 
-	/** Initializes the database from the given asset file */
+	/**
+	 * Initializes the database from the given asset file
+	 */
 	public static void prepareTestDatabase(final Context testContext,
-			final Context targetContext, final String filename) {
+										   final Context targetContext, final String filename) {
 		targetContext.deleteDatabase(DB_NAME);
 
 		InputStream in = null;
@@ -93,17 +94,8 @@ public class TestUtils {
 		}
 	}
 
-	public static void initMocks(final Context context) {
-		HttpCallBuilder.setHttpClient(new MockHttpClient());
-		MockHttpClient.setContext(context);
-	}
-
-	public static void noMocks() {
-		HttpCallBuilder.setHttpClient(null);
-	}
-
 	public static void setUserdata(final Context context,
-			final Account... accountArray) {
+								   final Account... accountArray) {
 		final Preferences_ prefs = new Preferences_(context);
 		final List<Account> accounts = Arrays.asList(accountArray);
 		prefs.accounts().put(Account.toString(accounts));

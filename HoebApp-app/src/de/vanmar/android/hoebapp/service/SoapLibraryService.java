@@ -42,14 +42,14 @@ import java.util.*;
 @EBean
 public class SoapLibraryService {
 
+	public static String NOTES_URL = "https://www.buecherhallen.de/app_webnote/Service1.asmx";
+	public static String NOTE_URL = "https://www.buecherhallen.de/app_ZonesServices/Service1.asmx";
+	public static String USER_URL = "https://www.buecherhallen.de/app_webuser/WebUserSvc.asmx";
+	public static String CATALOG_URL = "https://www.buecherhallen.de/WebCat/WebCatalogueSvc.asmx";
 	public static final String NOTES_NAMESPACE = "http://bibliomondo.com/websevices/webcatalogue";
-	public static final String NOTES_URL = "https://www.buecherhallen.de/app_webnote/Service1.asmx";
 	public static final String NOTE_NAMESPACE = "http://bibliomondo.com/ZoneServices/";
-	public static final String NOTE_URL = "https://www.buecherhallen.de/app_ZonesServices/Service1.asmx";
 	public static final String USER_NAMESPACE = "http://bibliomondo.com/websevices/webuser";
-	public static final String USER_URL = "https://www.buecherhallen.de/app_webuser/WebUserSvc.asmx";
 	public static final String CATALOG_NAMESPACE = "http://bibliomondo.com/websevices/webcatalogue";
-	public static final String CATALOG_URL = "https://www.buecherhallen.de/WebCat/WebCatalogueSvc.asmx";
 	public static final String CATEGORY_KEYWORD = "text_auto:";
 
 	@Pref
@@ -57,8 +57,6 @@ public class SoapLibraryService {
 
 	@Bean
 	SoapHelper soapHelper;
-
-	HttpTransportFactory httpTransportFactory = new HttpTransportFactory();
 
 	public List<MediaDetails> loadNotepad() throws TechnicalException {
 		checkUsernames();
@@ -88,8 +86,29 @@ public class SoapLibraryService {
 		return result;
 	}
 
-	private String getImgUrl(String isbn) {
-		return "http://cover.ekz.de/" + isbn.replaceAll(" ", "") + ".jpg";
+	public String getImgUrl(String isbn) {
+		String isbn13 = getIsbn13(isbn);
+		return "http://cover.ekz.de/" + isbn13 + ".jpg";
+	}
+
+	public String getIsbn13(String isbn) {
+		StringBuilder isbnAsNumber = new StringBuilder(isbn.replaceAll(" ", "").replaceAll("-", ""));
+		if (isbnAsNumber.length() == 13) {
+			return isbnAsNumber.toString();
+		} else if (isbnAsNumber.length() == 10) {
+			isbnAsNumber.insert(0, "978").deleteCharAt(isbnAsNumber.length() - 1);
+		} else {
+			return null;
+		}
+
+		int sum = 0;
+		for (int digit = 0; digit < isbnAsNumber.length(); digit++) {
+			int multiplier = ((digit % 2) == 0) ? 1 : 3;
+			sum += Integer.parseInt(isbnAsNumber.substring(digit, digit + 1)) * multiplier;
+		}
+		isbnAsNumber.append((1000 - sum) % 10);
+
+		return isbnAsNumber.toString();
 	}
 
 	public void refreshMediaList(Context context) throws TechnicalException {
@@ -211,7 +230,7 @@ public class SoapLibraryService {
 		envelope.dotNet = true;
 		envelope.setOutputSoapObject(request);
 
-		HttpTransportSE httpTransport = getHttpTransport(url);
+		HttpTransportSE httpTransport = new HttpTransportSE(url);
 
 		try {
 			if (!namespace.endsWith("/")) {
@@ -222,10 +241,6 @@ public class SoapLibraryService {
 		} catch (Exception exception) {
 			throw new TechnicalException(exception);
 		}
-	}
-
-	private HttpTransportSE getHttpTransport(String url) {
-		return httpTransportFactory.getHttpTransport(url);
 	}
 
 	private void checkUsernames() throws TechnicalException {
@@ -328,7 +343,7 @@ public class SoapLibraryService {
 	public MediaDetails getMediaDetails(String mediumId) throws TechnicalException {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("CatalogueNumber", mediumId);
-		SoapObject response = doRequest(CATALOG_NAMESPACE, "GetCatalogueItems", CATALOG_URL, parameters, SoapEnvelope.VER12);
+		SoapObject response = doRequest(CATALOG_NAMESPACE, "GetCatalogueItems", CATALOG_URL, parameters, SoapEnvelope.VER11);
 		MediaDetails mediaDetails = new MediaDetails();
 		SoapObject item = soapHelper.get(soapHelper.get(soapHelper.get(soapHelper.get(response, "xmlDoc"), "GetCatalogueItemsResult"), "SoapActionResult"), "Items");
 
@@ -339,18 +354,19 @@ public class SoapLibraryService {
 		String isbn = soapHelper.getString(item, "ISBN");
 		mediaDetails.setImgUrl(getImgUrl(isbn));
 
-		SortedMap<String, MediaDetails.Stock> stockByLocation = new TreeMap<String, MediaDetails.Stock>();
+		SortedMap<Location, MediaDetails.Stock> stockByLocation = new TreeMap<Location, MediaDetails.Stock>();
 
 		for (SoapObject stockItem : soapHelper.getList(item)) {
 			String currentStatus = soapHelper.getString(stockItem, "CurrentStatus");
 			if (!StringUtils.isEmpty(currentStatus)) {
 				String owner = soapHelper.getString(stockItem, "Owner");
-				MediaDetails.Stock stock = stockByLocation.get(owner);
+				Location location = Location.get(owner);
+				MediaDetails.Stock stock = stockByLocation.get(location);
 				if (stock == null) {
 					stock = new MediaDetails.Stock();
-					stock.setLocationCode(Location.getCode(owner));
-					stock.setLocationName(Location.getName(owner));
-					stockByLocation.put(owner, stock);
+					stock.setLocationCode(location.getCode());
+					stock.setLocationName(location.getName());
+					stockByLocation.put(location, stock);
 				}
 				if ("0".equals(currentStatus)) {
 					stock.setInStock(stock.getInStock() + 1);

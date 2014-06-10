@@ -1,7 +1,10 @@
 package de.vanmar.android.hoebapp.test.mocking;
 
+import de.vanmar.android.hoebapp.service.SoapLibraryService;
+
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,10 +18,29 @@ public class SoapMockNanoHTTPD extends NanoHTTPD {
 	private static final String USERNAME2 = "user2name";
 	private static final String CHECKED_USERNAME = "use rna me";
 	private static final String CHECKED_USERNAME2 = "use r2n ame";
+	private static SoapMockNanoHTTPD instance;
 	private List<String> uris = new LinkedList<String>();
 
 	public SoapMockNanoHTTPD() throws IOException {
 		super(8888, new File("../HoebApp-test/assets/mocks"));
+	}
+
+	public static SoapMockNanoHTTPD ensureRunningAndSetup() throws IOException {
+		if (instance == null) {
+			SoapLibraryService.USER_URL = getMockUrl(SoapLibraryService.USER_URL);
+			SoapLibraryService.CATALOG_URL = getMockUrl(SoapLibraryService.CATALOG_URL);
+			SoapLibraryService.NOTE_URL = getMockUrl(SoapLibraryService.NOTE_URL);
+			SoapLibraryService.NOTES_URL = getMockUrl(SoapLibraryService.NOTES_URL);
+			instance = new SoapMockNanoHTTPD();
+		}
+		return instance;
+	}
+
+	public static void stopServer() {
+		if (instance != null) {
+			instance.stop();
+			instance = null;
+		}
 	}
 
 	@Override
@@ -46,10 +68,21 @@ public class SoapMockNanoHTTPD extends NanoHTTPD {
 			uri = uri + "/DeleteNote.xml";
 		} else if (param.contains("ReadNotesExt")) {
 			uri = uri + "/ReadNotesExt.xml";
+		} else if (param.contains("GetCatalogueItems")) {
+			uri = uri + "/GetCatalogueItems.xml";
 		}
 		this.uris.add(uri);
-		Response response = super.serve(uri, method, header, parms, files);
+
+		InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("de/vanmar/android/hoebapp/test/mocking/files" + uri);
+		Response response = new Response(HTTP_OK, "text/xml; charset=utf-8", resourceAsStream);
 		return response;
+	}
+
+
+	private static String getMockUrl(String url) {
+		String replaced = url.replaceAll("(http|https)://[^/]*", "http://localhost:8888");
+		//String replaced = url.replaceAll("(http|https)://[^/]*", "http://192.168.178.48:8888");
+		return replaced;
 	}
 
 	public void clearUris() {

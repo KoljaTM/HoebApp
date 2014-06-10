@@ -41,6 +41,12 @@
             <artifactId>robotium-solo</artifactId>
             <version>4.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -53,8 +59,7 @@
                 <version>3.5.0</version>
                 <configuration>
                     <sdk>
-                        <!-- platform or api level (api level 16 = platform 4.1)-->
-                        <platform>16</platform>
+                        <platform>19</platform>
                     </sdk>
                     <undeployBeforeDeploy>false</undeployBeforeDeploy>
                 </configuration>

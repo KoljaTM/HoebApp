@@ -82,7 +82,5 @@
     <string name="addToNotepad">Merken</string>
     <string name="addedToNotepad">Zur Merkliste hinzugefügt</string>
     <string name="removeFromNotepad">Entfernen</string>
-    <string name="searchUrl" formatted="false">
-        http://www.buecherhallen.de:8982/solr/select/?q=%s+AND+NOT+MaterialType:BES+AND+HasStock:1&amp;fl=Title,ISBN,id,Author,PersonalName,Abstract,MaterialType,DateOfAcquisition,DateOfPublication,LocalClassification,Publisher,NUMERO,ISMN,BibLevel&amp;start=%s&amp;rows=%s
-    </string>
+    <string name="searchUrl" formatted="false">http://www.buecherhallen.de:8982/solr/select/?q=%s+AND+NOT+MaterialType:BES+AND+HasStock:1&amp;fl=Title,ISBN,id,Author,PersonalName,Abstract,MaterialType,DateOfAcquisition,DateOfPublication,LocalClassification,Publisher,NUMERO,ISMN,BibLevel&amp;start=%s&amp;rows=%s</string>
 </resources>

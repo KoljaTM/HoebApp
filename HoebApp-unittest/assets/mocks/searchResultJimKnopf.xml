@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+    <lst name="responseHeader">
+        <int name="status">0</int>
+        <int name="QTime">195</int>
+        <lst name="params">
+            <str name="fl">
+                Title,ISBN,id,Author,PersonalName,Abstract,MaterialType,DateOfAcquisition,DateOfPublication,LocalClassification,Publisher,NUMERO,ISMN,BibLevel
+            </str>
+            <str name="start">45</str>
+            <str name="q">Title:"Jim Knopf" AND Author:"Ende" AND NOT MaterialType:BES AND HasStock:1</str>
+            <str name="rows">15</str>
+        </lst>
+    </lst>
+    <result name="response" numFound="54" start="45">
+        <doc>
+            <arr name="Author">
+                <str>Jenning, Manfred</str>
+                <str>Herrmann, Jürgen</str>
+                <str>Amann, Hermann</str>
+                <str>Ende, Michael</str>
+            </arr>
+            <arr name="BibLevel">
+                <str>MOA</str>
+                <str>ab 0 Jahre</str>
+            </arr>
+            <arr name="DateOfAcquisition">
+                <str>20130612</str>
+            </arr>
+            <arr name="DateOfPublication">
+                <str>2013</str>
+            </arr>
+            <arr name="ISMN">
+                <str>4260169151296</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Blu-ray Disc Kinderfilm</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>BD</str>
+                <str>Blu-ray Disc</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>4260169151296</str>
+            </arr>
+            <arr name="PersonalName">
+                <str>Jenning, Manfred</str>
+                <str>Herrmann, Jürgen</str>
+                <str>Amann, Hermann</str>
+                <str>Ende, Michael</str>
+            </arr>
+            <arr name="Publisher">
+                <str>S.A.D Home Entertainment</str>
+            </arr>
+            <arr name="Title">
+                <str>Jim Knopf und die Wilde 13 Elektronische Ressource</str>
+                <str>Mit der Augsburger Puppenkiste</str>
+            </arr>
+            <str name="id">T016347237</str>
+        </doc>
+        <doc>
+            <arr name="Abstract">
+                <str>Inhalt: 1 Spielplanrahmen, 1 Drehscheibe, 1 zweiteiliges Mittelteil für die Drehscheibe, 1 Lok, 4
+                    Waggons, 10 Kinderfiguren, 40 Wertungskärtchen, 1 Jim Knopf-Figur, 1 Lukas-Figur, 1 Haltekelle, 10
+                    Fahrausweise, 1 Spielregel
+                </str>
+                <str>Der Spielplan ist in unterschiedlich farbige Felder unterteilt um die ein Kreis mit einem Zuggleis
+                    führt. Ein Spieler führt den Zug über den Kreis und ein anderer hält den Zug mit einer Kelle an.
+                    Steht der Zug, dürfen alle Figuren, bei denen die Farbe des Feldes auf dem sie stehen mit der Farbe
+                    des Wagons der vor ihnen hält übereinstimmt, einsteigen. Eine Bedingung muss jedoch vor dem
+                    Einsteigen noch erfüllt werden. Der Spieler, der den Zug angehalten hat, muss unter den verdeckt
+                    liegenden Kärtchen, das zu der Figur passende aufdecken. Stimmt Wagonfarbe und aufgedecktes Kärtchen
+                    überein, darf die Figur in den Zug einsteigen, der Spieler bekommt pro Einsteigen 1
+                    Wertungsplättchen und die Rollen der Spieler wechseln. Wer als Erster 5 verschiedenene
+                    Wertungsplättchen gesammelt hat, gewinnt. - Für 2 - 4 Spieler ab 4 Jahre
+                </str>
+            </arr>
+            <arr name="Author">
+                <str>Haferkamp, Kai</str>
+                <str>Ende, Michael</str>
+                <str>Lang, Roman •&lt;[Ill.]&gt;•</str>
+                <str>Tripp, Franz J. •&lt;[Ill.]&gt;•</str>
+            </arr>
+            <arr name="DateOfAcquisition">
+                <str>20040521</str>
+            </arr>
+            <arr name="DateOfPublication">
+                <str>2004</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Spiele</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>SPI</str>
+                <str>Spiel</str>
+            </arr>
+            <arr name="PersonalName">
+                <str>Haferkamp, Kai</str>
+                <str>Ende, Michael</str>
+                <str>Lang, Roman •&lt;[Ill.]&gt;•</str>
+                <str>Tripp, Franz J. •&lt;[Ill.]&gt;•</str>
+            </arr>
+            <arr name="Publisher">
+                <str>Kosmos</str>
+            </arr>
+            <arr name="Title">
+                <str>Nimm uns mit, Jim Knopf! : •&lt;ein&gt;• Spiel Spiel</str>
+                <str>KI.KA-Spiel</str>
+            </arr>
+            <str name="id">T010207859</str>
+        </doc>
+        <doc>
+            <arr name="Abstract">
+                <str>Jim Knopf und Lukas, der Lokomotivführer begeben sich mit ihrer Lokomotive Emma auf abenteuerliche
+                    Reisen. Ab 5.
+                </str>
+            </arr>
+            <arr name="Author">
+                <str>Ende, Michael</str>
+                <str>Noethen, Ulrich</str>
+                <str>Schüttauf, Jörg</str>
+                <str>Illerhaus, Ulla</str>
+                <str>Feldhoff, Petra</str>
+                <str>Westdeutscher Rundfunk &lt;Köln&gt;</str>
+            </arr>
+            <arr name="DateOfAcquisition">
+                <str>20100416</str>
+            </arr>
+            <arr name="DateOfPublication">
+                <str>2010</str>
+            </arr>
+            <arr name="ISBN">
+                <str>9783898139359 978-3-89813-935-9</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>CD Kinder#ENDE</str>
+                <str>CD Kinder</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>ACD</str>
+                <str>Compact Disc</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>9783898139359 978-3-89813-935-9</str>
+            </arr>
+            <arr name="PersonalName">
+                <str>Ende, Michael</str>
+                <str>Noethen, Ulrich</str>
+                <str>Schüttauf, Jörg</str>
+                <str>Illerhaus, Ulla</str>
+                <str>Feldhoff, Petra</str>
+            </arr>
+            <arr name="Publisher">
+                <str>DAV</str>
+            </arr>
+            <arr name="Title">
+                <str>Jim Knopf und Lukas der Lokomotivführer : Hörspiel für Kinder ab 5 Tonträger</str>
+                <str>Hörspiel für Kinder</str>
+            </arr>
+            <str name="id">T013793062</str>
+        </doc>
+        <doc>
+            <arr name="Abstract">
+                <str>Sprachhörspiel nach dem gleichnamigen Kinderbuch von Michael Ende: Der Engländer Robert gerät mit
+                    seinem Boot in einen heftigen Sturm. Zum Glück können ihn Jim Knopf und Lukas retten.
+                </str>
+            </arr>
+            <arr name="Author">
+                <str>Ende, Michael</str>
+                <str>Freitag, Martin</str>
+                <str>Metcalf, Robert</str>
+            </arr>
+            <arr name="DateOfAcquisition">
+                <str>20070726</str>
+            </arr>
+            <arr name="DateOfPublication">
+                <str>2007</str>
+            </arr>
+            <arr name="ISBN">
+                <str>9783898136013 978-3-89813-601-3</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Sprachen Englisch</str>
+                <str>Sprachen</str>
+                <str>Englisch</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>ACD</str>
+                <str>Compact Disc</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>9783898136013 978-3-89813-601-3</str>
+            </arr>
+            <arr name="PersonalName">
+                <str>Ende, Michael</str>
+                <str>Freitag, Martin</str>
+                <str>Metcalf, Robert</str>
+            </arr>
+            <arr name="Publisher">
+                <str>•&lt;Der&gt;• Audio-Verl.</str>
+            </arr>
+            <arr name="Title">
+                <str>Englisch lernen mit Jim Knopf und Lukas dem Lokomotivführer 1 : Sprach-Hörspiel für Kinder nach
+                    Motiven des gleichnamigen Kinderbuchs von Michael Ende
+                </str>
+            </arr>
+            <str name="id">T011777722</str>
+        </doc>
+        <doc>
+            <arr name="Abstract">
+                <str>Sprachhörspiel nach dem gleichnamigen Kinderbuch von Michael Ende: Mit seinen neuen Freunden Jim
+                    Knopf und Lukas dem Lokomotivführer bricht der Engländer Robert zur Drachenstadt Kummerland auf, um
+                    dort die Prinzessin Li Si aus den Fängen der gefährlichen Frau Mahlzahn zu befreien.
+                </str>
+            </arr>
+            <arr name="Author">
+                <str>Ende, Michael</str>
+                <str>Freitag, Martin</str>
+                <str>Metcalf, Robert</str>
+            </arr>
+            <arr name="DateOfAcquisition">
+                <str>20070719</str>
+            </arr>
+            <arr name="DateOfPublication">
+                <str>2007</str>
+            </arr>
+            <arr name="ISBN">
+                <str>9783898136020 978-3-89813-602-0</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Sprachen Englisch</str>
+                <str>Sprachen</str>
+                <str>Englisch</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>ACD</str>
+                <str>Compact Disc</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>9783898136020 978-3-89813-602-0</str>
+            </arr>
+            <arr name="PersonalName">
+                <str>Ende, Michael</str>
+                <str>Freitag, Martin</str>
+                <str>Metcalf, Robert</str>
+            </arr>
+            <arr name="Publisher">
+                <str>•&lt;Der&gt;• Audio-Verl.</str>
+            </arr>
+            <arr name="Title">
+                <str>Englisch lernen mit Jim Knopf und Lukas dem Lokomotivführer 2 : Sprach-Hörspiel für Kinder nach
+                    Motiven des gleichnamigen Kinderbuchs von Michael Ende
+                </str>
+            </arr>
+            <str name="id">T011777734</str>
+        </doc>
+        <doc>
+            <arr name="Abstract">
+                <str>Sprachhörspiel nach dem gleichnamigen Kinderbuch von Michal Ende: Nachdem Jim Knopf und Lukas der
+                    Lokomotivführer mithilfe des Engländers Robert Prinzessin Li Si befreit haben, machen sich die
+                    Freunde wieder auf den Weg nach Lummerland.
+                </str>
+            </arr>
+            <arr name="Author">
+                <str>Ende, Michael</str>
+                <str>Freitag, Martin</str>
+                <str>Metcalf, Robert</str>
+            </arr>
+            <arr name="DateOfAcquisition">
+                <str>20070726</str>
+            </arr>
+            <arr name="DateOfPublication">
+                <str>2007</str>
+            </arr>
+            <arr name="ISBN">
+                <str>9783898136037 978-3-89813-603-7</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Sprachen Englisch</str>
+                <str>Sprachen</str>
+                <str>Englisch</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>ACD</str>
+                <str>Compact Disc</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>9783898136037 978-3-89813-603-7</str>
+            </arr>
+            <arr name="PersonalName">
+                <str>Ende, Michael</str>
+                <str>Freitag, Martin</str>
+                <str>Metcalf, Robert</str>
+            </arr>
+            <arr name="Publisher">
+                <str>•&lt;Der&gt;• Audio-Verl.</str>
+            </arr>
+            <arr name="Title">
+                <str>Englisch lernen mit Jim Knopf und Lukas dem Lokomotivführer 3 : Sprach-Hörspiel für Kinder nach
+                    Motiven des gleichnamigen Kinderbuchs von Michael Ende
+                </str>
+            </arr>
+            <str name="id">T011777746</str>
+        </doc>
+        <doc>
+            <arr name="Abstract">
+                <str>Gemeinsam mit Robert und der Lok Emma reisen Jim Knopf und Lukas übers Meer und gelangen nach
+                    Mandala. Wie gut, dass Robert seinen beiden Gefährten auf ihrer Reise etwas Englisch lehrt, denn das
+                    können sie in der Fremde gut gebrauchen! - Zweisprachiges Hörspiel. Ab 4.
+                </str>
+            </arr>
+            <arr name="Author">
+                <str>Böhm, Debbie</str>
+                <str>Weber, Mathias</str>
+                <str>Ende, Michael</str>
+            </arr>
+            <arr name="BibLevel">
+                <str>KBS</str>
+                <str>Kinderbestand</str>
+            </arr>
+            <arr name="DateOfAcquisition">
+                <str>20110520</str>
+            </arr>
+            <arr name="DateOfPublication">
+                <str>2011</str>
+            </arr>
+            <arr name="ISBN">
+                <str>9783125614345 978-3-12-561434-5</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Sprachen Englisch</str>
+                <str>Sprachen</str>
+                <str>Englisch</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>BUK</str>
+                <str>Buch Kinder/Jugendliche</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>9783125614345 978-3-12-561434-5</str>
+            </arr>
+            <arr name="PersonalName">
+                <str>Böhm, Debbie</str>
+                <str>Weber, Mathias</str>
+                <str>Ende, Michael</str>
+            </arr>
+            <arr name="Publisher">
+                <str>Pons</str>
+            </arr>
+            <arr name="Title">
+                <str>Englisch lernen mit Jim Knopf - Im fernen Mandala : nach Motiven von Michael Ende erzählt ; für
+                    Kinder ab 4 Jahren ; Vorschule und 1./2. Klasse
+                </str>
+                <str>Englisch lernen</str>
+                <str>Pons</str>
+            </arr>
+            <str name="id">T015009175</str>
+        </doc>
+        <doc>
+            <arr name="Abstract">
+                <str>Fortsetzung von "Im fernen Mandala". Um Prinzessin Li Si zu befreien, müssen Jim und Lukas das
+                    "Twilight Valley" und eine Wüste durchqueren. Im Land der tausend Vulkane angelangt, verrät ihnen
+                    der kleine Halbdrache Nepomuk, wie sie in die Drachenstadt gelangen. 2-sprachiges Musikhörspiel. Ab
+                    4.
+                </str>
+            </arr>
+            <arr name="Author">
+                <str>Rebsch, Maija-Leena</str>
+                <str>Weber, Mathias</str>
+                <str>Ende, Michael</str>
+            </arr>
+            <arr name="BibLevel">
+                <str>KBS</str>
+                <str>Kinderbestand</str>
+            </arr>
+            <arr name="DateOfAcquisition">
+                <str>20111025</str>
+            </arr>
+            <arr name="DateOfPublication">
+                <str>2011</str>
+            </arr>
+            <arr name="ISBN">
+                <str>9783125614383 978-3-12-561438-3</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Sprachen Englisch</str>
+                <str>Sprachen</str>
+                <str>Englisch</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>BUK</str>
+                <str>Buch Kinder/Jugendliche</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>9783125614383 978-3-12-561438-3</str>
+            </arr>
+            <arr name="PersonalName">
+                <str>Rebsch, Maija-Leena</str>
+                <str>Weber, Mathias</str>
+                <str>Ende, Michael</str>
+            </arr>
+            <arr name="Publisher">
+                <str>Pons</str>
+            </arr>
+            <arr name="Title">
+                <str>Englisch lernen mit Jim Knopf - Die Reise zur Drachenstadt nach Motiven von Michael Ende erzählt ;
+                    für Kinder ab 4 Jahren ; Vorschule und 1./2. Klasse
+                </str>
+                <str>Englisch lernen</str>
+                <str>Pons</str>
+            </arr>
+            <str name="id">T015283952</str>
+        </doc>
+        <doc>
+            <arr name="Abstract">
+                <str>Jim Knopf und Lukas, der Lokomotivführer, befreien mithilfe der Lokomotive Emma in Kummerland die
+                    Kinder, die der Drache Frau Mahlzahn gefangen hält. Mit von der Partie ist Robert aus England, und
+                    so gibt es die Gelegenheit, mit viel Musik in diesem 2-sprachigen Hörspiel nebenher Englisch zu
+                    lernen.
+                </str>
+            </arr>
+            <arr name="Author">
+                <str>Ende, Michael</str>
+                <str>Rebsch, Maija-Leena</str>
+                <str>Weber, Mathias</str>
+            </arr>
+            <arr name="BibLevel">
+                <str>KBS</str>
+                <str>Kinderbestand</str>
+            </arr>
+            <arr name="DateOfAcquisition">
+                <str>20130118</str>
+            </arr>
+            <arr name="DateOfPublication">
+                <str>2012</str>
+            </arr>
+            <arr name="ISBN">
+                <str>9783125614666 978-3-12-561466-6</str>
+            </arr>
+            <arr name="LocalClassification">
+                <str>Sprachen Englisch</str>
+                <str>Sprachen</str>
+                <str>Englisch</str>
+            </arr>
+            <arr name="MaterialType">
+                <str>BUK</str>
+                <str>Buch Kinder/Jugendliche</str>
+            </arr>
+            <arr name="NUMERO">
+                <str>9783125614666 978-3-12-561466-6</str>
+            </arr>
+            <arr name="PersonalName">
+                <str>Ende, Michael</str>
+                <str>Rebsch, Maija-Leena</str>
+                <str>Weber, Mathias</str>
+            </arr>
+            <arr name="Publisher">
+                <str>Klett</str>
+            </arr>
+            <arr name="Title">
+                <str>Englisch lernen mit Jim Knopf - In den Klauen von Frau Mahlzahn nach Motiven von Michael Ende
+                    erzählt ; für Kinder ab 4 Jahren, Vorschule und 1./2. Klasse
+                </str>
+                <str>Englisch lernen</str>
+                <str>Pons</str>
+            </arr>
+            <str name="id">T015919384</str>
+        </doc>
+    </result>
+</response>
