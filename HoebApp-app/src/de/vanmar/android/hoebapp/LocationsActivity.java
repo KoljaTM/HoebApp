@@ -23,6 +23,8 @@ import android.view.View.OnClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.googlecode.androidannotations.annotations.*;
 import de.vanmar.android.hoebapp.db.LocationContentProvider;
 import de.vanmar.android.hoebapp.db.LocationDbHelper;
@@ -135,6 +137,14 @@ public class LocationsActivity extends FragmentActivity implements
 	@Override
 	protected void onStart() {
 		super.onStart();
+
+		loadAds();
+	}
+
+	private void loadAds() {
+		AdView adView = (AdView) this.findViewById(R.id.adView);
+		AdRequest adRequest = new AdRequest.Builder().build();
+		adView.loadAd(adRequest);
 	}
 
 	@Override

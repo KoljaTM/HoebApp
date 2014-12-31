@@ -33,6 +33,7 @@
         <module name="HoebApp-unittest" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="1.7" />
   </component>
 </project>
 

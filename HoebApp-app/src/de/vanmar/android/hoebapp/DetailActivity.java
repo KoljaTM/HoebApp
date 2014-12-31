@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.androidquery.AQuery;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.googlecode.androidannotations.annotations.*;
 import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
 import de.vanmar.android.hoebapp.bo.Account;
@@ -59,6 +61,19 @@ public class DetailActivity extends Activity {
 
 	@ViewById(R.id.stockTitle)
 	TextView stockTitle;
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+
+		loadAds();
+	}
+
+	private void loadAds() {
+		AdView adView = (AdView) this.findViewById(R.id.adView);
+		AdRequest adRequest = new AdRequest.Builder().build();
+		adView.loadAd(adRequest);
+	}
 
 	@Override
 	protected void onResume() {

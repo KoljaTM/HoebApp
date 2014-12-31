@@ -67,9 +67,16 @@
         </dependency>
 
         <dependency>
-            <groupId>com.google.android.admob</groupId>
-            <artifactId>admob</artifactId>
-            <version>6.4.1-r11.0.0</version>
+            <groupId>com.google.android.gms</groupId>
+            <artifactId>google-play-services</artifactId>
+            <version>21.0.0</version>
+            <type>apklib</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.android.gms</groupId>
+            <artifactId>google-play-services</artifactId>
+            <version>21.0.0</version>
         </dependency>
     </dependencies>
 
@@ -83,7 +90,7 @@
                 <version>${android.plugin.version}</version>
                 <configuration>
                     <sdk>
-                        <platform>19</platform>
+                        <platform>21</platform>
                     </sdk>
                     <undeployBeforeDeploy>false</undeployBeforeDeploy>
                 </configuration>

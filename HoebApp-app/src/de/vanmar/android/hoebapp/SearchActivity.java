@@ -12,6 +12,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import android.widget.TextView.OnEditorActionListener;
 import com.androidquery.AQuery;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.googlecode.androidannotations.annotations.*;
 import de.vanmar.android.hoebapp.bo.SearchMedia;
 import de.vanmar.android.hoebapp.service.LoginFailedException;
@@ -84,6 +86,14 @@ public class SearchActivity extends FragmentActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
+
+		loadAds();
+	}
+
+	private void loadAds() {
+		AdView adView = (AdView) this.findViewById(R.id.adView);
+		AdRequest adRequest = new AdRequest.Builder().build();
+		adView.loadAd(adRequest);
 	}
 
 	@Override

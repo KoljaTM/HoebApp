@@ -9,6 +9,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.androidquery.AQuery;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.googlecode.androidannotations.annotations.*;
 import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
 import de.vanmar.android.hoebapp.bo.Account;
@@ -49,6 +51,19 @@ public class NotepadActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 
 		loadNotepad();
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+
+		loadAds();
+	}
+
+	private void loadAds() {
+		AdView adView = (AdView) this.findViewById(R.id.adView);
+		AdRequest adRequest = new AdRequest.Builder().build();
+		adView.loadAd(adRequest);
 	}
 
 	@Override

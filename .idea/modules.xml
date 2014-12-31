@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/HoebApp-test/HoebApp-test.iml" filepath="$PROJECT_DIR$/HoebApp-test/HoebApp-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/HoebApp-unittest/HoebApp-unittest.iml" filepath="$PROJECT_DIR$/HoebApp-unittest/HoebApp-unittest.iml" />
       <module fileurl="file://$PROJECT_DIR$/hoebapp-parent.iml" filepath="$PROJECT_DIR$/hoebapp-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HoebApp-app/gen-external-apklibs/~apklib-com.google.android.gms_google-play-services_21.0.0.iml" filepath="$PROJECT_DIR$/HoebApp-app/gen-external-apklibs/~apklib-com.google.android.gms_google-play-services_21.0.0.iml" />
     </modules>
   </component>
 </project>
