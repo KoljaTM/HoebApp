@@ -27,7 +27,7 @@ public class HoebAppDbHelper extends SQLiteOpenHelper {
 
 	private static final String INSERT_LOCATIONS_SQL_PATH = "sql/insert_locations.sql";
 	private static final String DATABASE_NAME = "hoebdata";
-	private static final int DATABASE_VERSION = 12;
+	private static final int DATABASE_VERSION = 13;
 	public static final DateFormat dateFormat = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss", Locale.GERMAN);
 	private final Context context;
