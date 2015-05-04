@@ -42,10 +42,10 @@ import java.util.*;
 @EBean
 public class SoapLibraryService {
 
-	public static String NOTES_URL = "https://www.buecherhallen.de/app_webnote/Service1.asmx";
-	public static String NOTE_URL = "https://www.buecherhallen.de/app_ZonesServices/Service1.asmx";
-	public static String USER_URL = "https://www.buecherhallen.de/app_webuser/WebUserSvc.asmx";
-	public static String CATALOG_URL = "https://www.buecherhallen.de/WebCat/WebCatalogueSvc.asmx";
+	public static String NOTES_URL = "https://zones.buecherhallen.de/app_webnote/Service1.asmx";
+	public static String NOTE_URL = "https://zones.buecherhallen.de/app_ZonesServices/Service1.asmx";
+	public static String USER_URL = "https://zones.buecherhallen.de/app_webuser/WebUserSvc.asmx";
+	public static String CATALOG_URL = "https://zones.buecherhallen.de/WebCat/WebCatalogueSvc.asmx";
 	public static final String NOTES_NAMESPACE = "http://bibliomondo.com/websevices/webcatalogue";
 	public static final String NOTE_NAMESPACE = "http://bibliomondo.com/ZoneServices/";
 	public static final String USER_NAMESPACE = "http://bibliomondo.com/websevices/webuser";
