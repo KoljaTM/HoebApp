@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.webkit.WebView;
 
-import com.googlecode.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.EActivity;
 
 @SuppressLint("Registered")
 @EActivity

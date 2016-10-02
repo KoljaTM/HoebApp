@@ -15,14 +15,14 @@
     <packaging>apk</packaging>
     <name>HoebApp</name>
 
-    <!--   <repositories>
+    <repositories>
            <repository>
                <id>project.local</id>
                <name>project</name>
-               <url>file://repo</url>
+               <url>file://HoebApp-app/repo</url>
            </repository>
        </repositories>
-   -->
+
 
     <dependencies>
         <dependency>
@@ -31,21 +31,22 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.google.android</groupId>
+            <groupId>com.android.support</groupId>
             <artifactId>support-v4</artifactId>
-            <version>r13</version>
+            <version>24.2.1</version>
+            <type>aar</type>
         </dependency>
 
         <dependency>
-            <groupId>com.googlecode.androidannotations</groupId>
+            <groupId>org.androidannotations</groupId>
             <artifactId>androidannotations</artifactId>
-            <version>2.7</version>
+            <version>4.1.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.googlecode.androidannotations</groupId>
+            <groupId>org.androidannotations</groupId>
             <artifactId>androidannotations-api</artifactId>
-            <version>2.7</version>
+            <version>4.1.0</version>
         </dependency>
 
         <dependency>
@@ -68,16 +69,16 @@
 
         <dependency>
             <groupId>com.google.android.gms</groupId>
-            <artifactId>google-play-services</artifactId>
-            <version>21.0.0</version>
-            <type>apklib</type>
+            <artifactId>play-services-ads</artifactId>
+            <version>9.6.1</version>
+            <type>aar</type>
         </dependency>
 
-        <dependency>
+<!--        <dependency>
             <groupId>com.google.android.gms</groupId>
             <artifactId>google-play-services</artifactId>
             <version>21.0.0</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <build>
@@ -93,6 +94,7 @@
                         <platform>21</platform>
                     </sdk>
                     <undeployBeforeDeploy>false</undeployBeforeDeploy>
+                    <dexJvmArguments>-Xmx2048M</dexJvmArguments>
                 </configuration>
                 <extensions>true</extensions>
             </plugin>

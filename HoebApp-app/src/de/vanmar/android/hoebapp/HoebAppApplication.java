@@ -9,11 +9,11 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.androidquery.callback.BitmapAjaxCallback;
-import com.googlecode.androidannotations.annotations.EApplication;
-import com.googlecode.androidannotations.annotations.UiThread;
 
 import de.vanmar.android.hoebapp.service.LoginFailedException;
 import de.vanmar.android.hoebapp.service.TechnicalException;
+import org.androidannotations.annotations.EApplication;
+import org.androidannotations.annotations.UiThread;
 
 @EApplication
 public class HoebAppApplication extends Application {

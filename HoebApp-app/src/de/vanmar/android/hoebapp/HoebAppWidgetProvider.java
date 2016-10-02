@@ -4,8 +4,8 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import org.androidannotations.annotations.EReceiver;
 
-import com.googlecode.androidannotations.annotations.EReceiver;
 
 @EReceiver
 public class HoebAppWidgetProvider extends AppWidgetProvider {

@@ -3,8 +3,8 @@ package de.vanmar.android.hoebapp.util;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.googlecode.androidannotations.annotations.EBean;
-import com.googlecode.androidannotations.annotations.SystemService;
+import org.androidannotations.annotations.EBean;
+import org.androidannotations.annotations.SystemService;
 
 @EBean
 public class NetworkHelper {

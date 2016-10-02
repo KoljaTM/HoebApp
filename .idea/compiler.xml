@@ -17,10 +17,9 @@
       <profile default="true" name="Default" enabled="true">
         <sourceOutputDir name="gen_aa" />
         <outputRelativeToContentRoot value="true" />
-        <processor name="com.googlecode.androidannotations.AndroidAnnotationProcessor" />
-        <processorPath useClasspath="false">
+        <processor name="org.androidannotations.internal.AndroidAnnotationProcessor" />
+        <processorPath useClasspath="true">
           <entry name="$PROJECT_DIR$/HoebApp-app/ext-libs/androidannotations-2.7-SNAPSHOT.jar" />
-          <entry name="$PROJECT_DIR$/HoebApp-app/ext-libs/codemodel-2.4.1.jar" />
         </processorPath>
       </profile>
       <profile default="false" name="Maven default annotation processors profile" enabled="true">
@@ -33,7 +32,11 @@
         <module name="HoebApp-unittest" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.7" />
+    <bytecodeTargetLevel target="1.7">
+      <module name="HoebApp-app" target="1.5" />
+      <module name="hoebapp-parent" target="1.5" />
+      <module name="HoebApp-test" target="1.5" />
+      <module name="HoebApp-unittest" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
-

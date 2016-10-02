@@ -1,8 +1,8 @@
 package de.vanmar.android.hoebapp.util;
 
-import com.googlecode.androidannotations.annotations.sharedpreferences.DefaultInt;
-import com.googlecode.androidannotations.annotations.sharedpreferences.DefaultLong;
-import com.googlecode.androidannotations.annotations.sharedpreferences.SharedPref;
+import org.androidannotations.annotations.sharedpreferences.DefaultInt;
+import org.androidannotations.annotations.sharedpreferences.DefaultLong;
+import org.androidannotations.annotations.sharedpreferences.SharedPref;
 
 @SharedPref(SharedPref.Scope.APPLICATION_DEFAULT)
 public interface Preferences {

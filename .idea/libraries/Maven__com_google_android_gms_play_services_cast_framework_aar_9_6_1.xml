@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: com.google.android.gms:play-services-cast-framework:aar:9.6.1">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/HoebApp-app/gen-external-apklibs/com.google.android.gms_play-services-cast-framework_9.6.1/res" />
+      <root url="jar://$PROJECT_DIR$/HoebApp-app/gen-external-apklibs/com.google.android.gms_play-services-cast-framework_9.6.1/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/android/gms/play-services-cast-framework/9.6.1/play-services-cast-framework-9.6.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/android/gms/play-services-cast-framework/9.6.1/play-services-cast-framework-9.6.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

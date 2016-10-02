@@ -14,13 +14,13 @@ import android.widget.TextView.OnEditorActionListener;
 import com.androidquery.AQuery;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.googlecode.androidannotations.annotations.*;
 import de.vanmar.android.hoebapp.bo.SearchMedia;
 import de.vanmar.android.hoebapp.service.LoginFailedException;
 import de.vanmar.android.hoebapp.service.SoapLibraryService;
 import de.vanmar.android.hoebapp.service.TechnicalException;
 import de.vanmar.android.hoebapp.util.NetworkHelper;
 import de.vanmar.android.hoebapp.util.StringUtils;
+import org.androidannotations.annotations.*;
 
 import java.util.Collections;
 import java.util.List;

@@ -25,7 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.googlecode.androidannotations.annotations.*;
+import org.androidannotations.annotations.*;
 import de.vanmar.android.hoebapp.db.LocationContentProvider;
 import de.vanmar.android.hoebapp.db.LocationDbHelper;
 import de.vanmar.android.hoebapp.util.GeoCalculationHelper;
