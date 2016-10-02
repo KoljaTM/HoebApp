@@ -18,8 +18,8 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import com.googlecode.androidannotations.annotations.Background;
-import com.googlecode.androidannotations.annotations.EService;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.EService;
 
 import de.vanmar.android.hoebapp.db.MediaContentProvider;
 

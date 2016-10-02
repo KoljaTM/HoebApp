@@ -1,7 +1,7 @@
 package de.vanmar.android.hoebapp.service;
 
 import android.text.Html;
-import com.googlecode.androidannotations.annotations.EBean;
+import org.androidannotations.annotations.EBean;
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.Collections;
@@ -21,11 +21,15 @@ public class SoapHelper {
 	 * @return //GetBorrowerLoansResult/record/LoanDetails/LoanDetail
 	 */
 	public List<SoapObject> getLoans(SoapObject response) {
-		return getList(get(get(get(response, "record"), "GetBorrowerLoansHMResult"), "LoanDetails"));
+		return getList(get(get(get(response, "record"), "GetBorrowerLoansResult"), "LoanDetails"));
 	}
 
 	public String getCheckedUsername(SoapObject checkBorrowerResult) {
 		return getString(get(get(checkBorrowerResult, "record"), "CheckBorrowerResult"), "Brwr");
+	}
+
+	public String getSessionId(SoapObject checkBorrowerResult) {
+		return getString(get(get(checkBorrowerResult, "record"), "CheckBorrowerResult"), "sessionId");
 	}
 
 	public SoapObject get(SoapObject soapObject, String property) {

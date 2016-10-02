@@ -4,9 +4,6 @@ import android.appwidget.AppWidgetManager;
 import android.content.*;
 import android.os.RemoteException;
 import android.util.Log;
-import com.googlecode.androidannotations.annotations.Bean;
-import com.googlecode.androidannotations.annotations.EBean;
-import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
 import de.vanmar.android.hoebapp.HoebAppWidgetProvider_;
 import de.vanmar.android.hoebapp.R;
 import de.vanmar.android.hoebapp.UpdateService_;
@@ -15,6 +12,9 @@ import de.vanmar.android.hoebapp.db.MediaContentProvider;
 import de.vanmar.android.hoebapp.db.MediaDbHelper;
 import de.vanmar.android.hoebapp.util.Preferences_;
 import de.vanmar.android.hoebapp.util.StringUtils;
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.EBean;
+import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -121,9 +121,10 @@ public class SoapLibraryService {
 			final List<Account> accounts = Account.fromString(prefs.accounts()
 					.get());
 			for (final Account account : accounts) {
+				String sessionId = getSessionId(account);
+
 				HashMap<String, Object> parameters = new HashMap<String, Object>();
-				parameters.put("borrowerNumber", account.getCheckedUsername());
-				parameters.put("borrowerPin", account.getPassword());
+				parameters.put("sessionId", sessionId);
 				SoapObject response = doRequest(USER_NAMESPACE, "GetBorrowerLoans", USER_URL, parameters, SoapEnvelope.VER11);
 				List<SoapObject> loans = soapHelper.getLoans(response);
 				for (SoapObject loan : loans) {
@@ -163,6 +164,14 @@ public class SoapLibraryService {
 		} catch (Exception e) {
 			throw new TechnicalException(e);
 		}
+	}
+
+	private String getSessionId(Account account) throws TechnicalException {
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("borrowerNumber", account.getCheckedUsername());
+		parameters.put("pin", account.getPassword());
+		SoapObject checkBorrowerResult = doRequest(USER_NAMESPACE, "CheckBorrower", USER_URL, parameters, SoapEnvelope.VER12);
+		return soapHelper.getSessionId(checkBorrowerResult);
 	}
 
 	private ContentProviderOperation updateMediaInDb(
@@ -206,7 +215,7 @@ public class SoapLibraryService {
 
 	private void updateLastAccessDate() {
 		prefs.lastAccess().put(new Date().getTime());
-		prefs.notificationSent().put(0);
+		prefs.notificationSent().put(0L);
 	}
 
 	private void updateNotifications(final Context context) {
@@ -271,9 +280,10 @@ public class SoapLibraryService {
 
 	public void renewMedia(Set<RenewItem> renewList, Context context) throws TechnicalException {
 		for (RenewItem item : renewList) {
+			String sessionId = getSessionId(item.getAccount());
+
 			HashMap<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("borrowerNumber", item.getAccount().getCheckedUsername());
-			parameters.put("borrowerPin", item.getAccount().getPassword());
+			parameters.put("sessionId", sessionId);
 			parameters.put("itemNumber", item.getSignature());
 			doRequest(USER_NAMESPACE, "RenewItem", USER_URL, parameters, SoapEnvelope.VER11);
 		}
