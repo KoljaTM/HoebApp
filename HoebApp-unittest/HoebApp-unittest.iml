@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -48,12 +47,19 @@
     <orderEntry type="library" name="Maven: nekohtml:xercesMinimal:1.9.6.2" level="project" />
     <orderEntry type="library" name="Maven: nekohtml:nekohtml:1.9.6.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven.wagon:wagon-provider-api:1.0-beta-6" level="project" />
-    <orderEntry type="module" module-name="HoebApp-app" />
+    <orderEntry type="module" module-name="HoebApp" />
     <orderEntry type="library" name="Maven: com.android.support:support-annotations:24.2.1" level="project" />
     <orderEntry type="library" name="Maven: org.androidannotations:androidannotations-api:4.1.0" level="project" />
-    <orderEntry type="library" name="Maven: com.google.code.ksoap2-android:ksoap2-android:3.3.0-patched" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: com.google.code.ksoap2-android:ksoap2-android:3.3.0-patched">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../HoebApp-app/repo/com/google/code/ksoap2-android/ksoap2-android/3.3.0-patched/ksoap2-android-3.3.0-patched.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: com.googlecode.android-query:android-query:0.25.9" level="project" />
-    <orderEntry type="library" name="Maven: com.google.android.gms:play-services:9.6.1" level="project" />
     <orderEntry type="module" module-name="HoebApp-test" />
     <orderEntry type="library" name="Maven: com.google.android.admob:admob:6.4.1-r11.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.jayway.android.robotium:robotium-solo:4.1" level="project" />

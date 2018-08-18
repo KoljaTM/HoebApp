@@ -15,13 +15,22 @@
     <packaging>apk</packaging>
     <name>HoebApp</name>
 
-    <repositories>
+    <!--<repositories>
            <repository>
                <id>project.local</id>
                <name>project</name>
                <url>file://HoebApp-app/repo</url>
            </repository>
-       </repositories>
+       </repositories>-->
+
+    <repositories>
+        <repository>
+            <id>android-studio</id>
+            <name>lixo</name>
+            <url>https://maven.google.com</url>
+            <!-- <url>file://C:\Program Files\Android\Android Studio\gradle\m2repository</url> -->
+        </repository>
+    </repositories>
 
 
     <dependencies>
@@ -53,6 +62,8 @@
             <groupId>com.google.code.ksoap2-android</groupId>
             <artifactId>ksoap2-android</artifactId>
             <version>3.3.0-patched</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/repo/com/google/code/ksoap2-android/ksoap2-android/3.3.0-patched/ksoap2-android-3.3.0-patched.jar</systemPath>
         </dependency>
 
         <!--        <dependency>
@@ -86,15 +97,17 @@
 
         <plugins>
             <plugin>
-                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <groupId>com.simpligility.maven.plugins</groupId>
                 <artifactId>android-maven-plugin</artifactId>
                 <version>${android.plugin.version}</version>
                 <configuration>
                     <sdk>
-                        <platform>21</platform>
+                        <platform>27</platform>
                     </sdk>
-                    <undeployBeforeDeploy>false</undeployBeforeDeploy>
-                    <dexJvmArguments>-Xmx2048M</dexJvmArguments>
+                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
+                    <dexJvmArguments>
+                        <dexJvmArgument>-Xmx2048M</dexJvmArgument>
+                    </dexJvmArguments>
                 </configuration>
                 <extensions>true</extensions>
             </plugin>

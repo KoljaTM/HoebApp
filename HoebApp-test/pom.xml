@@ -54,14 +54,17 @@
 
         <plugins>
             <plugin>
-                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <groupId>com.simpligility.maven.plugins</groupId>
                 <artifactId>android-maven-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>${android.plugin.version}</version>
                 <configuration>
                     <sdk>
-                        <platform>19</platform>
+                        <platform>27</platform>
                     </sdk>
-                    <undeployBeforeDeploy>false</undeployBeforeDeploy>
+                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
+                    <dexJvmArguments>
+                        <dexJvmArgument>-Xmx2048M</dexJvmArgument>
+                    </dexJvmArguments>
                 </configuration>
                 <extensions>true</extensions>
             </plugin>
