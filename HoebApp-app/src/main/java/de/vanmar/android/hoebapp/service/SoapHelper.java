@@ -32,6 +32,10 @@ public class SoapHelper {
 		return getString(get(get(checkBorrowerResult, "record"), "CheckBorrowerResult"), "sessionId");
 	}
 
+	public String getSessionIdForNotes(SoapObject loginResult) {
+		return getString(loginResult, "sessionid");
+	}
+
 	public SoapObject get(SoapObject soapObject, String property) {
 		if (soapObject == null) {
 			return null;

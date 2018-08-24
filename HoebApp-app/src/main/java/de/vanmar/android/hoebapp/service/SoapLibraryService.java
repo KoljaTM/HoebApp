@@ -64,22 +64,18 @@ public class SoapLibraryService {
 
 		LinkedList<MediaDetails> result = new LinkedList<MediaDetails>();
 		for (final Account account : accounts) {
+			String sessionId = getSessionIdForNotes(account);
 			HashMap<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("patronId", account.getCheckedUsername());
-			parameters.put("patronPin", account.getPassword());
-			SoapObject response = doRequest(NOTES_NAMESPACE, "ReadNotesExt", NOTES_URL, parameters, SoapEnvelope.VER11);
+			parameters.put("sessionid", sessionId);
+			parameters.put("padName", "-");
+			SoapObject response = doRequest(NOTE_NAMESPACE, "ReadNotes", NOTE_URL, parameters, SoapEnvelope.VER11);
 			SoapObject items = (SoapObject) response.getProperty("items");
 			for (int i = 0; i < items.getPropertyCount(); i++) {
 				SoapObject item = (SoapObject) items.getProperty(i);
-				MediaDetails details = new MediaDetails();
+				String catalogueId = soapHelper.getString(item,"catalogueId");
+
+				MediaDetails details = getMediaDetails(catalogueId);
 				details.setOwner(account);
-				details.setTitle(soapHelper.getString(item, "title"));
-				details.setAuthor(soapHelper.getString(item, "author"));
-				details.setId(soapHelper.getString(item, "catalogueId"));
-				String isbn = soapHelper.getString(item, "isbn");
-				details.setSignature(isbn);
-				details.setImgUrl(getImgUrl(isbn));
-				details.setType(MaterialType.valueOf(soapHelper.getString(item, "materialType")));
 				result.add(details);
 			}
 		}
@@ -172,6 +168,14 @@ public class SoapLibraryService {
 		parameters.put("pin", account.getPassword());
 		SoapObject checkBorrowerResult = doRequest(USER_NAMESPACE, "CheckBorrower", USER_URL, parameters, SoapEnvelope.VER12);
 		return soapHelper.getSessionId(checkBorrowerResult);
+	}
+
+	private String getSessionIdForNotes(Account account) throws TechnicalException {
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("patronid", account.getCheckedUsername());
+		parameters.put("pin", account.getPassword());
+		SoapObject loginResult = doRequest(NOTE_NAMESPACE, "Login", NOTE_URL, parameters, SoapEnvelope.VER11);
+		return soapHelper.getSessionIdForNotes(loginResult);
 	}
 
 	private ContentProviderOperation updateMediaInDb(
@@ -355,6 +359,7 @@ public class SoapLibraryService {
 		parameters.put("CatalogueNumber", mediumId);
 		SoapObject response = doRequest(CATALOG_NAMESPACE, "GetCatalogueItems", CATALOG_URL, parameters, SoapEnvelope.VER11);
 		MediaDetails mediaDetails = new MediaDetails();
+		mediaDetails.setId(mediumId);
 		SoapObject item = soapHelper.get(soapHelper.get(soapHelper.get(soapHelper.get(response, "xmlDoc"), "GetCatalogueItemsResult"), "SoapActionResult"), "Items");
 
 		mediaDetails.setAuthor(soapHelper.getString(item, "Author"));
@@ -402,9 +407,9 @@ public class SoapLibraryService {
 
 	public void addToNotepad(Account account, String mediumId) throws TechnicalException {
 		// checkUsernames(); TODO: richtigen Account bestimmen
+		String sessionId = getSessionIdForNotes(account);
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("patronid", account.getCheckedUsername());
-		parameters.put("patronpin", account.getPassword());
+		parameters.put("sessionid", sessionId);
 		parameters.put("padName", "-");
 		mediumId = trim(mediumId);
 		parameters.put("catalogueId", mediumId);
@@ -430,9 +435,9 @@ public class SoapLibraryService {
 	}
 
 	public void removeFromNotepad(Account account, String mediumId) throws TechnicalException {
+		String sessionId = getSessionIdForNotes(account);
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("patronid", account.getCheckedUsername());
-		parameters.put("patronpin", account.getPassword());
+		parameters.put("sessionid", sessionId);
 		parameters.put("padName", "-");
 		parameters.put("catalogueId", mediumId);
 		SoapObject details = new SoapObject("", "");
