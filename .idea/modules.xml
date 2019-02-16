@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HoebApp-app/HoebApp.iml" filepath="$PROJECT_DIR$/HoebApp-app/HoebApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/HoebApp-test/HoebApp-test.iml" filepath="$PROJECT_DIR$/HoebApp-test/HoebApp-test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/HoebApp-unittest/HoebApp-unittest.iml" filepath="$PROJECT_DIR$/HoebApp-unittest/HoebApp-unittest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hoebapp-parent.iml" filepath="$PROJECT_DIR$/hoebapp-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/newHoebApp.iml" filepath="$PROJECT_DIR$/newHoebApp.iml" />
     </modules>
   </component>
 </project>
