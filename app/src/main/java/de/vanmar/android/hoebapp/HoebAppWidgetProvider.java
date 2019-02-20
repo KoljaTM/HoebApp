@@ -13,6 +13,10 @@ public class HoebAppWidgetProvider extends AppWidgetProvider {
 	@Override
 	public void onUpdate(final Context context,
 			final AppWidgetManager appWidgetManager, final int[] appWidgetIds) {
-		context.startService(new Intent(context, WidgetUpdateService_.class));
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			context.startForegroundService(new Intent(context, WidgetUpdateService_.class));
+		} else {
+			context.startService(new Intent(context, WidgetUpdateService_.class));
+		}
 	}
 }

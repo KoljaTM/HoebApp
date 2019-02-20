@@ -22,6 +22,7 @@ import com.androidquery.AQuery;
 import com.androidquery.util.AQUtility;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import org.androidannotations.annotations.*;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 import de.vanmar.android.hoebapp.bo.Account;
@@ -99,6 +100,8 @@ public class HoebAppActivity extends FragmentActivity implements
 		displayEulaDialog();
 
 		initList();
+
+		MobileAds.initialize(this, "ca-app-pub-9064469114375841~7925558812");
 	}
 
 	@Override

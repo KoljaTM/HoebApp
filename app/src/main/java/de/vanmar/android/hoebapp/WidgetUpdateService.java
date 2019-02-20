@@ -32,6 +32,26 @@ public class WidgetUpdateService extends Service {
 			"dd.MM.", Locale.GERMAN);
 
 	@Override
+	public void onCreate() {
+		super.onCreate();
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			String CHANNEL_ID = "widgetUpdate";
+			NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
+					"Updating",
+					NotificationManager.IMPORTANCE_LOW);
+
+			((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).createNotificationChannel(channel);
+
+			Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
+					.setContentTitle("HöbFans")
+					.setContentText("updating").build();
+
+			startForeground(1, notification);
+		}
+	}
+
+	@Override
 	public void onStart(final Intent intent, final int startId) {
 		performWidgetUpdate();
 	}

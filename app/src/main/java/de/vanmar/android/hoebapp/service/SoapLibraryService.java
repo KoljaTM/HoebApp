@@ -123,7 +123,6 @@ public class SoapLibraryService {
 				parameters.put("sessionId", sessionId);
 				SoapObject response = doRequest(USER_NAMESPACE, "GetBorrowerLoans", USER_URL, parameters, SoapEnvelope.VER11);
 				List<SoapObject> loans = soapHelper.getLoans(response);
-				int test=0;
 				for (SoapObject loan : loans) {
 					Media media = new Media();
 					media.setTitle(soapHelper.getStringFromHtml(loan, "Title"));
